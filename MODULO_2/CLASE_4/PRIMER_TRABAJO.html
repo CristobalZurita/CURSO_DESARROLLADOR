@@ -1,18 +1,68 @@
-Blank Page💭
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>PRIMERA PAGINA WEB</title>
-    <meta name="description" content="Roughly 155 characters">
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <h1>PRIMER PÁRRAFO</h1>
-    <h2>subtitulo del  PÁRRAFO</h2>
-    <p>Este es el contenido de mi primer párrafo en mi primera página web.</p>
-    
-  </body>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Práctica con HTML5</title>
+</head>
+<body>
+
+    <header>
+        <h1>Página de Práctica con HTML5</h1>
+
+        <nav>
+            <ul>
+                <li><a href="#acerca">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección principal -->
+        <section id="acerca">
+            <h2>Acerca de Nosotros</h2>
+            <p>Página web dedicada a servbicios tecnológicios y creación de páginas web y consultorías.</p>
+        </section>
+
+        <!-- Lista de servicios -->
+        <section id="servicios">
+            <h2>Servicios</h2>
+            <ul>
+                <li>Diseño Web</li>
+                <li>Desarrollo de Aplicaciones</li>
+                <li>Consultoría</li>
+            </ul>
+        </section>
+
+        <!-- Tabla de precios -->
+        <section id="precios">
+            <h2>Precios</h2>
+            <table border="1"><!-- border="1" AÑADE EL BORDE DE LA TABLA --> 
+                <tr>
+                    <th>Servicio</th>
+                    <th>Precio</th>
+                </tr>
+                <tr>
+                    <td>Diseño Web</td>
+                    <td>$100.000</td>
+                </tr>
+                <tr>
+                    <td>Desarrollo de Aplicaciones</td>
+                    <td>$200.000</td>
+                </tr>
+                <br>         <!-- en este caso BR sirve para separar en texto plano nada sofisticado. -->
+                <tr>
+                    <td>Consultoría</td>
+                    <td>$80.000</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <p>&copy; 2025 TechnoWeb. Creadores: SophíaLopez@TechnoWeb.cl, CristobalZurita@TechnoWeb.cl.</p>
+    </footer>
+
+</body>
 </html>
