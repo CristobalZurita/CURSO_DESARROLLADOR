@@ -1,0 +1,265 @@
+   <!-- Sophía López -->
+   <!-- Cristóbal Zurita -->    
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Práctica con HTML5</title>
+</head>
+<body>
+
+    <header>
+        <h1>Página de Práctica con HTML5</h1>
+
+        <nav>
+            <ul>
+                <li><a href="#acerca">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección principal -->
+        <section id="acerca">
+            <h2>Acerca de Nosotros</h2>
+            <p>Página web dedicada a servbicios tecnológicios y creación de páginas web y consultorías.</p>
+        </section>
+
+        <!-- Lista de servicios -->
+        <section id="servicios">
+            <h2>Servicios</h2>
+            <ul>
+                <li>Diseño Web</li>
+                <li>Desarrollo de Aplicaciones</li>
+                <li>Consultoría</li>
+            </ul>
+        </section>
+
+        <!-- Tabla de precios -->
+        <section id="precios">
+            <h2>Precios</h2>
+            <table border="1"><!-- border="1" AÑADE EL BORDE DE LA TABLA --> 
+                <tr>
+                    <th>Servicio</th>
+                    <th>Precio</th>
+                </tr>
+                <tr>
+                    <td>Diseño Web</td>
+                    <td>$100.000</td>
+                </tr>
+                <tr>
+                    <td>Desarrollo de Aplicaciones</td>
+                    <td>$200.000</td>
+                </tr>
+                <br>         <!-- en este caso BR sirve para separar en texto plano nada sofisticado. -->
+                <tr>
+                    <td>Consultoría</td>
+                    <td>$80.000</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <p>&copy; 2025 TechnoWeb. Creadores: SophíaLopez@TechnoWeb.cl, CristobalZurita@TechnoWeb.cl.</p>
+    </footer>
+
+    <!-- Formulario orientado a cotización básica de una página web -->
+    <form action="/enviar-cotizacion" method="post">
+        <h2>Formulario de Cotización de Página Web</h2>
+
+        <p>Completa este formulario para armar tu sitio web ideal. Según tus selecciones, podremos enviarte una cotización básica personalizada.</p>
+
+    <!-- Ejemplos de textos con efectos de movimiento -->
+    <!-- Scroll horizontal clásico -->
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+        🚀 Diseñamos la página web perfecta para tu negocio, a tu medida y sin complicaciones.
+    </marquee>
+
+    <!-- Efecto "bounce" (rebote) -->
+    <marquee behavior="alternate" direction="right" scrollamount="6">
+        🎉 ¡Arma tu sitio web ideal seleccionando las opciones de abajo!
+    </marquee>
+<marquee behavior="slide" direction="left" scrollamount="5">
+    🧭 Este texto se desliza una vez y se queda quieto al llegar al inicio.
+</marquee>
+<marquee behavior="scroll" direction="up" scrollamount="2" height="60">
+    👁️ Ejemplo de texto en movimiento vertical.
+    Aquí podrías mostrar avisos, tips o mensajes importantes
+    que van subiendo lentamente en la página.
+</marquee>
+
+<marquee behavior="alternate" direction="up" scrollamount="3" height="70">
+    🔁 Texto rebotando verticalmente dentro de este espacio.
+</marquee>
+
+
+    <br><br>
+
+    <!-- Selección del mensaje de banner (solo HTML, sin JS) -->
+    <label for="mensaje_banner">Elige el texto que te gustaría ver en el banner animado:</label><br>
+    <select id="mensaje_banner" name="mensaje_banner">
+        <option value="banner1">🚀 Diseñamos la página web perfecta para tu negocio, a tu medida y sin complicaciones.</option>
+        <option value="banner2">💻 TechnoWeb: sitios rápidos, claros y pensados para tus clientes.</option>
+        <option value="banner3">🎯 Completa el formulario y recibe una cotización básica para tu próxima página web.</option>
+        <option value="banner4">✨ Elige colores, estilo y efectos visuales. ¡Tu web, como tú la imaginas!</option>
+        <option value="banner5">📩 Te contactaremos con una propuesta según tus respuestas en este formulario.</option>
+    </select>
+
+    <br><br>
+
+
+        <!-- Datos de contacto -->
+        <fieldset>
+            <legend>Datos de contacto</legend>
+
+            <label for="nombre">Nombre completo:</label><br>
+            <input id="nombre" type="text" name="nombre" placeholder="Ingresa tu nombre" required>
+            <br><br>
+
+            <label for="email">Correo electrónico:</label><br>
+            <input id="email" type="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+            <br><br>
+
+            <label for="empresa">Nombre de tu negocio o proyecto (opcional):</label><br>
+            <input id="empresa" type="text" name="empresa" placeholder="Ej: TechnoWeb Servicios">
+        </fieldset>
+
+        <br>
+
+        <!-- Tipo de sitio web -->
+        <fieldset>
+            <legend>Tipo de sitio web que deseas</legend>
+
+            <p>Selecciona una opción:</p>
+
+            <input id="basico" type="radio" name="tipo_sitio" value="pagina_basica" checked>
+            <label for="basico">Página básica informativa (inicio + contacto)</label><br>
+
+            <input id="tienda" type="radio" name="tipo_sitio" value="tienda_online">
+            <label for="tienda">Tienda online simple</label><br>
+
+            <input id="landing" type="radio" name="tipo_sitio" value="landing_page">
+            <label for="landing">Landing page para una campaña específica</label><br>
+
+            <input id="blog" type="radio" name="tipo_sitio" value="blog_personal">
+            <label for="blog">Blog personal o profesional</label>
+        </fieldset>
+
+        <br>
+
+        <!-- Preferencias de diseño -->
+        <fieldset>
+            <legend>Preferencias de diseño</legend>
+
+            <label for="paleta_colores">Paleta de colores principal:</label><br>
+            <select id="paleta_colores" name="paleta_colores">
+                <option value="claro">Colores claros (fondos blancos / suaves)</option>
+                <option value="oscuro">Colores oscuros (fondo oscuro, estilo moderno)</option>
+                <option value="corporativo">Corporativo (azules, grises, sobrio)</option>
+                <option value="creativo">Creativo (colores vivos y contrastes fuertes)</option>
+            </select>
+
+            <label for="paleta_colores">Paleta de colores principal:</label><br>
+<select id="paleta_colores" name="paleta_colores">
+    <option value="claro">Colores claros (fondos blancos / suaves)</option>
+    <option value="oscuro">Colores oscuros (fondo oscuro, estilo moderno)</option>
+    <option value="corporativo">Corporativo (azules, grises, sobrio)</option>
+    <option value="creativo">Creativo (colores vivos y contrastes fuertes)</option>
+</select>
+<br><br>
+
+<!-- AQUÍ AÑADES EL CUADRO DE COLOR -->
+<label for="color_personalizado">Color principal sugerido:</label><br>
+<input id="color_personalizado" type="color" name="color_personalizado" value="#3366ff">
+<br><br>
+
+
+            <br><br>
+
+            <label for="fuente">Estilo de letra que prefieres:</label><br>
+            <select id="fuente" name="fuente">
+                <option value="simple">Simple y fácil de leer</option>
+                <option value="moderna">Moderna (titulares llamativos)</option>
+                <option value="clasica">Clásica / elegante</option>
+            </select>
+            <br><br>
+
+            <p>Tamaño aproximado del texto:</p>
+            <input id="pequeno" type="radio" name="tamano_texto" value="pequeno">
+            <label for="pequeno">Pequeño</label><br>
+
+            <input id="medio" type="radio" name="tamano_texto" value="medio" checked>
+            <label for="medio">Medio</label><br>
+
+            <input id="grande" type="radio" name="tamano_texto" value="grande">
+            <label for="grande">Grande</label>
+        </fieldset>
+
+        <br>
+
+        <!-- Efectos y extras -->
+            <legend>Efectos y extras para tu sitio</legend>
+
+            <p>Marca todo lo que te interese incluir:</p>
+
+            <input id="form_contacto" type="checkbox" name="extras" value="formulario_contacto">
+            <label for="form_contacto">Formulario de contacto con varios campos</label><br>
+
+            <input id="galeria" type="checkbox" name="extras" value="galeria_imagenes">
+            <label for="galeria">Galería de imágenes de tus productos o trabajos</label><br>
+
+            <input id="scroll_texto" type="checkbox" name="extras" value="texto_scroll">
+            <label for="scroll_texto">Sección de texto con efecto scroll (similar al ejemplo de arriba)</label><br>
+
+            <input id="mapa" type="checkbox" name="extras" value="mapa_ubicacion">
+            <label for="mapa">Sección para mostrar mapa de ubicación</label><br>
+
+            <input id="blog_extra" type="checkbox" name="extras" value="seccion_blog">
+            <label for="blog_extra">Sección de noticias o blog</label>
+            <br><br>
+
+            <!-- Ejemplo de área con posible scroll si el texto es largo -->
+            <label for="info_scroll">Ejemplo de texto en área desplazable:</label><br>
+            <textarea id="info_scroll" name="info_scroll" rows="4" cols="50" readonly>
+Este es un ejemplo de área de texto donde el contenido puede requerir scroll.
+En un sitio real, aquí podrías tener términos y condiciones, instrucciones o
+información adicional para el usuario. Si el texto es muy largo, aparecerá
+una barra de desplazamiento para que pueda leer todo el contenido.
+            </textarea>
+        </fieldset>
+
+        <br>
+
+        <!-- Comentarios adicionales del cliente -->
+        <fieldset>
+            <legend>Descripción del proyecto</legend>
+
+            <label for="descripcion">Cuéntanos brevemente qué necesitas:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="5" cols="60" placeholder="Ejemplo: Necesito una página para mi pyme de servicios tecnológicos, con sección de inicio, servicios, galería de fotos y formulario de contacto."></textarea>
+            <br><br>
+
+            <label for="presupuesto">Rango de presupuesto estimado (opcional):</label><br>
+            <select id="presupuesto" name="presupuesto">
+                <option value="no_se">Prefiero que me orienten</option>
+                <option value="bajo">Hasta $100.000</option>
+                <option value="medio">$100.000 a $300.000</option>
+                <option value="alto">Más de $300.000</option>
+            </select>
+        </fieldset>
+
+        <br>
+
+        <!-- Aceptación y envío -->
+        <input id="acepto" type="checkbox" name="acepto" required>
+        <label for="acepto">Confirmo que los datos entregados son reales y deseo recibir una cotización básica según mis selecciones.</label>
+
+        <br><br>
+        <button type="submit">Enviar solicitud de cotización</button>
+    </form>
+
+</body>
+</html>
