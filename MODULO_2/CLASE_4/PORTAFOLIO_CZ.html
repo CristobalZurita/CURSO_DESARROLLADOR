@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio Personal</title>
+
+    <!-- Estilos básicos para dos columnas -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin-bottom: 5px;
+        }
+
+        main {
+            display: flex;          /* Activa el modo columnas */
+            gap: 40px;              /* Separación entre columnas */
+            align-items: flex-start;
+        }
+
+        .columna {
+            flex: 1;                /* Cada columna ocupa el mismo espacio */
+            min-width: 0;
+        }
+
+        h2, h3 {
+            margin-top: 0;
+        }
+
+        /* En pantallas pequeñas, se apilan una bajo otra */
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado del portafolio -->
+    <header>
+        <h1>¡Hola! Soy Cristóbal Zurita</h1>
+        <p>Desarrollador Web y Diseñador, Técnico en electrónica, Músico y Cineasta</p>
+        <p>En este portafolio te muestro algunos proyectos y habilidades</p>
+    </header>
+
+    <!-- Contenedor principal en dos columnas -->
+    <main>
+        <!-- Columna izquierda: proyectos -->
+        <div class="columna">
+            <!-- Sección de proyectos -->
+            <section id="proyectos">
+                <h2>Mis Proyectos</h2>
+
+                <div>
+                    <h3>Proyecto 1: Página Web personal como percusionista clásico</h3>
+                    <p>
+                        Desarrollé una página web de mi proyecto de música solista y con orquesta de sintetizadores,
+                        donde interpreto música clásica de diferentes periodos, principalmente barroco orientado a
+                        Johann Sebastian Bach y otros compositores renombrados, además de obras exclusivas de marimba.
+                    </p>
+                    <a href="https://www.minimalmarimba.cl/">Ver Proyecto de Minimal Marimba</a>
+                </div>
+
+                <div>
+                    <h3>Proyecto 2: Portafolio Personal de Desarrollo Web</h3>
+                    <p>
+                        Ejemplo de portafolio personal, donde se muestran proyectos y habilidades adquiridos en el
+                        curso de desarrolladores fullstack.
+                    </p>
+                    <a href="https://github.com/CristobalZurita/CURSO_DESARROLLADOR/tree/main">Ver Proyecto</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Columna derecha: habilidades, experiencia y contacto -->
+        <div class="columna">
+            <!-- Sección de habilidades -->
+            <section id="habilidades">
+                <h2>Mis Habilidades</h2>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>Diseño Gráfico</li>
+                    <li>Edición de Video</li>
+                    <li>Electrónica</li>
+                    <li>Desarrollo para Microcontroladores</li>
+                    <li>Composición musical</li>
+                </ul>
+            </section>
+
+            <!-- Sección de experiencia -->
+            <section id="experiencia">
+                <h2>Experiencia</h2>
+                <ul>
+                    <li>
+                        <strong>Desarrollador Web – Página web personal para proyecto musical de Marimba y música electrónica</strong><br>
+                        Mayo 2025 – Actualidad, como mantenedor.<br>
+                        <p>Desarrollo web</p>
+                    </li>
+                    <li>
+                        <strong>Diseñador Gráfico – Afiche presentación concierto en ex-Bolsa de Valores en Valparaíso</strong><br>
+                        Enero 2025 - Junio 2025<br>
+                        <p>Diseño de logotipos, afiche y trabajo con imprenta</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Sección de contacto -->
+            <section id="contacto">
+                <h2>Contacto</h2>
+                <p>Si tienes alguna pregunta, no dudes en contactarme:</p>
+                <a href="mailto:contacto@minimalmarimba.cl">contacto@minimalmarimba.cl</a>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>
