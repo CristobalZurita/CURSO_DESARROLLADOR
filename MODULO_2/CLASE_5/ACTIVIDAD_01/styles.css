@@ -1,0 +1,117 @@
+/* =====================================================
+   EJERCICIO DE SELECTORES CSS
+   Este archivo muestra:
+   - Selector por etiqueta
+   - Selector por clase
+   - Selector por ID
+   ===================================================== */
+
+
+/* =======================
+   1) SELECTORES POR ETIQUETA
+   ========================== */
+
+/* 
+   Selector por etiqueta: body
+   Se aplica a TODO el <body> de la página.
+   Aquí definimos fuente, fondo y márgenes generales.
+*/
+body {
+  font-family: Arial, Helvetica, sans-serif; /* Tipo de letra de toda la página */
+  background-color: #f5f5f5;                 /* Color de fondo suave */
+  margin: 20px;                              /* Espacio hacia los bordes de la ventana */
+}
+
+/*
+   Selector por etiqueta: h1
+   Se aplica a TODOS los <h1>.
+   Sirve para el título principal.
+*/
+h1 {
+  text-align: center;        /* Centra el texto del título */
+  color: #333333;            /* Color gris oscuro para el texto */
+  margin-bottom: 20px;       /* Espacio debajo del título */
+}
+
+/*
+   Selector por etiqueta: p
+   Se aplica a TODOS los <p> (todos los párrafos).
+   Incluye el primer párrafo, el de clase, el de ID,
+   el que está dentro del div y el último.
+*/
+p {
+  font-size: 16px;           /* Tamaño de letra base para los párrafos */
+  line-height: 1.5;          /* Separación entre líneas para mejor lectura */
+  margin-bottom: 10px;       /* Separación entre un párrafo y el siguiente */
+  color: #222222;            /* Color de texto por defecto (casi negro) */
+}
+
+/* Párrafo especial: el PRIMERO, marcado con class="primero" */
+.primero {
+  font-weight: bold;   /* Negrita */
+  color: green;        /* Verde para que se note fuerte */
+  background: #ffce3d;    /* Fondo gris claro */
+}
+
+
+
+/* 
+   Nota:
+   Aunque el texto dice "Otro párrafo sin estilos aplicados",
+   igual recibe estos estilos GENERALES por etiqueta <p>.
+   Lo que NO tiene son estilos especiales de clase o ID.
+*/
+
+
+
+/* =======================
+   2) SELECTORES POR CLASE
+   ========================== */
+
+/*
+   Clase: .por-clase
+   Se aplica SOLO a los elementos que tengan:
+   class="por-clase"
+*/
+.por-clase {
+  color: blue;               /* Cambia el color del texto a azul */
+  font-weight: bold;         /* Pone el texto en negrita */
+}
+
+/*
+   Clase: .destacado
+   Esta clase está en el <div>.
+   Todo el contenido dentro del div se verá "destacado".
+*/
+.destacado {
+  background-color: #fff3cd; /* Fondo amarillo suave tipo "nota destacada" */
+  border: 1px solid #ffeeba; /* Borde suave alrededor del bloque */
+  padding: 10px;             /* Espacio interno para separar texto del borde */
+  margin-top: 15px;          /* Espacio superior para separarlo del párrafo anterior */
+}
+
+/*
+   (Opcional, solo para que entiendas)
+   Si quisieras aplicar un estilo SOLO a los <p> que están dentro
+   de un div con clase "destacado", podrías hacer:
+   .destacado p { ... }
+   Pero por ahora no es necesario para el ejercicio.
+*/
+
+
+
+/* ===================
+   3) SELECTOR POR ID
+   ====================== */
+
+/*
+   ID: #por-id
+   Se aplica SOLO al elemento que tenga:
+   id="por-id"
+   Recuerda: un ID debe ser ÚNICO en la página.
+*/
+#por-id {
+  color: darkred;            /* Texto en rojo oscuro */
+  text-decoration: underline;/* Subraya el texto para resaltarlo */
+  font-style: italic;        /* También lo pone en cursiva */
+}
