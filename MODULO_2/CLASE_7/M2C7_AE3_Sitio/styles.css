@@ -1,0 +1,93 @@
+/* ========== ESTILOS GENERALES (CSS EXTERNO) ========== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif; /* Requerimiento: fuente sans-serif */
+  background-color: #f0f2f5;                 /* Requerimiento: color de fondo */
+  color: #333333;
+}
+
+/* Contenedor principal */
+/* Requerimiento: ancho máximo y centrar contenido */
+.site-main {
+  max-width: 900px;
+  margin: 0 auto;    /* centra horizontalmente */
+  padding: 20px;
+}
+
+/* ========== ENCABEZADO ========== */
+/* Requerimiento: color distinto para el encabezado */
+.site-header {
+  background-color: #004b6b;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 4px solid #012635;  /* Box model: borde */
+}
+
+/* ========== SECCIÓN PRINCIPAL ========== */
+/* Requerimiento: aplicar box model (padding, margin, bordes) */
+.intro {
+  background-color: #ffffff;      /* color distinto al fondo general */
+  padding: 20px;                  /* padding */
+  margin-top: 20px;               /* margin */
+  border: 1px solid #cccccc;      /* borde */
+  border-radius: 8px;
+}
+
+/* Lista de puntos */
+.puntos-destacados {
+  padding-left: 20px;
+}
+
+.puntos-destacados li {
+  margin-bottom: 8px;
+}
+
+/* ========== FOOTER ========== */
+/* Requerimiento: color distinto para el pie de página */
+.site-footer {
+  margin-top: 30px;
+  text-align: center;
+  background-color: #222222;
+  color: #f1f1f1;
+  padding: 15px;
+  border-top: 4px solid #000000;  /* Box model: borde */
+}
+
+/* =========================================== */
+/* MEDIA QUERY: PANTALLAS CON ANCHO <= 768px   */
+/* Requerimiento: diseño responsivo            */
+/* =========================================== */
+@media (max-width: 768px) {
+  /* Cambiar ligeramente el fondo en pantallas pequeñas */
+  body {
+    background-color: #e0f7fa;
+  }
+
+  .site-main {
+    padding: 10px;
+  }
+
+  .intro {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  /* Ajuste de tamaños de texto */
+  .site-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .intro p {
+    font-size: 1rem;
+  }
+
+  .puntos-destacados li {
+    font-size: 0.95rem;
+  }
+}
