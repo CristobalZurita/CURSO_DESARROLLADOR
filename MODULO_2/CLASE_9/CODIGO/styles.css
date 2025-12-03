@@ -9,3 +9,42 @@ h1, h2 {
 img {
     border-radius: 8px;
 }
+
+
+/* ===========================================
+   NAVBAR MÁS GRANDE Y DEFINIDO – PROFESIONAL
+   =========================================== */
+
+/* Altura general del navbar */
+.navbar {
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    font-size: 1.2rem;          /* aumenta el tamaño de todos los textos del navbar */
+}
+
+/* Marca “Digital PRO” mucho más grande y vistosa */
+.navbar-brand {
+    font-size: 1.9rem;          /* tamaño destacado */
+    font-weight: 800;           /* más grueso */
+    letter-spacing: 0.8px;      /* separación elegante */
+    text-transform: uppercase;  /* se ve más corporativo */
+}
+
+/* Ítems del menú más grandes y claros */
+.nav-link {
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+/* Hover profesional */
+.nav-link:hover {
+    color: #0dcaf0 !important;
+}
+
+/* Botón “Agenda tu Demo” más grande y equilibrado */
+.navbar .btn-success {
+    padding: 10px 24px;
+    font-size: 1.15rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
