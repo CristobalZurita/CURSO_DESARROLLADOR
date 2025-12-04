@@ -1,0 +1,71 @@
+/* Puedes dejar este archivo en blanco si solo usas clases de Bootstrap */
+/* O puedes añadir estilos personalizados */
+
+/* Estilos para hacer el scrollspy más preciso y bonito */
+section {
+    padding-top: 56px; /* Para que el contenido no quede oculto bajo el navbar fijo */
+    margin-top: -56px; /* Para compensar y que el scroll llegue al punto exacto */
+}
+
+/* Puedes cambiar la tipografía para un toque más profesional o amigable */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Colores personalizados si es necesario */
+.text-success {
+    color: #28a745 !important; /* Verde por defecto de Bootstrap */
+}
+.bg-primary {
+    background-color: #007bff !important; /* Azul por defecto de Bootstrap */
+}
+
+/* ----- NORMALIZACIÓN DE CARDS ----- */
+
+.service-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 12px;
+    padding: 25px;
+    background: #fff;
+    text-align: center;
+}
+
+/* Títulos */
+.service-card .card-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #198754; /* verde */
+}
+
+/* Texto descriptivo */
+.service-card .card-text {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* ----------- BOTONES ----------- */
+
+/* Estado normal */
+.btn-service {
+    border: 2px solid #198754;      /* borde verde */
+    background-color: white;        /* fondo blanco */
+    color: #198754;                 /* texto verde */
+    padding: 12px 25px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    display: inline-block;
+}
+
+/* Hover = se vuelve verde oscuro */
+.btn-service:hover {
+    background-color: #198754;      /* verde */
+    border-color: #198754;
+    color: white;
+}
