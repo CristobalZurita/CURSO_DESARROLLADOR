@@ -1,71 +1,104 @@
-/* Puedes dejar este archivo en blanco si solo usas clases de Bootstrap */
-/* O puedes añadir estilos personalizados */
-
-/* Estilos para hacer el scrollspy más preciso y bonito */
-section {
-    padding-top: 56px; /* Para que el contenido no quede oculto bajo el navbar fijo */
-    margin-top: -56px; /* Para compensar y que el scroll llegue al punto exacto */
-}
-
-/* Puedes cambiar la tipografía para un toque más profesional o amigable */
+/* --------------------------
+   TIPOGRAFÍA Y AJUSTES BASE
+---------------------------*/
 body {
     font-family: Arial, sans-serif;
 }
 
-/* Colores personalizados si es necesario */
-.text-success {
-    color: #28a745 !important; /* Verde por defecto de Bootstrap */
-}
-.bg-primary {
-    background-color: #007bff !important; /* Azul por defecto de Bootstrap */
+/* --------------------------
+        NAVBAR
+---------------------------*/
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: 900;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.25);
 }
 
-/* ----- NORMALIZACIÓN DE CARDS ----- */
+.nav-link {
+    font-size: 1.15rem;
+}
 
-.service-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 12px;
-    padding: 25px;
-    background: #fff;
+/* --------------------------
+        CARRUSEL
+---------------------------*/
+.hero-img {
+    height: 75vh;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.carousel-caption-custom {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
     text-align: center;
+    width: 80%;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.9);
 }
 
-/* Títulos */
-.service-card .card-title {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #198754; /* verde */
+.titulo-hero {
+    font-size: 3rem;
+    font-weight: 800;
 }
 
-/* Texto descriptivo */
-.service-card .card-text {
-    flex-grow: 1;
-    font-size: 1rem;
-    color: #333;
-    line-height: 1.5;
+.subtitulo-hero {
+    font-size: 1.3rem;
     margin-bottom: 20px;
 }
 
-/* ----------- BOTONES ----------- */
-
-/* Estado normal */
-.btn-service {
-    border: 2px solid #198754;      /* borde verde */
-    background-color: white;        /* fondo blanco */
-    color: #198754;                 /* texto verde */
-    padding: 12px 25px;
-    font-weight: 600;
-    border-radius: 6px;
-    transition: all 0.25s ease;
-    display: inline-block;
+/* --------------------------
+        CARDS DE SERVICIOS
+---------------------------*/
+.service-card {
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-/* Hover = se vuelve verde oscuro */
+.service-card .card-text {
+    flex-grow: 1;
+}
+
+/* --------------------------
+        BOTONES VERDE BORDE
+---------------------------*/
+.btn-service {
+    border: 2px solid #198754;
+    background-color: white;
+    color: #198754;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
 .btn-service:hover {
-    background-color: #198754;      /* verde */
-    border-color: #198754;
+    background-color: #198754;
     color: white;
+}
+
+/* --------------------------
+        FOOTER
+---------------------------*/
+footer {
+    font-size: 1rem;
+}
+
+
+/* 🔥 Mantener SIEMPRE visible el texto del carrusel */
+.carousel-fade .carousel-item.active .carousel-caption-custom,
+.carousel-fade .carousel-item-next .carousel-caption-custom,
+.carousel-fade .carousel-item-prev .carousel-caption-custom {
+    opacity: 1 !important;
+    transition: none !important;
+}
+
+.carousel-caption-custom {
+    z-index: 10 !important; /* Asegura que SIEMPRE quede encima de las imágenes */
+    opacity: 1 !important;
 }
