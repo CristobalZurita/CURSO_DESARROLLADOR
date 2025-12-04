@@ -102,3 +102,40 @@ footer {
     z-index: 10 !important; /* Asegura que SIEMPRE quede encima de las imágenes */
     opacity: 1 !important;
 }
+
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: white;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    border: none; /* Asegura que no tengan bordes por defecto de Bootstrap */
+}
+ 
+.social-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+    color: white;
+}
+ 
+/* Colores de Marca */
+.btn-facebook {
+    background-color: #3b5998; /* Azul de Facebook */
+}
+ 
+.btn-twitter {
+    background-color: #00acee; /* Azul de Twitter/X */
+}
+ 
+.btn-whatsapp {
+    background-color: #25d366; /* Verde de WhatsApp */
+}
+ 
+/* Instagram usa un gradiente, pero para un estilo clásico, usaremos un color base fuerte */
+.btn-instagram {
+    background-color: #ec0086; /* Púrpura/Rosa fuerte */
+}
