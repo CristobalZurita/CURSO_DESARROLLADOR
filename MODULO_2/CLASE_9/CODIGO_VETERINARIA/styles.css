@@ -161,3 +161,82 @@ footer {
     background-color: rgba(255,255,255,0.2);
     color: white;
 }
+
+/* Botones transparentes blancos del Hero */
+.btn-hero {
+    border: 2px solid #409bf6;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 1.15rem;
+    transition: all 0.25s ease-in-out;
+}
+
+/* HOVER refinado */
+.btn-hero:hover {
+    background-color: rgba(255, 255, 255, 0.014);
+    color: white;
+    transform: scale(1.05);
+}
+
+.btn-hero {
+    border: 2px solid #ffffff;
+    background-color: rgba(0,0,0,0.35);  /* Fondo oscuro suave */
+    color: white;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 1.15rem;
+    backdrop-filter: blur(2px); /* Efecto profesional */
+    transition: all 0.25s ease-in-out;
+}
+
+/* Hover */
+.btn-hero:hover {
+    background-color: rgba(0,0,0,0.55);
+    border-color: #ffffff;
+    transform: scale(1.05);
+}
+
+.nav-link {
+    font-weight: 400;
+    transition: color .2s ease-in-out, font-weight .2s ease-in-out;
+}
+
+/* Al pasar mouse */
+.nav-link:hover {
+    font-weight: 700;
+}
+
+/* Cuando está activo */
+.nav-link.active {
+    font-weight: 700 !important;
+}
+
+section {
+    scroll-margin-top: 90px; /* Ajusta según lo alto del navbar */
+}
+
+
+#acerca p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
+
+.btn-hero {
+    border: 2px solid white;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+    color: white;
+}
+
+.btn-hero:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: white;
+}
