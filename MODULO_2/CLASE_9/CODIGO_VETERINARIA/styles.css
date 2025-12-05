@@ -1,13 +1,13 @@
-/* --------------------------
-   TIPOGRAFÍA Y AJUSTES BASE
----------------------------*/
+/* -------------------------------------------------
+   TIPOGRAFÍA GENERAL
+--------------------------------------------------*/
 body {
     font-family: Arial, sans-serif;
 }
 
-/* --------------------------
-        NAVBAR
----------------------------*/
+/* -------------------------------------------------
+   NAVBAR
+--------------------------------------------------*/
 .navbar-brand {
     font-size: 2rem;
     font-weight: 900;
@@ -16,11 +16,23 @@ body {
 
 .nav-link {
     font-size: 1.15rem;
+    font-weight: 400;
+    transition: color .2s ease, font-weight .2s ease;
 }
 
-/* --------------------------
-        CARRUSEL
----------------------------*/
+.nav-link:hover,
+.nav-link.active {
+    font-weight: 700 !important;
+}
+
+/* Evita que se corten los títulos al navegar */
+section {
+    scroll-margin-top: 90px;
+}
+
+/* -------------------------------------------------
+   CARRUSEL / HERO SECTION
+--------------------------------------------------*/
 .hero-img {
     height: 75vh;
     object-fit: cover;
@@ -33,9 +45,11 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    text-align: center;
     width: 80%;
+    text-align: center;
     text-shadow: 0 4px 12px rgba(0,0,0,0.9);
+    z-index: 10 !important;
+    opacity: 1 !important;
 }
 
 .titulo-hero {
@@ -48,9 +62,37 @@ body {
     margin-bottom: 20px;
 }
 
-/* --------------------------
-        CARDS DE SERVICIOS
----------------------------*/
+/* Evita que el texto desaparezca en el fade */
+.carousel-fade .carousel-item.active .carousel-caption-custom,
+.carousel-fade .carousel-item-next .carousel-caption-custom,
+.carousel-fade .carousel-item-prev .carousel-caption-custom {
+    opacity: 1 !important;
+    transition: none !important;
+}
+
+/* -------------------------------------------------
+   BOTONES HERO (Transparente / Profesional)
+--------------------------------------------------*/
+.btn-hero {
+    border: 2px solid white;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+    color: white;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 1.15rem;
+    transition: all 0.25s ease-in-out;
+}
+
+.btn-hero:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* -------------------------------------------------
+   CARDS DE SERVICIOS
+--------------------------------------------------*/
 .service-card {
     padding: 25px;
     border-radius: 12px;
@@ -64,9 +106,7 @@ body {
     flex-grow: 1;
 }
 
-/* --------------------------
-        BOTONES VERDE BORDE
----------------------------*/
+/* Botón verde borde */
 .btn-service {
     border: 2px solid #198754;
     background-color: white;
@@ -82,168 +122,51 @@ body {
     color: white;
 }
 
-/* --------------------------
-        FOOTER
----------------------------*/
+/* -------------------------------------------------
+   SECCIÓN NOSOTROS
+--------------------------------------------------*/
+#acerca p,
+.descripcion-equipo {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    text-align: justify;
+    max-width: 900px;
+    margin: 0 auto 18px auto;
+}
+
+/* -------------------------------------------------
+   FOOTER / REDES SOCIALES
+--------------------------------------------------*/
 footer {
     font-size: 1rem;
 }
 
-
-/* 🔥 Mantener SIEMPRE visible el texto del carrusel */
-.carousel-fade .carousel-item.active .carousel-caption-custom,
-.carousel-fade .carousel-item-next .carousel-caption-custom,
-.carousel-fade .carousel-item-prev .carousel-caption-custom {
-    opacity: 1 !important;
-    transition: none !important;
-}
-
-.carousel-caption-custom {
-    z-index: 10 !important; /* Asegura que SIEMPRE quede encima de las imágenes */
-    opacity: 1 !important;
-}
-
-
-.social-icon {
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    color: white;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    border: none; /* Asegura que no tengan bordes por defecto de Bootstrap */
-}
- 
-.social-icon:hover {
-    transform: scale(1.1);
-    opacity: 0.9;
-    color: white;
-}
- 
-/* Colores de Marca */
-.btn-facebook {
-    background-color: #3b5998; /* Azul de Facebook */
-}
- 
-.btn-twitter {
-    background-color: #00acee; /* Azul de Twitter/X */
-}
- 
-.btn-whatsapp {
-    background-color: #25d366; /* Verde de WhatsApp */
-}
- 
-/* Instagram usa un gradiente, pero para un estilo clásico, usaremos un color base fuerte */
-.btn-instagram {
-    background-color: #ec0086; /* Púrpura/Rosa fuerte */
-}
-
-/* Mantener íconos de redes en fila y bien separados */
 .footer-social {
     display: flex;
-    gap: 18px;                /* separación entre iconos */
-    justify-content: center;  /* centrado */
+    gap: 18px;
+    justify-content: center;
     align-items: center;
 }
 
-.footer-social .social-icon {
+.social-icon {
     width: 48px;
     height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
-}
-
-.btn-outline-light:hover {
-    background-color: rgba(255,255,255,0.2);
     color: white;
+    border: none;
+    transition: transform .2s ease, opacity .2s ease;
 }
 
-/* Botones transparentes blancos del Hero */
-.btn-hero {
-    border: 2px solid #409bf6;
-    background-color: transparent;
-    color: rgb(255, 255, 255);
-    border-radius: 8px;
-    padding: 12px 28px;
-    font-weight: 600;
-    font-size: 1.15rem;
-    transition: all 0.25s ease-in-out;
+.social-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
 }
 
-/* HOVER refinado */
-.btn-hero:hover {
-    background-color: rgba(255, 255, 255, 0.014);
-    color: white;
-    transform: scale(1.05);
-}
-
-.btn-hero {
-    border: 2px solid #ffffff;
-    background-color: rgba(0,0,0,0.35);  /* Fondo oscuro suave */
-    color: white;
-    border-radius: 8px;
-    padding: 12px 28px;
-    font-weight: 600;
-    font-size: 1.15rem;
-    backdrop-filter: blur(2px); /* Efecto profesional */
-    transition: all 0.25s ease-in-out;
-}
-
-/* Hover */
-.btn-hero:hover {
-    background-color: rgba(0,0,0,0.55);
-    border-color: #ffffff;
-    transform: scale(1.05);
-}
-
-.nav-link {
-    font-weight: 400;
-    transition: color .2s ease-in-out, font-weight .2s ease-in-out;
-}
-
-/* Al pasar mouse */
-.nav-link:hover {
-    font-weight: 700;
-}
-
-/* Cuando está activo */
-.nav-link.active {
-    font-weight: 700 !important;
-}
-
-section {
-    scroll-margin-top: 90px; /* Ajusta según lo alto del navbar */
-}
-
-
-#acerca p {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: justify;
-}
-
-.btn-hero {
-    border: 2px solid white;
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(3px);
-    color: white;
-}
-
-.btn-hero:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: white;
-}
-
-.descripcion-equipo {
-    font-size: 1.2rem;
-    line-height: 1.7;
-    text-align: justify;
-    margin-bottom: 18px;
-}
+/* Colores redes */
+.btn-facebook { background-color: #3b5998; }
+.btn-twitter  { background-color: #00acee; }
+.btn-whatsapp { background-color: #25d366; }
+.btn-instagram { background-color: #ec0086; }
