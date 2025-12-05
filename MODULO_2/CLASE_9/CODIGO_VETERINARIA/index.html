@@ -19,7 +19,12 @@
 <!-- 🔵 NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-sm" id="main-navbar">
     <div class="container">
-        <a class="navbar-brand fw-bold fs-3" href="#inicio">🐾 El Buen Amigo</a>
+<a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2" href="#inicio">
+    <i class="fas fa-paw text-white"></i> 
+    El Buen Amigo 
+    <i class="fas fa-cat text-white"></i>
+</a>
+
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -94,7 +99,20 @@
         <div class="carousel-caption-custom">
             <h1 class="titulo-hero">Bienvenido a Clínica Buen Amigo</h1>
             <p class="subtitulo-hero">Cuidamos a tus mascotas con amor, confianza y profesionalismo.</p>
-            <a href="#servicios" class="btn btn-lg btn-success px-4">Ver Servicios</a>
+<div class="d-flex justify-content-center gap-3 mt-3">
+
+    <!-- Botón VER SERVICIOS -->
+    <a href="#servicios" class="btn btn-lg btn-success px-4">
+        Ver Servicios
+    </a>
+
+    <!-- Botón AGENDAR HORA -->
+    <a href="#contacto" class="btn btn-lg btn-outline-light px-4">
+        Agendar Hora
+    </a>
+
+</div>
+
         </div>
 
     </div>
@@ -200,119 +218,159 @@
     </div>
 </section>
 
-
-<!-- 📩 CONTACTO -->
+<!-- 📞 CONTACTO / RESERVA DE HORA -->
 <section id="contacto" class="py-5 bg-white">
     <div class="container">
-        <h2 class="text-center mb-4 text-primary">Contáctanos</h2>
+        <h2 class="text-center mb-4 text-primary fw-bold">Contacto y Reserva de Hora</h2>
 
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <form class="needs-validation" novalidate>
+        <div class="row g-4">
 
+            <!-- ⭐ INFORMACIÓN DE CONTACTO -->
+            <div class="col-lg-5">
+                <div class="p-4 shadow-sm rounded bg-light">
+
+                    <h4 class="mb-3 text-success fw-bold">Información de Contacto</h4>
+
+                    <p><i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                        Calle Álvarez 2172, Viña del Mar</p>
+
+                    <p><i class="fas fa-phone me-2 text-primary"></i>
+                        <strong>+56 9 9535 6693</strong></p>
+
+                    <p><i class="fas fa-envelope me-2 text-primary"></i>
+                        info.vet@elbuenamigo.cl</p>
+
+                    <hr>
+
+                    <h5 class="fw-bold text-primary">Horarios de Atención</h5>
+                    <p class="mb-1">Lunes a Viernes: <strong>9:00 - 19:00</strong></p>
+                    <p class="mb-1">Sábado: <strong>10:00 - 16:00</strong></p>
+                    <p class="text-danger">Urgencias 24/7</p>
+
+                    <a href="#contacto" class="btn btn-success btn-lg w-100 mt-3">
+                        Reservar Hora
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- ⭐ FORMULARIO -->
+            <div class="col-lg-7">
+                <form class="needs-validation p-4 shadow-sm rounded bg-light" novalidate>
+
+                    <!-- NOMBRE -->
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" required>
+                        <input type="text" class="form-control" 
+                               placeholder="Ej: Juan Torres"
+                               autocomplete="name"
+                               required>
                         <div class="invalid-feedback">Ingresa tu nombre.</div>
                     </div>
 
+                    <!-- TELÉFONO -->
                     <div class="mb-3">
-                        <label class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" required>
+                        <label class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" 
+                               placeholder="+56 9 9999 9999"
+                               autocomplete="tel"
+                               required>
+                        <div class="invalid-feedback">Ingresa un número válido.</div>
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div class="mb-3">
+                        <label class="form-label">Correo</label>
+                        <input type="email" class="form-control" 
+                               placeholder="tucorreo@email.com"
+                               autocomplete="email"
+                               required>
                         <div class="invalid-feedback">Correo inválido.</div>
                     </div>
 
+                    <!-- MENSAJE -->
                     <div class="mb-3">
-                        <label class="form-label">Comentarios</label>
-                        <textarea class="form-control" rows="4" required></textarea>
+                        <label class="form-label">Mensaje</label>
+                        <textarea class="form-control" rows="4"
+                                  placeholder="Cuéntanos sobre tu mascota y la hora que deseas reservar"
+                                  required></textarea>
                         <div class="invalid-feedback">Escribe un mensaje.</div>
                     </div>
 
-                    <button class="btn btn-primary btn-lg w-100">Enviar Mensaje</button>
+                    <!-- BOTÓN ENVIAR -->
+                    <button class="btn btn-primary btn-lg w-100">
+                        Enviar Solicitud
+                    </button>
+
+                    <p class="text-muted text-end mt-2 small">
+                        Te responderemos a la brevedad.
+                    </p>
 
                 </form>
             </div>
+
         </div>
     </div>
 </section>
 
+
+<!-- MAPA GOOGLE -->
+<section id="mapa" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="text-primary mb-4">Dónde Estamos</h2>
+
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3331.4120566161847!2d-71.55373862449774!3d-33.026270175013504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9689de7ac59ab9f5%3A0x8df0b0a6596aa7ab!2s%C3%81lvarez%202172%2C%202570049%20Vi%C3%B1a%20del%20Mar%2C%20Valpara%C3%ADso!5e0!3m2!1ses!2scl!4v1700000000000"
+            width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </div>
+</section>
+
+
 <!-- FOOTER -->
 <footer class="bg-dark text-white pt-5 pb-4">
     <div class="container text-center text-md-start">
-        <div class="row text-center text-md-start">
-           
-            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                <h5 class="text-uppercase mb-4 fw-bold text-primary">
-                    EL BUEN AMIGO
-                </h5>
-                <p>
-                    <i class="fas fa-home me-3"></i> calle alvarez #2172
-                </p>
-                <p>
-                    <i class="fas fa-envelope me-3"></i> info.vet@elbuenamigo.cl
-                </p>
-                <p>
-                    <i class="fas fa-phone me-3"></i> +56995356693
-                </p>
+        <div class="row">
+
+            <!-- COLUMNA 1 -->
+            <div class="col-md-4 mb-4">
+                <h5 class="text-uppercase mb-4 fw-bold text-primary">El Buen Amigo</h5>
+                <p><i class="fas fa-home me-3"></i> calle alvarez #2172</p>
+                <p><i class="fas fa-envelope me-3"></i> info.vet@elbuenamigo.cl</p>
+                <p><i class="fas fa-phone me-3"></i> +56995356693</p>
             </div>
- 
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                <h5 class="text-uppercase mb-4 fw-bold text-primary">
-                    Enlaces
-                </h5>
-                <p>
-                    <a href="#inicio" class="text-white" style="text-decoration: none;">Inicio</a>
-                </p>
-                <p>
-                    <a href="#acerca" class="text-white" style="text-decoration: none;">Acerca de</a>
-                </p>
-                <p>
-                    <a href="#servicios" class="text-white" style="text-decoration: none;">Servicios</a>
-                </p>
-                <p>
-                    <a href="#galeria" class="text-white" style="text-decoration: none;">Galería</a>
-                </p>
+
+            <!-- COLUMNA 2 -->
+            <div class="col-md-4 mb-4">
+                <h5 class="text-uppercase mb-4 fw-bold text-primary">Enlaces</h5>
+                <p><a href="#inicio" class="text-white text-decoration-none">Inicio</a></p>
+                <p><a href="#acerca" class="text-white text-decoration-none">Acerca de</a></p>
+                <p><a href="#servicios" class="text-white text-decoration-none">Servicios</a></p>
+                <p><a href="#galeria" class="text-white text-decoration-none">Galería</a></p>
             </div>
- 
- <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-    <h5 class="text-uppercase mb-4 fw-bold text-primary">
-        Síguenos
-    </h5>
-    <div class="text-center text-md-start">
-        <ul class="list-unstyled list-inline">
-            <li class="list-inline-item">
-                <a href="#" class="btn social-icon btn-facebook rounded-circle" role="button">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" class="btn social-icon btn-twitter rounded-circle" role="button">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" class="btn social-icon btn-instagram rounded-circle" role="button">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" class="btn social-icon btn-whatsapp rounded-circle" role="button">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
- 
-            <hr class="mb-4 mt-4">
- 
-            <div class="col-md-12 text-center">
-                <p class="mb-0">
-                    &copy; 2025 Clínica Veterinaria 'El Buen Amigo'. Todos los derechos reservados. sitio desarrolado por Cristobal zurita & Sophia L
-                </p>
+
+            <!-- COLUMNA 3 -->
+            <div class="col-md-4 mb-4 text-center">
+                <h5 class="text-uppercase mb-4 fw-bold text-primary">Síguenos</h5>
+
+                <div class="footer-social">
+                    <a href="#" class="btn social-icon btn-facebook rounded-circle"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="btn social-icon btn-twitter rounded-circle"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="btn social-icon btn-instagram rounded-circle"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="btn social-icon btn-whatsapp rounded-circle"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
- 
+
         </div>
+
+        <!-- COPYRIGHT — CORRECTO Y CENTRADO -->
+        <hr class="mt-3 mb-3">
+
+        <div class="text-center small">
+            © 2025 Clínica Veterinaria 'El Buen Amigo'. Todos los derechos reservados.<br>
+            Sitio desarrollado por Cristobal Zurita & Sophia L
+        </div>
+
     </div>
 </footer>
 
