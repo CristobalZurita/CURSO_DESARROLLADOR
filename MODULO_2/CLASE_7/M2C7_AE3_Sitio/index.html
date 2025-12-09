@@ -1,47 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi proyecto Front End</title>
-  <!-- Requerimiento: usar hoja de estilos externa -->
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristóbal Zurita | Electrónica & Desarrollo Web</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <!-- Requerimiento: encabezado principal -->
-  <header class="site-header">
-    <h1>Mi proyecto de desarrollo Front End</h1>
-  </header>
 
-  <main class="site-main">
-    <section class="intro">
-      <!-- Requerimiento: párrafo que explique el propósito -->
-      <p>
-        Este sitio web forma parte de la actividad del módulo
-        <strong>Fundamentos de Desarrollo Front End</strong>. 
-        Aquí aplico la estructura básica de HTML y el uso de CSS externo
-        para crear una página sencilla, ordenada y responsiva.
-      </p>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container">
+            <div class="content">
+                <h1>Reparación Electrónica & Desarrollo Web Profesional</h1>
+                <p>Especialista en sintetizadores, sistemas embebidos y programación frontend moderna.</p>
 
-      <!-- Requerimiento: lista con 3 puntos relacionados al proyecto -->
-      <ul class="puntos-destacados">
-        <li>Organizar correctamente la estructura de un documento HTML.</li>
-        <li>Aplicar estilos mediante una hoja de estilos externa (CSS).</li>
-        <li>Adaptar el diseño para distintos tamaños de pantalla usando media queries.</li>
-      </ul>
-
-      <!--
-        NOTA:
-        Si en la rúbrica te piden una imagen, aquí podrías
-        agregarla después. Por ahora no se incluye ninguna,
-        tal como pediste.
-      -->
+                <div class="action">
+                    <button>Contáctame</button>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <!-- Requerimiento: footer con tu nombre -->
-  <footer class="site-footer">
-    <p>Creado por Cristóbal Zurita</p>
-  </footer>
+    <!-- SERVICIOS -->
+    <section class="services">
+        <div class="container">
+            <h2>Servicios</h2>
+
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <h3>Reparación de Instrumentos</h3>
+                    <p>Mantenimiento, diagnóstico y restauración de sintetizadores, drum machines y equipos vintage.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Desarrollo Web</h3>
+                    <p>Creación de sitios web modernos, responsivos y optimizados con HTML, CSS, JS y Vue.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Producción Audiovisual</h3>
+                    <p>Grabación, mezcla y edición profesional para proyectos creativos y musicales.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTAFOLIO -->
+    <section class="portfolio">
+        <div class="container">
+            <h2>Portafolio</h2>
+
+            <div class="portfolio-grid">
+
+                <div class="portfolio-card">
+                    <img src="ruta/a/mi-imagen.jpg" alt="Proyecto 1">
+                    <p>Restauración completa de sintetizador analógico vintage.</p>
+                </div>
+
+                <div class="portfolio-card">
+                    <img src="ruta/a/mi-imagen2.jpg" alt="Proyecto 2">
+                    <p>Sitio web profesional para una corporación cultural.</p>
+                </div>
+
+                <div class="portfolio-card">
+                    <img src="ruta/a/mi-imagen3.jpg" alt="Proyecto 3">
+                    <p>Prototipo de sistema embebido con Arduino y ESP32.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact">
+        <div class="container">
+            <h2>Contacto</h2>
+            <p>Valparaíso, Chile</p>
+            <p><strong>Email:</strong> cristobal.z.q@gmail.com</p>
+            <p><a href="https://www.facebook.com/Cirujanodesintetizadores/" target="_blank">Facebook oficial</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Cristóbal Zurita | Reparación Electrónica & Desarrollo Web</p>
+    </footer>
+
 </body>
 </html>
