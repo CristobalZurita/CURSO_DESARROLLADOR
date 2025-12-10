@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Profesional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<div class="calculator">
+    <h1>Calculadora</h1>
+    
+    <input id="userName" type="text" placeholder="Nombre de Usuario" class="user-input">
+
+    <div class="display">
+        <div class="input-row">
+            <input id="num1" type="number" placeholder="0" step="any">
+            <div class="operator" id="operator">+</div>
+            <input id="num2" type="number" placeholder="0" step="any">
+        </div>
+    </div>
+    
+    <div class="input-controls">
+        <div class="buttons">
+            <button id="btnSumar" class="btn btn-op btn-add"><span class="op">+</span><span>Sumar</span></button>
+            <button id="btnRestar" class="btn btn-op btn-subtract"><span class="op">−</span><span>Restar</span></button>
+            <button id="btnMultiplicar" class="btn btn-op btn-multiply"><span class="op">×</span><span>Multiplicar</span></button>
+            <button id="btnDividir" class="btn btn-op btn-divide"><span class="op">÷</span><span>Dividir</span></button>
+        </div>
+        
+        <div class="keypad">
+            <button class="btn btn-num" data-value="7">7</button>
+            <button class="btn btn-num" data-value="8">8</button>
+            <button class="btn btn-num" data-value="9">9</button>
+            <button class="btn btn-clear-entry">CE</button>
+
+            <button class="btn btn-num" data-value="4">4</button>
+            <button class="btn btn-num" data-value="5">5</button>
+            <button class="btn btn-num" data-value="6">6</button>
+            <button class="btn btn-num btn-decimal" data-value=".">.</button>
+
+            <button class="btn btn-num" data-value="1">1</button>
+            <button class="btn btn-num" data-value="2">2</button>
+            <button class="btn btn-num" data-value="3">3</button>
+            <button class="btn btn-equals">=</button>
+            
+            <button class="btn btn-num btn-zero" data-value="0">0</button>
+        </div>
+    </div>
+
+    <div class="result" id="resultado">
+        <span class="result-label">Resultado</span>
+        <span class="result-value" id="resultValue">0</span>
+    </div>
+    <div class="history">
+        <div class="history-header">
+            <h3>Historial de Operaciones</h3>
+            <button id="btnLimpiar" class="btn-clear">Limpiar</button>
+        </div>
+        
+        <div class="history-list-wrapper">
+            <table id="historialLista">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Operación</th>
+                        <th>Resultado</th>
+                        <th>Fecha y Hora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="empty-row"><td colspan="4">Sin operaciones registradas</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
