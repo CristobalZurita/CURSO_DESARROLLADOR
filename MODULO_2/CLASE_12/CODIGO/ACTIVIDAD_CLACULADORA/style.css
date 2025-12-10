@@ -1,0 +1,288 @@
+/* 1. RESET Y TIPOGRAFÍA */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 2. CONTENEDOR PRINCIPAL Y DIAGRAMACIÓN (USA GRID) */
+.calculator {
+    /* Anchura necesaria para el Keypad lateral */
+    max-width: 850px; 
+    width: 95%;
+    background: white;
+    padding: 30px; 
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: grid;
+    /* 2 Columnas principales: [Calculadora: 1.5fr] y [Historial: 2fr] */
+    grid-template-columns: 1.5fr 2fr; 
+    grid-template-areas: 
+        "header header"
+        "usuario usuario"
+        "display historial"
+        "controls historial"
+        "result historial";
+    gap: 20px; 
+}
+
+h1 {
+    grid-area: header; 
+    color: #1a1a1a;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* Campo de usuario y inputs */
+.user-input {
+    grid-area: usuario; 
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+/* 3. ÁREA DE PANTALLA (DISPLAY) */
+.display {
+    grid-area: display; 
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-row input {
+    flex-grow: 1;
+    width: 45%;
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.operator {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #007bff;
+    width: 10%;
+}
+
+/* 4. CONTROLES (Botones de Operación + Keypad) */
+.input-controls {
+    grid-area: controls; 
+    display: flex;
+    gap: 15px; 
+}
+
+/* 4a. Botones de Operación (4 botones) */
+.buttons {
+    flex: 1; 
+    display: grid;
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 10px;
+}
+
+/* 4b. Estilo de Botón Base (Estilo colorido original) */
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background-color 0.2s, transform 0.1s;
+    height: 100%; 
+}
+
+.btn .op {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+}
+
+/* Colores de Operación */
+.btn-add { background-color: #28a745; } 
+.btn-subtract { background-color: #ffc107; } 
+.btn-multiply { background-color: #17a2b8; } 
+.btn-divide { background-color: #dc3545; } 
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-add:hover { background-color: #218838; }
+.btn-subtract:hover { background-color: #e0a800; }
+.btn-multiply:hover { background-color: #138496; }
+.btn-divide:hover { background-color: #c82333; }
+
+/* 4c. Teclado Numérico (Keypad) */
+.keypad {
+    flex: 2; 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn-num {
+    background-color: #e9ecef; /* Gris claro para números */
+    color: #343a40;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 5px;
+    height: auto;
+}
+.btn-num:hover {
+    background-color: #dee2e6;
+}
+
+.btn-zero {
+    grid-column: span 3; 
+}
+
+.btn-clear-entry {
+    background-color: #6c757d; /* Gris oscuro para CE */
+    color: white;
+}
+.btn-clear-entry:hover {
+    background-color: #495057;
+}
+
+.btn-decimal {
+    font-size: 1.5rem;
+}
+
+.btn-equals {
+    background-color: #007bff; /* Botón = en azul */
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    grid-row: span 2; 
+}
+
+.btn-equals:hover {
+    background-color: #0056b3;
+}
+
+/* Efecto de presionado (para la funcionalidad JS) */
+.btn-pressed {
+    transform: scale(0.95) !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4) inset !important;
+    transition: transform 0.1s;
+}
+
+/* 5. ÁREA DE RESULTADO */
+.result {
+    grid-area: result; 
+    background: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.result-value {
+    font-size: 3rem; 
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* 6. HISTORIAL (Estilo de tabla claro) */
+.history {
+    grid-area: historial; 
+    display: flex;
+    flex-direction: column;
+}
+
+.history-list-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    flex-grow: 1; 
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+
+#historialLista {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0 5px; 
+    table-layout: fixed;
+}
+
+#historialLista thead th {
+    padding: 12px 10px; 
+    font-size: 1rem;
+    font-weight: 600;
+    color: #343a40;
+    background-color: #f1f1f1;
+    border-bottom: 3px solid #dee2e6;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#historialLista td {
+    padding: 10px 10px; 
+    font-size: 0.9rem;
+    color: #495057;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.empty-row td {
+    text-align: center !important;
+    padding: 30px !important;
+}
+
+.history-item-row:hover {
+    background-color: #f8f9fa;
+}
+
+
+/* 7. RESPONSIVIDAD (Diseño Móvil) */
+@media (max-width: 900px) {
+    .calculator {
+        /* Se apilan en móvil */
+        grid-template-columns: 1fr; 
+        grid-template-areas: 
+            "header"
+            "usuario"
+            "display"
+            "controls"
+            "result"
+            "historial";
+        gap: 20px;
+        padding: 25px;
+    }
+    .input-controls {
+        flex-direction: column; /* Apila botones y keypad */
+    }
+    .history-list-wrapper {
+        max-height: 200px; 
+    }
+}
