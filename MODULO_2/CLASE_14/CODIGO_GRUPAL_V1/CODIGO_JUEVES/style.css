@@ -1,0 +1,75 @@
+/* Estilos básicos para la presentación del formulario */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box; /* Para que el padding no rompa el ancho */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Área para mostrar mensajes (corregido: usando #mensaje) */
+#mensaje {
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    display: none; /* Oculto por defecto */
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    display: block !important;
+}
+
+/* Coincide con la clase .ok usada en el JS */
+.ok {
+    background-color: #d4edda;
+    color: #155724;
+    display: block !important;
+}
