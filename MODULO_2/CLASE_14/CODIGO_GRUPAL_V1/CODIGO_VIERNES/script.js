@@ -97,3 +97,41 @@ function validarFormulario(evento) {
 }
 
 if (form) form.addEventListener("submit", validarFormulario);
+
+
+// ===============================
+// 4) INTEGRACIÓN JQUERY: SCROLL SUAVE
+// Requiere la inclusión de la librería jQuery en el HTML (CDN)
+// ===============================
+
+// Usamos el $(document).ready() para asegurar que el DOM esté listo
+// antes de manipular los enlaces.
+$(document).ready(function() {
+    
+    // Seleccionamos todos los enlaces que comienzan con '#'
+    $('a[href^="#"]').on('click', function(e) {
+        
+        // Evitamos la acción de salto predeterminada
+        e.preventDefault();
+        
+        // Obtenemos el ID del destino (ej: #eventos)
+        const target = this.hash;
+        
+        // Verificamos que el destino no esté vacío
+        if (target === "") return;
+
+        // Calculamos la posición a la que debe desplazarse
+        const $target = $(target);
+        const offset = $target.offset().top; // Posición absoluta del elemento
+        const headerHeight = $('.main-header').outerHeight() || 0; // Altura del header sticky
+
+        // Ejecutamos la animación de scroll
+        $('html, body').animate({
+            // Ajustamos la posición restando la altura del header para que no tape el contenido
+            scrollTop: offset - headerHeight
+        }, 800, 'swing', function() { // 800ms de duración, animación 'swing'
+            // Opcional: añade el hash al URL después del scroll
+            window.location.hash = target;
+        });
+    });
+});
