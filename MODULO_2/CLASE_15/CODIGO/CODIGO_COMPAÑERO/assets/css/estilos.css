@@ -1,0 +1,93 @@
+:root {
+    --color-principal: #00897B;
+    --color-gris-claro: #f8f9fa;
+    --color-texto-oscuro: #343a40;
+    --color-favorito: #ffc107;
+}
+
+body {
+    background-color: var(--color-gris-claro);
+    color: var(--color-texto-oscuro);
+}
+
+.header-titulo {
+    color: var(--color-principal);
+    font-weight: 700;
+}
+
+/* Estilo de Tarjetas de Producto */
+.producto-card {
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+/* Efecto hover en Tarjetas de Producto se agranda al tener el mouse encima*/
+.producto-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.producto-card img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    object-fit: cover;
+    height: 200px;
+}
+
+/* Estilo para productos marcados como favoritos*/
+.favorito-resaltado {
+    border: 3px solid var(--color-favorito);
+}
+
+.favorito-resaltado .card-title {
+    color: var(--color-principal);
+    font-weight: 600;
+}
+
+/* Botón de Favorito */
+.btn-favorito {
+    transition: all 0.3s;
+    border-radius: 20px;
+}
+
+/* Botón cuando NO es favorito */
+.btn-outline-danger {
+    color: var(--color-principal);
+    border-color: var(--color-principal);
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+/* Botón cuando SÍ es favorito */
+.btn-danger {
+    background-color: var(--color-favorito);
+    border-color: var(--color-favorito);
+    color: var(--color-texto-oscuro);
+    font-weight: 600;
+}
+
+.btn-danger i {
+    color: white;
+}
+
+#carouselExampleAutoplaying {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+#toastMensaje {
+    border-radius: 8px;
+    padding: 10px;
+}
