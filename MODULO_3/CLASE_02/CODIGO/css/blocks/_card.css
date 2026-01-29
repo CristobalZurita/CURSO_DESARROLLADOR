@@ -1,0 +1,1 @@
+.mm-card{max-width:960px;margin:4rem auto;padding:3rem;background:var(--mm-white);color:var(--mm-black)}.mm-card--dark{background:var(--mm-black);color:var(--mm-white);border-top:6px solid var(--mm-orange)}.mm-card__title{margin:0 0 1.5rem;font-size:2rem}.mm-card__list{list-style:none;padding:0}.mm-card__list li{padding:.75rem 0;border-bottom:1px solid var(--mm-gray)}

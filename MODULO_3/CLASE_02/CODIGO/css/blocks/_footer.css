@@ -1,0 +1,10 @@
+.mm-footer{
+  padding:4rem 1rem;
+  text-align:center;
+}
+
+.mm-footer__text{
+  color:var(--mm-orange);
+  letter-spacing:.55em;
+  font-size:2.2rem;
+}

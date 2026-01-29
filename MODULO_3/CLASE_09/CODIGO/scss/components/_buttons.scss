@@ -1,0 +1,61 @@
+// ===========================
+// BUTTONS COMPONENT
+// ===========================
+
+@use '../abstracts/variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: $radius-full;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all $transition-base;
+  position: relative;
+  overflow: hidden;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    transition: $transition-base;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-100%);
+    transition: $transition-base;
+  }
+
+  &:hover::before {
+    transform: translateX(0);
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+
+  &--primary {
+    background: $gradient-primary;
+    color: $white;
+  }
+
+  &--secondary {
+    background: $white;
+    color: $dark;
+  }
+
+  &--full {
+    width: 100%;
+    justify-content: center;
+  }
+}

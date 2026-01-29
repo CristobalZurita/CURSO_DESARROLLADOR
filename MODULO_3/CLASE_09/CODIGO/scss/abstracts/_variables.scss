@@ -1,0 +1,67 @@
+// ===========================
+// BIKEFIX WORKSHOP - VARIABLES
+// ===========================
+
+// === COLORS ===
+$primary: #d74417;
+$primary-dark: #349b4e;
+$secondary: #004e89;
+$secondary-dark: #003a66;
+$accent: #ffd23f;
+$dark: #0a0a0a;
+$dark-soft: #1a1a1a;
+$light: #f8f9fa;
+$white: #ffffff;
+$gray: #6c757d;
+$gray-light: #e9ecef;
+
+// === GRADIENTS ===
+$gradient-primary: linear-gradient(135deg, #ff6b35 0%, #ff8f5f 100%);
+$gradient-secondary: linear-gradient(135deg, #004e89 0%, #0066b3 100%);
+$gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+
+// === SHADOWS ===
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+$shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.24);
+
+// === SPACING ===
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 1.5rem;
+$space-lg: 2.5rem;
+$space-xl: 4rem;
+
+// === TYPOGRAPHY ===
+$font-display: 'Bebas Neue', sans-serif;
+$font-body: 'Outfit', sans-serif;
+
+// === TRANSITIONS ===
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// === BORDER RADIUS ===
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-full: 50px;
+
+// === PRODUCT BADGE COLORS ===
+$badge-red: #e63946;
+$badge-orange: #f77f00;
+$badge-blue: #1d3557;
+$badge-green: #2a9d8f;
+$badge-purple: #9d4edd;
+$badge-cyan: #06aed5;
+$badge-yellow: #ffc300;
+$badge-pink: #e85d75;
+
+// === WHATSAPP ===
+$whatsapp-green: #25d366;
+
+// === BREAKPOINTS ===
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1200px;

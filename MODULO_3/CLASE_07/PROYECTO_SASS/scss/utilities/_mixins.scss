@@ -1,0 +1,8 @@
+@use "variables" as vars;
+
+@mixin button-base {
+  padding: 1rem 1.5rem;
+  font-family: vars.$font-base;
+  font-weight: 700;
+  cursor: pointer;
+}

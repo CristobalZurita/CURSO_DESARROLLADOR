@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafetería</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="nav-inner">
+
+      <!-- LOGO IZQUIERDA -->
+      <div class="logo">
+        <span class="material-symbols-outlined">bakery_dining</span>
+        <span class="brand">La Brioche</span>
+      </div>
+
+      <!-- MENÚ CENTRO -->
+      <nav class="menu">
+        <a href="#Inicio">Inicio</a>
+        <a href="#" id="btnReservas">Reservas</a>
+        <a href="#Menu">Nuestro menú</a>
+      </nav>
+
+      <!-- ACCIONES DERECHA -->
+      <div class="actions">
+        <button id="searchIcon" class="icon-btn search-icon">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+
+        <button id="cartBtn" class="icon-btn cart-btn">
+          <span class="material-symbols-outlined">shopping_cart</span>
+          <span id="cartCount" class="cart-badge">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+
+
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-box">
+      <button id="closeSearch">&times;</button>
+
+      <input type="text" id="searchInput" placeholder="Buscar productos..." />
+
+      <button id="searchBtnAction" class="search-btn">
+        <span class="material-symbols-outlined" style="font-size:18px;">search</span>
+        Buscar
+      </button>
+
+      <div id="searchResults"></div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <section id="Inicio" class="hero">
+    <div class="hero-content">
+
+      <span class="badge">☕ Bienvenido a nuestra cafetería</span>
+
+      <h1>
+        Sabores que <br>
+        <span>despiertan tu día</span>
+      </h1>
+
+      <p>
+        Descubre nuestra selección artesanal de panes, pasteles y cafés de especialidad.
+        Elaborados con amor y los mejores ingredientes cada mañana.
+      </p>
+
+      <div class="features">
+        <div class="feature">
+          ☕ <span>Café de especialidad</span>
+        </div>
+        <div class="feature">
+          🚚 <span>Despacho a domicilio</span>
+        </div>
+        <div class="feature">
+          ⏰ <span>Frescos cada día</span>
+        </div>
+        <div class="feature">
+          ⭐ <span>Calidad premium</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Café">
+    </div>
+  </section>
+
+
+  <section id="products">
+    <div class="products-header">
+      <h2>Los favoritos de la casa</h2>
+      <p>Selecciona tus favoritos y agrégalos al carrito</p>
+    </div>
+
+    <div class="product-grid">
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Café Espresso">
+        <span class="tag">Café</span>
+        <h3>Café Espresso</h3>
+        <p>Intenso y aromático, preparado al momento.</p>
+        <div class="product-footer">
+          <span class="price">$2.500</span>
+          <button data-name="Café Espresso" data-price="2500">
+            <span class="material-symbols-outlined">
+              add
+            </span>Agregar
+          </button>
+
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a" alt="Croissant">
+        <span class="tag">Panadería</span>
+        <h3>Croissant</h3>
+        <p>Crujiente y hojaldrado con mantequilla.</p>
+        <div class="product-footer">
+          <span class="price">$1.800</span>
+          <button data-name="Croissant" data-price="1800">
+            <span class="material-symbols-outlined">
+              add
+            </span>Agregar
+          </button>
+
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img
+          src="https://images.unsplash.com/photo-1597604391235-a7429b4b350c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Pan de Campo">
+        <span class="tag">Panadería</span>
+        <h3>Pan de Campo</h3>
+        <p>Masa madre fermentada 24 horas.</p>
+        <div class="product-footer">
+          <span class="price">$3.200</span>
+          <button data-name="Pan de Campo" data-price="3200">
+            <span class="material-symbols-outlined">
+              add
+            </span>Agregar
+          </button>
+
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Capuccino">
+        <span class="tag">Café</span>
+        <h3>Capuccino</h3>
+        <p>Café suave con espuma cremosa.</p>
+        <div class="product-footer">
+          <span class="price">$2.900</span>
+          <button data-name="Capuccino" data-price="2900">
+            <span class="material-symbols-outlined">
+              add
+            </span> Agregar
+          </button>
+
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.pexels.com/photos/8909323/pexels-photo-8909323.jpeg" alt="Pain au Chocolat">
+        <span class="tag">Amasandería</span>
+        <h3>Pain au Chocolat</h3>
+        <p>Hojaldrado relleno de chocolate oscuro, ideal para acompañar con café.</p>
+        <div class="product-footer">
+          <span class="price">$2.200</span>
+          <button data-name="Pain au Chocolat" data-price="2200">
+            <span class="material-symbols-outlined">
+              add
+            </span>Agregar
+          </button>
+
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Capuccino">
+        <span class="tag">Café</span>
+        <h3>Latte de Vainilla</h3>
+        <p>Espresso con leche vaporizada y un toque de sirope de vainilla, cremosa y aromática.</p>
+        <div class="product-footer">
+          <span class="price">$3.000</span>
+          <button data-name="Latte de Vainilla" data-price="3000">
+            <span class="material-symbols-outlined">
+              add
+            </span>Agregar
+          </button>
+
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1692309812344-fde93f207437?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Focaccia">
+        <div class="tag">Panadería</div>
+        <h3>Focaccia Artesanal</h3>
+        <p>Focaccia suave con aceite de oliva, romero y sal marina. Perfecta para acompañar cualquier comida.</p>
+        <div class="product-footer">
+          <span class="price">$3.500</span>
+          <button data-name="Latte de Vainilla" data-price="3000">
+            <span class="material-symbols-outlined">
+              add
+            </span>Agregar
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <section id="Menu" class="menu-section-wrapper">
+
+    <h2 class="menu-title">Nuestro menú</h2>
+
+    <div class="menu-section">
+
+      <!-- Panadería -->
+      <div class="menu-card">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1675788939058-850af470cd36?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Panadería">
+        <div class="menu-content">
+          <h3>Panadería</h3>
+          <button class="btn-ver-productos" data-target="productos-panaderia">Ver productos</button>
+        </div>
+      </div>
+
+      <!-- Pastelería -->
+      <div class="menu-card">
+        <img
+          src="https://images.unsplash.com/photo-1583338917451-face2751d8d5?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Pastelería">
+        <div class="menu-content">
+          <h3>Pastelería</h3>
+          <button class="btn-ver-productos" data-target="productos-pasteleria">Ver productos</button>
+        </div>
+      </div>
+
+      <!-- Cafetería -->
+      <div class="menu-card">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1675435644687-562e8042b9db?q=80&w=449&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Cafetería">
+        <div class="menu-content">
+          <h3>Cafetería</h3>
+          <button class="btn-ver-productos" data-target="productos-cafeteria">Ver productos</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ====== PRODUCTOS PANADERÍA ====== -->
+  <section id="productos-panaderia" class="productos-section">
+    <h2 class="categoria-title">Panadería</h2>
+
+    <div class="productos-grid">
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://images.unsplash.com/photo-1580745605349-4f50567c1729?q=80&w=435&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Pan Francés</h3>
+          <p>Pan crujiente por fuera y suave por dentro, ideal para acompañar tus comidas.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Pan Francés" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://media.istockphoto.com/id/1224495676/photo/chilean-homemade-rustic-fresh-hallulla-bread-on-white-background.jpg?s=1024x1024&w=is&k=20&c=ALj8fGzIj8930HCQe6So0egdw0FSqPVyAtJougyqMic="
+            alt="Croissant">
+        </div>
+        <div class="producto-info">
+          <h3>Pan hallulla</h3>
+          <p>Pan redondo, suave y plano. Se usa mucho en once y sándwiches.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$1.800</span>
+            <button class="btn-add" data-name="Pan hallulla" data-price="1800">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://media.istockphoto.com/id/1001971972/photo/breakfast-with-croissants-coffee-orange-juice-and-berries.jpg?s=1024x1024&w=is&k=20&c=nYxfzKZq_ieVgg9RVsCg8aH5zxUzCCRj89ysdvPTJfE="
+            alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Croissant</h3>
+          <p>Hojaldrado, mantecoso y suave por dentro, con una capa exterior crujiente. Perfecto para acompañar un buen
+            café</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Croissant" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://images.unsplash.com/photo-1589007797526-ed40d157365d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Pain au chocolat</h3>
+          <p>Hojaldrado francés relleno con barras de chocolate oscuro, crujiente por fuera y suave por dentro. Ideal
+            para acompañar café.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Pain au chocolat" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://masapan.cl/cdn/shop/files/palmeritasentemuco_11zon.webp?v=1725385936&width=1200"
+            alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Palmeritas</h3>
+          <p>Hojaldradas y crujientes, bañadas parcialmente en chocolate para un toque dulce irresistible.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Palmeritas" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://images.unsplash.com/photo-1517141544637-42b300cb4ee9?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Pan masa madre</h3>
+          <p>Pan artesanal de larga fermentación, con corteza crujiente y miga húmeda y aireada, elaborado sin levadura
+            comercial para un sabor más complejo y natural.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Pan masa madre" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://trigodeoro.com.pe/wp-content/uploads/2023/02/Ciabatta-Grande.png" alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Pan Ciabatta</h3>
+          <p>Pan italiano de miga alveolada y corteza delgada, ideal para sándwiches gourmet y preparaciones calientes.
+          </p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Pan Ciabatta" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://us-central1-yema-cdn.cloudfunctions.net/cdn/api/v1/yema-plm/images/view/productImage/adobestock-389133169_b7df55c2-802f-41e0-b733-f11c8b68fb94=fwebp-q70-w1920"
+            alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Pan baguette mini</h3>
+          <p>Pequeñas baguettes francesas de corteza crujiente y miga suave, perfectas para acompañar tablas o untar.
+          </p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Pan Baguette" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://www.giallozafferano.es/images/116-11651/pan-brioche_1200x800.jpg" alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Pan Brioche</h3>
+          <p>Pan suave y esponjoso con un toque de mantequilla y huevo, ideal para tostadas dulces y desayunos.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Pan Brioche" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgrHvUIHe0RqnGwIXDoU_2RkKlbSJxuM6H8gzVDz7NckMRG5izIPE3bMPpFVz6Ruh3lCYe9mQbuS3azA6p7yo3E0xOY-erCXvtSEVfsACYKBUoV0pj3ADhSSegtmh_Ru4w2g9U_JY4hCQ/s1600/Focaccia+5.jpg"
+            alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Focaccia individual</h3>
+          <p>Pan italiano esponjoso con aceite de oliva y hierbas, de corteza dorada y aromática, perfecto como snack
+            salado.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Focaccia individual" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://i0.wp.com/marubotana.tv/wp-content/uploads/2014/07/pan-campo.webp?fit=1024%2C576&ssl=1"
+            alt="Baguette artesanal">
+        </div>
+        <div class="producto-info">
+          <h3>Pan de campo</h3>
+          <p>Pan rústico de masa madre, corteza crujiente y miga suave.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.000</span>
+            <button class="btn-add" data-name="Focaccia individual" data-price="2000">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+
+
+    </div>
+  </section>
+
+  <!-- ====== PRODUCTOS PASTELERÍA ====== -->
+  <section id="productos-pasteleria" class="productos-section">
+    <h2 class="categoria-title">Pastelería</h2>
+
+    <div class="productos-grid">
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://rosasexpress.cl/wp-content/uploads/2019/08/2043.jpg" alt="Cheesecake frutos rojos">
+        </div>
+        <div class="producto-info">
+          <h3>Torta milhojas</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$23.700</span>
+            <button class="btn-add" data-name="Torta milhojas" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://mozart.cl/wp-content/uploads/2025/05/7_MIF_1747_Torta_Selva_Negra_1080x1080.jpg"
+            alt="Torta selva negra">
+        </div>
+        <div class="producto-info">
+          <h3>Torta Selva negra</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$23.700</span>
+            <button class="btn-add" data-name="Torta Selva negra" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://media.istockphoto.com/id/2189094476/photo/chocolate-cake-covered-with-cream-and-decorated-with-edible-flowers.jpg?s=1024x1024&w=is&k=20&c=Ucp3-xSgNENNMfQ4irr2AmGiOgP-R9nZHGtJdfo0NNY="
+            alt="Torta tres leches">
+        </div>
+        <div class="producto-info">
+          <h3>Torta tres leches</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$23.700</span>
+            <button class="btn-add" data-name="Torta tres leches" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://fanysbakery.cl/cdn/shop/files/TORTAPANQUEQUENARANJA_1.png?v=1722545327&width=600"
+            alt="Torta panqueque naranja">
+        </div>
+        <div class="producto-info">
+          <h3>Torta panqueque naranja</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$23.700</span>
+            <button class="btn-add" data-name="Torta panqueque naranja" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://dojiw2m9tvv09.cloudfront.net/11210/product/X_img_2457opt-min2061.png?39&t=1768497920"
+            alt="Torta mil hojas manjar frambuesa">
+        </div>
+        <div class="producto-info">
+          <h3>Torta mil hojas manjar frambuesa</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$23.700</span>
+            <button class="btn-add" data-name="Torta mil hojas manjar frambuesa" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://cocinerosargentinos.com/content/recipes/500x500/recipes.18500.jpg" alt="Torta frutos rojos">
+        </div>
+        <div class="producto-info">
+          <h3>Torta frutos rojos</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$23.700</span>
+            <button class="btn-add" data-name="Torta frutos rojos" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://www.lomismoperosano.cl/wp-content/uploads/2021/06/berlines-horneados-receta-lo-mismo-pero-sano-1536x1152.jpg"
+            alt="Berlin">
+        </div>
+        <div class="producto-info">
+          <h3>Berlin</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$700</span>
+            <button class="btn-add" data-name="Berlin" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://www.biggerbolderbaking.com/wp-content/uploads/2021/07/Baked-Doughnuts-thumbnail-1536x1024.jpg"
+            alt="Donuts">
+        </div>
+        <div class="producto-info">
+          <h3>Donuts</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$800</span>
+            <button class="btn-add" data-name="Donuts" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://www.recetario-cocina.com/archivosbd/tartaleta-de-frutas.jpg" alt="Tarta fruta">
+        </div>
+        <div class="producto-info">
+          <h3>Tarta de fruta individual</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$700</span>
+            <button class="btn-add" data-name="Tarta de fruta" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://cdn.palbincdn.com/users/29165/images/ChatGPT-Image-15-nov-2025-15_37_10-1763217460.jpg"
+            alt="Torta milhoja individual">
+        </div>
+        <div class="producto-info">
+          <h3>Torta mil hojas individual</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$1300</span>
+            <button class="btn-add" data-name="Tarta mil hojas individual" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://madapatisserie.com/wp-content/uploads/2024/05/Mada-local14951-1.jpg" alt="Brownie">
+        </div>
+        <div class="producto-info">
+          <h3>Brownie</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$1300</span>
+            <button class="btn-add" data-name="Brownie" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Cupcake">
+        </div>
+        <div class="producto-info">
+          <h3>Cupcake Chocolate</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$1600</span>
+            <button class="btn-add" data-name="Cupcake Chocolate" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://cdn0.recetasgratis.net/es/posts/5/3/8/pie_de_limon_sin_horno_6835_600.webp"
+            alt="Pie de limón">
+        </div>
+        <div class="producto-info">
+          <h3>Pie de limón</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$1600</span>
+            <button class="btn-add" data-name="Pie de limón" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://i0.wp.com/recetaskwa.com/wp-content/uploads/2024/01/Cheescake-Maracuya_2.jpg?ssl=1"
+            alt="Cheesecake maracuyá">
+        </div>
+        <div class="producto-info">
+          <h3>Cheesecake Maracuyá</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$1800</span>
+            <button class="btn-add" data-name="Cheesecake Maracuyá" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://www.hortifrut.com/wp-content/uploads/2021/09/kuchen-de-ricota-y-arandanos.jpg"
+            alt="Kuchen ricota">
+        </div>
+        <div class="producto-info">
+          <h3>Kuchen de ricotta y arándanos</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$1800</span>
+            <button class="btn-add" data-name="Kuchen de ricotta y arándanos" data-price="3700">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://tofuu.getjusto.com/orioneat-local/resized2/x5N9dpRrbyAASQG7f-300-x.webp"
+            alt="Kuchen de manzana">
+        </div>
+        <div class="producto-info">
+          <h3>Kuchen de manzana individual</h3>
+          <p></p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$1300</span>
+            <button class="btn-add" data-name="Kuchen de manzana individual" data-price="1300">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+
+    </div>
+  </section>
+
+  <!-- ====== PRODUCTOS CAFETERÍA ====== -->
+  <section id="productos-cafeteria" class="productos-section">
+    <h2 class="categoria-title">Cafetería</h2>
+
+    <div class="productos-grid">
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800" alt="Café Latte">
+        </div>
+        <div class="producto-info">
+          <h3>Latte</h3>
+          <p>Café espresso con leche vaporizada y espuma cremosa.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Latte" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://www.gourmet.cl/_next/image/?url=https%3A%2F%2Fgourmet.iprospect.cl%2Fwp-content%2Fuploads%2F2023%2F11%2FCAFE-HELADO.jpg&w=1920&q=75"
+            alt="Café helado">
+        </div>
+        <div class="producto-info">
+          <h3>Café helado</h3>
+          <p>Bebida de café frío servida con hielo, refrescante y de sabor intenso.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Café helado" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://elparisino.com/wp-content/uploads/2020/07/Capuccino.jpg" alt="Capuccino">
+        </div>
+        <div class="producto-info">
+          <h3>Capuccino</h3>
+          <p>Café espresso con leche vaporizada y espuma, de sabor equilibrado y cremoso.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Capuccino" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://www.shoothecook.es/wp-content/uploads//te-chai-receta-f.jpg" alt="Chai latte">
+        </div>
+        <div class="producto-info">
+          <h3>Chai latte</h3>
+          <p>Té especiado con leche vaporizada, dulce y aromático.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Chai latte" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://sabor.eluniverso.com/wp-content/uploads/2023/12/shutterstock_1665115558-1024x683.jpg"
+            alt="Chocolate caliente">
+        </div>
+        <div class="producto-info">
+          <h3>Chocolate caliente</h3>
+          <p>Bebida caliente de cacao con leche, cremosa y reconfortante.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Chocolate caliente" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://secondcup.com/wp-content/uploads/2022/04/Iced-Mocha.jpg" alt="Mocaccino ice">
+        </div>
+        <div class="producto-info">
+          <h3>Mocaccino ice</h3>
+          <p>Café con chocolate servido frío con hielo, dulce y cremoso.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Mocaccino ice" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/ca/ab/b6/moccacino-shot-de-espresso.jpg"
+            alt="Mocaccino">
+        </div>
+        <div class="producto-info">
+          <h3>Mocaccino</h3>
+          <p>Café con chocolate y leche vaporizada, dulce y cremoso.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Mocaccino" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img src="https://recetasdecocina.elmundo.es/wp-content/uploads/2022/04/cafe-expreso.jpg" alt="Café espresso">
+        </div>
+        <div class="producto-info">
+          <h3>Café espresso</h3>
+          <p>Café intenso y concentrado, con aroma profundo y crema ligera en la superficie.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Café espresso" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="producto-card">
+        <div class="producto-img">
+          <img
+            src="https://dfrnt.coffee/cdn/shop/articles/descubre-como-preparar-un-latte-de-vainilla-perfecto-en-casa-738665.png?v=1733918359&width=320"
+            alt="Latte de vainilla">
+        </div>
+        <div class="producto-info">
+          <h3>Latte de vainilla</h3>
+          <p>Café espresso con leche vaporizada y sirope de vainilla, suave y aromático.</p>
+          <div class="producto-bottom">
+            <span class="producto-precio">$2.900</span>
+            <button class="btn-add" data-name="Latte de vainilla" data-price="2900">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+  <section class="informaciones py-5 bg-light">
+    <div class="container">
+      <div class="row text-center g-4 align-items-stretch">
+
+        <!-- Horario -->
+        <div class="col-12 col-md-4">
+          <div class="informacion h-100">
+            <span class="material-symbols-outlined fs-1 mb-2">schedule</span>
+            <h3>Horario de atención</h3>
+            <p>Lunes a Viernes: 8:00 – 20:00</p>
+            <p>Sábados: 9:00 – 18:00</p>
+            <p>Domingo: 10:00 – 14:00</p>
+          </div>
+        </div>
+
+        <!-- Despacho -->
+        <div class="col-12 col-md-4">
+          <div class="informacion h-100">
+            <span class="material-symbols-outlined fs-1 mb-2">local_shipping</span>
+            <h3>Cobertura de despacho</h3>
+            <p class="mb-1">Despacho dentro de la comuna</p>
+            <p class="text-muted">Pedidos con 24 hrs de anticipación · Envío por cobrar</p>
+          </div>
+        </div>
+
+        <!-- Pet Friendly -->
+        <div class="col-12 col-md-4">
+          <div class="informacion h-100">
+            <span class="material-symbols-outlined fs-1 mb-2">pets</span>
+            <h3>Somos Pet friendly</h3>
+            <p class="mb-1">
+              Sabemos que son parte de la familia, así que también son bienvenidos.
+            </p>
+            <p class="text-muted">
+              Siempre con correa y supervisión
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <section class="testimonials">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <p>Etiquétanos en tus redes y comparte tu momento favorito con nosotros.
+      Encuéntranos como <strong>@labriochechile</strong> en Instagram.</p>
+    <div class="testimonials-slider">
+      <div class="container-fluid">
+        <div class="testimonials-track">
+
+          <div class="testimonial-item">
+            <div class="card">
+              <img src="assets/image1.png" class="card-img-top" alt="Testimonio Valentina">
+              <div class="card-body">
+                <p class="card-text">
+                  El café es espectacular y el ambiente muy acogedor. ¡100% recomendado!
+                </p>
+                <span>- Valentina R.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="card">
+              <img src="assets/image2.png" class="card-img-top" alt="Testimonio Javier">
+              <div class="card-body">
+                <p class="card-text">
+                  Siempre llegan mis pedidos a tiempo y los productos son frescos y deliciosos.
+                </p>
+                <span>- Javier M.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="card">
+              <img src="assets/image3.png" class="card-img-top" alt="Testimonio Camila">
+              <div class="card-body">
+                <p class="card-text">
+                  El personal es amable y el lugar tiene un encanto único. ¡Me encanta!
+                </p>
+                <span>- Camila G.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="card">
+              <img src="assets/image4.png" class="card-img-top" alt="Testimonio Felipe">
+              <div class="card-body">
+                <p class="card-text">
+                  La Brioche se volvió mi cafetería favorita del barrio. Todo es fresco, rico y se nota el cuidado
+                  en cada detalle.
+                </p>
+                <span>- Felipe R.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="card">
+              <img src="assets/image5.png" class="card-img-top" alt="Testimonio Juan">
+              <div class="card-body">
+                <p class="card-text">
+                  Pedí para una celebración familiar y fue un éxito total. Atención excelente y productos deliciosos.
+                </p>
+                <span>- Juan R.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <section class="encuentranos py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Encuéntranos</h2>
+
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-md-6">
+          <div class="ubicacion__imagen">
+            <img
+              src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Foto del café" />
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="ubicacion__mapa">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6691.496659646778!2d-71.55760222229003!3d-33.01041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9689ddd9fa1e555f%3A0xc6ff272a420acc00!2sLa%20Brioche%20Bakery%20%26%20Caf%C3%A9!5e0!3m2!1ses!2scl!4v1768346389893!5m2!1ses!2scl"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <section id="reservas" class="reservas-section">
+    <div class="container">
+      <h2 class="reservas-title">Reserva tu mesa</h2>
+      <p class="reservas-subtitle">
+        Elige cuántas personas asistirán y selecciona la mesa que prefieres.
+      </p>
+
+      <form id="reservaForm" class="reservas-form">
+        <!-- Número de personas -->
+        <div class="form-group">
+          <label for="personas">Número de personas</label>
+          <input type="number" id="personas" name="personas" min="1" max="10" required placeholder="Ej: 4" />
+        </div>
+
+        <!-- Mesa -->
+        <div class="form-group">
+          <label for="mesa">Mesa</label>
+          <select id="mesa" name="mesa" required>
+            <option value="">Selecciona una mesa</option>
+            <option value="Mesa 1">Mesa 1 - Cerca de la ventana</option>
+            <option value="Mesa 2">Mesa 2 - Interior</option>
+            <option value="Mesa 3">Mesa 3 - Terraza</option>
+            <option value="Mesa 4">Mesa 4 - Sector familiar</option>
+          </select>
+        </div>
+
+        <!-- Fecha y hora (opcional pero útil) -->
+        <div class="form-group dos-columnas">
+          <div>
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" required />
+          </div>
+          <div>
+            <label for="hora">Hora</label>
+            <input type="time" id="hora" name="hora" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-reservar">
+          <span class="material-symbols-outlined">event</span>
+          Reservar
+        </button>
+      </form>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+  <footer class="footer">
+    <div class="footer-content">
+
+      <div class="footer-column">
+        <h3>☕ Café Artesanal</h3>
+        <p>
+          Desde 2015 preparando los mejores productos artesanales con
+          ingredientes de primera calidad.
+        </p>
+        <p class="pet-friendly-note">
+          Somos un espacio pet friendly <span class="material-symbols-outlined">pets</span>
+
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Horarios</h4>
+        <ul>
+          <li>Lunes a Viernes: 8:00 - 20:00</li>
+          <li>Sábado: 9:00 - 18:00</li>
+          <li>Domingo: 10:00 - 14:00</li>
+        </ul>
+        <h4>Despachos</h4>
+        <ul>
+          <li>Despacho dentro de la comuna. Pedidos con 24 hrs de anticipación · Envío por cobrar</li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Contacto</h4>
+        <ul class="contact">
+          <li>📍 Av. Principal 123</li>
+          <li>📞 +56 9 1234 5678</li>
+          <li>✉️ hola@cafeartesanal.cl</li>
+          <li>
+            <img src="assets/icon_instagram.svg" alt="Instagram Icon">
+            <strong>@labriochechile</strong>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Café La Brioche. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart">
+      <h3>Tu Carrito</h3>
+
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-total">
+        <strong>Total:</strong>
+        <span id="cartTotal">$0</span>
+      </div>
+
+      <div class="cart-actions">
+        <button class="close-cart">Cerrar</button>
+        <button class="checkout">Comprar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">
+    <span id="toastMessage">Producto agregado</span>
+  </div>
+
+<script src="products.js"></script>
+  <script src="main.js"></script>
+
+
+</body>
+
+</html>

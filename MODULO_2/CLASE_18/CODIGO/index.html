@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cristóbal Zurita | Luthier Electrónico</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-light">
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#inicio">CZ · Luthier Electrónico</a>
+
+        <button class="btn btn-sm btn-outline-dark ms-auto" id="toggle-theme">
+            🌙 / ☀️
+        </button>
+    </div>
+</nav>
+
+<header id="inicio" class="hero section-observe">
+    <div class="container text-center">
+        <h1>Cristóbal Zurita</h1>
+        <p class="lead">Luthier electrónico · Reparación y diseño de sintetizadores y equipos de audio</p>
+
+        <div class="mt-4">
+            <button class="btn btn-primary me-2" id="btn-color">
+                Cambiar acento
+            </button>
+            <a class="btn btn-outline-secondary" href="#contacto">
+                Contacto
+            </a>
+        </div>
+    </div>
+</header>
+
+<section id="perfil" class="section section-observe">
+    <div class="container">
+        <h2 class="section-title">Perfil Profesional</h2>
+        <p>
+            Especialista en reparación, diagnóstico y modificación de sintetizadores, pedales, interfaces y equipos electrónicos musicales.
+            Trabajo orientado a precisión técnica, trazabilidad y soluciones duraderas.
+        </p>
+    </div>
+</section>
+
+<section id="experiencia" class="section section-light section-observe">
+    <div class="container">
+        <h2 class="section-title">Experiencia</h2>
+
+        <ul class="timeline">
+            <li>
+                <strong>Cirujano de Sintetizadores</strong><br>
+                Diagnóstico y reparación avanzada de equipos electrónicos musicales.
+            </li>
+            <li>
+                <strong>Proyectos personales</strong><br>
+                Diseño de sistemas MIDI, secuenciadores, controladores y hardware a medida.
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="habilidades" class="section section-observe">
+    <div class="container">
+        <h2 class="section-title">Habilidades</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">Electrónica analógica y digital</div>
+            <div class="col-md-4">Microcontroladores (Arduino / ESP32)</div>
+            <div class="col-md-4">MIDI · Audio · Diagnóstico</div>
+        </div>
+    </div>
+</section>
+
+<section id="contacto" class="section section-light section-observe">
+    <div class="container">
+        <h2 class="section-title">Contacto</h2>
+
+        <form id="contact-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre">
+                <div class="error-text"></div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="email">
+                <div class="error-text"></div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mensaje</label>
+                <textarea class="form-control" id="mensaje" rows="4"></textarea>
+                <div class="error-text"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Enviar
+            </button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="container text-center">
+        <p>
+            <a href="https://github.com/CristobalZurita" target="_blank">GitHub</a> ·
+            <a href="https://www.instagram.com/cirujanodesintetizadores/" target="_blank">Instagram</a> ·
+            <a href="https://www.facebook.com/Cirujanodesintetizadores/" target="_blank">Facebook</a>
+        </p>
+        <small>© 2026 Cristóbal Zurita</small>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

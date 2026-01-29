@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>BikeFix Workshop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Taller profesional de bicicletas en Valparaíso">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/56912345678" class="whatsapp" aria-label="Contactar por WhatsApp">
+<svg viewBox="0 0 24 24" fill="currentColor">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+</svg>
+</a>
+
+<!-- SCROLL TOP -->
+<button id="scrollTop" class="scroll-top" aria-label="Volver arriba">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+<path d="M12 19V5M5 12l7-7 7 7"/>
+</svg>
+</button>
+
+<header class="header">
+<div class="header__container">
+<h1 class="brand">
+<span class="brand__icon">🚴</span>
+<span class="brand__text">BikeFix</span>
+</h1>
+<nav class="nav">
+<a href="#partes" class="nav__link">Partes</a>
+<a href="#galeria" class="nav__link">Galería</a>
+<a href="#venta" class="nav__link">Venta</a>
+<a href="#contacto" class="nav__link">Contacto</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="hero__bg"></div>
+<div class="hero__content">
+<div class="hero__badge">✨ Valparaíso · Chile</div>
+<h2 class="hero__title">Taller Profesional de Bicicletas</h2>
+<p class="hero__subtitle">Mantención · Reparación · Diagnóstico Real</p>
+<div class="hero__actions">
+<a href="#contacto" class="btn btn--primary">
+<span>Agendar Servicio</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M5 12h14M12 5l7 7-7 7"/>
+</svg>
+</a>
+<a href="#venta" class="btn btn--secondary">
+<span>Ver Accesorios</span>
+</a>
+</div>
+</div>
+<div class="hero__scroll">
+<span>Scroll</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M12 5v14M19 12l-7 7-7-7"/>
+</svg>
+</div>
+</section>
+
+<main>
+<section id="partes" class="section section--partes">
+<header class="section__header">
+<span class="section__badge">Conoce tu bici</span>
+<h2 class="section__title">Partes de la bicicleta</h2>
+<p class="section__subtitle">Pasa el cursor sobre cada componente para destacarlo</p>
+</header>
+<div class="bike-diagram">
+<div class="bike-diagram__container" id="bikeSvg">
+<!-- El SVG se cargará aquí dinámicamente -->
+</div>
+<div class="bike-diagram__info" id="bikeInfo">
+<div class="bike-info">
+<h3 class="bike-info__title">Explora las partes</h3>
+<p class="bike-info__text">Pasa el mouse sobre la imagen para conocer cada componente</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="galeria" class="section section--gallery">
+<header class="section__header">
+<span class="section__badge">Nuestro espacio</span>
+<h2 class="section__title">Galería del taller</h2>
+<p class="section__subtitle">Espacio, procesos y trabajos reales</p>
+</header>
+<div class="gallery" id="gallery">
+<div class="gallery__item" data-index="0">
+<img src="assets/fotos/galería/01.jpg" alt="Taller BikeFix" loading="lazy">
+<div class="gallery__overlay">
+<span class="gallery__zoom">+</span>
+</div>
+</div>
+<div class="gallery__item" data-index="1">
+<img src="assets/fotos/galería/02.webp" alt="Reparación profesional" loading="lazy">
+<div class="gallery__overlay">
+<span class="gallery__zoom">+</span>
+</div>
+</div>
+<div class="gallery__item" data-index="2">
+<img src="assets/fotos/galería/03.jpg" alt="Mantenimiento de bicicletas" loading="lazy">
+<div class="gallery__overlay">
+<span class="gallery__zoom">+</span>
+</div>
+</div>
+<div class="gallery__item" data-index="3">
+<img src="assets/fotos/galería/04.jpeg" alt="Taller equipado" loading="lazy">
+<div class="gallery__overlay">
+<span class="gallery__zoom">+</span>
+</div>
+</div>
+<div class="gallery__item" data-index="4">
+<img src="assets/fotos/galería/05.jpg" alt="Servicio completo" loading="lazy">
+<div class="gallery__overlay">
+<span class="gallery__zoom">+</span>
+</div>
+</div>
+</div>
+</section>
+
+<section id="venta" class="section section--shop">
+<header class="section__header">
+<span class="section__badge">Productos seleccionados</span>
+<h2 class="section__title">Accesorios en venta</h2>
+<p class="section__subtitle">Productos confiables para tu seguridad y comodidad</p>
+</header>
+<div class="shop">
+<article class="product">
+<div class="product__image">
+<img src="assets/fotos/ventas/CASCO.jpg" alt="Casco urbano protección">
+<span class="product__badge product__badge--red">Seguridad</span>
+</div>
+<div class="product__content">
+<h3 class="product__title">Casco Urbano</h3>
+<p class="product__price">$24.990</p>
+<button class="product__btn">Consultar</button>
+</div>
+</article>
+
+<article class="product">
+<div class="product__image">
+<img src="assets/fotos/ventas/CANDADO2.webp" alt="Candado antirrobo seguridad">
+<span class="product__badge product__badge--orange">Top venta</span>
+</div>
+<div class="product__content">
+<h3 class="product__title">Candado Antirrobo</h3>
+<p class="product__price">$14.990</p>
+<button class="product__btn">Consultar</button>
+</div>
+</article>
+
+<article class="product">
+<div class="product__image">
+<img src="assets/fotos/ventas/LINTERNA.webp" alt="Luz LED visibilidad nocturna">
+<span class="product__badge product__badge--blue">Visibilidad</span>
+</div>
+<div class="product__content">
+<h3 class="product__title">Luz LED</h3>
+<p class="product__price">$9.990</p>
+<button class="product__btn">Consultar</button>
+</div>
+</article>
+
+<article class="product">
+<div class="product__image">
+<img src="assets/fotos/ventas/BOMBIN.webp" alt="Bombín portátil inflador">
+<span class="product__badge product__badge--green">Esencial</span>
+</div>
+<div class="product__content">
+<h3 class="product__title">Bombín Portátil</h3>
+<p class="product__price">$6.990</p>
+<button class="product__btn">Consultar</button>
+</div>
+</article>
+
+<article class="product">
+<div class="product__image">
+<img src="assets/fotos/ventas/TIMBRE.webp" alt="Timbre bicicleta">
+<span class="product__badge product__badge--purple">Accesorio</span>
+</div>
+<div class="product__content">
+<h3 class="product__title">Timbre</h3>
+<p class="product__price">$3.990</p>
+<button class="product__btn">Consultar</button>
+</div>
+</article>
+
+<article class="product">
+<div class="product__image">
+<img src="assets/fotos/ventas/AGUA_BLOQUEO.webp" alt="Porta botella">
+<span class="product__badge product__badge--cyan">Hidratación</span>
+</div>
+<div class="product__content">
+<h3 class="product__title">Porta Botella</h3>
+<p class="product__price">$4.990</p>
+<button class="product__btn">Consultar</button>
+</div>
+</article>
+
+<article class="product">
+<div class="product__image">
+<img src="assets/fotos/ventas/HERRAMIENTA.jpeg" alt="Herramientas multifunción">
+<span class="product__badge product__badge--yellow">Pro</span>
+</div>
+<div class="product__content">
+<h3 class="product__title">Kit Herramientas</h3>
+<p class="product__price">$12.990</p>
+<button class="product__btn">Consultar</button>
+</div>
+</article>
+
+<article class="product">
+<div class="product__image">
+<img src="assets/fotos/ventas/SOPORTE_AGARRE.jpg" alt="Soporte celular">
+<span class="product__badge product__badge--pink">Tech</span>
+</div>
+<div class="product__content">
+<h3 class="product__title">Soporte Celular</h3>
+<p class="product__price">$8.990</p>
+<button class="product__btn">Consultar</button>
+</div>
+</article>
+</div>
+</section>
+
+<section id="contacto" class="section section--contact">
+<header class="section__header">
+<span class="section__badge">Estamos aquí</span>
+<h2 class="section__title">Contacto</h2>
+<p class="section__subtitle">Agenda tu cita o visítanos directamente</p>
+</header>
+<div class="contact">
+<form class="contact__form" id="contactForm">
+<div class="form-group">
+<label for="nombre">Nombre</label>
+<input type="text" id="nombre" placeholder="Tu nombre" required>
+</div>
+<div class="form-group">
+<label for="email">Email</label>
+<input type="email" id="email" placeholder="tu@email.com" required>
+</div>
+<div class="form-group">
+<label for="mensaje">Mensaje</label>
+<textarea id="mensaje" rows="5" placeholder="Cuéntanos qué necesitas..." required></textarea>
+</div>
+<button type="submit" class="btn btn--primary btn--full">
+<span>Enviar mensaje</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+</svg>
+</button>
+</form>
+
+<div class="contact__info">
+<div class="info-card">
+<div class="info-card__icon">📍</div>
+<div class="info-card__content">
+<h4>Dirección</h4>
+<p>Pedro Montt 2900<br>Valparaíso, Chile</p>
+</div>
+</div>
+
+<div class="info-card">
+<div class="info-card__icon">📞</div>
+<div class="info-card__content">
+<h4>Teléfono</h4>
+<p>+56 9 1234 5678</p>
+</div>
+</div>
+
+<div class="info-card">
+<div class="info-card__icon">✉️</div>
+<div class="info-card__content">
+<h4>Email</h4>
+<p>contacto@bikefix.cl</p>
+</div>
+</div>
+
+<div class="info-card info-card--map">
+<iframe 
+  src="https://maps.google.com/maps?q=Pedro%20Montt%202900%20Valpara%C3%ADso&t=&z=15&ie=UTF8&iwloc=&output=embed"
+  loading="lazy"
+  title="Ubicación BikeFix Workshop">
+</iframe>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="footer__content">
+<div class="footer__brand">
+<h3>🚴 BikeFix Workshop</h3>
+<p>Cuidamos tu bicicleta, cuidamos tu pasión</p>
+</div>
+<div class="footer__social">
+<a href="#" aria-label="Instagram">📷</a>
+<a href="#" aria-label="Facebook">📘</a>
+<a href="https://wa.me/56912345678" aria-label="WhatsApp">💬</a>
+</div>
+</div>
+<div class="footer__copy">
+<p>© 2026 BikeFix Workshop · Valparaíso, Chile</p>
+</div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

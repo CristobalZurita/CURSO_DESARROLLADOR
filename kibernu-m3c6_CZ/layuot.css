@@ -1,0 +1,60 @@
+/* =========================
+layout.css  (ALDO)
+========================= */
+
+.l-container,
+.section__container,
+.header__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.section--lg {
+  padding: 5rem 0;
+}
+
+.section--xl {
+  padding: 6rem 0;
+}
+
+.section--dark {
+  background: var(--color-bg-dark);
+  color: var(--color-text-light);
+}
+
+.section__title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero__content {
+  max-width: 760px;
+}
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel__track {
+  display: flex;
+  gap: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+}

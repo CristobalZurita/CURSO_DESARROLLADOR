@@ -1,0 +1,56 @@
+// ===========================
+// BIKEFIX WORKSHOP - MIXINS
+// ===========================
+
+@use 'variables' as *;
+
+// === RESPONSIVE MIXINS ===
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+// === FLEXBOX MIXINS ===
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// === POSITION MIXINS ===
+@mixin absolute-cover {
+  position: absolute;
+  inset: 0;
+}
+
+// === PSEUDO ELEMENTS ===
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+  content: $content;
+  display: $display;
+  position: $pos;
+}

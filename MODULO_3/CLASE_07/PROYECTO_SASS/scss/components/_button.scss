@@ -1,0 +1,8 @@
+@use "../utilities/variables" as vars;
+@use "../utilities/mixins" as mix;
+
+.button {
+  @include mix.button-base;
+  background: vars.$color-accent;
+  border: none;
+}

@@ -1,0 +1,130 @@
+// ===========================
+// BIKEFIX WORKSHOP - MAIN SCSS
+// Modern, Interactive Design
+// ===========================
+
+// === ABSTRACTS ===
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+// === BASE ===
+@use 'base/reset';
+@use 'base/typography';
+
+// === LAYOUT ===
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/main';
+
+// === COMPONENTS ===
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/contact';
+@use 'components/gallery';
+@use 'components/hero';
+@use 'components/shop';
+@use 'components/whatsapp';
+
+// === RESPONSIVE ===
+@include tablet {
+  .nav {
+    gap: $space-sm;
+    
+    &__link {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .hero {
+    min-height: 80vh;
+    
+    &__actions {
+      flex-direction: column;
+    }
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .shop {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@include mobile {
+  .brand {
+    font-size: 1.5rem;
+  }
+  
+  .nav {
+    display: none;
+  }
+  
+  .section__title {
+    font-size: 2rem;
+  }
+  
+  .footer__content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+// === RESPONSIVE ===
+@include tablet {
+  .nav {
+    gap: $space-sm;
+    
+    &__link {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .hero {
+    min-height: 80vh;
+    
+    &__actions {
+      flex-direction: column;
+    }
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .shop {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@include mobile {
+  .brand {
+    font-size: 1.5rem;
+  }
+  
+  .nav {
+    display: none;
+  }
+  
+  .section__title {
+    font-size: 2rem;
+  }
+  
+  .footer__content {
+    flex-direction: column;
+    text-align: center;
+  }
+}

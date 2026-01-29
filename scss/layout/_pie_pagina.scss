@@ -1,0 +1,54 @@
+@use '../abstracts/variables' as v;
+
+.footer {
+  background-color: v.$dark;
+  color: v.$white;
+  padding: v.$spacing-2xl v.$spacing-lg;
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: v.$spacing-xl;
+    margin-bottom: v.$spacing-xl;
+
+    .footer-section {
+      h4 {
+        color: v.$primary-color;
+        margin-bottom: v.$spacing-md;
+        font-size: v.$font-size-lg;
+      }
+
+      p {
+        color: #aaa;
+        line-height: 1.6;
+        margin-bottom: v.$spacing-sm;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: v.$spacing-sm;
+
+          a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color v.$transition-base;
+
+            &:hover {
+              color: v.$primary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: v.$spacing-lg;
+    text-align: center;
+    color: #aaa;
+  }
+}

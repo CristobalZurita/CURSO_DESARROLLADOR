@@ -1,0 +1,112 @@
+// ===========================
+// SHOP & PRODUCTS
+// ===========================
+
+@use '../abstracts/variables' as *;
+
+.shop {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $space-lg;
+}
+
+.product {
+  background: $white;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  transition: all $transition-base;
+  animation: scaleIn 0.5s ease both;
+
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.15s; }
+  &:nth-child(3) { animation-delay: 0.2s; }
+  &:nth-child(4) { animation-delay: 0.25s; }
+  &:nth-child(5) { animation-delay: 0.3s; }
+  &:nth-child(6) { animation-delay: 0.35s; }
+  &:nth-child(7) { animation-delay: 0.4s; }
+  &:nth-child(8) { animation-delay: 0.45s; }
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: $shadow-xl;
+  }
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: $transition-slow;
+    }
+  }
+
+  &:hover &__image img {
+    transform: scale(1.1);
+  }
+
+  &__badge {
+    position: absolute;
+    top: $space-sm;
+    right: $space-sm;
+    padding: 0.4rem 1rem;
+    border-radius: $radius-full;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $white;
+    box-shadow: $shadow-sm;
+
+    &--red { background: $badge-red; }
+    &--orange { background: $badge-orange; }
+    &--blue { background: $badge-blue; }
+    &--green { background: $badge-green; }
+    &--purple { background: $badge-purple; }
+    &--cyan { background: $badge-cyan; }
+    &--yellow { background: $badge-yellow; }
+    &--pink { background: $badge-pink; }
+  }
+
+  &__content {
+    padding: $space-md;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: $space-xs;
+    color: $dark;
+  }
+
+  &__price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $primary;
+    font-family: $font-display;
+    display: block;
+    margin-bottom: $space-md;
+  }
+
+  &__btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: $dark;
+    color: $white;
+    border-radius: $radius-sm;
+    font-weight: 700;
+    transition: $transition-base;
+
+    &:hover {
+      background: $primary;
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+  }
+}
