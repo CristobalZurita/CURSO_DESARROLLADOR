@@ -1,0 +1,31 @@
+@import url("blocks/_hero.css");
+@import url("blocks/_card.css");
+@import url("blocks/_form.css");
+@import url("blocks/_button.css");
+@import url("blocks/_alert.css");
+@import url("blocks/_footer.css");
+@import url("blocks/_header.css");
+@import url("blocks/_section.css");
+
+/* ===== VARIABLES ===== */
+
+:root{
+  --mm-black:#000;
+  --mm-white:#fff;
+  --mm-orange:#F28E2A;
+  --mm-gray:#e6e6e6;
+  --mm-font:'Inter',system-ui,sans-serif;
+}
+
+/* ===== BASE ===== */
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:var(--mm-font);
+  background:var(--mm-black);
+  color:var(--mm-white);
+}

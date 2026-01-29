@@ -1,0 +1,13 @@
+.mm-header{
+  position:fixed;
+  inset:0 0 auto 0;
+  height:120px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(to bottom,rgba(0,0,0,.9),rgba(0,0,0,0));
+  z-index:10;
+}
+.mm-header__logo{
+  max-height:80px;
+}

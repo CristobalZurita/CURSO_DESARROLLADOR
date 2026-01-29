@@ -1,0 +1,67 @@
+// ===========================
+// CARDS COMPONENT
+// ===========================
+
+@use '../abstracts/variables' as *;
+
+// Info cards used in contact section
+.info-card {
+  background: $white;
+  padding: $space-md;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  display: flex;
+  gap: $space-md;
+  align-items: flex-start;
+  transition: $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateX(5px);
+  }
+
+  &__icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: $dark;
+    }
+
+    p {
+      color: $gray;
+    }
+  }
+
+  &--map {
+    grid-column: 1 / -1;
+    padding: 0;
+    overflow: hidden;
+
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+    }
+  }
+}
+
+// Bike info card
+.bike-info {
+  text-align: center;
+
+  &__title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-family: $font-display;
+  }
+
+  &__text {
+    opacity: 0.95;
+    font-size: 1.05rem;
+  }
+}

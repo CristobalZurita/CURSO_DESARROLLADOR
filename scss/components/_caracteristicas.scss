@@ -1,0 +1,51 @@
+@use '../abstracts/variables' as v;
+
+.features {
+  padding: v.$spacing-2xl v.$spacing-lg;
+  background-color: v.$light-bg;
+
+  .section-title {
+    text-align: center;
+    font-size: v.$font-size-3xl;
+    margin-bottom: v.$spacing-2xl;
+    color: v.$text-color;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: v.$spacing-xl;
+  }
+
+  .feature-card {
+    background: v.$white;
+    padding: v.$spacing-xl;
+    border-radius: v.$radius-lg;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all v.$transition-base;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+      background-color: #f0f0f0;
+    }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: v.$spacing-md;
+    }
+
+    h3 {
+      font-size: v.$font-size-xl;
+      margin-bottom: v.$spacing-sm;
+      color: v.$primary-color;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+    }
+  }
+}

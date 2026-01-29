@@ -1,0 +1,212 @@
+/* =========================
+   VARIABLES DE COLOR
+   ========================= */
+:root {
+    --crema: #f8f5f2;
+    --rosa: #e07a7a;
+    --chocolate: #4a2c2a;
+    --caramelo: #d4a373;
+    --texto: #2f2f2f;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: var(--texto);
+    background: var(--crema);
+}
+
+/* NAVBAR */
+.navbar-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--texto);
+}
+
+.nav-links .fav {
+    color: var(--rosa);
+}
+
+/* HERO */
+.hero {
+    position: relative;
+    height: 80vh;
+    margin-top: 70px;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(14px);
+    transform: scale(1.1);
+    opacity: 0;
+    transition: opacity 1.2s ease;
+}
+
+.hero-bg.active {
+    opacity: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(248,245,242,0.65);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    color: var(--chocolate);
+}
+
+.hero-content p {
+    max-width: 600px;
+    font-size: 1.1rem;
+}
+
+/* SECCIONES */
+.section {
+    padding: 80px 20px;
+}
+
+.section-light {
+    background: #fff;
+}
+
+.section-title {
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+}
+
+/* PRODUCTOS */
+.productos-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-category {
+    font-size: 0.8rem;
+    color: var(--caramelo);
+}
+
+.card-body button {
+    margin-top: 10px;
+}
+
+/* CONTACTO */
+.contacto-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.contacto-mapa iframe {
+    width: 100%;
+    height: 300px;
+    border: 0;
+}
+
+/* FOOTER */
+.footer {
+    background: var(--chocolate);
+    color: #fff;
+    padding: 40px 20px;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 30px;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-copy {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85rem;
+}

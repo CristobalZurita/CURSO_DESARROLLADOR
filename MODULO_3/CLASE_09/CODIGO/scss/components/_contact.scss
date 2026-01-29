@@ -1,0 +1,59 @@
+// ===========================
+// CONTACT COMPONENT
+// ===========================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.contact {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: $space-xl;
+
+  @include tablet-up {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__form {
+    background: $white;
+    padding: $space-lg;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-md;
+    animation: slideInLeft 0.6s ease;
+  }
+
+  &__info {
+    display: grid;
+    gap: $space-md;
+    animation: slideInRight 0.6s ease;
+  }
+}
+
+.form-group {
+  margin-bottom: $space-md;
+
+  label {
+    display: block;
+    margin-bottom: $space-xs;
+    font-weight: 600;
+    color: $dark;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border: 2px solid $gray-light;
+    border-radius: $radius-sm;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: $transition-base;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    }
+  }
+}

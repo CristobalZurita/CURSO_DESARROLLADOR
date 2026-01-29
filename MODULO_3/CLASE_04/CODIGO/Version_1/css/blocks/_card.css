@@ -1,0 +1,9 @@
+@import "blocks/_header.css";
+@import "blocks/_card.css";
+@import "blocks/_button.css";
+@import "blocks/_alert.css";
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}

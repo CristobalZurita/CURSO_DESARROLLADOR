@@ -1,0 +1,82 @@
+:root {
+    --bg: #f4f4f4;
+    --text: #222;
+    --accent: #0d6efd;
+    --card: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background .3s, color .3s;
+}
+
+.theme-dark {
+    --bg: #121212;
+    --text: #f1f1f1;
+    --card: #1e1e1e;
+}
+
+.navbar {
+    background: var(--card);
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.hero {
+    padding: 8rem 0 6rem;
+    background: linear-gradient(135deg, var(--accent), #000);
+    color: white;
+}
+
+.section {
+    padding: 4rem 0;
+}
+
+.section-light {
+    background: var(--card);
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.timeline {
+    list-style: none;
+    padding: 0;
+}
+
+.timeline li {
+    margin-bottom: 1.5rem;
+}
+
+footer {
+    padding: 2rem 0;
+    background: #000;
+    color: #aaa;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 .5rem;
+}
+
+.error-text {
+    color: #dc3545;
+    font-size: .85rem;
+}
+
+.section-observe {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all .6s ease;
+}
+
+.section-observe.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -1,0 +1,66 @@
+// ===========================
+// FOOTER COMPONENT
+// ===========================
+
+@use '../abstracts/variables' as *;
+
+.footer {
+  background: $dark;
+  color: $white;
+  padding: $space-xl $space-md $space-md;
+
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto $space-lg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $space-md;
+  }
+
+  &__brand {
+    h3 {
+      font-family: $font-display;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: $space-sm;
+
+    a {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      font-size: 1.3rem;
+      transition: $transition-base;
+
+      &:hover {
+        background: $primary;
+        transform: translateY(-3px);
+      }
+    }
+  }
+
+  &__copy {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: $space-md;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+}

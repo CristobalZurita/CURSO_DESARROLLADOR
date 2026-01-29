@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: #000;
+  color: white;
+}
+
+.button {
+  padding: 1rem 1.5rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  background: #F28E2A;
+  border: none;
+}
+
+.card {
+  padding: 2rem;
+  background: white;
+  color: black;
+}
+.card__title {
+  font-weight: 700;
+}
+
+/*# sourceMappingURL=main.css.map */

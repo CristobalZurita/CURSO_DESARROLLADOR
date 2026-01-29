@@ -1,0 +1,42 @@
+.mm-hero{
+  min-height:100vh;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:3rem;
+}
+
+.mm-hero__logo{
+  width:820px;
+  height:auto;
+  margin-bottom:2.5rem;
+}
+
+.mm-hero__inner{
+  max-width:640px;
+  padding:2rem;
+  text-align:center;
+  color:var(--mm-white);
+}
+
+.mm-hero__tag{
+  color:var(--mm-orange);
+  letter-spacing:.35em;
+  font-size:.75rem;
+  text-transform:uppercase;
+}
+
+.mm-hero__title{
+  font-size:clamp(2.2rem,4.5vw,3.5rem);
+  font-weight:900;
+  margin:1rem 0;
+}
+
+.mm-hero__subtitle{
+  font-weight:300;
+}
+
+.mm-hero__meta{
+  color:var(--mm-orange);
+}

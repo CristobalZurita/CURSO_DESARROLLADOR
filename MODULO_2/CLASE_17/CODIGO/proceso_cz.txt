@@ -1,0 +1,113 @@
+PROCESO DE ENTREGA – ACTIVIDAD AE-7
+CURSO DESARROLLADOR FRONT END
+PROYECTO: DULCE HORNO – TIENDA VIRTUAL
+
+Repositorio GitHub:
+https://github.com/CristobalZurita/CURSO_DESARROLLADOR
+
+--------------------------------------------------
+1. VERIFICACIÓN DE GIT
+--------------------------------------------------
+
+Verificar que Git esté instalado:
+    git --version
+
+Verificar configuración de usuario:
+    git config --list
+
+(Si fuera necesario configurar)
+    git config --global user.name "Cristobal Zurita"
+    git config --global user.email "cristobal.z.q@gmail.com"
+
+--------------------------------------------------
+2. UBICACIÓN CORRECTA DEL PROYECTO
+--------------------------------------------------
+
+Ubicarse en el repositorio local ya existente:
+    cd /home/cz/Desktop/CURSO_DESARROLLADOR
+
+Verificar que es un repositorio Git:
+    git status
+
+--------------------------------------------------
+3. UBICACIÓN DEL CÓDIGO DE LA ACTIVIDAD
+--------------------------------------------------
+
+Entrar a la ruta de la actividad:
+    cd MODULO_2/CLASE_17/CODIGO
+
+Verificar archivos del proyecto Dulce Horno:
+    ls
+
+Archivos esperados:
+    index.html
+    style.css
+    script.js
+
+--------------------------------------------------
+4. CREACIÓN DE RAMA PARA NUEVA FUNCIONALIDAD
+--------------------------------------------------
+
+Crear la rama solicitada por la actividad:
+    git checkout -b feature/navbar
+
+Verificar rama activa:
+    git branch
+
+--------------------------------------------------
+5. MODIFICACIÓN DEL PROYECTO
+--------------------------------------------------
+
+Editar el archivo index.html para agregar:
+- Encabezado (navbar)
+- Enlaces de navegación:
+      Inicio
+      Productos
+      Contacto
+
+Guardar los cambios.
+
+--------------------------------------------------
+6. COMMIT DE LOS CAMBIOS
+--------------------------------------------------
+
+Ver estado:
+    git status
+
+Agregar archivos modificados:
+    git add index.html
+
+Crear commit:
+    git commit -m "Agrega navbar de navegación a Dulce Horno"
+
+--------------------------------------------------
+7. VOLVER A RAMA PRINCIPAL
+--------------------------------------------------
+
+Cambiar a la rama main:
+    git checkout main
+
+Fusionar la rama feature/navbar:
+    git merge feature/navbar
+
+--------------------------------------------------
+8. PUSH AL REPOSITORIO REMOTO (AÚN NO REALIZADO)
+--------------------------------------------------
+
+Subir cambios al repositorio GitHub:
+    git push origin main
+
+(Subir también la rama si el profesor la revisa)
+    git push origin feature/navbar
+
+--------------------------------------------------
+9. ESTADO FINAL DEL PROYECTO
+--------------------------------------------------
+
+- Repositorio CURSO_DESARROLLADOR actualizado
+- Actividad ubicada en MODULO_2 / CLASE_17 / CODIGO
+- Uso correcto de ramas Git
+- Historial de commits visible en GitHub
+- Actividad lista para evaluación
+
+FIN DEL PROCESO
