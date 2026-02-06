@@ -1,0 +1,127 @@
+// ========================================
+// RESET BASE
+// ========================================
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-primary;
+  background: $bg-primary;
+}
+
+// ELEMENTOS HTML
+// ========================================
+a {
+  color: $color-primary;
+  text-decoration: none;
+  @include transition(color);
+  
+  &:hover {
+    color: $color-primary-dark;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul,
+ol {
+  list-style-position: inside;
+}
+
+// HEADINGS
+// ========================================
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-bold;
+  line-height: $line-height-small;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+h1 { font-size: $font-size-huge; }
+h2 { font-size: $font-size-xxlarge; }
+h3 { font-size: $font-size-xlarge; }
+h4 { font-size: $font-size-large; }
+h5 { font-size: $font-size-medium; }
+h6 { font-size: $font-size-base; }
+
+// PÁRRAFOS
+// ========================================
+p {
+  margin-bottom: $spacing-md;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// CODE
+// ========================================
+code {
+  font-family: $font-family-mono;
+  background: $color-gray-light;
+  padding: 2px 6px;
+  border-radius: $border-radius-sm;
+  font-size: 0.9em;
+}
+
+pre {
+  font-family: $font-family-mono;
+  background: $color-gray-darkest;
+  color: $color-white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-md;
+  overflow-x: auto;
+  margin-bottom: $spacing-lg;
+}
+
+// TABLAS
+// ========================================
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+// STRONG Y EM
+// ========================================
+strong {
+  font-weight: $font-weight-bold;
+}
+
+em {
+  font-style: italic;
+}

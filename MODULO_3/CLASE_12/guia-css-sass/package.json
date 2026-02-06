@@ -1,0 +1,26 @@
+{
+  "name": "guia-visual-css-sass",
+  "version": "1.0.0",
+  "description": "Guía visual didáctica para aprender CSS con arquitectura SASS profesional",
+  "main": "index.html",
+  "scripts": {
+    "sass": "sass scss/main.scss css/main.css",
+    "sass:watch": "sass --watch scss/main.scss:css/main.css",
+    "sass:build": "sass scss/main.scss css/main.css --style compressed",
+    "sass:dev": "sass --watch scss/main.scss:css/main.css --source-map"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "scss",
+    "tutorial",
+    "education",
+    "bem",
+    "architecture"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.70.0"
+  }
+}

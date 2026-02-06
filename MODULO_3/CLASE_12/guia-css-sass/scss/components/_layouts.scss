@@ -1,0 +1,32 @@
+// LAYOUTS
+.layout-examples {
+  @include flexbox(column, flex-start, stretch);
+  gap: $spacing-xl;
+  margin: $spacing-lg 0;
+}
+
+.layout {
+  color: $text-white;
+  padding: $spacing-xl;
+  @include border-radius($border-radius-lg);
+  text-align: center;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-medium;
+  
+  &--fluid {
+    width: 100%;
+    @include gradient-linear(135deg, $color-primary, $color-secondary);
+  }
+  
+  &--fixed {
+    max-width: 800px;
+    margin: 0 auto;
+    @include gradient-linear(135deg, #f093fb, #f5576c);
+  }
+  
+  &--container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: $color-gray-darker;
+  }
+}

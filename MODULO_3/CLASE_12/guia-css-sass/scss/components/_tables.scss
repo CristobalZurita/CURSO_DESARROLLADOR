@@ -1,0 +1,35 @@
+// TABLAS
+.reference-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: $spacing-lg 0;
+  background: $bg-primary;
+  @include border-radius($border-radius-lg);
+  overflow: hidden;
+  @include box-shadow($shadow-md);
+  
+  th {
+    background: $color-gray-darkest;
+    color: $text-white;
+    padding: $spacing-md;
+    text-align: left;
+    font-weight: $font-weight-bold;
+  }
+  
+  td {
+    padding: $spacing-md;
+    border-bottom: 1px solid $color-gray-light;
+    
+    strong {
+      color: $color-primary;
+    }
+  }
+  
+  tr:hover {
+    background: lighten($color-gray-lightest, 2%);
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+}

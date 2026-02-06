@@ -1,0 +1,86 @@
+// ========================================
+// COMPONENTE: BOX MODEL
+// Demuestra el modelo de caja CSS
+// ========================================
+
+.box-demo {
+  margin: $spacing-xl auto;
+  max-width: 600px;
+}
+
+.box-model {
+  position: relative;
+  background: lighten($example-orange, 35%);
+  padding: $spacing-xxl;
+  margin: $spacing-xxl;
+  border: 10px solid $example-orange;
+  text-align: center;
+  font-size: $font-size-medium;
+  font-weight: $font-weight-bold;
+  @include border-radius($border-radius-lg);
+  
+  // CONTENIDO
+  &__content {
+    color: $text-primary;
+  }
+  
+  // ETIQUETAS
+  &__label {
+    position: absolute;
+    background: $color-white;
+    color: $color-white;
+    padding: $spacing-xs $spacing-md;
+    @include border-radius($border-radius-pill);
+    font-size: $font-size-small;
+    font-weight: $font-weight-bold;
+    @include box-shadow($shadow-md);
+    z-index: 10;
+    
+    // MARGIN LABEL
+    &--margin {
+      background: $example-red;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    // BORDER LABEL
+    &--border {
+      background: $example-orange;
+      left: -130px;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      @include respond-to(md) {
+        left: -150px;
+      }
+    }
+    
+    // PADDING LABEL
+    &--padding {
+      background: $example-green;
+      right: -130px;
+      top: 50%;
+      transform: translateY(-50%);
+      
+      @include respond-to(md) {
+        right: -150px;
+      }
+    }
+    
+    // CONTENT LABEL
+    &--content {
+      background: $example-blue;
+      position: static;
+      transform: none;
+      display: inline-block;
+      margin-top: $spacing-sm;
+    }
+  }
+  
+  // RESPONSIVE
+  @include respond-to(md) {
+    padding: spacing(6);
+    margin: spacing(6);
+  }
+}

@@ -1,0 +1,18 @@
+// FOOTER
+.footer {
+  background: $color-gray-darkest;
+  color: $text-white;
+  text-align: center;
+  padding: $spacing-xl;
+  
+  &__text {
+    font-size: $font-size-medium;
+    margin-bottom: $spacing-xs;
+  }
+  
+  &__subtext {
+    font-size: $font-size-small;
+    opacity: 0.8;
+    margin-top: $spacing-sm;
+  }
+}

@@ -1,0 +1,50 @@
+// TIPOGRAFÍA
+.typography-examples {
+  background: $bg-primary;
+  padding: $spacing-xl;
+  @include border-radius($border-radius-lg);
+  margin: $spacing-lg 0;
+}
+
+.text {
+  margin-bottom: $spacing-md;
+  
+  &--large {
+    font-size: $font-size-xxlarge;
+    color: $text-primary;
+    font-weight: $font-weight-bold;
+  }
+  
+  &--medium {
+    font-size: $font-size-large;
+    color: $text-secondary;
+    font-weight: $font-weight-normal;
+  }
+  
+  &--small {
+    font-size: $font-size-small;
+    color: $text-muted;
+    font-style: italic;
+  }
+  
+  &--center {
+    text-align: center;
+    background: $color-gray-light;
+    padding: $spacing-md;
+    @include border-radius($border-radius-md);
+  }
+  
+  &--right {
+    text-align: right;
+    background: lighten($example-green, 40%);
+    padding: $spacing-md;
+    @include border-radius($border-radius-md);
+  }
+  
+  &--justify {
+    text-align: justify;
+    background: lighten($example-orange, 40%);
+    padding: $spacing-md;
+    @include border-radius($border-radius-md);
+  }
+}

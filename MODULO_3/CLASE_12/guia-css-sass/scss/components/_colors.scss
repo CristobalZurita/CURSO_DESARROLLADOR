@@ -1,0 +1,27 @@
+// COLORES
+.color-palette {
+  @include grid(2, $spacing-md);
+  margin: $spacing-lg 0;
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.color-demo {
+  height: 120px;
+  @include border-radius($border-radius-lg);
+  @include flex-center;
+  font-weight: $font-weight-bold;
+  color: $text-white;
+  @include text-shadow($text-shadow-md);
+  @include box-shadow($shadow-md);
+  @include transition(transform);
+  
+  &:hover { transform: scale(1.05); }
+  &--hex { background: $example-red; }
+  &--rgb { background: rgb(52, 152, 219); }
+  &--rgba { background: rgba(46, 204, 113, 0.7); }
+  &--hsl { background: hsl(280, 50%, 60%); }
+  &--gradient { @include gradient-linear(135deg, $color-primary, $color-secondary); grid-column: 1 / -1; }
+}

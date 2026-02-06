@@ -1,0 +1,46 @@
+// ========================================
+// GUÍA VISUAL CSS - MAIN SASS FILE
+// Arquitectura 7-1 Pattern
+// ========================================
+
+// 1. ABSTRACTS - Variables, funciones, mixins
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+
+// 2. VENDORS - Librerías externas (si las hubiera)
+// @import 'vendors/normalize';
+
+// 3. BASE - Reset, tipografía base, utilidades
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/utilities';
+
+// 4. LAYOUT - Estructura general (header, footer, grid)
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/container';
+@import 'layout/section';
+
+// 5. COMPONENTS - Componentes reutilizables
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/box-model';
+@import 'components/display';
+@import 'components/position';
+@import 'components/flexbox';
+@import 'components/grid';
+@import 'components/colors';
+@import 'components/typography';
+@import 'components/effects';
+@import 'components/spacing';
+@import 'components/layouts';
+@import 'components/code-snippet';
+@import 'components/notes';
+@import 'components/tables';
+
+// 6. PAGES - Estilos específicos de páginas
+@import 'pages/home';
+
+// 7. THEMES - Temas (si los hubiera)
+// @import 'themes/dark';

@@ -1,0 +1,13 @@
+// CODE SNIPPET
+.code-snippet {
+  background: #263238;
+  color: #aed581;
+  padding: $spacing-md;
+  @include border-radius($border-radius-md);
+  margin-top: $spacing-sm;
+  font-family: $font-family-mono;
+  font-size: $font-size-small;
+  overflow-x: auto;
+  line-height: $line-height-large;
+  @include box-shadow($shadow-sm);
+}

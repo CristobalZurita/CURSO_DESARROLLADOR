@@ -1,0 +1,26 @@
+// ESPACIADO
+.spacing-demo {
+  background: $color-gray-lightest;
+  padding: $spacing-lg;
+  @include border-radius($border-radius-lg);
+  margin: $spacing-lg 0;
+}
+
+.spacing-box {
+  background: $example-blue;
+  color: $text-white;
+  text-align: center;
+  font-weight: $font-weight-bold;
+  display: inline-block;
+  margin: $spacing-lg;
+  @include transition(all);
+  
+  &:hover {
+    background: darken($example-blue, 10%);
+    transform: scale(1.05);
+  }
+  
+  &--padding-large { padding: $spacing-xxl; }
+  &--padding-medium { padding: $spacing-lg; }
+  &--padding-small { padding: $spacing-sm; }
+}

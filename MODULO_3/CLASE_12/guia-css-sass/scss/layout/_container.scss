@@ -1,0 +1,9 @@
+// CONTAINER
+.container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  background: $bg-primary;
+  @include border-radius($border-radius-xl);
+  @include box-shadow($shadow-xxl);
+  overflow: hidden;
+}

@@ -1,0 +1,38 @@
+// NOTAS
+.description {
+  background: #e3f2fd;
+  padding: $spacing-md;
+  border-left: 5px solid $example-blue;
+  margin-bottom: $spacing-xl;
+  @include border-radius($border-radius-md);
+  line-height: $line-height-large;
+}
+
+.note {
+  padding: $spacing-md;
+  margin: $spacing-lg 0;
+  @include border-radius($border-radius-md);
+  
+  &--important {
+    background: #fff3cd;
+    border-left: 5px solid $example-orange;
+    
+    strong { color: #856404; }
+  }
+  
+  &--tip {
+    background: lighten($example-green, 45%);
+    border-left: 5px solid $example-green;
+    
+    ul {
+      margin-top: $spacing-sm;
+      margin-left: $spacing-lg;
+      list-style: disc;
+    }
+    
+    li {
+      margin-bottom: $spacing-xs;
+      line-height: $line-height-large;
+    }
+  }
+}
