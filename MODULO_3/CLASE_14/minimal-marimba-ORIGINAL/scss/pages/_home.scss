@@ -80,17 +80,18 @@
   
   &__eyebrow {
     display: inline-block;
-    padding: 14px 32px;
-    background: rgba($color-primary, 0.15);
-    border: 2px solid $color-primary;
+    padding: 20px 48px;
+    background: rgba($color-primary, 0.2);
+    border: 3px solid $color-primary;
     border-radius: $border-radius-full;
     color: $color-primary;
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-size: clamp(1.25rem, 3vw, 2rem);
     font-weight: $font-weight-bold;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: $spacing-lg;
+    letter-spacing: 0.2em;
+    margin-bottom: $spacing-2xl;
     animation: fadeInDown 1s $easing-smooth;
+    text-shadow: 0 0 20px rgba($color-primary, 0.4);
   }
   
   &__title {

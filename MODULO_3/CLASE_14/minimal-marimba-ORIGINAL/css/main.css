@@ -2018,17 +2018,18 @@ p.lead {
 }
 .hero__eyebrow {
   display: inline-block;
-  padding: 14px 32px;
-  background: rgba(204, 85, 0, 0.15);
-  border: 2px solid #cc5500;
+  padding: 20px 48px;
+  background: rgba(204, 85, 0, 0.2);
+  border: 3px solid #cc5500;
   border-radius: 9999px;
   color: #cc5500;
-  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-bottom: 32px;
+  letter-spacing: 0.2em;
+  margin-bottom: 64px;
   animation: fadeInDown 1s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 0 20px rgba(204, 85, 0, 0.4);
 }
 .hero__title {
   font-size: clamp(3rem, 8vw, 6rem);
