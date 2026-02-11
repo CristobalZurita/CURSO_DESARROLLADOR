@@ -1991,7 +1991,7 @@ p.lead {
   background: linear-gradient(-45deg, #cc5500, #cc5500, #cc5500, #cc5500);
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
-  opacity: 0.15;
+  opacity: 0;
   z-index: 100;
 }
 .hero__container {
@@ -2037,8 +2037,9 @@ p.lead {
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 64px;
+  margin-top: 0;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
-  color: #ffffff;
+  color: #cc5500;
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6), 0 0 30px rgba(204, 85, 0, 0.3), 0 4px 15px rgba(0, 0, 0, 0.9);
   letter-spacing: -0.02em;
@@ -2060,11 +2061,12 @@ p.lead {
 }
 .hero__scroll {
   position: absolute;
-  bottom: 64px;
-  left: 50%;
+  bottom: 48px;
+  left: 48.15%;
   transform: translateX(-50%);
   z-index: 200;
   animation: float 3s ease-in-out infinite;
+  pointer-events: none;
 }
 .hero__scroll-text {
   display: block;
@@ -2076,25 +2078,35 @@ p.lead {
   text-align: center;
 }
 .hero__scroll-icon {
-  display: block;
-  width: 30px;
-  height: 50px;
-  border: 2px solid #cc5500;
-  border-radius: 9999px;
-  position: relative;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 40px;
 }
-.hero__scroll-icon::after {
-  content: "";
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
+.hero__scroll-icon .dot {
+  display: block;
   width: 6px;
-  height: 10px;
+  height: 6px;
   background: #cc5500;
-  border-radius: 9999px;
-  animation: scrollDown 2s ease-in-out infinite;
+  border-radius: 50%;
+  animation: dotFloat 1.5s ease-in-out infinite;
+}
+.hero__scroll-icon .dot:nth-child(1) {
+  animation-delay: 0s;
+}
+.hero__scroll-icon .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.hero__scroll-icon .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.hero__scroll-icon .dot:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.hero__scroll-icon .dot:nth-child(5) {
+  animation-delay: 0.8s;
 }
 .hero--centered {
   text-align: center;
@@ -2121,6 +2133,16 @@ p.lead {
   100% {
     opacity: 0;
     transform: translate(-50%, 20px);
+  }
+}
+@keyframes dotFloat {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-8px);
   }
 }
 .mt-1 {
