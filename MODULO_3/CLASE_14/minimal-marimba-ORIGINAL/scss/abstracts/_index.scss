@@ -1,0 +1,8 @@
+// ============================================
+// ABSTRACTS/_INDEX.SCSS
+// Módulo de exportación centralizada
+// Contenido: Variables y Mixins globales
+// ============================================
+
+@forward 'variables';
+@forward 'mixins';

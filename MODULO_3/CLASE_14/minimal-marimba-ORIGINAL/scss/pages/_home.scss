@@ -98,7 +98,7 @@
     margin-bottom: $spacing-lg;
     animation: fadeInUp 1s $easing-smooth 0.2s backwards;
     color: $color-primary;
-    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.2);
+    -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.2);
     text-shadow: 
       0 0 3px rgba(150, 150, 150, 0.3),
       20px 15px 20px rgba(255, 255, 255, 0.15),

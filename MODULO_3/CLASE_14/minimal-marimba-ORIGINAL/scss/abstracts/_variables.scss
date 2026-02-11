@@ -111,15 +111,28 @@ $transition-slower: 0.8s ease;
 $easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 $easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-// Z-INDEX
+// Z-INDEX SCALE (Orden de apilamiento)
+// Escala centralizada para evitar conflictos de superposición
+// Incrementos de 100 para permitir valores intermedios si es necesario
 // --------------------------------------------
-$z-index-dropdown: 100;
-$z-index-sticky: 200;
-$z-index-fixed: 300;
-$z-index-modal-backdrop: 400;
-$z-index-modal: 500;
-$z-index-popup: 600;
-$z-index-tooltip: 700;
+$z-base:               0;    // Elementos normales
+$z-dropdown:         100;    // Dropdowns, menus desplegables
+$z-sticky:           200;    // Headers sticky, elementos fijos
+$z-fixed:            300;    // Elementos fixed (sin ser modal)
+$z-modal-backdrop:   400;    // Backdrop de modal
+$z-modal:            500;    // Modal dialogs
+$z-popup:            600;    // Popups, sidebars, notificaciones
+$z-tooltip:          700;    // Tooltips, popovers
+$z-max:              999;    // Máximo permitido (emergencias)
+
+// Aliases para compatibilidad
+$z-index-dropdown: $z-dropdown;
+$z-index-sticky: $z-sticky;
+$z-index-fixed: $z-fixed;
+$z-index-modal-backdrop: $z-modal-backdrop;
+$z-index-modal: $z-modal;
+$z-index-popup: $z-popup;
+$z-index-tooltip: $z-tooltip;
 
 // COMPONENTES ESPECÍFICOS
 // --------------------------------------------

@@ -902,7 +902,7 @@ p.lead {
 .card__image {
   width: 100%;
   height: 200px;
-  margin: -64px -8px;
+  margin: -32px -32px 24px -32px;
   overflow: hidden;
   border-radius: 16px 16px 0 0;
 }
@@ -1018,7 +1018,7 @@ p.lead {
 }
 .card--compact .card__image {
   height: 150px;
-  margin: -48px -8px;
+  margin: -24px -24px 16px -24px;
 }
 
 .cards-grid {
@@ -1813,7 +1813,7 @@ p.lead {
   margin-bottom: 32px;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
   color: #cc5500;
-  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.2);
+  -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.2);
   text-shadow: 0 0 3px rgba(150, 150, 150, 0.3), 20px 15px 20px rgba(255, 255, 255, 0.15), 25px 20px 60px rgba(255, 255, 255, 0.08);
 }
 .hero__description {
@@ -1896,32 +1896,6 @@ p.lead {
     transform: translate(-50%, 20px);
   }
 }
-.container {
-  max-width: 1440px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
-}
-@media (min-width: 768px) {
-  .container {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
 .mt-1 {
   margin-top: 8px;
 }
@@ -1960,6 +1934,124 @@ p.lead {
 
 .mb-5 {
   margin-bottom: 48px;
+}
+
+.ml-1 {
+  margin-left: 8px;
+}
+
+.ml-2 {
+  margin-left: 16px;
+}
+
+.ml-3 {
+  margin-left: 24px;
+}
+
+.ml-4 {
+  margin-left: 32px;
+}
+
+.ml-5 {
+  margin-left: 48px;
+}
+
+.mr-1 {
+  margin-right: 8px;
+}
+
+.mr-2 {
+  margin-right: 16px;
+}
+
+.mr-3 {
+  margin-right: 24px;
+}
+
+.mr-4 {
+  margin-right: 32px;
+}
+
+.mr-5 {
+  margin-right: 48px;
+}
+
+.p-1 {
+  padding: 8px;
+}
+
+.p-2 {
+  padding: 16px;
+}
+
+.p-3 {
+  padding: 24px;
+}
+
+.p-4 {
+  padding: 32px;
+}
+
+.p-5 {
+  padding: 48px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+@media (min-width: 768px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

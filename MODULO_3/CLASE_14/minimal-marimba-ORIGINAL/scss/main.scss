@@ -2,25 +2,38 @@
 // MAIN SASS FILE - Patrón 7-1
 // Minimal Marimba - Resonancias Electrónicas 2026
 // ============================================
+// Organización modular con @import (compatible actual)
+// Estructura: Abstracts → Base → Layout → Components → Pages → Vendors → Utilities
+// Cada carpeta es un módulo cohesivo con responsabilidad clara
+// ============================================
 
-// 1. ABSTRACTS
-// --------------------------------------------
+// 1. ABSTRACTS (Nivel más bajo - Sin salida CSS)
+// Contenido: $variables y @mixins reutilizables
+// Necesidad: Disponibles para todos los demás módulos
+// ============================================
 @import 'abstracts/variables';
 @import 'abstracts/mixins';
 
-// 2. BASE
-// --------------------------------------------
+// 2. BASE (Estilos globales fundamentales)
+// Contenido: Reset CSS, tipografía base, animaciones globales
+// Dependencias: Necesita abstracts (variables y mixins)
+// ============================================
 @import 'base/reset';
 @import 'base/typography';
 @import 'base/animations';
 
-// 3. LAYOUT
-// --------------------------------------------
+// 3. LAYOUT (Estructura principal de página)
+// Contenido: Header, footer, secciones, hero, grid principal
+// Dependencias: Necesita base y abstracts
+// ============================================
 @import 'layout/header';
 @import 'layout/sections';
 
-// 4. COMPONENTS
-// --------------------------------------------
+// 4. COMPONENTS (Componentes reutilizables)
+// Contenido: Botones, cards, forms, popup, accordion, gallery
+// Dependencias: Necesita layout, base y abstracts
+// Nota: Componentes complejos (modales, tooltips) van aquí
+// ============================================
 @import 'components/buttons';
 @import 'components/cards';
 @import 'components/popup';
@@ -28,33 +41,35 @@
 @import 'components/gallery';
 @import 'components/forms';
 
-// 5. PAGES
-// --------------------------------------------
+// 5. PAGES (Estilos específicos de página)
+// Contenido: Overrides y estilos únicos de páginas (home, about, etc)
+// Dependencias: Necesita todos los anteriores
+// ============================================
 @import 'pages/home';
 
-// 6. VENDORS (Bootstrap selectivo)
-// --------------------------------------------
-// Importamos solo lo necesario de Bootstrap
-// En producción, esto vendría de node_modules
+// 6. THEMES (Reservado para temas)
+// Contenido: Variaciones de temas (dark mode, light mode, etc)
+// Estado: Vacío - listo para extensión futura
+// ============================================
+// @import 'themes/dark-mode';
 
-// 7. UTILITIES
-// --------------------------------------------
+// 7. VENDORS (Overrides de librerías externas)
+// Contenido: Customizaciones de Bootstrap, librerías, etc
+// Nota: Bootstrap se importa en HTML, este archivo para overrides
+// Estado: Vacío - listo para extensión futura
+// ============================================
+// @import 'vendors/bootstrap-overrides';
+
+// 8. UTILITIES (Clases de utilidad CSS)
+// Contenido: .mt-1, .text-center, .d-flex, etc - clases reutilizables
+// Dependencias: Necesita abstracts (variables de espaciado)
+// ============================================
+@import 'utilities/spacing';
+@import 'utilities/text';
+
+// 9. GLOBAL UTILITIES INLINE
+// Uso: Contenedor principal y utilidades muy comunes
+// ============================================
 .container {
   @include container;
 }
-
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-
-.mt-1 { margin-top: $spacing-xs; }
-.mt-2 { margin-top: $spacing-sm; }
-.mt-3 { margin-top: $spacing-md; }
-.mt-4 { margin-top: $spacing-lg; }
-.mt-5 { margin-top: $spacing-xl; }
-
-.mb-1 { margin-bottom: $spacing-xs; }
-.mb-2 { margin-bottom: $spacing-sm; }
-.mb-3 { margin-bottom: $spacing-md; }
-.mb-4 { margin-bottom: $spacing-lg; }
-.mb-5 { margin-bottom: $spacing-xl; }

@@ -1,0 +1,8 @@
+// ============================================
+// LAYOUT/_INDEX.SCSS
+// Módulo de exportación centralizada
+// Contenido: Header, secciones y estructura de página
+// ============================================
+
+@forward 'header';
+@forward 'sections';

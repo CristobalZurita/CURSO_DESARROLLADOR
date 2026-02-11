@@ -38,7 +38,7 @@
   &__image {
     width: 100%;
     height: 200px;
-    margin: -$card-padding -$card-padding $spacing-md -$card-padding;
+    margin: (-$card-padding) (-$card-padding) $spacing-md (-$card-padding);
     overflow: hidden;
     border-radius: $card-border-radius $card-border-radius 0 0;
     
@@ -180,7 +180,7 @@
     
     .card__image {
       height: 150px;
-      margin: -$spacing-md -$spacing-md $spacing-sm -$spacing-md;
+      margin: (-$spacing-md) (-$spacing-md) $spacing-sm (-$spacing-md);
     }
   }
 }

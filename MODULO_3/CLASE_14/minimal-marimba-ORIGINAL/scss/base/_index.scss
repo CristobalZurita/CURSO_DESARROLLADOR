@@ -1,0 +1,9 @@
+// ============================================
+// BASE/_INDEX.SCSS
+// Módulo de exportación centralizada
+// Contenido: Reset, tipografía, animaciones globales
+// ============================================
+
+@forward 'reset';
+@forward 'typography';
+@forward 'animations';
