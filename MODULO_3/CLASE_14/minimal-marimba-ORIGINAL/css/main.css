@@ -1980,6 +1980,7 @@ p.lead {
   height: 100%;
   object-fit: fill;
   display: block;
+  filter: blur(8px);
 }
 .hero__gradient {
   position: absolute;
@@ -2035,11 +2036,12 @@ p.lead {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: 32px;
+  margin-bottom: 64px;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
-  color: #cc5500;
-  -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.2);
-  text-shadow: 0 0 3px rgba(150, 150, 150, 0.3), 20px 15px 20px rgba(255, 255, 255, 0.15), 25px 20px 60px rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6), 0 0 30px rgba(204, 85, 0, 0.3), 0 4px 15px rgba(0, 0, 0, 0.9);
+  letter-spacing: -0.02em;
 }
 .hero__description {
   font-size: clamp(1.125rem, 2.5vw, 1.5rem);
