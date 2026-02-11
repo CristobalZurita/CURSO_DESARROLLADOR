@@ -312,7 +312,7 @@ p.lead {
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 150px;
   z-index: 300;
   background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(10px);
@@ -352,8 +352,19 @@ p.lead {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   transition: opacity 0.15s ease;
+  display: flex;
+  align-items: center;
 }
 .header__logo:hover {
+  opacity: 0.8;
+}
+.header__logo-image {
+  height: 130px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.15s ease;
+}
+.header__logo-image:hover {
   opacity: 0.8;
 }
 .header__nav {
@@ -449,10 +460,10 @@ p.lead {
 }
 .header__mobile-menu {
   position: fixed;
-  top: 80px;
+  top: 150px;
   left: 0;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 150px);
   background: #0a0a0a;
   padding: 48px 24px;
   transform: translateX(100%);

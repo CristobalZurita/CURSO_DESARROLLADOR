@@ -34,6 +34,19 @@
     letter-spacing: -0.02em;
     @include gradient-text;
     transition: opacity $transition-fast;
+    display: flex;
+    align-items: center;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  
+  &__logo-image {
+    height: 130px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity $transition-fast;
     
     &:hover {
       opacity: 0.8;
