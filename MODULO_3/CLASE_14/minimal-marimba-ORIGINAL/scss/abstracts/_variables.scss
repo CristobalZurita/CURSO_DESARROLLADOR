@@ -8,8 +8,8 @@ $color-dark-bg: #0a0a0a;
 $color-dark-surface: #151515;
 $color-dark-elevated: #1f1f1f;
 
-$color-primary: #ff8800; // Naranjo vibrante
-$color-secondary: #00d9ff; // Cian vibrante
+$color-primary: #cc5500; // Naranjo cobre sólido
+$color-secondary: #993300; // Cobre oscuro
 $color-accent: #ff006e; // Rosa neón (opcional)
 
 $color-text-primary: #ffffff;
@@ -17,7 +17,7 @@ $color-text-secondary: #b0b0b0;
 $color-text-muted: #707070;
 
 // Gradientes
-$gradient-primary: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+$gradient-primary: linear-gradient(135deg, $color-primary 0%, $color-primary 100%);
 $gradient-dark: linear-gradient(180deg, $color-dark-bg 0%, $color-dark-surface 100%);
 
 // TIPOGRAFÍA

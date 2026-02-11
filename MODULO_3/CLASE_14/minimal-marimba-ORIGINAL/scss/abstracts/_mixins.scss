@@ -78,6 +78,18 @@
   background-clip: text;
 }
 
+// TEXT CONTRAST - Sombra y borde para destacar del fondo
+// --------------------------------------------
+@mixin text-contrast($shadow-color: rgba(0, 0, 0, 0.8), $blur: 3px) {
+  text-shadow: 
+    -1px -1px 0 $shadow-color,
+    1px -1px 0 $shadow-color,
+    -1px 1px 0 $shadow-color,
+    1px 1px 0 $shadow-color,
+    0 0 $blur $shadow-color,
+    0 0 #{$blur * 1.5} $shadow-color;
+}
+
 // GLOW EFFECT
 // --------------------------------------------
 @mixin glow($color: $color-primary, $intensity: 0.4) {
@@ -204,9 +216,9 @@
   background: linear-gradient(
     -45deg,
     $color-primary,
-    $color-secondary,
     $color-primary,
-    $color-secondary
+    $color-primary,
+    $color-primary
   );
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;

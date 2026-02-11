@@ -72,21 +72,21 @@
   
   // CONTENT
   &__content {
-    max-width: 900px;
+    max-width: 1200px;
     animation: fadeInUp 1s $easing-smooth;
   }
   
   &__eyebrow {
     display: inline-block;
-    padding: 8px 20px;
-    background: rgba($color-primary, 0.1);
-    border: 1px solid rgba($color-primary, 0.3);
+    padding: 14px 32px;
+    background: rgba($color-primary, 0.15);
+    border: 2px solid $color-primary;
     border-radius: $border-radius-full;
     color: $color-primary;
-    font-size: $font-size-small;
-    font-weight: $font-weight-semibold;
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-weight: $font-weight-bold;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     margin-bottom: $spacing-lg;
     animation: fadeInDown 1s $easing-smooth;
   }
@@ -97,15 +97,22 @@
     line-height: 1.1;
     margin-bottom: $spacing-lg;
     animation: fadeInUp 1s $easing-smooth 0.2s backwards;
+    color: $color-primary;
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 
+      0 0 3px rgba(150, 150, 150, 0.3),
+      20px 15px 20px rgba(255, 255, 255, 0.15),
+      25px 20px 60px rgba(255, 255, 255, 0.08);
   }
   
   &__description {
-    font-size: $font-size-large;
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
     color: $color-text-secondary;
-    line-height: 1.7;
+    line-height: 1.8;
     margin-bottom: $spacing-xl;
-    max-width: 700px;
+    max-width: 1000px;
     animation: fadeInUp 1s $easing-smooth 0.4s backwards;
+    @include text-contrast($shadow-color: rgba(0, 0, 0, 0.8), $blur: 3px);
   }
   
   &__actions {

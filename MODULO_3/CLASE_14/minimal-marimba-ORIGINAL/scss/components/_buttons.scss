@@ -42,7 +42,7 @@
   // MODIFICADORES - VARIANTES
   // --------------------------------------------
   &--primary {
-    background: $gradient-primary;
+    background: $color-primary;
     color: $color-dark-bg;
     @include glow($color-primary, 0.3);
     

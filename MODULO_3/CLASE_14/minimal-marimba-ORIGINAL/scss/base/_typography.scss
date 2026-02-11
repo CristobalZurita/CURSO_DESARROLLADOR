@@ -10,22 +10,26 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin-bottom: $spacing-md;
   letter-spacing: -0.02em;
+  @include text-contrast;
 }
 
 h1 {
   font-size: $h1-size;
-  @include gradient-text;
+  color: $color-primary;
   margin-bottom: $spacing-lg;
+  @include text-contrast($shadow-color: rgba(0, 0, 0, 0.9), $blur: 4px);
 }
 
 h2 {
   font-size: $h2-size;
   color: $color-text-primary;
+  @include text-contrast;
 }
 
 h3 {
   font-size: $h3-size;
   color: $color-text-primary;
+  @include text-contrast;
 }
 
 h4 {
