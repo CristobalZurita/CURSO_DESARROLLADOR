@@ -1,0 +1,148 @@
+// ============================================
+// BUTTONS - Sistema BEM
+// ============================================
+
+.btn {
+  @include button-reset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $button-padding-y $button-padding-x;
+  border-radius: $button-border-radius;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
+  text-align: center;
+  transition: all $transition-base;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  &:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  // MODIFICADORES - VARIANTES
+  // --------------------------------------------
+  &--primary {
+    background: $gradient-primary;
+    color: $color-dark-bg;
+    @include glow($color-primary, 0.3);
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  &--secondary {
+    background: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+    
+    &:hover {
+      background: $color-primary;
+      color: $color-dark-bg;
+    }
+  }
+  
+  &--outline {
+    background: transparent;
+    border: 1px solid $color-text-secondary;
+    color: $color-text-primary;
+    
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+  
+  &--ghost {
+    background: transparent;
+    color: $color-text-secondary;
+    
+    &:hover {
+      color: $color-primary;
+      background: rgba($color-primary, 0.1);
+    }
+  }
+  
+  &--dark {
+    background: $color-dark-surface;
+    color: $color-text-primary;
+    
+    &:hover {
+      background: $color-dark-elevated;
+    }
+  }
+  
+  // MODIFICADORES - TAMAÑOS
+  // --------------------------------------------
+  &--small {
+    padding: 10px 24px;
+    font-size: $font-size-small;
+  }
+  
+  &--large {
+    padding: 18px 48px;
+    font-size: $font-size-large;
+  }
+  
+  // MODIFICADORES - ESTADO
+  // --------------------------------------------
+  &--block {
+    width: 100%;
+  }
+  
+  &--disabled,
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  // ELEMENTO - ICONO
+  // --------------------------------------------
+  &__icon {
+    width: 20px;
+    height: 20px;
+    
+    &--left {
+      margin-right: $spacing-xs;
+    }
+    
+    &--right {
+      margin-left: $spacing-xs;
+    }
+  }
+}
+
+// GRUPO DE BOTONES
+.btn-group {
+  display: flex;
+  gap: $spacing-sm;
+  
+  &--vertical {
+    flex-direction: column;
+  }
+  
+  &--center {
+    justify-content: center;
+  }
+}

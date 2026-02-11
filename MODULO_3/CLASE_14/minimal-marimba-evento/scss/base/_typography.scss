@@ -2,6 +2,51 @@
 // TIPOGRAFÍA
 // ============================================
 
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('../assets/webfonts/NeoSans-Light.woff2') format('woff2'),
+       url('../assets/webfonts/NeoSans-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('../assets/webfonts/NeoSans.woff2') format('woff2'),
+       url('../assets/webfonts/NeoSans.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('../assets/webfonts/NeoSans-Medium.woff2') format('woff2'),
+       url('../assets/webfonts/NeoSans-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('../assets/webfonts/NeoSans-Bold.woff2') format('woff2'),
+       url('../assets/webfonts/NeoSans-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neo Sans';
+  src: url('../assets/webfonts/NeoSans-Black.woff2') format('woff2'),
+       url('../assets/webfonts/NeoSans-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 // HEADINGS
 // --------------------------------------------
 h1, h2, h3, h4, h5, h6 {

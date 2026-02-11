@@ -1,0 +1,198 @@
+// ============================================
+// POPUP / MODAL - Sistema BEM
+// ============================================
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-index-popup;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-md;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $transition-base;
+  
+  &--active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  // ELEMENTO - BACKDROP
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color-dark-bg, 0.9);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+  }
+  
+  // ELEMENTO - CONTENEDOR
+  &__container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    background: $color-dark-surface;
+    border-radius: $border-radius-xl;
+    border: 1px solid rgba($color-primary, 0.2);
+    padding: $spacing-xl;
+    transform: scale(0.9);
+    transition: transform $transition-base;
+    
+    .popup--active & {
+      transform: scale(1);
+    }
+    
+    @include respond-to(md) {
+      padding: $spacing-2xl;
+    }
+  }
+  
+  // ELEMENTO - HEADER
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__title {
+    font-size: $h3-size;
+    font-weight: $font-weight-bold;
+    @include gradient-text;
+    margin-bottom: $spacing-sm;
+  }
+  
+  &__subtitle {
+    color: $color-text-secondary;
+    font-size: $font-size-base;
+  }
+  
+  // ELEMENTO - CLOSE
+  &__close {
+    @include button-reset;
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius-md;
+    background: rgba($color-text-secondary, 0.1);
+    color: $color-text-secondary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition-fast;
+    flex-shrink: 0;
+    
+    &:hover {
+      background: rgba($color-primary, 0.2);
+      color: $color-primary;
+      transform: rotate(90deg);
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  // ELEMENTO - BODY
+  &__body {
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__content {
+    color: $color-text-secondary;
+    line-height: 1.7;
+    
+    p {
+      margin-bottom: $spacing-md;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // ELEMENTO - IMAGE
+  &__image {
+    width: 100%;
+    height: auto;
+    border-radius: $border-radius-lg;
+    margin-bottom: $spacing-lg;
+    
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: $border-radius-lg;
+    }
+  }
+  
+  // ELEMENTO - FOOTER
+  &__footer {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: flex-end;
+    
+    @include respond-to(sm) {
+      justify-content: flex-start;
+    }
+  }
+  
+  // MODIFICADOR - ANUNCIO
+  &--announcement {
+    .popup__container {
+      max-width: 800px;
+      padding: 0;
+      overflow: hidden;
+      @include glow($color-primary, 0.2);
+    }
+    
+    .popup__header {
+      padding: $spacing-xl;
+      padding-bottom: 0;
+    }
+    
+    .popup__body {
+      padding: 0 $spacing-xl $spacing-xl;
+    }
+    
+    .popup__image {
+      margin: 0 0 $spacing-lg 0;
+      border-radius: 0;
+      
+      img {
+        border-radius: 0;
+      }
+    }
+  }
+  
+  // MODIFICADOR - CENTRADO
+  &--centered {
+    .popup__content {
+      text-align: center;
+    }
+    
+    .popup__footer {
+      justify-content: center;
+    }
+  }
+}
+
+// ANIMACIÓN DE ENTRADA
+@keyframes popupSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

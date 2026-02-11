@@ -830,7 +830,7 @@ img {
 
 .whatsapp-btn {
   position: fixed;
-  bottom: 30px;
+  bottom: 10px;
   right: 30px;
   width: 60px;
   height: 60px;
@@ -849,7 +849,7 @@ img {
 .whatsapp-btn:hover {
   transform: scale(1.15) translateY(-5px);
   box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-  bottom: 35px;
+  bottom: 20px;
 }
 
 .whatsapp-btn:active {

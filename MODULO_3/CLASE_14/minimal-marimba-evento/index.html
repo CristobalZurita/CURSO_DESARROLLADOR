@@ -5,16 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minimal Marimba - Resonancias Electrónicas 2026</title>
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-    
     <!-- Bootstrap 4 CSS (solo componentes necesarios) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css?v=20260211-15">
 </head>
 <body>
 
@@ -23,7 +18,9 @@
     <!-- ============================================ -->
     <header class="header" id="header">
         <div class="header__container">
-            <a href="#home" class="header__logo">MINIMAL MARIMBA</a>
+            <a href="https://www.minimalmarimba.cl" class="header__logo" aria-label="Minimal Marimba - Sitio principal">
+                <img src="assets/{images,audio}/MINIMAL MARIMBA.png" alt="Minimal Marimba" class="header__logo-img">
+            </a>
             
             <nav class="header__nav">
                 <a href="#concepto" class="header__link">Concepto</a>
@@ -34,6 +31,9 @@
             </nav>
             
             <div class="header__cta">
+                <a href="https://www.minimalmarimba.cl" class="btn btn--ghost btn--small">
+                    Sitio principal
+                </a>
                 <button class="btn btn--primary btn--small" data-popup="announcement">
                     Registro
                 </button>
@@ -58,6 +58,16 @@
             </div>
         </div>
     </header>
+
+    <!-- Floating Actions -->
+    <a class="fab fab--whatsapp" href="https://wa.me/56900000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path fill="currentColor" d="M19.11 17.29c-.27-.13-1.57-.77-1.81-.86-.24-.09-.41-.13-.58.13-.17.27-.67.86-.82 1.03-.15.17-.3.2-.57.07-.27-.13-1.12-.41-2.13-1.31-.79-.7-1.32-1.56-1.47-1.82-.15-.27-.02-.41.12-.55.12-.12.27-.3.4-.45.13-.15.17-.27.27-.45.09-.17.04-.33-.02-.46-.07-.13-.58-1.4-.79-1.92-.21-.5-.43-.44-.58-.45h-.5c-.17 0-.45.06-.69.33-.24.27-.9.88-.9 2.15 0 1.27.93 2.5 1.06 2.67.13.17 1.83 2.8 4.43 3.92.62.27 1.1.43 1.48.55.62.2 1.18.17 1.62.1.49-.07 1.57-.64 1.79-1.26.22-.62.22-1.15.15-1.26-.06-.11-.24-.17-.5-.3zM16 3C9.38 3 4 8.38 4 15c0 2.12.56 4.1 1.54 5.82L4 29l8.36-1.5A11.9 11.9 0 0 0 16 27c6.62 0 12-5.38 12-12S22.62 3 16 3zm0 21.75c-1.72 0-3.32-.47-4.7-1.28l-.34-.2-4.96.9.94-4.84-.22-.35A9.72 9.72 0 0 1 6.25 15c0-5.38 4.37-9.75 9.75-9.75S25.75 9.62 25.75 15 21.38 24.75 16 24.75z"/>
+        </svg>
+    </a>
+    <button class="fab fab--top" id="backToTop" aria-label="Volver arriba">
+        ↑
+    </button>
 
     <!-- ============================================ -->
     <!-- POPUP DE ANUNCIO -->
@@ -102,12 +112,17 @@
     <!-- ============================================ -->
     <!-- HERO SECTION -->
     <!-- ============================================ -->
-    <section class="hero hero--centered" id="home">
+    <section class="hero" id="home">
         <div class="hero__background">
-            <!-- Aquí iría una imagen/video de fondo -->
-            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);"></div>
+            <!-- Fondo hero -->
+            <img src="assets/{images,audio}/baquetas.jpg" alt="Baquetas y marimba" />
         </div>
         <div class="hero__gradient"></div>
+        <div class="hero__dots" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+        </div>
         
         <div class="hero__container">
             <div class="hero__content">
@@ -219,9 +234,7 @@
                 </div>
                 
                 <div class="concept__image">
-                    <div style="width: 100%; height: 500px; background: linear-gradient(135deg, rgba(0, 255, 157, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #00ff9d; font-family: 'IBM Plex Mono', monospace;">
-                        [Imagen: Marimba + Setup Electrónico]
-                    </div>
+                    <img src="assets/{images,audio}/marimba01.jpg" alt="Marimba y setup electrónico">
                 </div>
             </div>
         </div>
@@ -246,7 +259,7 @@
                 <!-- Card 1 -->
                 <div class="card">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a3a3a 100%);"></div>
+                        <img src="assets/{images,audio}/maquinas01.jpg" alt="Resonancia primaria">
                     </div>
                     <div class="card__header">
                         <div class="card__subtitle">Obra I • 12 min</div>
@@ -277,7 +290,7 @@
                 <!-- Card 2 -->
                 <div class="card">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a3a 100%);"></div>
+                        <img src="assets/{images,audio}/maquinas02.jpg" alt="Circuitos resonantes">
                     </div>
                     <div class="card__header">
                         <div class="card__subtitle">Obra II • 8 min</div>
@@ -308,7 +321,7 @@
                 <!-- Card 3 -->
                 <div class="card card--featured">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #003a1a 0%, #00ff9d 100%);"></div>
+                        <img src="assets/{images,audio}/MIDI.png" alt="Pulso digital">
                     </div>
                     <div class="card__header">
                         <div class="card__subtitle">Obra III • 15 min</div>
@@ -340,7 +353,7 @@
                 <!-- Card 4 -->
                 <div class="card">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a0a0a 0%, #3a1a1a 100%);"></div>
+                        <img src="assets/{images,audio}/MIX.jpg" alt="Texturas híbridas">
                     </div>
                     <div class="card__header">
                         <div class="card__subtitle">Obra IV • 10 min</div>
@@ -371,7 +384,7 @@
                 <!-- Card 5 -->
                 <div class="card">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);"></div>
+                        <img src="assets/{images,audio}/SOLISTA.jpg" alt="Geometría sonora">
                     </div>
                     <div class="card__header">
                         <div class="card__subtitle">Obra V • 7 min</div>
@@ -402,7 +415,7 @@
                 <!-- Card 6 -->
                 <div class="card">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 100%);"></div>
+                        <img src="assets/{images,audio}/baquetas.jpg" alt="Grano y resonancia">
                     </div>
                     <div class="card__header">
                         <div class="card__subtitle">Encore • 5 min</div>
@@ -712,80 +725,64 @@
             
             <!-- Gallery Grid -->
             <div class="gallery">
-                <div class="gallery__item" data-index="0">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #003a1a 0%, #00ff9d 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
-                        Marimba + Electrónica
-                    </div>
+                <div class="gallery__item" data-index="0" data-src="assets/{images,audio}/marimba02.jpg">
+                    <img class="gallery__image" src="assets/{images,audio}/marimba02.jpg" alt="Marimba + Electrónica">
                     <div class="gallery__overlay">
                         <div class="gallery__caption">Setup Principal</div>
                         <div class="gallery__description">Configuración completa del sistema</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item gallery__item--wide" data-index="1">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a003a 0%, #00d9ff 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
-                        Concierto en Vivo
-                    </div>
+                <div class="gallery__item gallery__item--wide" data-index="1" data-src="assets/{images,audio}/Cover_photo_minimal_001.png">
+                    <img class="gallery__image" src="assets/{images,audio}/Cover_photo_minimal_001.png" alt="Concierto en vivo">
                     <div class="gallery__overlay">
                         <div class="gallery__caption">Presentación 2025</div>
                         <div class="gallery__description">Centro Cultural GAM</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item" data-index="2">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #3a0a0a 0%, #ff006e 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
-                        Visuales Reactivos
-                    </div>
+                <div class="gallery__item" data-index="2" data-src="assets/{images,audio}/MAQUINAS.jpg">
+                    <img class="gallery__image" src="assets/{images,audio}/MAQUINAS.jpg" alt="Visuales reactivos">
                     <div class="gallery__overlay">
                         <div class="gallery__caption">Sistema Visual</div>
                         <div class="gallery__description">Proyecciones sincronizadas</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item gallery__item--tall" data-index="3">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(180deg, #0a0a3a 0%, #00ff9d 80%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
-                        Detalle Instrumentos
-                    </div>
+                <div class="gallery__item gallery__item--tall" data-index="3" data-src="assets/{images,audio}/marimba03.jpg">
+                    <img class="gallery__image" src="assets/{images,audio}/marimba03.jpg" alt="Detalle instrumentos">
                     <div class="gallery__overlay">
                         <div class="gallery__caption">Marimba Preparada</div>
                         <div class="gallery__description">Técnicas extendidas</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item" data-index="4">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a3a0a 0%, #00d9ff 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
-                        Synth Modular
-                    </div>
+                <div class="gallery__item" data-index="4" data-src="assets/{images,audio}/MIDI.png">
+                    <img class="gallery__image" src="assets/{images,audio}/MIDI.png" alt="Synth Modular">
                     <div class="gallery__overlay">
                         <div class="gallery__caption">Eurorack System</div>
                         <div class="gallery__description">Síntesis modular en vivo</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item" data-index="5">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #3a1a0a 0%, #ff006e 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
-                        Proceso Creativo
-                    </div>
+                <div class="gallery__item" data-index="5" data-src="assets/{images,audio}/MIX.jpg">
+                    <img class="gallery__image" src="assets/{images,audio}/MIX.jpg" alt="Proceso creativo">
                     <div class="gallery__overlay">
                         <div class="gallery__caption">Estudio</div>
                         <div class="gallery__description">Composición y producción</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item gallery__item--wide" data-index="6">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #00ff9d 50%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
-                        Público
-                    </div>
+                <div class="gallery__item gallery__item--wide" data-index="6" data-src="assets/{images,audio}/SOLISTA.jpg">
+                    <img class="gallery__image" src="assets/{images,audio}/SOLISTA.jpg" alt="Experiencia inmersiva">
                     <div class="gallery__overlay">
                         <div class="gallery__caption">Experiencia Inmersiva</div>
                         <div class="gallery__description">Audio espacializado 4.1</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item" data-index="7">
-                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a0a3a 0%, #00d9ff 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
-                        Behind the Scenes
-                    </div>
+                <div class="gallery__item" data-index="7" data-src="assets/{images,audio}/baquetas.jpg">
+                    <img class="gallery__image" src="assets/{images,audio}/baquetas.jpg" alt="Behind the scenes">
                     <div class="gallery__overlay">
                         <div class="gallery__caption">Soundcheck</div>
                         <div class="gallery__description">Preparación técnica</div>
@@ -927,10 +924,12 @@
     <!-- FOOTER -->
     <!-- ============================================ -->
     <footer class="footer">
-        <div class="footer__container">
-            <div class="footer__content">
-                <div class="footer__brand">
-                    <h3>MINIMAL MARIMBA</h3>
+        <div class="container">
+            <div class="row footer__content">
+                <div class="col-lg-3 footer__brand pl-0">
+                    <a href="https://www.minimalmarimba.cl" aria-label="Minimal Marimba - Sitio principal">
+                        <img src="assets/{images,audio}/MINIMAL MARIMBA.png" alt="Minimal Marimba" class="footer__logo">
+                    </a>
                     <p>
                         Proyecto de música experimental que fusiona percusión acústica 
                         con electrónica en vivo y procesamiento generativo.
@@ -959,7 +958,7 @@
                     </div>
                 </div>
                 
-                <div class="footer__section">
+                <div class="col-lg-2 footer__section">
                     <h4>Navegación</h4>
                     <nav class="footer__links">
                         <a href="#concepto" class="footer__link">Concepto</a>
@@ -970,28 +969,35 @@
                     </nav>
                 </div>
                 
-                <div class="footer__section">
+                <div class="col-lg-3 footer__section">
                     <h4>Información</h4>
-                    <div class="footer__links">
-                        <p style="color: #b0b0b0; margin-bottom: 8px;">
-                            <strong>Fecha:</strong> 15 de Marzo, 2026
-                        </p>
-                        <p style="color: #b0b0b0; margin-bottom: 8px;">
-                            <strong>Lugar:</strong> Teatro Experimental
-                        </p>
-                        <p style="color: #b0b0b0; margin-bottom: 8px;">
-                            <strong>Hora:</strong> 20:00 hrs
-                        </p>
-                        <p style="color: #b0b0b0;">
-                            <strong>Entrada:</strong> Gratuita con registro
-                        </p>
+                    <div class="card footer__info-card">
+                        <div class="card-body">
+                            <p class="footer__meta"><strong>Fecha:</strong> 15 de Marzo, 2026</p>
+                            <p class="footer__meta"><strong>Lugar:</strong> Teatro Experimental</p>
+                            <p class="footer__meta"><strong>Hora:</strong> 20:00 hrs</p>
+                            <p class="footer__meta"><strong>Entrada:</strong> Gratuita con registro</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 footer__section footer__section--map pr-0">
+                    <h4>Ubicación</h4>
+                    <div class="footer__map">
+                        <iframe
+                            title="Teatro Municipal de Valparaíso"
+                            src="https://www.google.com/maps?q=-33.0475858,-71.6083493&z=17&output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
             </div>
             
             <div class="footer__bottom">
                 <p>© 2026 Minimal Marimba. Todos los derechos reservados.</p>
-                <p style="margin-top: 4px; font-size: 12px;">
+                <p class="footer__note">
                     Proyecto académico - Evaluación Módulo 3 | Metodología BEM + SASS + Bootstrap 4
                 </p>
             </div>

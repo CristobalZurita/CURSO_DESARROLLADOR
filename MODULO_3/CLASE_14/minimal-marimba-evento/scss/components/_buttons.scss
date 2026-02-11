@@ -146,3 +146,58 @@
     justify-content: center;
   }
 }
+
+// FLOATING ACTION BUTTONS
+.fab {
+  position: fixed;
+  left: 24px;
+  z-index: $z-index-tooltip;
+  border-radius: 999px;
+  padding: 12px 16px;
+  font-weight: $font-weight-semibold;
+  background: $color-primary;
+  color: #ffffff;
+  box-shadow: 0 12px 26px rgba($color-primary, 0.28);
+  transition: transform $transition-fast, box-shadow $transition-fast, opacity $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba($color-primary, 0.35);
+  }
+
+  &--whatsapp {
+    bottom: 25px;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #25D366;
+    box-shadow: 0 12px 26px rgba(37, 211, 102, 0.35);
+
+    svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
+  }
+
+  &--top {
+    left: auto;
+    right: 24px;
+    bottom: 28px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+
+    &.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}

@@ -1,0 +1,232 @@
+// ============================================
+// GALLERY - Galería con Lightbox
+// ============================================
+
+.gallery {
+  display: grid;
+  gap: $spacing-md;
+  
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  &--masonry {
+    @include respond-to(md) {
+      grid-auto-rows: 200px;
+    }
+  }
+  
+  // ELEMENTO - ITEM
+  &__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: $border-radius-lg;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba($color-dark-bg, 0.7) 100%
+      );
+      opacity: 0;
+      transition: opacity $transition-base;
+    }
+    
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+      
+      .gallery__image {
+        transform: scale(1.1);
+      }
+      
+      .gallery__overlay {
+        opacity: 1;
+      }
+    }
+    
+    // Variantes de tamaño para masonry
+    &--large {
+      grid-row: span 2;
+      grid-column: span 2;
+    }
+    
+    &--tall {
+      grid-row: span 2;
+    }
+    
+    &--wide {
+      grid-column: span 2;
+    }
+  }
+  
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition-slower;
+  }
+  
+  &__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $spacing-md;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity $transition-base;
+  }
+  
+  &__caption {
+    color: $color-text-primary;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-base;
+    margin-bottom: $spacing-xs;
+  }
+  
+  &__description {
+    color: $color-text-secondary;
+    font-size: $font-size-small;
+  }
+}
+
+// LIGHTBOX
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-index-modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $transition-base;
+  
+  &--active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($color-dark-bg, 0.95);
+    backdrop-filter: blur(20px);
+    cursor: pointer;
+  }
+  
+  &__container {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 2;
+    transform: scale(0.9);
+    transition: transform $transition-base;
+    
+    .lightbox--active & {
+      transform: scale(1);
+    }
+  }
+  
+  &__image {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-xl;
+  }
+  
+  &__close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    @include button-reset;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba($color-text-secondary, 0.2);
+    color: $color-text-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition-fast;
+    
+    &:hover {
+      background: $color-primary;
+      color: $color-dark-bg;
+      transform: rotate(90deg);
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  &__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    @include button-reset;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba($color-text-secondary, 0.2);
+    color: $color-text-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition-fast;
+    
+    &:hover {
+      background: $color-primary;
+      color: $color-dark-bg;
+    }
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    &--prev {
+      left: 20px;
+    }
+    
+    &--next {
+      right: 20px;
+    }
+  }
+  
+  &__caption {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: $color-text-primary;
+    font-size: $font-size-large;
+  }
+}

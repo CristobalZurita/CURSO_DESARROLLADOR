@@ -201,13 +201,21 @@
     display: grid;
     gap: $spacing-xl;
     margin-bottom: $spacing-xl;
+    align-items: start;
     
     @include respond-to(md) {
-      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1.2fr 2.4fr;
     }
   }
   
   &__brand {
+    .footer__logo {
+      height: 140px;
+      width: auto;
+      display: block;
+      margin-bottom: $spacing-md;
+    }
+
     h3 {
       font-size: $h3-size;
       @include gradient-text;
@@ -217,6 +225,7 @@
     p {
       color: $color-text-secondary;
       margin-bottom: $spacing-md;
+      max-width: 380px;
     }
   }
   
@@ -273,5 +282,29 @@
     text-align: center;
     color: $color-text-muted;
     font-size: $font-size-small;
+  }
+
+  &__info-card {
+    border-radius: $border-radius-lg;
+    border: 1px solid rgba($color-primary, 0.2);
+    box-shadow: $shadow-sm;
+
+    .card-body {
+      padding: $spacing-md;
+    }
+  }
+
+  &__map {
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    border: 1px solid rgba($color-primary, 0.2);
+    box-shadow: $shadow-md;
+
+    iframe {
+      width: 100%;
+      height: 420px;
+      border: 0;
+      display: block;
+    }
   }
 }
