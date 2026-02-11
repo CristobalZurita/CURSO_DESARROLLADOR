@@ -100,8 +100,9 @@
     font-weight: $font-weight-bold;
     line-height: 1.1;
     margin-bottom: $spacing-2xl;
+    margin-top: $spacing-3xl;
     animation: fadeInUp 1s $easing-smooth 0.2s backwards;
-    color: #ffffff;
+    color: $color-primary;
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
     text-shadow: 
       0 0 10px rgba(0, 0, 0, 0.8),
