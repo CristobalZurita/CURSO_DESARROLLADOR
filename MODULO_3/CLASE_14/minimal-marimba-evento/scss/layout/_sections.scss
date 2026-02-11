@@ -1,0 +1,277 @@
+// ============================================
+// SECTIONS - Secciones Generales
+// ============================================
+
+.section {
+  @include section-padding;
+  position: relative;
+  
+  &__container {
+    @include container;
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  &__eyebrow {
+    display: inline-block;
+    color: $color-primary;
+    font-size: $font-size-small;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: $spacing-sm;
+  }
+  
+  &__title {
+    font-size: $h2-size;
+    margin-bottom: $spacing-md;
+  }
+  
+  &__description {
+    font-size: $font-size-large;
+    color: $color-text-secondary;
+    line-height: 1.7;
+  }
+  
+  // MODIFICADORES
+  &--dark {
+    background: $color-dark-surface;
+  }
+  
+  &--gradient {
+    background: linear-gradient(
+      180deg,
+      $color-dark-bg 0%,
+      $color-dark-surface 50%,
+      $color-dark-bg 100%
+    );
+  }
+  
+  &--overflow {
+    overflow: hidden;
+  }
+}
+
+// SECCIÓN DE PROYECTO/CONCEPTO
+.concept {
+  &__content {
+    display: grid;
+    gap: $spacing-xl;
+    align-items: center;
+    
+    @include respond-to(lg) {
+      grid-template-columns: 1fr 1fr;
+      gap: $spacing-3xl;
+    }
+  }
+  
+  &__text {
+    h3 {
+      margin-bottom: $spacing-md;
+    }
+    
+    p {
+      margin-bottom: $spacing-md;
+      color: $color-text-secondary;
+      line-height: 1.7;
+    }
+  }
+  
+  &__image {
+    position: relative;
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 200px;
+      height: 200px;
+      background: $gradient-primary;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.2;
+      z-index: -1;
+    }
+  }
+  
+  &__features {
+    display: grid;
+    gap: $spacing-lg;
+    margin-top: $spacing-xl;
+    
+    @include respond-to(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  &__feature {
+    display: flex;
+    gap: $spacing-md;
+    
+    &-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: $border-radius-md;
+      background: rgba($color-primary, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-primary;
+    }
+    
+    &-content {
+      h4 {
+        font-size: $h5-size;
+        margin-bottom: $spacing-xs;
+      }
+      
+      p {
+        color: $color-text-secondary;
+        font-size: $font-size-small;
+      }
+    }
+  }
+}
+
+// SECCIÓN DE CRONOGRAMA
+.schedule {
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+  }
+  
+  &__tabs {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: center;
+    margin-bottom: $spacing-xl;
+    flex-wrap: wrap;
+  }
+  
+  &__tab {
+    @include button-reset;
+    padding: 12px 24px;
+    border-radius: $border-radius-full;
+    background: transparent;
+    border: 1px solid rgba($color-text-secondary, 0.3);
+    color: $color-text-secondary;
+    font-weight: $font-weight-medium;
+    transition: all $transition-fast;
+    
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+    
+    &--active {
+      background: $color-primary;
+      color: $color-dark-bg;
+      border-color: $color-primary;
+    }
+  }
+}
+
+// FOOTER
+.footer {
+  background: $color-dark-surface;
+  padding: $spacing-3xl 0 $spacing-lg;
+  border-top: 1px solid rgba($color-primary, 0.1);
+  
+  &__container {
+    @include container;
+  }
+  
+  &__content {
+    display: grid;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-xl;
+    
+    @include respond-to(md) {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+  
+  &__brand {
+    h3 {
+      font-size: $h3-size;
+      @include gradient-text;
+      margin-bottom: $spacing-md;
+    }
+    
+    p {
+      color: $color-text-secondary;
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  &__section {
+    h4 {
+      color: $color-text-primary;
+      font-size: $h5-size;
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+  
+  &__link {
+    color: $color-text-secondary;
+    transition: color $transition-fast;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  
+  &__social {
+    display: flex;
+    gap: $spacing-sm;
+    margin-top: $spacing-md;
+  }
+  
+  &__social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba($color-text-secondary, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-text-secondary;
+    transition: all $transition-fast;
+    
+    &:hover {
+      background: $color-primary;
+      color: $color-dark-bg;
+      transform: translateY(-2px);
+    }
+  }
+  
+  &__bottom {
+    padding-top: $spacing-lg;
+    border-top: 1px solid rgba($color-text-secondary, 0.1);
+    text-align: center;
+    color: $color-text-muted;
+    font-size: $font-size-small;
+  }
+}

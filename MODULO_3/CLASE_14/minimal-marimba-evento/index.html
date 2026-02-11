@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Marimba - Resonancias Electrónicas 2026</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 4 CSS (solo componentes necesarios) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- HEADER / NAVEGACIÓN -->
+    <!-- ============================================ -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <a href="#home" class="header__logo">MINIMAL MARIMBA</a>
+            
+            <nav class="header__nav">
+                <a href="#concepto" class="header__link">Concepto</a>
+                <a href="#programa" class="header__link">Programa</a>
+                <a href="#cronograma" class="header__link">Cronograma</a>
+                <a href="#galeria" class="header__link">Galería</a>
+                <a href="#contacto" class="header__link">Contacto</a>
+            </nav>
+            
+            <div class="header__cta">
+                <button class="btn btn--primary btn--small" data-popup="announcement">
+                    Registro
+                </button>
+            </div>
+            
+            <!-- Burger Menu Mobile -->
+            <button class="header__burger" id="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="header__mobile-menu" id="mobileMenu">
+            <div class="header__mobile-links">
+                <a href="#concepto" class="header__mobile-link">Concepto</a>
+                <a href="#programa" class="header__mobile-link">Programa</a>
+                <a href="#cronograma" class="header__mobile-link">Cronograma</a>
+                <a href="#galeria" class="header__mobile-link">Galería</a>
+                <a href="#contacto" class="header__mobile-link">Contacto</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- POPUP DE ANUNCIO -->
+    <!-- ============================================ -->
+    <div class="popup popup--announcement" id="popup">
+        <div class="popup__backdrop"></div>
+        <div class="popup__container">
+            <div class="popup__header">
+                <div>
+                    <h2 class="popup__title">Resonancias Electrónicas 2026</h2>
+                    <p class="popup__subtitle">Registro de asistencia</p>
+                </div>
+                <button class="popup__close" aria-label="Cerrar">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="popup__body">
+                <p class="popup__content">
+                    Regístrate para asistir al evento más esperado del año. Marimba, electrónica en vivo y experimentación sonora se encuentran en un concierto único.
+                </p>
+                <p class="popup__content">
+                    <strong>Fecha:</strong> 15 de Marzo, 2026<br>
+                    <strong>Lugar:</strong> Teatro Experimental<br>
+                    <strong>Hora:</strong> 20:00 hrs
+                </p>
+            </div>
+            
+            <div class="popup__footer">
+                <a href="#contacto" class="btn btn--primary">
+                    Ir a formulario
+                </a>
+                <button class="btn btn--ghost popup__close">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- HERO SECTION -->
+    <!-- ============================================ -->
+    <section class="hero hero--centered" id="home">
+        <div class="hero__background">
+            <!-- Aquí iría una imagen/video de fondo -->
+            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);"></div>
+        </div>
+        <div class="hero__gradient"></div>
+        
+        <div class="hero__container">
+            <div class="hero__content">
+                <span class="hero__eyebrow animate--fade-in">15 de Marzo, 2026</span>
+                
+                <h1 class="hero__title animate--fade-in-up delay-1">
+                    Resonancias Electrónicas
+                </h1>
+                
+                <p class="hero__description animate--fade-in-up delay-2">
+                    Un encuentro experimental donde la marimba tradicional dialoga con sintetizadores modulares, 
+                    procesamiento en vivo y paisajes sonoros generativos. Minimal Marimba presenta su primer 
+                    evento en formato extendido.
+                </p>
+                
+                <div class="hero__actions animate--fade-in-up delay-3">
+                    <button class="btn btn--primary btn--large" data-popup="announcement">
+                        Registro Gratuito
+                    </button>
+                    <a href="#programa" class="btn btn--secondary btn--large">
+                        Ver Programa
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero__scroll">
+            <span class="hero__scroll-text">Explorar</span>
+            <span class="hero__scroll-icon"></span>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN: CONCEPTO -->
+    <!-- ============================================ -->
+    <section class="section concept" id="concepto">
+        <div class="section__container">
+            <div class="section__header">
+                <span class="section__eyebrow">Sobre el Proyecto</span>
+                <h2 class="section__title">Concepto Artístico</h2>
+                <p class="section__description">
+                    Minimal Marimba explora los límites de la percusión contemporánea fusionando 
+                    técnicas acústicas con procesamiento electrónico en tiempo real.
+                </p>
+            </div>
+            
+            <div class="concept__content">
+                <div class="concept__text">
+                    <h3>Un diálogo entre lo acústico y lo digital</h3>
+                    <p>
+                        El proyecto nace de la necesidad de expandir las posibilidades sonoras de la marimba 
+                        más allá de su rol tradicional. A través de microfonía de contacto, sensores MIDI 
+                        y síntesis modular, cada golpe se transforma en un universo de texturas y resonancias.
+                    </p>
+                    <p>
+                        Las composiciones presentadas combinan partituras gráficas, improvisación estructurada 
+                        y algoritmos generativos, creando experiencias sonoras únicas en cada presentación.
+                    </p>
+                    
+                    <div class="concept__features">
+                        <div class="concept__feature">
+                            <div class="concept__feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                                </svg>
+                            </div>
+                            <div class="concept__feature-content">
+                                <h4>Marimba Extendida</h4>
+                                <p>Técnicas expandidas y preparaciones acústicas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept__feature">
+                            <div class="concept__feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                            </div>
+                            <div class="concept__feature-content">
+                                <h4>Live Electronics</h4>
+                                <p>Procesamiento en tiempo real con Ableton y Max/MSP</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept__feature">
+                            <div class="concept__feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                                </svg>
+                            </div>
+                            <div class="concept__feature-content">
+                                <h4>Visuales Reactivos</h4>
+                                <p>Proyecciones sincronizadas con el audio</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept__feature">
+                            <div class="concept__feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="concept__feature-content">
+                                <h4>Experimentación</h4>
+                                <p>Cada concierto es una exploración única</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept__image">
+                    <div style="width: 100%; height: 500px; background: linear-gradient(135deg, rgba(0, 255, 157, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #00ff9d; font-family: 'IBM Plex Mono', monospace;">
+                        [Imagen: Marimba + Setup Electrónico]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN: PROGRAMA / OBRAS -->
+    <!-- ============================================ -->
+    <section class="section section--dark" id="programa">
+        <div class="section__container">
+            <div class="section__header">
+                <span class="section__eyebrow">Repertorio</span>
+                <h2 class="section__title">Programa del Concierto</h2>
+                <p class="section__description">
+                    Una selección de obras originales que exploran diferentes facetas de la relación 
+                    entre percusión acústica y electrónica.
+                </p>
+            </div>
+            
+            <!-- Cards Grid con Bootstrap -->
+            <div class="cards-grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card__image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a3a3a 100%);"></div>
+                    </div>
+                    <div class="card__header">
+                        <div class="card__subtitle">Obra I • 12 min</div>
+                        <h3 class="card__title">Resonancia Primaria</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__text">
+                            Exploración de frecuencias fundamentales utilizando marimba bajo y síntesis 
+                            aditiva. Los armónicos naturales del instrumento dialogan con osciladores sinusoidales.
+                        </p>
+                    </div>
+                    <div class="card__meta">
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            12 minutos
+                        </span>
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                            </svg>
+                            Marimba + Síntesis
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card__image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a3a 100%);"></div>
+                    </div>
+                    <div class="card__header">
+                        <div class="card__subtitle">Obra II • 8 min</div>
+                        <h3 class="card__title">Patrones Interferentes</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__text">
+                            Composición algorítmica basada en polirritmias que se desfasan progresivamente. 
+                            El sistema genera variaciones en tiempo real respondiendo a la interpretación.
+                        </p>
+                    </div>
+                    <div class="card__meta">
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            8 minutos
+                        </span>
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                            </svg>
+                            Generativo
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card card--featured">
+                    <div class="card__image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #003a1a 0%, #00ff9d 100%);"></div>
+                    </div>
+                    <div class="card__header">
+                        <div class="card__subtitle">Obra III • 15 min</div>
+                        <h3 class="card__title">Ecos de Silicio</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__text">
+                            Pieza central del concierto. Integra marimba preparada, síntesis granular y 
+                            espacialización cuadrafónica. Exploración de la memoria sonora y la degradación del timbre.
+                        </p>
+                        <span class="card__tag">Estreno Mundial</span>
+                    </div>
+                    <div class="card__meta">
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            15 minutos
+                        </span>
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                            </svg>
+                            Destacada
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="card__image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a0a0a 0%, #3a1a1a 100%);"></div>
+                    </div>
+                    <div class="card__header">
+                        <div class="card__subtitle">Obra IV • 10 min</div>
+                        <h3 class="card__title">Deriva Espectral</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__text">
+                            Improvisación estructurada sobre un paisaje sonoro generado en vivo. 
+                            El intérprete responde a las texturas electrónicas en un diálogo continuo.
+                        </p>
+                    </div>
+                    <div class="card__meta">
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            10 minutos
+                        </span>
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Improvisación
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card">
+                    <div class="card__image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);"></div>
+                    </div>
+                    <div class="card__header">
+                        <div class="card__subtitle">Obra V • 7 min</div>
+                        <h3 class="card__title">Microtonos Digitales</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__text">
+                            Exploración de microintervalos utilizando afinación dinámica y pitch-shifting. 
+                            La marimba se transforma en un instrumento de afinación variable.
+                        </p>
+                    </div>
+                    <div class="card__meta">
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            7 minutos
+                        </span>
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                            </svg>
+                            Experimental
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card">
+                    <div class="card__image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 100%);"></div>
+                    </div>
+                    <div class="card__header">
+                        <div class="card__subtitle">Encore • 5 min</div>
+                        <h3 class="card__title">Ritualística Binaria</h3>
+                    </div>
+                    <div class="card__body">
+                        <p class="card__text">
+                            Cierre energético que fusiona patrones rítmicos tradicionales con glitch y 
+                            síntesis FM. Una celebración del encuentro entre lo ancestral y lo digital.
+                        </p>
+                    </div>
+                    <div class="card__meta">
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            5 minutos
+                        </span>
+                        <span class="card__meta-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            Energético
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN: CRONOGRAMA (ACCORDION) -->
+    <!-- ============================================ -->
+    <section class="section schedule" id="cronograma">
+        <div class="section__container">
+            <div class="section__header">
+                <span class="section__eyebrow">Agenda</span>
+                <h2 class="section__title">Cronograma del Evento</h2>
+                <p class="section__description">
+                    Detalles completos del desarrollo del concierto, desde la apertura de puertas 
+                    hasta el encuentro post-show.
+                </p>
+            </div>
+            
+            <!-- Accordion usando estructura de Bootstrap pero estilos propios -->
+            <div class="accordion-container">
+                <div class="accordion" id="scheduleAccordion">
+                    
+                    <!-- Item 1 -->
+                    <div class="accordion__item" data-item="1">
+                        <button class="accordion__header" type="button">
+                            <div>
+                                <h3 class="accordion__title">Apertura de Puertas</h3>
+                                <div class="accordion__meta">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        19:00 hrs
+                                    </span>
+                                    <span>30 min</span>
+                                </div>
+                            </div>
+                            <svg class="accordion__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion__body">
+                            <div class="accordion__content">
+                                <div class="accordion__schedule">
+                                    <div class="accordion__time">19:00</div>
+                                    <div class="accordion__details">
+                                        <h4>Bienvenida y Registro</h4>
+                                        <p>
+                                            Los asistentes pueden ingresar al teatro y ubicarse en sus asientos. 
+                                            Durante este tiempo, se proyectarán visuales ambientales acompañados 
+                                            de una selección de música electrónica experimental.
+                                        </p>
+                                        <div class="accordion__tags">
+                                            <span class="accordion__tag">Entrada</span>
+                                            <span class="accordion__tag">Ambient Music</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="accordion__item" data-item="2">
+                        <button class="accordion__header" type="button">
+                            <div>
+                                <h3 class="accordion__title">Introducción al Proyecto</h3>
+                                <div class="accordion__meta">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        19:30 hrs
+                                    </span>
+                                    <span>10 min</span>
+                                </div>
+                            </div>
+                            <svg class="accordion__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion__body">
+                            <div class="accordion__content">
+                                <div class="accordion__schedule">
+                                    <div class="accordion__time">19:30</div>
+                                    <div class="accordion__details">
+                                        <h4>Palabras del Artista</h4>
+                                        <p>
+                                            Breve presentación del concepto Minimal Marimba, los instrumentos 
+                                            utilizados y el enfoque creativo del proyecto. Se explicará la 
+                                            configuración técnica y el flujo del concierto.
+                                        </p>
+                                        <div class="accordion__tags">
+                                            <span class="accordion__tag">Charla</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="accordion__item" data-item="3">
+                        <button class="accordion__header" type="button">
+                            <div>
+                                <h3 class="accordion__title">Primera Parte del Concierto</h3>
+                                <div class="accordion__meta">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        19:40 hrs
+                                    </span>
+                                    <span>30 min</span>
+                                </div>
+                            </div>
+                            <svg class="accordion__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion__body">
+                            <div class="accordion__content">
+                                <div class="accordion__schedule">
+                                    <div class="accordion__time">19:40</div>
+                                    <div class="accordion__details">
+                                        <h4>Obras I, II y III</h4>
+                                        <p>
+                                            <strong>Resonancia Primaria</strong> (12 min) - Exploración de frecuencias fundamentales<br>
+                                            <strong>Patrones Interferentes</strong> (8 min) - Composición algorítmica<br>
+                                            <strong>Ecos de Silicio</strong> (15 min) - Estreno mundial
+                                        </p>
+                                        <div class="accordion__tags">
+                                            <span class="accordion__tag">Bloque 1</span>
+                                            <span class="accordion__tag">3 Obras</span>
+                                            <span class="accordion__tag">Estreno</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="accordion__item" data-item="4">
+                        <button class="accordion__header" type="button">
+                            <div>
+                                <h3 class="accordion__title">Intermedio</h3>
+                                <div class="accordion__meta">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        20:10 hrs
+                                    </span>
+                                    <span>15 min</span>
+                                </div>
+                            </div>
+                            <svg class="accordion__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion__body">
+                            <div class="accordion__content">
+                                <div class="accordion__schedule">
+                                    <div class="accordion__time">20:10</div>
+                                    <div class="accordion__details">
+                                        <h4>Descanso y Networking</h4>
+                                        <p>
+                                            Pausa para que el público pueda estirarse, conversar y explorar 
+                                            la exposición de instrumentos en el foyer. Habrá bebidas disponibles.
+                                        </p>
+                                        <div class="accordion__tags">
+                                            <span class="accordion__tag">Break</span>
+                                            <span class="accordion__tag">Networking</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="accordion__item" data-item="5">
+                        <button class="accordion__header" type="button">
+                            <div>
+                                <h3 class="accordion__title">Segunda Parte del Concierto</h3>
+                                <div class="accordion__meta">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        20:25 hrs
+                                    </span>
+                                    <span>22 min</span>
+                                </div>
+                            </div>
+                            <svg class="accordion__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion__body">
+                            <div class="accordion__content">
+                                <div class="accordion__schedule">
+                                    <div class="accordion__time">20:25</div>
+                                    <div class="accordion__details">
+                                        <h4>Obras IV, V y Encore</h4>
+                                        <p>
+                                            <strong>Deriva Espectral</strong> (10 min) - Improvisación estructurada<br>
+                                            <strong>Microtonos Digitales</strong> (7 min) - Afinación experimental<br>
+                                            <strong>Ritualística Binaria</strong> (5 min) - Cierre energético
+                                        </p>
+                                        <div class="accordion__tags">
+                                            <span class="accordion__tag">Bloque 2</span>
+                                            <span class="accordion__tag">Improvisación</span>
+                                            <span class="accordion__tag">Final</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="accordion__item" data-item="6">
+                        <button class="accordion__header" type="button">
+                            <div>
+                                <h3 class="accordion__title">Q&A y Encuentro</h3>
+                                <div class="accordion__meta">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        20:50 hrs
+                                    </span>
+                                    <span>30 min</span>
+                                </div>
+                            </div>
+                            <svg class="accordion__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion__body">
+                            <div class="accordion__content">
+                                <div class="accordion__schedule">
+                                    <div class="accordion__time">20:50</div>
+                                    <div class="accordion__details">
+                                        <h4>Conversatorio con el Público</h4>
+                                        <p>
+                                            Sesión de preguntas y respuestas sobre el proceso creativo, la tecnología 
+                                            utilizada y los conceptos detrás de las obras. Oportunidad para conocer 
+                                            al artista y explorar el setup técnico de cerca.
+                                        </p>
+                                        <div class="accordion__tags">
+                                            <span class="accordion__tag">Q&A</span>
+                                            <span class="accordion__tag">Interactivo</span>
+                                            <span class="accordion__tag">Meet & Greet</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN: GALERÍA -->
+    <!-- ============================================ -->
+    <section class="section section--dark section--overflow" id="galeria">
+        <div class="section__container">
+            <div class="section__header">
+                <span class="section__eyebrow">Multimedia</span>
+                <h2 class="section__title">Galería Visual</h2>
+                <p class="section__description">
+                    Documentación fotográfica de presentaciones anteriores y del proceso creativo detrás del proyecto.
+                </p>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="gallery">
+                <div class="gallery__item" data-index="0">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #003a1a 0%, #00ff9d 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
+                        Marimba + Electrónica
+                    </div>
+                    <div class="gallery__overlay">
+                        <div class="gallery__caption">Setup Principal</div>
+                        <div class="gallery__description">Configuración completa del sistema</div>
+                    </div>
+                </div>
+                
+                <div class="gallery__item gallery__item--wide" data-index="1">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a003a 0%, #00d9ff 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
+                        Concierto en Vivo
+                    </div>
+                    <div class="gallery__overlay">
+                        <div class="gallery__caption">Presentación 2025</div>
+                        <div class="gallery__description">Centro Cultural GAM</div>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-index="2">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #3a0a0a 0%, #ff006e 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
+                        Visuales Reactivos
+                    </div>
+                    <div class="gallery__overlay">
+                        <div class="gallery__caption">Sistema Visual</div>
+                        <div class="gallery__description">Proyecciones sincronizadas</div>
+                    </div>
+                </div>
+                
+                <div class="gallery__item gallery__item--tall" data-index="3">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(180deg, #0a0a3a 0%, #00ff9d 80%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
+                        Detalle Instrumentos
+                    </div>
+                    <div class="gallery__overlay">
+                        <div class="gallery__caption">Marimba Preparada</div>
+                        <div class="gallery__description">Técnicas extendidas</div>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-index="4">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a3a0a 0%, #00d9ff 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
+                        Synth Modular
+                    </div>
+                    <div class="gallery__overlay">
+                        <div class="gallery__caption">Eurorack System</div>
+                        <div class="gallery__description">Síntesis modular en vivo</div>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-index="5">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #3a1a0a 0%, #ff006e 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
+                        Proceso Creativo
+                    </div>
+                    <div class="gallery__overlay">
+                        <div class="gallery__caption">Estudio</div>
+                        <div class="gallery__description">Composición y producción</div>
+                    </div>
+                </div>
+                
+                <div class="gallery__item gallery__item--wide" data-index="6">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #00ff9d 50%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
+                        Público
+                    </div>
+                    <div class="gallery__overlay">
+                        <div class="gallery__caption">Experiencia Inmersiva</div>
+                        <div class="gallery__description">Audio espacializado 4.1</div>
+                    </div>
+                </div>
+                
+                <div class="gallery__item" data-index="7">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a0a3a 0%, #00d9ff 30%); display: flex; align-items: center; justify-content: center; color: white; font-family: 'IBM Plex Mono', monospace; font-size: 12px;">
+                        Behind the Scenes
+                    </div>
+                    <div class="gallery__overlay">
+                        <div class="gallery__caption">Soundcheck</div>
+                        <div class="gallery__description">Preparación técnica</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox__backdrop"></div>
+        <div class="lightbox__container">
+            <img src="" alt="" class="lightbox__image" id="lightboxImage">
+            <button class="lightbox__close" aria-label="Cerrar">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <button class="lightbox__nav lightbox__nav--prev" aria-label="Anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="lightbox__nav lightbox__nav--next" aria-label="Siguiente">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+            <div class="lightbox__caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN: FORMULARIO DE CONTACTO -->
+    <!-- ============================================ -->
+    <section class="section" id="contacto">
+        <div class="section__container">
+            <div class="section__header">
+                <span class="section__eyebrow">Conecta</span>
+                <h2 class="section__title">Registro de Asistencia</h2>
+                <p class="section__description">
+                    Completa el formulario para confirmar tu asistencia al evento. 
+                    Te enviaremos la confirmación y detalles adicionales.
+                </p>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <form class="form" id="contactForm">
+                    <div class="form__group">
+                        <label for="name" class="form__label">Nombre Completo *</label>
+                        <input 
+                            type="text" 
+                            class="form__input" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Tu nombre" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="email" class="form__label">Correo Electrónico *</label>
+                        <input 
+                            type="email" 
+                            class="form__input" 
+                            id="email" 
+                            name="email" 
+                            placeholder="tu@email.com" 
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="phone" class="form__label">Teléfono</label>
+                        <input 
+                            type="tel" 
+                            class="form__input" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="+56 9 1234 5678"
+                        >
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="interest" class="form__label">Interés Principal</label>
+                        <select class="form__select" id="interest" name="interest">
+                            <option value="">Selecciona una opción</option>
+                            <option value="musica">Música Experimental</option>
+                            <option value="electronica">Electrónica en Vivo</option>
+                            <option value="percusion">Percusión Contemporánea</option>
+                            <option value="tecnologia">Tecnología Musical</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="message" class="form__label">Mensaje / Comentarios</label>
+                        <textarea 
+                            class="form__textarea" 
+                            id="message" 
+                            name="message" 
+                            placeholder="¿Alguna pregunta o comentario? (opcional)"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label class="form__checkbox">
+                            <input type="checkbox" name="newsletter" id="newsletter">
+                            <span class="form__checkmark"></span>
+                            <span class="form__checkbox-label">
+                                Quiero recibir información sobre futuros eventos
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label class="form__checkbox">
+                            <input type="checkbox" name="terms" id="terms" required>
+                            <span class="form__checkmark"></span>
+                            <span class="form__checkbox-label">
+                                Acepto los términos y condiciones *
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <div class="form__actions">
+                        <button type="submit" class="btn btn--primary btn--large btn--block">
+                            Confirmar Asistencia
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <h3>MINIMAL MARIMBA</h3>
+                    <p>
+                        Proyecto de música experimental que fusiona percusión acústica 
+                        con electrónica en vivo y procesamiento generativo.
+                    </p>
+                    <div class="footer__social">
+                        <a href="https://instagram.com/minimalmarimba" class="footer__social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://youtube.com/@minimalmarimba" class="footer__social-link" target="_blank" rel="noopener" aria-label="YouTube">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="https://soundcloud.com/minimalmarimba" class="footer__social-link" target="_blank" rel="noopener" aria-label="SoundCloud">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.255-2.154c-.009-.057-.049-.1-.099-.1zm1.016.363c-.063 0-.115.053-.124.116l-.214 1.791.214 1.743c.009.063.061.115.124.115.064 0 .119-.052.127-.115l.247-1.743-.247-1.791c-.008-.063-.063-.116-.127-.116zm1.014.024c-.077 0-.141.065-.15.14l-.187 1.404.187 1.375c.009.077.073.139.15.139.075 0 .137-.062.145-.139l.215-1.375-.215-1.404c-.008-.075-.07-.14-.145-.14zm1.018.012c-.088 0-.162.075-.171.164l-.161 1.368.161 1.337c.009.088.083.163.171.163.089 0 .164-.075.173-.163l.189-1.337-.189-1.368c-.009-.089-.084-.164-.173-.164zm1.017.007c-.102 0-.186.084-.195.187l-.139 1.361.139 1.321c.009.103.093.188.195.188.103 0 .188-.085.197-.188l.163-1.321-.163-1.361c-.009-.103-.094-.187-.197-.187zm1.017-.004c-.115 0-.21.096-.219.211l-.117 1.365.117 1.308c.009.116.104.212.219.212.114 0 .209-.096.218-.212l.137-1.308-.137-1.365c-.009-.115-.104-.211-.218-.211zm1.017.005c-.128 0-.233.107-.242.236l-.097 1.36.097 1.294c.009.129.114.235.242.235.127 0 .232-.106.241-.235l.115-1.294-.115-1.36c-.009-.129-.114-.236-.241-.236zm1.018-.004c-.142 0-.256.117-.267.259l-.077 1.364.077 1.28c.011.142.125.258.267.258.141 0 .255-.116.266-.258l.092-1.28-.092-1.364c-.011-.142-.125-.259-.266-.259zm1.017.007c-.155 0-.281.127-.292.282l-.059 1.357.059 1.267c.011.155.137.281.292.281.154 0 .279-.126.289-.281l.071-1.267-.071-1.357c-.01-.155-.135-.282-.289-.282zm1.018-.004c-.169 0-.305.137-.316.305l-.04 1.361.04 1.254c.011.168.147.304.316.304.168 0 .304-.136.315-.304l.053-1.254-.053-1.361c-.011-.168-.147-.305-.315-.305zm1.017.005c-.182 0-.329.148-.341.33l-.021 1.356.021 1.24c.012.182.159.329.341.329.181 0 .328-.147.339-.329l.031-1.24-.031-1.356c-.011-.182-.158-.33-.339-.33zm1.018-.004c-.195 0-.353.158-.365.353l-.001 1.36.001 1.226c.012.195.17.353.365.353.195 0 .353-.158.365-.353l.012-1.226-.012-1.36c-.012-.195-.17-.353-.365-.353zm1.017.007c-.209 0-.377.169-.388.377v2.583c.011.208.179.376.388.376.208 0 .376-.168.387-.376v-2.583c-.011-.208-.179-.377-.387-.377zm1.018-.004c-.222 0-.401.179-.412.4v2.579c.011.221.19.4.412.4.221 0 .4-.179.411-.4v-2.579c-.011-.221-.19-.4-.411-.4zm1.017.005c-.235 0-.424.19-.435.424v2.57c.011.234.2.423.435.423.234 0 .423-.189.434-.423v-2.57c-.011-.234-.2-.424-.434-.424zm1.018-.004c-.248 0-.448.2-.459.448v2.574c.011.248.211.447.459.447.247 0 .447-.199.458-.447v-2.574c-.011-.248-.211-.448-.458-.448zm1.017.005c-.261 0-.471.211-.482.471v2.565c.011.261.221.47.482.47.26 0 .47-.209.481-.47v-2.565c-.011-.26-.221-.471-.481-.471zm1.018-.004c-.274 0-.494.221-.505.494v2.57c.011.273.231.493.505.493.273 0 .493-.22.504-.493v-2.57c-.011-.273-.231-.494-.504-.494zm1.017.005c-.287 0-.518.232-.529.518v2.561c.011.286.242.517.529.517.286 0 .517-.231.528-.517v-2.561c-.011-.286-.242-.518-.528-.518zm1.018-.004c-.3 0-.541.242-.552.541v2.565c.011.3.252.54.552.54.299 0 .54-.24.551-.54v-2.565c-.011-.299-.252-.541-.551-.541zm1.017.005c-.313 0-.564.252-.575.564v2.556c.011.313.262.563.575.563.312 0 .563-.25.574-.563v-2.556c-.011-.312-.262-.564-.574-.564zm1.018-.004c-.326 0-.587.262-.598.587v2.561c.011.325.272.586.598.586.325 0 .586-.261.597-.586v-2.561c-.011-.325-.272-.587-.597-.587z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:contacto@minimalmarimba.cl" class="footer__social-link" aria-label="Email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer__section">
+                    <h4>Navegación</h4>
+                    <nav class="footer__links">
+                        <a href="#concepto" class="footer__link">Concepto</a>
+                        <a href="#programa" class="footer__link">Programa</a>
+                        <a href="#cronograma" class="footer__link">Cronograma</a>
+                        <a href="#galeria" class="footer__link">Galería</a>
+                        <a href="#contacto" class="footer__link">Contacto</a>
+                    </nav>
+                </div>
+                
+                <div class="footer__section">
+                    <h4>Información</h4>
+                    <div class="footer__links">
+                        <p style="color: #b0b0b0; margin-bottom: 8px;">
+                            <strong>Fecha:</strong> 15 de Marzo, 2026
+                        </p>
+                        <p style="color: #b0b0b0; margin-bottom: 8px;">
+                            <strong>Lugar:</strong> Teatro Experimental
+                        </p>
+                        <p style="color: #b0b0b0; margin-bottom: 8px;">
+                            <strong>Hora:</strong> 20:00 hrs
+                        </p>
+                        <p style="color: #b0b0b0;">
+                            <strong>Entrada:</strong> Gratuita con registro
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer__bottom">
+                <p>© 2026 Minimal Marimba. Todos los derechos reservados.</p>
+                <p style="margin-top: 4px; font-size: 12px;">
+                    Proyecto académico - Evaluación Módulo 3 | Metodología BEM + SASS + Bootstrap 4
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- SCRIPTS -->
+    <!-- ============================================ -->
+    
+    <!-- jQuery (requerido por Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap 4 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
