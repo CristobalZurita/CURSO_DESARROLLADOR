@@ -402,6 +402,12 @@ p.lead {
 .header__link--active {
   color: #cc5500;
 }
+.header__link--external {
+  animation: glowHalo 6s ease-in-out infinite;
+}
+.header__link--external:hover {
+  animation: none;
+}
 .header__cta {
   display: none;
 }
@@ -492,6 +498,14 @@ p.lead {
   color: #cc5500;
 }
 
+@keyframes glowHalo {
+  0%, 100% {
+    text-shadow: none;
+  }
+  70% {
+    text-shadow: 0 0 15px #cc5500, 0 0 30px rgba(204, 85, 0, 0.8), 0 0 45px rgba(204, 85, 0, 0.6), 0 0 60px rgba(204, 85, 0, 0.4);
+  }
+}
 .section {
   padding-top: 64px;
   padding-bottom: 64px;
@@ -2056,7 +2070,7 @@ p.lead {
   letter-spacing: -0.02em;
 }
 .hero__description {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  font-size: clamp(0.125rem, 2.5vw, 1.7rem);
   color: #b0b0b0;
   line-height: 1.8;
   margin-bottom: 48px;

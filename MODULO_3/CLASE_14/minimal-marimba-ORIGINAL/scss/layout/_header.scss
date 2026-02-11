@@ -69,6 +69,14 @@
     &--active {
       color: $color-primary;
     }
+    
+    &--external {
+      animation: glowHalo 6s ease-in-out infinite;
+      
+      &:hover {
+        animation: none;
+      }
+    }
   }
   
   &__cta {
@@ -157,5 +165,17 @@
     &--active {
       color: $color-primary;
     }
+  }
+}
+
+@keyframes glowHalo {
+  0%, 100% {
+    text-shadow: none;
+  }
+  70% {
+    text-shadow: 0 0 15px rgba($color-primary, 3),
+                 0 0 30px rgba($color-primary, 0.8),
+                 0 0 45px rgba($color-primary, 0.6),
+                 0 0 60px rgba($color-primary, 0.4);
   }
 }
