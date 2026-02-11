@@ -2,8 +2,11 @@
 // MIXINS - MINIMAL MARIMBA EVENTO 2026
 // ============================================
 
+// Importar variables (necesario antes de usar en mixins)
+@use 'variables' as *;
+
 // RESPONSIVE - Media Queries
-// --------------------------------------------
+// -------------------------------------------- 
 @mixin respond-to($breakpoint) {
   @if $breakpoint == sm {
     @media (min-width: $breakpoint-sm) { @content; }
@@ -229,3 +232,227 @@
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+// ============================================
+// MICROINTERACCIONES - MIXINS REUTILIZABLES
+// ============================================
+
+// HOVER EFFECT - Efecto hover suave estándar
+// Uso: @include hover-effect; (aplica transform translateY + transición)
+// --------------------------------------------
+@mixin hover-effect($distance: -4px, $duration: $transition-base, $easing: ease) {
+  transition: transform $duration $easing;
+  will-change: transform;
+  
+  &:hover {
+    transform: translateY($distance);
+  }
+}
+
+// SMOOTH TRANSITION - Transición suave uniforme
+// Uso: @include smooth-transition(background-color); (0.3s ease estándar)
+// --------------------------------------------
+@mixin smooth-transition($properties: all, $duration: $transition-base, $easing: ease) {
+  transition: $properties $duration $easing;
+  will-change: $properties;
+}
+
+// TRANSFORM LIFT - Elevación con sombra en hover
+// Uso: @include transform-lift; (translateY + shadow enhancement)
+// Importante: Aplicar a elementos con box-shadow base
+// --------------------------------------------
+@mixin transform-lift($distance: -4px, $shadow-enhance: $shadow-lg) {
+  transition: transform $transition-base ease, box-shadow $transition-base ease;
+  will-change: transform, box-shadow;
+  
+  &:hover {
+    transform: translateY($distance);
+    box-shadow: $shadow-enhance;
+  }
+}
+
+// GLOW SHADOW - Resplandor de color en hover
+// Uso: @include glow-shadow($color-primary); (crea efecto de brillo)
+// Importante: Aceptar color como parámetro
+// --------------------------------------------
+@mixin glow-shadow($color: $color-primary, $intensity: 0.4, $intensity-hover: 0.6) {
+  transition: box-shadow $transition-base ease;
+  box-shadow: 0 0 20px rgba($color, $intensity);
+  
+  &:hover {
+    box-shadow: 0 0 30px rgba($color, $intensity-hover);
+  }
+}
+
+// SCALE HOVER - Zoom suave en hover
+// Uso: @include scale-hover(1.05); (escala a 105% en hover)
+// Perfecto para cards, botones secundarios
+// --------------------------------------------
+@mixin scale-hover($scale: 1.05, $duration: $transition-base) {
+  transition: transform $duration ease;
+  will-change: transform;
+  
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+// UNDERLINE ANIMATION - Subrayado animado (estilo moderno)
+// Uso: @include underline-animation(); (ancho animado desde 0% a 100%)
+// Nota: Usar en enlaces (<a>)
+// --------------------------------------------
+@mixin underline-animation($color: $color-primary, $height: 2px) {
+  position: relative;
+  transition: color $transition-base ease;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: $height;
+    background: $color;
+    transition: width $transition-base ease;
+  }
+  
+  &:hover {
+    color: $color;
+    
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+// RIPPLE EFFECT - Efecto onda (similar a Material Design)
+// Uso: @include ripple-effect(); (crea pseudo-elemento ::before con expansión)
+// Importante: Elemento debe tener position: relative
+// --------------------------------------------
+@mixin ripple-effect($duration: 0.6s, $color: rgba(255, 255, 255, 0.1)) {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: $color;
+    transform: translate(-50%, -50%);
+    transition: width $duration, height $duration;
+  }
+  
+  &:hover::before,
+  &:active::before {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+// BORDER ANIMATION - Animar borde superior (popular en cards)
+// Uso: @include border-animation(); (borde superior que aparece en hover)
+// Nota: Usar con ::before pseudo-elemento
+// --------------------------------------------
+@mixin border-animation($height: 2px, $color: $color-primary, $duration: $transition-base) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $height;
+    background: $color;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $duration ease;
+  }
+  
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+// SLIDE IN - Deslizar desde dirección especificada
+// Uso: @include slide-in(left, 20px); (desliza desde izquierda 20px)
+// Direcciones: left, right, top, bottom
+// --------------------------------------------
+@mixin slide-in($direction: left, $distance: 20px, $duration: $transition-base) {
+  transition: all $duration ease;
+  
+  @if $direction == 'left' {
+    &:hover {
+      transform: translateX($distance);
+    }
+  } @else if $direction == 'right' {
+    &:hover {
+      transform: translateX(-$distance);
+    }
+  } @else if $direction == 'top' {
+    &:hover {
+      transform: translateY(-$distance);
+    }
+  } @else if $direction == 'bottom' {
+    &:hover {
+      transform: translateY($distance);
+    }
+  }
+}
+
+// FADE & SCALE - Desvanecer y escalar simultáneamente
+// Uso: @include fade-scale(0.8, 0.5); (escala a 80%, opacidad 50% en hover)
+// Perfecto para efectos de zoom out con fade
+// --------------------------------------------
+@mixin fade-scale($scale: 0.8, $opacity: 0.5, $duration: $transition-base) {
+  transition: transform $duration ease, opacity $duration ease;
+  will-change: transform, opacity;
+  
+  &:hover {
+    transform: scale($scale);
+    opacity: $opacity;
+  }
+}
+
+// PULSE ANIMATION - Pulso infinito (atrae atención)
+// Uso: @include pulse-animation(1s, 0.5, 1); (pulso suave)
+// Parámetros: duration, min-opacity, max-opacity
+// Nota: NO aplicar :hover, es animación infinita
+// --------------------------------------------
+@mixin pulse-animation($duration: 2s, $min-opacity: 0.5, $max-opacity: 1) {
+  animation: pulse-effect $duration ease-in-out infinite;
+  
+  @keyframes pulse-effect {
+    0%, 100% {
+      opacity: $max-opacity;
+    }
+    50% {
+      opacity: $min-opacity;
+    }
+  }
+}
+
+// SHAKE ANIMATION - Temblor en hover (efecto de alerta)
+// Uso: @include shake-animation(0.5s); (tiembla en hover)
+// Parámetro: duration en segundos
+// Nota: Útil para validaciones de form
+// --------------------------------------------
+@mixin shake-animation($duration: 0.5s) {
+  &:hover {
+    animation: shake-effect $duration;
+  }
+  
+  @keyframes shake-effect {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+}
+
+// ============================================
+// FIN - MICROINTERACCIONES
+// ============================================

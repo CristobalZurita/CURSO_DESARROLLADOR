@@ -2,6 +2,9 @@
 // RESET & BASE STYLES
 // ============================================
 
+// Importar variables y mixins necesarios
+@use '../abstracts/' as *;
+
 // CSS RESET MODERNO
 // --------------------------------------------
 *,

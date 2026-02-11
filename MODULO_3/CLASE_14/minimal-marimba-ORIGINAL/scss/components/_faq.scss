@@ -1,0 +1,68 @@
+// ============================================
+// FAQ - Preguntas Frecuentes
+// Sistema BEM
+// ============================================
+
+@use '../abstracts/' as *;
+
+.faq__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-lg;
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.faq__item {
+  background: $color-dark-surface;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  border: 1px solid rgba($color-primary, 0.1);
+  transition: all $transition-base;
+  
+  &:hover {
+    border-color: rgba($color-primary, 0.3);
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+  
+  &:hover .faq__question::before {
+    background: $color-primary;
+  }
+}
+
+.faq__question {
+  font-size: $font-size-large;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  margin-bottom: $spacing-md;
+  position: relative;
+  padding-left: $spacing-lg;
+  display: flex;
+  align-items: center;
+  
+  &::before {
+    content: '?';
+    position: absolute;
+    left: 0;
+    width: $spacing-md;
+    height: $spacing-md;
+    background: rgba($color-primary, 0.2);
+    color: $color-primary;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: $font-weight-bold;
+    font-size: 12px;
+    transition: background $transition-base ease;
+  }
+}
+
+.faq__answer {
+  color: $color-text-secondary;
+  line-height: 1.6;
+  font-size: $font-size-base;
+}

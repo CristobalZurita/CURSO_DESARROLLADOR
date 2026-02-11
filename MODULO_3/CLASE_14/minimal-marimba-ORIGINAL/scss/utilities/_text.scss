@@ -3,6 +3,8 @@
 // Clases de utilidad para alineación de texto y display
 // ============================================
 
+@use '../abstracts/' as *;
+
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }

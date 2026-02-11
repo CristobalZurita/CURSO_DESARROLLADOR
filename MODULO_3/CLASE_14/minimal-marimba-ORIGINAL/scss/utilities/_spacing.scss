@@ -4,6 +4,8 @@
 // Convención: .mt-1, .mb-2, .p-3, etc
 // ============================================
 
+@use '../abstracts/' as *;
+
 .mt-1 { margin-top: $spacing-xs; }
 .mt-2 { margin-top: $spacing-sm; }
 .mt-3 { margin-top: $spacing-md; }

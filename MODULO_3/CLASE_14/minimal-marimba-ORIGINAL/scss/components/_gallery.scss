@@ -2,6 +2,8 @@
 // GALLERY - Galería con Lightbox
 // ============================================
 
+@use '../abstracts/' as *;
+
 .gallery {
   display: grid;
   gap: $spacing-md;
@@ -90,7 +92,7 @@
     left: 0;
     right: 0;
     padding: $spacing-md;
-    z-index: 2;
+    z-index: $z-dropdown;
     opacity: 0;
     transition: opacity $transition-base;
   }
@@ -143,7 +145,7 @@
     position: relative;
     max-width: 90vw;
     max-height: 90vh;
-    z-index: 2;
+    z-index: $z-dropdown;
     transform: scale(0.9);
     transition: transform $transition-base;
     

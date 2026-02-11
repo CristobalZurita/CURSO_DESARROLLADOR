@@ -2,14 +2,17 @@
 // CARDS - Sistema BEM
 // ============================================
 
+@use '../abstracts/' as *;
+
 .card {
   background: $color-dark-surface;
   border-radius: $card-border-radius;
   padding: $card-padding;
   border: 1px solid rgba($color-primary, 0.1);
-  transition: all $transition-base;
+  @include smooth-transition(transform, border-color, box-shadow);
   position: relative;
   overflow: hidden;
+  will-change: transform, box-shadow;
   
   &::before {
     content: '';
@@ -21,7 +24,7 @@
     background: $color-primary;
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform $transition-base;
+    @include smooth-transition(transform);
   }
   
   &:hover {

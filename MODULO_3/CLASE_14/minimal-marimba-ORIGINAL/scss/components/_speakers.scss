@@ -1,0 +1,110 @@
+// ============================================
+// SPEAKERS - Artistas Destacados
+// Sistema BEM
+// ============================================
+
+@use '../abstracts/' as *;
+
+// SPEAKER CARD
+// Componente individual para presentar artistas/oradores
+
+.speaker-card {
+  background: $color-dark-surface;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  border: 1px solid rgba($color-primary, 0.1);
+  transition: all $transition-base;
+  
+  &:hover {
+    border-color: rgba($color-primary, 0.3);
+    box-shadow: $shadow-lg;
+    transform: translateY(-4px);
+  }
+  
+  // IMAGEN
+  &__image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    
+    > div {
+      width: 100%;
+      height: 100%;
+      transition: transform $transition-slower;
+    }
+    
+    .speaker-card:hover & > div {
+      transform: scale(1.05);
+    }
+  }
+  
+  // CONTENIDO
+  &__content {
+    padding: $spacing-lg;
+  }
+  
+  // NOMBRE
+  &__name {
+    font-size: $h4-size;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  // ROL/CARGO
+  &__role {
+    font-size: $font-size-small;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-md;
+  }
+  
+  // BIOGRAFÍA
+  &__bio {
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin-bottom: $spacing-lg;
+    font-size: $font-size-base;
+  }
+  
+  // REDES SOCIALES
+  &__socials {
+    display: flex;
+    gap: $spacing-md;
+  }
+  
+  &__social {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($color-primary, 0.1);
+    border-radius: 50%;
+    color: $color-primary;
+    transition: all $transition-base;
+    
+    &:hover {
+      background: $color-primary;
+      color: $color-dark-bg;
+      transform: scale(1.1);
+    }
+  }
+}
+
+// SPEAKERS GRID
+.speakers__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-lg;
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

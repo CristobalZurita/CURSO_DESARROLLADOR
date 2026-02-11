@@ -2,6 +2,8 @@
 // SECTIONS - Secciones Generales
 // ============================================
 
+@use '../abstracts/' as *;
+
 .section {
   @include section-padding;
   position: relative;

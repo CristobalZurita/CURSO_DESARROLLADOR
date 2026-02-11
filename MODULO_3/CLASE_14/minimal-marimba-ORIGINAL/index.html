@@ -5,16 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minimal Marimba - Resonancias Electrónicas 2026</title>
     
-    <!-- Google Fonts -->
+    <!-- ========== PERFORMANCE OPTIMIZATIONS (McMaster-Carr Style) ========== -->
+    <!-- DNS Prefetch para CDN -->
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Google Fonts - Preconnect + Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Bootstrap 4 CSS (solo componentes necesarios) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Bootstrap 4 CSS - Async Load (no render-blocking) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Prefetch HTML para navegación principal (mejora HPP) -->
+    <link rel="prefetch" href="#concepto">
+    <link rel="prefetch" href="#programa">
+    <link rel="prefetch" href="#artistas">
+    <link rel="prefetch" href="#ubicacion">
 </head>
 <body>
 
@@ -29,6 +42,8 @@
                 <a href="#concepto" class="header__link">Concepto</a>
                 <a href="#programa" class="header__link">Programa</a>
                 <a href="#cronograma" class="header__link">Cronograma</a>
+                <a href="#artistas" class="header__link">Artistas</a>
+                <a href="#ubicacion" class="header__link">Ubicación</a>
                 <a href="#galeria" class="header__link">Galería</a>
                 <a href="#contacto" class="header__link">Contacto</a>
             </nav>
@@ -53,6 +68,8 @@
                 <a href="#concepto" class="header__mobile-link">Concepto</a>
                 <a href="#programa" class="header__mobile-link">Programa</a>
                 <a href="#cronograma" class="header__mobile-link">Cronograma</a>
+                <a href="#artistas" class="header__mobile-link">Artistas</a>
+                <a href="#ubicacion" class="header__mobile-link">Ubicación</a>
                 <a href="#galeria" class="header__mobile-link">Galería</a>
                 <a href="#contacto" class="header__mobile-link">Contacto</a>
             </div>
@@ -104,8 +121,8 @@
     <!-- ============================================ -->
     <section class="hero hero--centered" id="home">
         <div class="hero__background">
-            <!-- Imagen BAQUETAS como fondo -->
-            <img src="assets/{images,audio}/baquetas.jpg" alt="Baquetas" class="hero__background-img">
+            <!-- Imagen BAQUETAS como fondo - Fixed dimensions prevent layout shift -->
+            <img src="assets/images/baquetas.jpg" alt="Baquetas" class="hero__background-img" width="1920" height="1080" loading="lazy">
         </div>
         <div class="hero__gradient"></div>
         
@@ -698,6 +715,156 @@
     </section>
 
     <!-- ============================================ -->
+    <!-- SECCIÓN: ORADORES / ARTISTAS DESTACADOS -->
+    <!-- ============================================ -->
+    <section class="section speakers" id="artistas">
+        <div class="section__container">
+            <div class="section__header">
+                <span class="section__eyebrow">Protagonista</span>
+                <h2 class="section__title">Artista Destacado</h2>
+                <p class="section__description">
+                    Conoce al creador detrás de Minimal Marimba y su visión experimental 
+                    en la intersección entre lo acústico y lo electrónico.
+                </p>
+            </div>
+            
+            <div class="speakers__grid">
+                <div class="speaker-card">
+                    <div class="speaker-card__image">
+                        <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #cc5500 0%, #993300 100%); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); font-size: 14px; text-align: center; padding: 20px;">
+                            [Foto del Artista]<br/>400x300px
+                        </div>
+                    </div>
+                    <div class="speaker-card__content">
+                        <h3 class="speaker-card__name">Compositor/Intérprete</h3>
+                        <p class="speaker-card__role">Minimal Marimba - Creador & Performer</p>
+                        <p class="speaker-card__bio">
+                            Especialista en síntesis modular y composición algorítmica. Ha trabajado con 
+                            instituciones de música experimental en América Latina. Su práctica explora la 
+                            percusión extendida y el procesamiento de audio en tiempo real.
+                        </p>
+                        <div class="speaker-card__socials">
+                            <a href="#" aria-label="Instagram" class="speaker-card__social">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M7 7a5 5 0 015-5v0a5 5 0 015 5v0a5 5 0 01-5 5v0a5 5 0 01-5-5v0z"/></svg>
+                            </a>
+                            <a href="#" aria-label="SoundCloud" class="speaker-card__social">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13c0 2 1 4 2 4s2-2 2-4"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN: UBICACIÓN E INFORMACIÓN -->
+    <!-- ============================================ -->
+    <section class="section section--dark location" id="ubicacion">
+        <div class="section__container">
+            <div class="section__header">
+                <span class="section__eyebrow">¿Dónde?</span>
+                <h2 class="section__title">Ubicación del Evento</h2>
+            </div>
+            
+            <div class="location__content">
+                <div class="location__details">
+                    <div class="location__card">
+                        <h3>Teatro Experimental</h3>
+                        <p class="location__address">
+                            Calle de la Música 234<br/>
+                            Comuna de Ñuñoa<br/>
+                            Región Metropolitana, Chile
+                        </p>
+                        <div class="location__info">
+                            <div class="location__info-item">
+                                <strong>Capacidad:</strong> 150 personas
+                            </div>
+                            <div class="location__info-item">
+                                <strong>Transporte:</strong> Metro Ñuñoa (L1) - 5 min a pie
+                            </div>
+                            <div class="location__info-item">
+                                <strong>Estacionamiento:</strong> Disponible (30 espacios)
+                            </div>
+                            <div class="location__info-item">
+                                <strong>Accesibilidad:</strong> Completa (Ascensor, Baños adaptados)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location__map">
+                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #151515 0%, #1f1f1f 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(204, 85, 0, 0.4); font-size: 14px; border: 1px solid rgba(204, 85, 0, 0.2);">
+                        [Mapa Interactivo - GoogleMaps o similar]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN: PREGUNTAS FRECUENTES (FAQ) -->
+    <!-- ============================================ -->
+    <section class="section faq" id="faq">
+        <div class="section__container">
+            <div class="section__header">
+                <span class="section__eyebrow">Dudas</span>
+                <h2 class="section__title">Preguntas Frecuentes</h2>
+            </div>
+            
+            <div class="faq__grid">
+                <div class="faq__item">
+                    <h4 class="faq__question">¿La entrada es gratuita?</h4>
+                    <p class="faq__answer">
+                        Sí, la asistencia es completamente gratuita. Solo necesitas registrarte 
+                        a través de nuestro formulario para confirmar tu lugar.
+                    </p>
+                </div>
+                
+                <div class="faq__item">
+                    <h4 class="faq__question">¿Cuánto dura el evento?</h4>
+                    <p class="faq__answer">
+                        El evento tiene una duración aproximada de 90 minutos, incluyendo una 
+                        pausa intermedia y conversatorio final.
+                    </p>
+                </div>
+                
+                <div class="faq__item">
+                    <h4 class="faq__question">¿Puedo traer acompañante?</h4>
+                    <p class="faq__answer">
+                        Cada persona debe registrarse individualmente. El espacio es limitado, 
+                        así que te recomendamos confirmar la asistencia de tus acompañantes.
+                    </p>
+                </div>
+                
+                <div class="faq__item">
+                    <h4 class="faq__question">¿Habrá grabación del evento?</h4>
+                    <p class="faq__answer">
+                        Sí, el evento será grabado en video y audio. Los registros se 
+                        compartirán posteriormente a través de nuestras redes sociales.
+                    </p>
+                </div>
+                
+                <div class="faq__item">
+                    <h4 class="faq__question">¿Puedo llevar cámara personal?</h4>
+                    <p class="faq__answer">
+                        Se permite fotografía y grabación personal durante el evento. 
+                        Respeta los tiempos de presentación y a otros asistentes.
+                    </p>
+                </div>
+                
+                <div class="faq__item">
+                    <h4 class="faq__question">¿Hay código de vestimenta?</h4>
+                    <p class="faq__answer">
+                        No hay restricción de vestuario. Ven como prefieras. 
+                        Es un evento accesible y informal.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
     <!-- SECCIÓN: GALERÍA -->
     <!-- ============================================ -->
     <section class="section section--dark section--overflow" id="galeria">
@@ -949,6 +1116,8 @@
                         <a href="#concepto" class="footer__link">Concepto</a>
                         <a href="#programa" class="footer__link">Programa</a>
                         <a href="#cronograma" class="footer__link">Cronograma</a>
+                        <a href="#artistas" class="footer__link">Artistas</a>
+                        <a href="#ubicacion" class="footer__link">Ubicación</a>
                         <a href="#galeria" class="footer__link">Galería</a>
                         <a href="#contacto" class="footer__link">Contacto</a>
                     </nav>
@@ -986,13 +1155,13 @@
     <!-- SCRIPTS -->
     <!-- ============================================ -->
     
-    <!-- jQuery (requerido por Bootstrap) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery (requerido por Bootstrap) - Deferred para no bloquear carga -->
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
-    <!-- Bootstrap 4 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 4 JS - Deferred para no bloquear carga -->
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JavaScript -->
-    <script src="js/main.js"></script>
+    <!-- Custom JavaScript - Deferred para no bloquear carga -->
+    <script defer src="js/main.js"></script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 // FORMS - Sistema BEM
 // ============================================
 
+@use '../abstracts/' as *;
+
 .form {
   &__group {
     margin-bottom: $spacing-lg;

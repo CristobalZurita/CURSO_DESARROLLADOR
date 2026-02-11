@@ -12,14 +12,21 @@
     const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobileMenu');
     
-    // Scroll effect
+    // Throttle scroll event to prevent jank (max 1 update per 100ms)
+    let scrollThrottled = false;
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.classList.add('header--scrolled');
-        } else {
-            header.classList.remove('header--scrolled');
+        if (!scrollThrottled) {
+            scrollThrottled = true;
+            requestAnimationFrame(() => {
+                if (window.scrollY > 50) {
+                    header.classList.add('header--scrolled');
+                } else {
+                    header.classList.remove('header--scrolled');
+                }
+                scrollThrottled = false;
+            });
         }
-    });
+    }, { passive: true });  // passive: true improves scroll performance
     
     // Mobile menu toggle
     if (burger && mobileMenu) {

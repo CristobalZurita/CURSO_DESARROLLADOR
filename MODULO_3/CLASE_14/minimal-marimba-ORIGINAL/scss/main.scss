@@ -1,71 +1,62 @@
 // ============================================
-// MAIN SASS FILE - Patrón 7-1
+// MAIN SASS FILE - Patrón 7-1 (Dart Sass Moderno)
 // Minimal Marimba - Resonancias Electrónicas 2026
 // ============================================
-// Organización modular con @import (compatible actual)
+// Organización modular con @use (Dart Sass estándar)
 // Estructura: Abstracts → Base → Layout → Components → Pages → Vendors → Utilities
 // Cada carpeta es un módulo cohesivo con responsabilidad clara
+// Namespacing automático: abstracts.*, base.*, etc.
 // ============================================
 
 // 1. ABSTRACTS (Nivel más bajo - Sin salida CSS)
 // Contenido: $variables y @mixins reutilizables
 // Necesidad: Disponibles para todos los demás módulos
 // ============================================
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
+@use 'abstracts/' as *;
 
 // 2. BASE (Estilos globales fundamentales)
 // Contenido: Reset CSS, tipografía base, animaciones globales
 // Dependencias: Necesita abstracts (variables y mixins)
 // ============================================
-@import 'base/reset';
-@import 'base/typography';
-@import 'base/animations';
+@use 'base/' as *;
 
 // 3. LAYOUT (Estructura principal de página)
 // Contenido: Header, footer, secciones, hero, grid principal
 // Dependencias: Necesita base y abstracts
 // ============================================
-@import 'layout/header';
-@import 'layout/sections';
+@use 'layout/' as *;
 
 // 4. COMPONENTS (Componentes reutilizables)
 // Contenido: Botones, cards, forms, popup, accordion, gallery
 // Dependencias: Necesita layout, base y abstracts
 // Nota: Componentes complejos (modales, tooltips) van aquí
 // ============================================
-@import 'components/buttons';
-@import 'components/cards';
-@import 'components/popup';
-@import 'components/accordion';
-@import 'components/gallery';
-@import 'components/forms';
+@use 'components/' as *;
 
 // 5. PAGES (Estilos específicos de página)
 // Contenido: Overrides y estilos únicos de páginas (home, about, etc)
 // Dependencias: Necesita todos los anteriores
 // ============================================
-@import 'pages/home';
+@use 'pages/' as *;
 
 // 6. THEMES (Reservado para temas)
 // Contenido: Variaciones de temas (dark mode, light mode, etc)
 // Estado: Vacío - listo para extensión futura
 // ============================================
-// @import 'themes/dark-mode';
+// @use 'themes/' as *;
 
 // 7. VENDORS (Overrides de librerías externas)
 // Contenido: Customizaciones de Bootstrap, librerías, etc
 // Nota: Bootstrap se importa en HTML, este archivo para overrides
 // Estado: Vacío - listo para extensión futura
 // ============================================
-// @import 'vendors/bootstrap-overrides';
+// @use 'vendors/' as *;
 
 // 8. UTILITIES (Clases de utilidad CSS)
 // Contenido: .mt-1, .text-center, .d-flex, etc - clases reutilizables
 // Dependencias: Necesita abstracts (variables de espaciado)
 // ============================================
-@import 'utilities/spacing';
-@import 'utilities/text';
+@use 'utilities/' as *;
 
 // 9. GLOBAL UTILITIES INLINE
 // Uso: Contenedor principal y utilidades muy comunes

@@ -2,6 +2,8 @@
 // ACCORDION - Bootstrap Adaptado con BEM
 // ============================================
 
+@use '../abstracts/' as *;
+
 .accordion {
   &__item {
     background: $color-dark-surface;

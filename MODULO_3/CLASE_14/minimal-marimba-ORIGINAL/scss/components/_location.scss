@@ -1,0 +1,71 @@
+// ============================================
+// LOCATION - Ubicación del Evento
+// Sistema BEM
+// ============================================
+
+@use '../abstracts/' as *;
+
+.location__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-2xl;
+  align-items: center;
+  
+  @include respond-to(md) {
+    gap: $spacing-xl;
+  }
+  
+  @include respond-to(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.location__details {
+  flex: 1;
+}
+
+.location__card {
+  background: $color-dark-elevated;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  border: 1px solid rgba($color-primary, 0.1);
+  
+  h3 {
+    font-size: $h3-size;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-md;
+  }
+}
+
+.location__address {
+  color: $color-text-secondary;
+  line-height: 1.8;
+  margin-bottom: $spacing-lg;
+  font-size: $font-size-base;
+}
+
+.location__info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.location__info-item {
+  color: $color-text-secondary;
+  font-size: $font-size-base;
+  
+  strong {
+    color: $color-primary;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.location__map {
+  flex: 1;
+  min-height: 400px;
+  
+  @include respond-to(sm) {
+    min-height: 300px;
+  }
+}

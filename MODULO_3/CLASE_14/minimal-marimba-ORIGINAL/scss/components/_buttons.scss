@@ -2,6 +2,8 @@
 // BUTTONS - Sistema BEM
 // ============================================
 
+@use '../abstracts/' as *;
+
 .btn {
   @include button-reset;
   display: inline-flex;
@@ -40,11 +42,14 @@
   }
   
   // MODIFICADORES - VARIANTES
-  // --------------------------------------------
+  // Todos heredan la transición suave base
+  // Patrón: mix de transform lift + glow shadow
+  // ========================================
   &--primary {
     background: $color-primary;
     color: $color-dark-bg;
-    @include glow($color-primary, 0.3);
+    @include glow-shadow($color-primary, 0.3, 0.6);
+    @include smooth-transition(all);
     
     &:hover {
       transform: translateY(-2px);
@@ -55,6 +60,7 @@
     background: transparent;
     border: 2px solid $color-primary;
     color: $color-primary;
+    @include smooth-transition(all);
     
     &:hover {
       background: $color-primary;
