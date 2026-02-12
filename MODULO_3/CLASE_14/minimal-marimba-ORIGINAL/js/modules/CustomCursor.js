@@ -56,7 +56,7 @@ class CustomCursor {
     setupCursor() {
         // Solo la imagen PNG, sin elementos extra
         const svg = `
-            <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg" width="40" height="60">
+            <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg" width="72" height="108">
                 <image href="assets/images/MALLET4.png" x="0" y="0" width="40" height="60" preserveAspectRatio="xMidYMid meet"/>
             </svg>
         `;
@@ -140,7 +140,7 @@ class CustomCursor {
 
         // Apply transform - solo translación y escala, sin rotación
         const scale = this.isClicking ? 0.9 : (this.isHovering ? 1.1 : 1);
-        this.cursor.style.transform = `translate(${this.x}px, ${this.y}px) translate(-50%, -50%) scale(${scale})`;
+        this.cursor.style.transform = `translate(${this.x}px, ${this.y}px) translate(-50%, 0%) scale(${scale})`;
     };
 
     /**

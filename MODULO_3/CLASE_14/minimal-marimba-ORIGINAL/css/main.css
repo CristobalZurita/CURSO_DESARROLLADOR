@@ -2712,20 +2712,20 @@ p.lead {
     left: 0;
     pointer-events: none;
     z-index: 300;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
     will-change: transform;
   }
   .custom-cursor svg,
   .custom-cursor img {
     display: block;
-    width: 40px;
-    height: 60px;
+    width: 72px;
+    height: 108px;
   }
   .custom-cursor--clicking {
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, 0%) scale(0.9);
   }
   .custom-cursor--hovering {
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, 0%) scale(1.1);
   }
   a, button, .card, input, textarea, select, label {
     cursor: none;
