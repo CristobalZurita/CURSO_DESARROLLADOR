@@ -29,6 +29,8 @@ class CustomCursor {
         this.lastX = null;
         this.lastY = null;
         this.lastScale = null;
+        // Hotspot calibration: top of the red head ("norte" absoluto)
+        this.hotspotOffsetYPercent = 8.2;
         // Hide native cursor and show custom (CSS media query handles pointer: fine/coarse)
         this.setupCursor();
         this.setupEventListeners();
@@ -150,7 +152,7 @@ class CustomCursor {
         this.lastX = this.x;
         this.lastY = this.y;
         this.lastScale = scale;
-        this.cursor.style.transform = `translate3d(${this.x}px, ${this.y}px, 0) translate(-50%, 0%) scale(${scale})`;
+        this.cursor.style.transform = `translate3d(${this.x}px, ${this.y}px, 0) translate(-50%, -${this.hotspotOffsetYPercent}%) scale(${scale})`;
     };
 
     /**

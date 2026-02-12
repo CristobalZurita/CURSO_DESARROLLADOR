@@ -2714,7 +2714,7 @@ p.lead {
     left: 0;
     pointer-events: none;
     z-index: 10000;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -8.2%);
     will-change: transform;
   }
   .custom-cursor svg,
@@ -2724,10 +2724,10 @@ p.lead {
     height: 154px;
   }
   .custom-cursor--clicking {
-    transform: translate(-50%, 0%) scale(0.9);
+    transform: translate(-50%, -8.2%) scale(0.9);
   }
   .custom-cursor--hovering {
-    transform: translate(-50%, 0%) scale(1.1);
+    transform: translate(-50%, -8.2%) scale(1.1);
   }
   *:focus-visible {
     outline: 2px solid #00ff9d;
