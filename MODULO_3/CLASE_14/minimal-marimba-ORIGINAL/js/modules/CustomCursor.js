@@ -25,10 +25,14 @@ class CustomCursor {
         this.targetY = 0;
         this.isClicking = false;
         this.isHovering = false;
+        this.rafId = null;
+        this.lastX = null;
+        this.lastY = null;
+        this.lastScale = null;
         // Hide native cursor and show custom (CSS media query handles pointer: fine/coarse)
         this.setupCursor();
         this.setupEventListeners();
-        this.animate();
+        this.scheduleRender();
         console.log('✨ CustomCursor initialized');
     }
 
@@ -56,7 +60,7 @@ class CustomCursor {
     setupCursor() {
         // Solo la imagen PNG, sin elementos extra
         const svg = `
-            <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg" width="72" height="108">
+            <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg" width="103.4" height="154">
                 <image href="assets/images/MALLET4.png" x="0" y="0" width="40" height="60" preserveAspectRatio="xMidYMid meet"/>
             </svg>
         `;
@@ -65,7 +69,8 @@ class CustomCursor {
         this.cursor.style.top = '0';
         this.cursor.style.left = '0';
         this.cursor.style.pointerEvents = 'none';
-        this.cursor.style.zIndex = '300';
+        this.cursor.style.zIndex = '10000';
+        document.documentElement.classList.add('custom-cursor-active');
         document.documentElement.style.cursor = 'none';
     }
 
@@ -77,17 +82,20 @@ class CustomCursor {
         document.addEventListener('mousemove', (e) => {
             this.targetX = e.clientX;
             this.targetY = e.clientY;
-        });
+            this.scheduleRender();
+        }, { passive: true });
 
         // Mouse down/up for clicking effect
         document.addEventListener('mousedown', () => {
             this.isClicking = true;
             this.cursor.classList.add('custom-cursor--clicking');
+            this.scheduleRender();
         });
 
         document.addEventListener('mouseup', () => {
             this.isClicking = false;
             this.cursor.classList.remove('custom-cursor--clicking');
+            this.scheduleRender();
         });
 
         // Hover detection
@@ -95,6 +103,7 @@ class CustomCursor {
             if (e.target.matches('a, button, input, textarea, [role="button"]')) {
                 this.isHovering = true;
                 this.cursor.classList.add('custom-cursor--hovering');
+                this.scheduleRender();
             }
         });
 
@@ -102,46 +111,53 @@ class CustomCursor {
             if (e.target.matches('a, button, input, textarea, [role="button"]')) {
                 this.isHovering = false;
                 this.cursor.classList.remove('custom-cursor--hovering');
+                this.scheduleRender();
             }
-        });
-
-        // Leave page
-        document.addEventListener('mouseleave', () => {
-            this.cursor.style.display = 'none';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            this.cursor.style.display = 'block';
         });
 
         // Keep native cursor hidden consistently
         document.addEventListener('focusin', () => {
             document.documentElement.style.cursor = 'none';
+            this.scheduleRender();
         });
         document.addEventListener('blur', () => {
             document.documentElement.style.cursor = 'none';
+            this.scheduleRender();
         });
     }
 
     /**
-     * Smooth animation with easing
+     * Request a single RAF render if one is not already queued
      */
-    animate = () => {
-        requestAnimationFrame(() => this.animate());
+    scheduleRender() {
+        if (this.rafId !== null) return;
+        this.rafId = requestAnimationFrame(() => this.render());
+    }
+
+    /**
+     * Render cursor state
+     */
+    render = () => {
+        this.rafId = null;
 
         // No easing: cursor image sticks to real pointer position
         this.x = this.targetX;
         this.y = this.targetY;
 
-        // Apply transform - solo translación y escala, sin rotación
         const scale = this.isClicking ? 0.9 : (this.isHovering ? 1.1 : 1);
-        this.cursor.style.transform = `translate(${this.x}px, ${this.y}px) translate(-50%, 0%) scale(${scale})`;
+        if (this.x === this.lastX && this.y === this.lastY && scale === this.lastScale) return;
+
+        this.lastX = this.x;
+        this.lastY = this.y;
+        this.lastScale = scale;
+        this.cursor.style.transform = `translate3d(${this.x}px, ${this.y}px, 0) translate(-50%, 0%) scale(${scale})`;
     };
 
     /**
      * Restore native cursor
      */
     restore() {
+        document.documentElement.classList.remove('custom-cursor-active');
         document.documentElement.style.cursor = 'auto';
         if (this.cursor) {
             this.cursor.style.display = 'none';

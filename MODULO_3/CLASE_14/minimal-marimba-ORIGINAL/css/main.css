@@ -2703,9 +2703,9 @@ p.lead {
 }
 
 @media (pointer: fine) {
-  html,
-  body,
-  body * {
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active body * {
     cursor: none !important;
   }
   .custom-cursor {
@@ -2713,15 +2713,15 @@ p.lead {
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 300;
+    z-index: 10000;
     transform: translate(-50%, 0%);
     will-change: transform;
   }
   .custom-cursor svg,
   .custom-cursor img {
     display: block;
-    width: 72px;
-    height: 108px;
+    width: 103.4px;
+    height: 154px;
   }
   .custom-cursor--clicking {
     transform: translate(-50%, 0%) scale(0.9);
