@@ -2708,36 +2708,24 @@ p.lead {
   }
   .custom-cursor {
     position: fixed;
-    width: 20px;
-    height: 60px;
-    background: linear-gradient(180deg, #cc5500 0%, #993300 100%);
-    border-radius: 10px;
+    top: 0;
+    left: 0;
     pointer-events: none;
     z-index: 300;
-    transform: translate(-50%, -50%) rotate(-15deg);
-    transition: transform 0.2s ease, background 0.3s ease;
-    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
     will-change: transform;
   }
-  .custom-cursor::after {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px;
-    height: 15px;
-    background: #f5f5dc;
-    border-radius: 4px;
+  .custom-cursor svg,
+  .custom-cursor img {
+    display: block;
+    width: 40px;
+    height: 60px;
   }
   .custom-cursor--clicking {
-    transform: translate(-50%, -50%) rotate(-15deg) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.9);
   }
   .custom-cursor--hovering {
-    transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
-    background: #00ff9d;
-    mix-blend-mode: normal;
-    box-shadow: 0 0 15px rgba(0, 255, 157, 0.4);
+    transform: translate(-50%, -50%) scale(1.1);
   }
   a, button, .card, input, textarea, select, label {
     cursor: none;

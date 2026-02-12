@@ -54,41 +54,18 @@ class CustomCursor {
      * Initialize cursor styling
      */
     setupCursor() {
-        // Create baqueta shape SVG
+        // Solo la imagen PNG, sin elementos extra
         const svg = `
-            <svg viewBox="0 0 ${this.size} ${this.height}" xmlns="http://www.w3.org/2000/svg" style="width: ${this.size}px; height: ${this.height}px;">
-                <defs>
-                    <linearGradient id="baquetaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:${this.color1};stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:${this.color2};stop-opacity:1" />
-                    </linearGradient>
-                    <filter id="cursorGlow">
-                        <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                <!-- Baqueta stick -->
-                <rect x="${this.size/2 - 2}" y="5" width="4" height="${this.height - 10}" fill="url(#baquetaGradient)" rx="2" filter="url(#cursorGlow)"/>
-                <!-- Ball head -->
-                <circle cx="${this.size/2}" cy="8" r="5" fill="url(#baquetaGradient)" filter="url(#cursorGlow)"/>
+            <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg" width="40" height="60">
+                <image href="assets/images/MALLET4.png" x="0" y="0" width="40" height="60" preserveAspectRatio="xMidYMid meet"/>
             </svg>
         `;
-
         this.cursor.innerHTML = svg;
-        this.cursor.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 300;
-            mix-blend-mode: difference;
-            will-change: transform;
-        `;
-
-        // Hide native cursor
+        this.cursor.style.position = 'fixed';
+        this.cursor.style.top = '0';
+        this.cursor.style.left = '0';
+        this.cursor.style.pointerEvents = 'none';
+        this.cursor.style.zIndex = '300';
         document.documentElement.style.cursor = 'none';
     }
 
@@ -105,25 +82,26 @@ class CustomCursor {
         // Mouse down/up for clicking effect
         document.addEventListener('mousedown', () => {
             this.isClicking = true;
-            this.cursor.style.transform = `translate(${this.x - this.size/2}px, ${this.y - this.size/2}px) scale(0.8)`;
+            this.cursor.classList.add('custom-cursor--clicking');
         });
 
         document.addEventListener('mouseup', () => {
             this.isClicking = false;
+            this.cursor.classList.remove('custom-cursor--clicking');
         });
 
         // Hover detection
         document.addEventListener('mouseover', (e) => {
             if (e.target.matches('a, button, input, textarea, [role="button"]')) {
                 this.isHovering = true;
-                this.cursor.style.opacity = '0.8';
+                this.cursor.classList.add('custom-cursor--hovering');
             }
         });
 
         document.addEventListener('mouseout', (e) => {
             if (e.target.matches('a, button, input, textarea, [role="button"]')) {
                 this.isHovering = false;
-                this.cursor.style.opacity = '1';
+                this.cursor.classList.remove('custom-cursor--hovering');
             }
         });
 
@@ -160,13 +138,9 @@ class CustomCursor {
         this.x += (this.targetX - this.x) * easing;
         this.y += (this.targetY - this.y) * easing;
 
-        // Apply transform
-        const scale = this.isClicking ? 0.8 : 1;
-        this.cursor.style.transform = `
-            translate(${this.x - this.size/2}px, ${this.y - this.size/2}px)
-            scale(${scale})
-            rotate(${this.x * 0.01}deg)
-        `;
+        // Apply transform - solo translación y escala, sin rotación
+        const scale = this.isClicking ? 0.9 : (this.isHovering ? 1.1 : 1);
+        this.cursor.style.transform = `translate(${this.x}px, ${this.y}px) translate(-50%, -50%) scale(${scale})`;
     };
 
     /**
