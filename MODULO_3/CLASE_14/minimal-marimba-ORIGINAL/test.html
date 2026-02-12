@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Resonancias Electrónicas Efectos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: monospace; 
+            background: #0a0a0a; 
+            color: #00ff9d;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: #1a1a1a;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #00ff9d;
+        }
+        .test-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #cc5500;
+            margin-bottom: 10px;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid;
+            background: rgba(255,255,255, 0.05);
+        }
+        .pass { border-left-color: #00ff9d; }
+        .fail { border-left-color: #ff6b3d; }
+        .canvas-test {
+            width: 100%;
+            height: 200px;
+            background: #0a0a0a;
+            border: 1px solid #00ff9d;
+            margin: 10px 0;
+        }
+        button {
+            background: #cc5500;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 5px 10px 0;
+            cursor: pointer;
+            font-family: monospace;
+        }
+        button:hover {
+            background: #ff6b3d;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🔬 TEST RESONANCIAS ELECTRÓNICAS</h1>
+
+<div class="test-section">
+    <div class="test-title">1. Verificar Elementos HTML</div>
+    <div id="html-test"></div>
+</div>
+
+<div class="test-section">
+    <div class="test-title">2. Test AudioVisualizer Canvas</div>
+    <div id="visualizer-container" style="width: 100%; height: 200px; background: #0a0a0a; border: 1px solid #00ff9d;"></div>
+    <div id="visualizer-test"></div>
+</div>
+
+<div class="test-section">
+    <div class="test-title">3. Test ParticleSystem Canvas</div>
+    <div id="particles-container" style="width: 100%; height: 200px; background: #0a0a0a; border: 1px solid #00ff9d;"></div>
+    <div id="particles-test"></div>
+</div>
+
+<div class="test-section">
+    <div class="test-title">4. Test RippleEffect</div>
+    <button id="test-ripple-btn" style="padding: 20px 40px; font-size: 16px;">Click para Ripple (o presiona Enter/Space)</button>
+    <div id="ripple-test"></div>
+</div>
+
+<div class="test-section">
+    <div class="test-title">5. Test Wave SVG</div>
+    <svg id="test-wave" style="width: 100%; height: 100px; border: 1px solid #00ff9d;">
+        <path d="M0,50 Q360,0 720,50 T1440,50 L1440,100 L0,100 Z" fill="rgba(204, 85, 0, 0.3)" />
+    </svg>
+    <div id="wave-test"></div>
+</div>
+
+<div class="test-section">
+    <div class="test-title">6. Consola de Errores</div>
+    <div id="errors"></div>
+</div>
+
+<script>
+    // Capturar errores
+    const errors = [];
+    window.addEventListener('error', (e) => {
+        errors.push(`❌ ${e.message} (${e.filename}:${e.lineno})`);
+        updateErrors();
+    });
+
+    function updateErrors() {
+        const errorsDiv = document.getElementById('errors');
+        if (errors.length === 0) {
+            errorsDiv.innerHTML = '<div class="test-result pass">✓ No hay errores detectados</div>';
+        } else {
+            errorsDiv.innerHTML = errors.map(e => `<div class="test-result fail">${e}</div>`).join('');
+        }
+    }
+
+    // Test 1: Verificar elementos HTML
+    function testHTML() {
+        const tests = {
+            '.visualizer': document.querySelector('.visualizer'),
+            '.hero__particles': document.querySelector('.hero__particles'),
+            '.custom-cursor': document.querySelector('.custom-cursor'),
+            '.card--marimba': document.querySelector('.card--marimba'),
+            '.hero__waves': document.querySelector('.hero__waves')
+        };
+
+        const html = Object.entries(tests).map(([selector, el]) => {
+            if (el) {
+                const rect = el.getBoundingClientRect();
+                return `<div class="test-result pass">✓ ${selector} encontrado (${rect.width}x${rect.height})</div>`;
+            } else {
+                return `<div class="test-result fail">✗ ${selector} NO ENCONTRADO</div>`;
+            }
+        }).join('');
+
+        document.getElementById('html-test').innerHTML = html;
+    }
+
+    // Test 2: AudioVisualizer Manual
+    function testAudioVisualizer() {
+        const container = document.getElementById('visualizer-container');
+        const canvas = document.createElement('canvas');
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        container.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+            document.getElementById('visualizer-test').innerHTML = '<div class="test-result fail">❌ Canvas context 2D no disponible</div>';
+            return;
+        }
+
+        // Setup canvas size
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        document.getElementById('visualizer-test').innerHTML = `
+            <div class="test-result pass">✓ Canvas creado (${canvas.width}x${canvas.height})</div>
+        `;
+
+        // Animate
+        let phase = 0;
+        function animate() {
+            // Clear
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw bars
+            for (let i = 0; i < 60; i++) {
+                const value = Math.sin(phase + i * 0.1) * 100 + 100;
+                const barHeight = (value / 255) * canvas.height * 0.9;
+                const hue = (i / 60 * 360) % 360;
+                ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+                ctx.fillRect(
+                    (i / 60) * canvas.width,
+                    canvas.height - barHeight,
+                    canvas.width / 60 - 2,
+                    barHeight
+                );
+            }
+            phase += 0.02;
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    // Test 3: ParticleSystem Manual
+    function testParticles() {
+        const container = document.getElementById('particles-container');
+        const canvas = document.createElement('canvas');
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        container.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+            document.getElementById('particles-test').innerHTML = '<div class="test-result fail">❌ Canvas context 2D no disponible</div>';
+            return;
+        }
+
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        document.getElementById('particles-test').innerHTML = `
+            <div class="test-result pass">✓ Canvas de partículas creado (${canvas.width}x${canvas.height})</div>
+        `;
+
+        // Create particles
+        const particles = [];
+        for (let i = 0; i < 30; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 2,
+                vy: (Math.random() - 0.5) * 2,
+                radius: Math.random() * 2 + 1
+            });
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                p.x = Math.max(0, Math.min(canvas.width, p.x));
+                p.y = Math.max(0, Math.min(canvas.height, p.y));
+
+                ctx.fillStyle = '#cc5500';
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    // Test 4: RippleEffect
+    function testRipple() {
+        const btn = document.getElementById('test-ripple-btn');
+        btn.addEventListener('click', (e) => {
+            createRipple(e, btn);
+        });
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                createRipple(e, btn, true);
+            }
+        });
+
+        function createRipple(event, element, isKeyboard = false) {
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+
+            let x, y;
+            if (isKeyboard) {
+                x = rect.width / 2;
+                y = rect.height / 2;
+            } else {
+                x = event.clientX - rect.left;
+                y = event.clientY - rect.top;
+            }
+
+            ripple.style.cssText = `
+                position: absolute;
+                top: ${y}px;
+                left: ${x}px;
+                width: 20px;
+                height: 20px;
+                background: rgba(255, 107, 61, 0.6);
+                border-radius: 50%;
+                pointer-events: none;
+                transform: translate(-50%, -50%);
+                animation: ripple 600ms ease-out forwards;
+            `;
+
+            if (window.getComputedStyle(element).position === 'static') {
+                element.style.position = 'relative';
+            }
+
+            element.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 600);
+
+            document.getElementById('ripple-test').innerHTML = '<div class="test-result pass">✓ Ripple creado</div>';
+        }
+
+        // Add animation
+        if (!document.querySelector('style[data-ripple]')) {
+            const style = document.createElement('style');
+            style.setAttribute('data-ripple', 'true');
+            style.textContent = `
+                @keyframes ripple {
+                    0% {
+                        width: 20px;
+                        height: 20px;
+                        opacity: 1;
+                    }
+                    100% {
+                        width: 300px;
+                        height: 300px;
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    // Test 5: Wave Animation
+    function testWave() {
+        const wave = document.getElementById('test-wave');
+        
+        // Add animation style
+        if (!document.querySelector('style[data-wave]')) {
+            const style = document.createElement('style');
+            style.setAttribute('data-wave', 'true');
+            style.textContent = `
+                @keyframes waveMove {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                #test-wave path {
+                    animation: waveMove 10s linear infinite;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        document.getElementById('wave-test').innerHTML = '<div class="test-result pass">✓ Onda SVG animada</div>';
+    }
+
+    // Run all tests
+    function runAllTests() {
+        testHTML();
+        testAudioVisualizer();
+        testParticles();
+        testRipple();
+        testWave();
+        updateErrors();
+    }
+
+    // Start tests when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runAllTests);
+    } else {
+        runAllTests();
+    }
+</script>
+
+</body>
+</html>

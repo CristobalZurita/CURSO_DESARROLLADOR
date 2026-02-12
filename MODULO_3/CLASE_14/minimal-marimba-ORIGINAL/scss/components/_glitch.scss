@@ -1,0 +1,51 @@
+// ============================================
+// COMPONENTE: GLITCH TEXT
+// Efecto de interferencia digital para títulos
+// ============================================
+
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.glitch-text {
+  @include glitch-text($color-audio-secondary, $color-audio-primary);
+  
+  // Variante para títulos grandes
+  &--large {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+  }
+  
+  // Variante sutil (solo en hover, recomendado para hero)
+  &--subtle {
+    &::before, &::after {
+      opacity: 0 !important;
+      animation: none !important;
+    }
+    
+    &:hover::before,
+    &:hover::after {
+      opacity: 0.3;
+    }
+    
+    &:hover::before {
+      animation: glitch-anim 10s infinite linear alternate-reverse;
+    }
+    
+    &:hover::after {
+      animation: glitch-anim2 10s infinite linear alternate-reverse;
+    }
+  }
+  
+  // Colores alternativos
+  &--amber {
+    @include glitch-text(#ffaa00, #cc5500);
+  }
+  
+  // Respeto por preferencias de usuario
+  @media (prefers-reduced-motion: reduce) {
+    &::before, &::after {
+      animation: none;
+      opacity: 0 !important;
+    }
+  }
+}

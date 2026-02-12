@@ -145,3 +145,56 @@ $button-border-radius: $border-radius-full;
 
 $card-padding: $spacing-lg;
 $card-border-radius: $border-radius-lg;
+
+// ============================================
+// EFECTOS VISUALES - RESONANCIAS ELECTRÓNICAS
+// ============================================
+
+// Colores para efectos de audio y partículas
+$color-audio-primary: #cc5500;
+$color-audio-secondary: #00ff9d;
+$color-particle-1: #cc5500;
+$color-particle-2: #00ff9d;
+
+// Timing de animaciones
+$duration-glitch: 5s;
+$duration-wave: 10s;
+$duration-ripple: 0.6s;
+$duration-pulse: 1s;
+$duration-transition-fast: 0.2s;
+$duration-transition-base: 0.3s;
+
+// Z-Index Scale (Semántica)
+$z-background: -1;
+$z-particles: 1;
+$z-content: 10;
+$z-waves: 20;
+$z-visualizer: 30;
+$z-navigation: 100;
+$z-modals: 200;
+$z-cursor: 300;
+
+// Sistema de Partículas
+$particle-count-full: 50;
+$particle-count-reduced: 20;
+$particle-connection-dist: 150px;
+$particle-grid-size: 150px;
+$opacity-particle: 0.4;
+
+// Ondas Sonoras
+$wave-height: clamp(80px, 15vh, 200px);
+$wave-opacity-desktop: 0.3;
+$wave-opacity-mobile: 0.6;
+
+// Visualizador de Audio
+$visualizer-height: 120px;
+$opacity-visualizer: 0.6;
+
+// Cursor Personalizado
+$cursor-size: 20px;
+$cursor-height: 60px;
+
+// A11y
+$focus-ring-color: $color-audio-secondary;
+$focus-ring-width: 2px;
+

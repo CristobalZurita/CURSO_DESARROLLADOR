@@ -381,3 +381,42 @@
     font-size: $font-size-small;
   }
 }
+
+// ============================================
+// EFECTOS VISUALES EN SECCIONES
+// ============================================
+
+// Efecto Reverb/Parallax en secciones
+.reverb-section {
+  position: relative;
+  
+  &__echo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0.1;
+    transform: translateY(20px) scale(0.98);
+    z-index: $z-background;
+    filter: blur(10px);
+    pointer-events: none;
+  }
+}
+
+// Parallax suave para imágenes con transform3D para mejor performance
+.parallax-image {
+  will-change: transform;
+  transition: transform 0.1s linear;
+  transform: translateZ(0); // Habilitar GPU acceleration
+  
+  img {
+    will-change: transform;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    will-change: auto;
+  }
+}
+

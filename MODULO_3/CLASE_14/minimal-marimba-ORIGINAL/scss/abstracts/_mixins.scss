@@ -454,5 +454,100 @@
 }
 
 // ============================================
+// MIXINS PARA EFECTOS VISUALES
+// ============================================
+
+// Efecto Glitch para textos electrónicos
+@mixin glitch-text($color-1: $color-audio-secondary, $color-2: $color-audio-primary) {
+  position: relative;
+  display: inline-block;
+  
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity $duration-transition-base ease;
+  }
+  
+  &::before {
+    left: 2px;
+    text-shadow: -2px 0 $color-1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim $duration-glitch infinite linear alternate-reverse;
+  }
+  
+  &::after {
+    left: -2px;
+    text-shadow: -2px 0 $color-2;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 $duration-glitch infinite linear alternate-reverse;
+  }
+  
+  // Activar en hover (evita fatiga visual)
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+  }
+  
+  &:hover::before {
+    animation: glitch-anim 0.3s infinite linear alternate-reverse;
+  }
+  
+  &:hover::after {
+    animation: glitch-anim2 0.3s infinite linear alternate-reverse;
+  }
+  
+  // Respetar preferencias de usuario
+  @media (prefers-reduced-motion: reduce) {
+    &::before,
+    &::after {
+      animation: none;
+      opacity: 0;
+    }
+  }
+}
+
+// Efecto Ripple para botones/cards
+@mixin ripple-effect($color: rgba(204, 85, 0, 0.3)) {
+  position: relative;
+  overflow: hidden;
+  
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: $color;
+    transform: scale(0);
+    animation: ripple $duration-ripple linear;
+    pointer-events: none;
+  }
+}
+
+// Glow pulsante estilo modular
+@mixin modular-glow($color: $color-audio-secondary) {
+  box-shadow: 0 0 10px $color, 0 0 20px rgba($color, 0.8), 0 0 30px rgba($color, 0.6);
+  animation: pulse-glow $duration-pulse ease-in-out infinite;
+}
+
+// Wave animation para backgrounds
+@mixin wave-animation($duration: $duration-wave, $direction: normal) {
+  animation: waveMove $duration linear infinite;
+  animation-direction: $direction;
+}
+
+// Efecto de "tecla" para interacción
+@mixin key-press($scale: 0.98, $shadow-color: rgba(204, 85, 0, 0.2)) {
+  &:active {
+    transform: scale($scale) translateY(2px);
+    box-shadow: 0 4px 16px $shadow-color;
+  }
+}
+
+// ============================================
 // FIN - MICROINTERACCIONES
 // ============================================
+

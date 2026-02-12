@@ -154,7 +154,66 @@
   }
 }
 
-// WRAPPER
+// ============================================
+// TEMA MODULAR PARA CRONOGRAMA
+// Estilo patch cables y LEDs sintetizador
+// ============================================
+
 .accordion-container {
+  position: relative;
   margin-bottom: $spacing-xl;
+  
+  // Línea de conexión vertical estilo patch cables
+  &::before {
+    content: '';
+    position: absolute;
+    left: -14px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, $color-audio-primary, $color-audio-secondary);
+    opacity: 0.3;
+    z-index: $z-background;
+    
+    @media (max-width: $breakpoint-md) {
+      left: 8px;
+    }
+  }
+  
+  // Modificador para tema modular explícito
+  &--modular {
+    .accordion__item--active {
+      position: relative;
+      background: linear-gradient(90deg, rgba($color-audio-primary, 0.05), rgba($color-audio-secondary, 0.05));
+      
+      // LED indicador pulsante
+      &::before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background: $color-audio-secondary;
+        border-radius: 50%;
+        @include modular-glow($color-audio-secondary);
+        z-index: $z-content;
+        
+        @media (max-width: $breakpoint-md) {
+          left: 2px;
+        }
+      }
+      
+      // Fondo gradiente para item activo
+      .accordion__header {
+        background: linear-gradient(90deg, rgba($color-audio-primary, 0.1), rgba($color-audio-secondary, 0.1));
+      }
+    }
+    
+    .accordion__item:hover {
+      border-color: rgba($color-audio-primary, 0.3);
+    }
+  }
 }
+

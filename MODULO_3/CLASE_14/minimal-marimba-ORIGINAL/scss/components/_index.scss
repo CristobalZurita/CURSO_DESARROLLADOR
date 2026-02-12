@@ -1,7 +1,6 @@
 // ============================================
 // COMPONENTS/_INDEX.SCSS
 // Módulo de exportación centralizada
-// Contenido: Botones, cards, formularios, popup, accordion, galería, speakers, location, faq
 // ============================================
 
 @forward 'buttons';
@@ -13,3 +12,9 @@
 @forward 'speakers';
 @forward 'location';
 @forward 'faq';
+@forward 'accessibility';
+
+// NUEVOS EFECTOS VISUALES
+@forward 'glitch';
+@forward 'visualizer';
+@forward 'custom-cursor';

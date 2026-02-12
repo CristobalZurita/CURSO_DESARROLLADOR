@@ -64,6 +64,66 @@
     z-index: $z-dropdown;
   }
   
+  // ==========================================
+  // ONDAS SONORAS ANIMADAS
+  // ==========================================
+  &__waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $wave-height;
+    z-index: $z-waves;
+    pointer-events: none;
+    opacity: $wave-opacity-desktop;
+    
+    svg {
+      position: absolute;
+      bottom: 0;
+      width: 200%;
+      height: 100%;
+      @include wave-animation($duration-wave, normal);
+      
+      &:nth-child(2) {
+        animation-duration: 15s;
+        opacity: 0.5;
+        animation-direction: reverse;
+      }
+      
+      &:nth-child(3) {
+        animation-duration: 20s;
+        opacity: 0.3;
+      }
+    }
+    
+    // Responsive: Reducir altura y ocultar ondas secundarias en móvil
+    @media (max-width: $breakpoint-md) {
+      opacity: $wave-opacity-mobile;
+      
+      svg:nth-child(2),
+      svg:nth-child(3) {
+        display: none;
+      }
+    }
+    
+    // Respetar preferencias de usuario
+    @media (prefers-reduced-motion: reduce) {
+      display: none;
+    }
+  }
+  
+  // Partículas de fondo (canvas de JS)
+  &__particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $z-particles;
+    pointer-events: none;
+    opacity: $opacity-particle;
+  }
+  
   // CONTAINER
   &__container {
     @include container;

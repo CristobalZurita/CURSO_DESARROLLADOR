@@ -1,0 +1,310 @@
+// ============================================
+// ACCESSIBILITY PANEL - Sistema BEM
+// ============================================
+
+@use '../abstracts/' as *;
+
+// PANEL PRINCIPAL DE ACCESIBILIDAD
+// ============================================
+.accessibility-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  background: $color-dark-bg;
+  border-left: 3px solid $color-primary;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 9998;
+  overflow-y: auto;
+  
+  &[aria-hidden="false"] {
+    transform: translateX(0);
+  }
+  
+  @media (max-width: $breakpoint-md) {
+    max-width: 100%;
+  }
+  
+  &__container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+  }
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-lg;
+    border-bottom: 2px solid rgba($color-primary, 0.3);
+    background: rgba($color-primary, 0.05);
+    flex-shrink: 0;
+  }
+  
+  &__title {
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin: 0;
+    font-family: $font-display;
+  }
+  
+  &__close {
+    background: transparent;
+    border: none;
+    color: $color-primary;
+    font-size: 32px;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: rgba($color-primary, 0.1);
+      transform: scale(1.1);
+    }
+    
+    &:focus {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+  }
+  
+  &__content {
+    flex: 1;
+    padding: $spacing-lg;
+    overflow-y: auto;
+  }
+}
+
+// OVERLAY (Oscurecer fondo cuando panel está abierto)
+// ============================================
+.accessibility-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9997;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// OPCIONES DE ACCESIBILIDAD
+// ============================================
+.accessibility-option {
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid rgba($color-primary, 0.2);
+  
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    cursor: pointer;
+    user-select: none;
+    
+    span {
+      color: $color-text-primary;
+      font-weight: $font-weight-semibold;
+      font-size: $font-size-base;
+    }
+  }
+  
+  &__input {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: $color-primary;
+    flex-shrink: 0;
+    
+    &:focus {
+      outline: 2px solid $color-primary;
+      outline-offset: 2px;
+    }
+  }
+  
+  &__description {
+    margin: $spacing-sm 0 0 30px;
+    font-size: $font-size-small;
+    color: rgba($color-text-primary, 0.7);
+    line-height: 1.4;
+  }
+}
+
+// ESTILOS CUANDO ALTO CONTRASTE ESTÁ ACTIVO
+// ============================================
+.accessibility-high-contrast {
+  background: #000000;
+  color: #FFFFFF;
+  
+  a {
+    color: #FFD700;
+    text-decoration: underline;
+    
+    &:visited {
+      color: #00CED1;
+    }
+  }
+  
+  button {
+    border: 2px solid #FFD700;
+    color: #000000;
+    background: #FFD700;
+    
+    &:hover {
+      background: #FFF;
+      color: #000000;
+    }
+  }
+  
+  .btn--primary {
+    border: 2px solid #FFD700 !important;
+    background: #FFD700 !important;
+    color: #000000 !important;
+  }
+  
+  input, textarea, select {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    border: 2px solid #FFD700 !important;
+  }
+  
+  .header {
+    background: #000000;
+    border-bottom: 3px solid #FFD700;
+  }
+  
+  .footer {
+    background: #000000;
+    border-top: 3px solid #FFD700;
+  }
+}
+
+// ESTILOS CUANDO FUENTE AUMENTADA ESTÁ ACTIVA
+// ============================================
+.accessibility-large-text {
+  font-size: 125%;
+  
+  h1,
+  .h1 {
+    font-size: 125%;
+  }
+  
+  h2,
+  .h2 {
+    font-size: 125%;
+  }
+  
+  h3,
+  .h3 {
+    font-size: 125%;
+  }
+  
+  h4,
+  .h4 {
+    font-size: 125%;
+  }
+  
+  p,
+  span,
+  li,
+  .btn {
+    font-size: 125%;
+  }
+}
+
+// ESTILOS CUANDO FOCO VISIBLE ESTÁ ACTIVO
+// ============================================
+.accessibility-focus-visible {
+  *:focus {
+    outline: 3px solid $color-primary !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba($color-primary, 0.2) !important;
+  }
+  
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 3px solid $color-primary !important;
+    outline-offset: 2px !important;
+  }
+}
+
+// BOTÓN DE ACCESIBILIDAD EN NAVBAR
+// ============================================
+.btn--accessibility {
+  background: rgba($color-primary, 0.1);
+  color: $color-primary;
+  border: 1px solid $color-primary;
+  font-size: $font-size-small;
+  
+  &:hover {
+    background: $color-primary;
+    color: $color-dark-bg;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba($color-primary, 0.3);
+  }
+  
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// RESPUESTAS DE LECTORES DE PANTALLA (sr-only)
+// ============================================
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// SALTAR A CONTENIDO PRINCIPAL (Skip Link)
+// ============================================
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: $color-primary;
+  color: $color-dark-bg;
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 100;
+  font-weight: $font-weight-bold;
+  
+  &:focus {
+    top: 0;
+  }
+}

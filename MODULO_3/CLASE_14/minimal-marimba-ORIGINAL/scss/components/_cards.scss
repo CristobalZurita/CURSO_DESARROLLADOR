@@ -188,6 +188,71 @@
   }
 }
 
+
+
+// ============================================
+// MODIFICADORES PARA EFECTOS VISUALES
+// ============================================
+
+// Efecto de "tecla de marimba" - Obras acústicas
+.card--marimba {
+  @include ripple-effect;
+  @include key-press;
+  
+  position: relative;
+  overflow: hidden;
+  
+  // Barra de progreso estilo onda
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, $color-audio-primary, $color-audio-secondary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $duration-transition-base ease;
+    z-index: 10;
+  }
+  
+  &:hover::after {
+    transform: scaleX(1);
+  }
+  
+  // Glow en hover
+  &:hover {
+    box-shadow: 0 0 30px rgba($color-audio-primary, 0.3);
+  }
+}
+
+// Variante electrónica con glitch en título - Obras digitales
+.card--electronic {
+  border-color: rgba($color-audio-secondary, 0.3);
+  
+  &:hover {
+    border-color: $color-audio-secondary;
+    box-shadow: 0 0 30px rgba($color-audio-secondary, 0.3) !important;
+  }
+  
+  // Aplicar glitch sutil al título
+  .card__title {
+    @include glitch-text($color-audio-secondary, $color-audio-primary);
+    
+    // Hacer más sutil que el hover
+    &::before,
+    &::after {
+      opacity: 0;
+    }
+    
+    &:hover::before,
+    &:hover::after {
+      opacity: 0.5;
+    }
+  }
+}
+
 // GRID DE CARDS
 .cards-grid {
   display: grid;
@@ -207,3 +272,4 @@
     }
   }
 }
+
