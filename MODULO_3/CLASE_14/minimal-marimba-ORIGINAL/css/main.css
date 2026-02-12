@@ -2703,8 +2703,10 @@ p.lead {
 }
 
 @media (pointer: fine) {
-  body {
-    cursor: none;
+  html,
+  body,
+  body * {
+    cursor: none !important;
   }
   .custom-cursor {
     position: fixed;
@@ -2727,11 +2729,7 @@ p.lead {
   .custom-cursor--hovering {
     transform: translate(-50%, 0%) scale(1.1);
   }
-  a, button, .card, input, textarea, select, label {
-    cursor: none;
-  }
   *:focus-visible {
-    cursor: auto !important;
     outline: 2px solid #00ff9d;
     outline-offset: 2px;
   }

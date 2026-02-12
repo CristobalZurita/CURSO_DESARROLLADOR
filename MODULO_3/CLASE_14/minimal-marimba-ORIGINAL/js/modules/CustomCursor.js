@@ -114,14 +114,10 @@ class CustomCursor {
             this.cursor.style.display = 'block';
         });
 
-        // Focus-visible: restore native cursor for keyboard users
-        const handleFocusVisible = () => {
-            if (document.activeElement && document.activeElement.matches(':focus-visible')) {
-                document.documentElement.style.cursor = 'auto';
-            }
-        };
-
-        document.addEventListener('focusin', handleFocusVisible);
+        // Keep native cursor hidden consistently
+        document.addEventListener('focusin', () => {
+            document.documentElement.style.cursor = 'none';
+        });
         document.addEventListener('blur', () => {
             document.documentElement.style.cursor = 'none';
         });
@@ -133,10 +129,9 @@ class CustomCursor {
     animate = () => {
         requestAnimationFrame(() => this.animate());
 
-        // Smooth easing
-        const easing = 0.15;
-        this.x += (this.targetX - this.x) * easing;
-        this.y += (this.targetY - this.y) * easing;
+        // No easing: cursor image sticks to real pointer position
+        this.x = this.targetX;
+        this.y = this.targetY;
 
         // Apply transform - solo translación y escala, sin rotación
         const scale = this.isClicking ? 0.9 : (this.isHovering ? 1.1 : 1);
@@ -155,4 +150,3 @@ class CustomCursor {
 }
 
 export default CustomCursor;
-
