@@ -308,6 +308,19 @@
       transform: translateX(100px);
     }
   }
+
+  &__cta {
+    margin-top: $spacing-md;
+    align-self: center;
+  }
+
+  &__cta--glow {
+    animation: glowHalo 6s ease-in-out infinite;
+    
+    &:hover {
+      animation: none;
+    }
+  }
   
   &__links {
     display: flex;

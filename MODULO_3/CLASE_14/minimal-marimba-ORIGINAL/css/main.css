@@ -802,6 +802,16 @@ p.lead {
     transform: translateX(100px);
   }
 }
+.footer__cta {
+  margin-top: 24px;
+  align-self: center;
+}
+.footer__cta--glow {
+  animation: glowHalo 6s ease-in-out infinite;
+}
+.footer__cta--glow:hover {
+  animation: none;
+}
 .footer__links {
   display: flex;
   flex-direction: column;
