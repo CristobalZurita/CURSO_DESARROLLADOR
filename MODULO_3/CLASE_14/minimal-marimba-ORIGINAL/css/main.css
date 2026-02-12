@@ -819,6 +819,12 @@ p.lead {
 .footer__link:hover {
   color: #cc5500;
 }
+.footer__link--external {
+  animation: glowHalo 6s ease-in-out infinite;
+}
+.footer__link--external:hover {
+  animation: none;
+}
 .footer__social {
   display: flex;
   gap: 16px;

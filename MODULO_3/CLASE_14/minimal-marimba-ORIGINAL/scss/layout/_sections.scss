@@ -326,6 +326,14 @@
     &:hover {
       color: $color-primary;
     }
+
+    &--external {
+      animation: glowHalo 6s ease-in-out infinite;
+      
+      &:hover {
+        animation: none;
+      }
+    }
   }
   
   &__social {
