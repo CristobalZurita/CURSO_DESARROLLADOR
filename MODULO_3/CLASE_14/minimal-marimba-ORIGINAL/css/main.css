@@ -414,6 +414,12 @@ p.lead {
   justify-content: space-between;
   height: 100%;
 }
+@media (min-width: 1200px) {
+  .header__container {
+    justify-content: center;
+    gap: clamp(20px, 2.8vw, 56px);
+  }
+}
 .header__logo {
   font-family: "Space Grotesk", "Inter", sans-serif;
   font-size: 1.5rem;
@@ -426,6 +432,7 @@ p.lead {
   transition: opacity 0.15s ease;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 .header__logo:hover {
   opacity: 0.8;
@@ -445,7 +452,9 @@ p.lead {
 @media (min-width: 768px) {
   .header__nav {
     display: flex;
-    gap: 32px;
+    gap: clamp(32px, 2.4vw, 37px);
+    align-items: center;
+    flex-shrink: 0;
   }
 }
 .header__link {
@@ -470,6 +479,7 @@ p.lead {
 }
 .header__link {
   font-weight: 500;
+  font-size: clamp(1.155rem, 1.045rem + 0.352vw, 1.375rem);
 }
 .header__link--active {
   color: #cc5500;
@@ -485,7 +495,10 @@ p.lead {
 }
 @media (min-width: 768px) {
   .header__cta {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
   }
 }
 .header__burger {

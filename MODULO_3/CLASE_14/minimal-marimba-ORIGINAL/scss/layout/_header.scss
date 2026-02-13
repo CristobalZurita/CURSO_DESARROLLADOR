@@ -25,6 +25,11 @@
     @include container;
     @include flex-between;
     height: 100%;
+    
+    @include respond-to(xl) {
+      justify-content: center;
+      gap: clamp(20px, 2.8vw, 56px);
+    }
   }
   
   &__logo {
@@ -36,6 +41,7 @@
     transition: opacity $transition-fast;
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     
     &:hover {
       opacity: 0.8;
@@ -58,13 +64,16 @@
     
     @include respond-to(md) {
       display: flex;
-      gap: $spacing-lg;
+      gap: clamp(#{$spacing-lg}, 2.4vw, 37px);
+      align-items: center;
+      flex-shrink: 0;
     }
   }
   
   &__link {
     @include underline-animation($color-primary, 2px);
     font-weight: $font-weight-medium;
+    font-size: clamp(1.155rem, 1.045rem + 0.352vw, 1.375rem);
     
     &--active {
       color: $color-primary;
@@ -83,7 +92,10 @@
     display: none;
     
     @include respond-to(md) {
-      display: block;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
     }
   }
   
