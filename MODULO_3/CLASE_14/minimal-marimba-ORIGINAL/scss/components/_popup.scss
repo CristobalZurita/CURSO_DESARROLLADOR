@@ -69,6 +69,7 @@
   &__title {
     font-size: $h3-size;
     font-weight: $font-weight-bold;
+    color: $color-primary;
     @include gradient-text;
     margin-bottom: $spacing-sm;
   }
@@ -175,6 +176,28 @@
       }
     }
   }
+
+  // MODIFICADOR - TICKETS
+  &--tickets {
+    .popup__container {
+      max-width: min(1100px, 96vw);
+      padding: $spacing-lg;
+    }
+
+    .popup__header {
+      margin-bottom: $spacing-md;
+    }
+
+    .popup__title {
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      color: $color-primary;
+    }
+
+    .popup__body--tickets {
+      margin-bottom: 0;
+    }
+  }
   
   // MODIFICADOR - CENTRADO
   &--centered {
@@ -186,6 +209,14 @@
       justify-content: center;
     }
   }
+}
+
+.tickets-popup__frame {
+  width: 100%;
+  height: min(78vh, 760px);
+  border: 1px solid rgba($color-primary, 0.18);
+  border-radius: $border-radius-lg;
+  background: $color-dark-bg;
 }
 
 // ANIMACIÓN DE ENTRADA

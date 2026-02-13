@@ -91,7 +91,12 @@
                 const target = document.querySelector(href);
                 if (target) {
                     const headerHeight = header?.offsetHeight || 0;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    const conceptHeaderTarget = href === '#concepto'
+                        ? target.querySelector('.section__container > .section__header')
+                        : null;
+                    const scrollTarget = conceptHeaderTarget || target;
+                    const extraOffset = href === '#concepto' ? 12 : 0;
+                    const targetPosition = scrollTarget.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraOffset;
                     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             }
@@ -139,6 +144,41 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && popup.classList.contains('popup--active')) {
                 closeAnnouncementPopup();
+            }
+        });
+    }
+
+    // ==========================================
+    // POPUP TICKETS
+    // ==========================================
+    const ticketsPopup = document.getElementById('ticketsPopup');
+    const ticketsTriggers = document.querySelectorAll('[data-popup="tickets"]');
+
+    if (ticketsPopup) {
+        const ticketsCloseBtns = ticketsPopup.querySelectorAll('.popup__close, .popup__backdrop');
+
+        const closeTicketsPopup = function() {
+            ticketsPopup.classList.remove('popup--active');
+            document.body.style.overflow = '';
+        };
+
+        ticketsTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                ticketsPopup.classList.add('popup--active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        ticketsCloseBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                closeTicketsPopup();
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && ticketsPopup.classList.contains('popup--active')) {
+                closeTicketsPopup();
             }
         });
     }

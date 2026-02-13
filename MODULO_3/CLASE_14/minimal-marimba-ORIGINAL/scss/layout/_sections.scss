@@ -23,7 +23,7 @@
   &__eyebrow {
     display: inline-block;
     color: $color-primary;
-    font-size: $font-size-small;
+    font-size: $font-size-large;
     font-weight: $font-weight-semibold;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -62,6 +62,21 @@
 
 // SECCIÓN DE PROYECTO/CONCEPTO
 .concept {
+  // Reduce el espacio superior para que al navegar a #concepto
+  // el contenido útil aparezca antes en pantalla.
+  &.section {
+    padding-top: clamp(40px, 6vh, 72px);
+    padding-bottom: clamp(56px, 8vh, 96px);
+  }
+
+  .section__header {
+    margin-bottom: $spacing-xl;
+
+    @include respond-to(lg) {
+      margin-bottom: $spacing-2xl;
+    }
+  }
+
   &__content {
     display: grid;
     gap: $spacing-xl;
@@ -72,7 +87,8 @@
       grid-template-areas:
         "text image"
         "features features";
-      gap: $spacing-3xl;
+      gap: $spacing-xl;
+      align-items: stretch;
     }
   }
   
@@ -103,7 +119,8 @@
 
     @include respond-to(lg) {
       grid-area: image;
-      align-self: start;
+      align-self: stretch;
+      height: clamp(280px, 24vw, 360px);
     }
     
     img {
@@ -126,11 +143,23 @@
       z-index: -1;
     }
   }
+
+  &__media-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+
+    @include respond-to(lg) {
+      height: 100%;
+    }
+  }
   
   &__features {
     display: grid;
-    gap: $spacing-lg;
-    margin-top: $spacing-lg;
+    gap: $spacing-md;
+    margin-top: $spacing-md;
     
     @include respond-to(md) {
       grid-template-columns: repeat(2, 1fr);
@@ -139,7 +168,8 @@
     @include respond-to(lg) {
       grid-area: features;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      margin-top: $spacing-sm;
+      margin-top: $spacing-xs;
+      gap: $spacing-md;
     }
   }
   

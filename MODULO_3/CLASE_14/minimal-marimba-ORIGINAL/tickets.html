@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra de Tickets | Minimal Marimba</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #151515;
+      --surface-2: #101010;
+      --surface-3: #1b1b1b;
+      --primary: #cc5500;
+      --primary-strong: #e46d00;
+      --text: #ffffff;
+      --muted: #b0b0b0;
+      --muted-2: #8d8d8d;
+      --danger: #ff4868;
+      --blue-electric: #00a8ff;
+      --platea: #8b3dff;
+      --balcon: #ffc247;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: radial-gradient(circle at 80% -20%, rgba(0, 168, 255, 0.09), transparent 45%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 22px;
+    }
+
+    .tickets-shell {
+      width: min(100%, 1100px);
+      margin: 0 auto;
+      border: 1px solid rgba(204, 85, 0, 0.26);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(204, 85, 0, 0.06), transparent 180px), var(--surface);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 2.4vw, 28px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tickets-shell__eyebrow {
+      display: inline-block;
+      color: var(--primary);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .tickets-shell__title {
+      font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .tickets-shell__description {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      max-width: 75ch;
+    }
+
+    .tickets-shell__description strong {
+      color: var(--blue-electric);
+      font-weight: 700;
+    }
+
+    .tickets-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .theater-reference {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--surface-2);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .theater-reference img {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 0.9;
+    }
+
+    .theater-reference__caption {
+      padding: 10px 12px;
+      color: var(--muted-2);
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .theater-map {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 34%), var(--surface-2);
+      padding: clamp(12px, 2vw, 18px);
+      margin-top: 16px;
+    }
+
+    .theater-map__stage {
+      width: min(100%, 680px);
+      margin: 0 auto 16px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px 999px 0 0;
+      background: linear-gradient(180deg, #434343, #2f2f2f);
+      color: #ffffff;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .theater-map__section {
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid transparent;
+      background: var(--surface-3);
+    }
+
+    .theater-map__section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .theater-map__section--platea {
+      border-color: rgba(139, 61, 255, 0.6);
+      background: linear-gradient(180deg, rgba(139, 61, 255, 0.2), rgba(139, 61, 255, 0.06));
+    }
+
+    .theater-map__section--balcon {
+      border-color: rgba(255, 194, 71, 0.65);
+      background: linear-gradient(180deg, rgba(255, 194, 71, 0.2), rgba(255, 194, 71, 0.06));
+    }
+
+    .theater-map__section--galeria {
+      border-color: rgba(0, 168, 255, 0.7);
+      background: linear-gradient(180deg, rgba(0, 168, 255, 0.2), rgba(0, 168, 255, 0.06));
+      position: relative;
+    }
+
+    .theater-map__zones {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .theater-map__zone {
+      appearance: none;
+      border: 0;
+      border-radius: 8px;
+      min-height: 64px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .theater-map__zone:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      filter: brightness(1.08);
+    }
+
+    .theater-map__zone:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    .theater-map__zone[data-section="platea"] {
+      background: var(--platea);
+    }
+
+    .theater-map__zone[data-section="balcon"] {
+      background: var(--balcon);
+    }
+
+    .theater-map__zone[data-section="galeria"] {
+      background: var(--blue-electric);
+    }
+
+    .theater-map__zone.is-selected {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.94), 0 0 0 5px rgba(204, 85, 0, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .theater-map__zone[data-free="true"]::after {
+      content: "FREE";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #0a0a0a;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+    }
+
+    .theater-map__meta {
+      text-align: center;
+    }
+
+    .theater-map__label {
+      display: block;
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    .theater-map__price {
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .theater-map__price--free {
+      color: var(--blue-electric);
+      font-weight: 700;
+    }
+
+    .theater-map__badge-free {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      border-radius: 999px;
+      background: var(--danger);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+    }
+
+    .theater-legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .theater-legend__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 10px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .theater-legend__dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .theater-legend__dot--platea {
+      background: var(--platea);
+    }
+
+    .theater-legend__dot--balcon {
+      background: var(--balcon);
+    }
+
+    .theater-legend__dot--galeria {
+      background: var(--blue-electric);
+    }
+
+    .cart-widget {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1000;
+    }
+
+    .cart-widget__toggle {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #0a0a0a;
+      min-width: 152px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 0.83rem;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .cart-widget__toggle:hover {
+      background: var(--primary-strong);
+    }
+
+    .cart-widget__count {
+      border-radius: 999px;
+      background: #0a0a0a;
+      color: #fff;
+      min-width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .cart-widget__panel {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 10px);
+      width: min(360px, calc(100vw - 44px));
+      border-radius: 14px;
+      border: 1px solid rgba(204, 85, 0, 0.3);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .cart-widget__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 12px 14px;
+    }
+
+    .cart-widget__header h3 {
+      color: var(--text);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .cart-widget__close {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .cart-widget__close:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .cart-widget__items {
+      max-height: 230px;
+      overflow-y: auto;
+      padding: 10px 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .cart-widget__item {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 8px 10px;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cart-widget__item-name {
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .cart-widget__item-detail {
+      color: var(--muted-2);
+      font-size: 0.74rem;
+      line-height: 1.35;
+    }
+
+    .cart-widget__item-price {
+      color: var(--primary);
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .cart-widget__remove {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted-2);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 2px 4px;
+      border-radius: 6px;
+    }
+
+    .cart-widget__remove:hover {
+      background: rgba(255, 72, 104, 0.14);
+      color: var(--danger);
+    }
+
+    .cart-widget__footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+      padding: 12px 14px 14px;
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .cart-widget__summary {
+      margin-bottom: 10px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .cart-widget__row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .cart-widget__row--total {
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding-top: 5px;
+      border-top: 1px solid rgba(255, 255, 255, 0.11);
+      margin-top: 4px;
+    }
+
+    .cart-widget__actions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      min-height: 38px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      width: 100%;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn--primary {
+      background: var(--primary);
+      color: #0a0a0a;
+    }
+
+    .btn--ghost {
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .free-popup {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .free-popup.is-active {
+      display: flex;
+    }
+
+    .free-popup__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(4px);
+    }
+
+    .free-popup__card {
+      position: relative;
+      width: min(100%, 460px);
+      border-radius: 14px;
+      border: 1px solid rgba(0, 168, 255, 0.55);
+      background: linear-gradient(180deg, rgba(0, 168, 255, 0.09), transparent 120px), var(--surface);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .free-popup__badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: #0a0a0a;
+      background: var(--blue-electric);
+      margin-bottom: 8px;
+    }
+
+    .free-popup__title {
+      color: var(--text);
+      font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+      line-height: 1.15;
+      margin-bottom: 4px;
+    }
+
+    .free-popup__subtitle {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 12px;
+    }
+
+    .free-popup__counter {
+      border: 1px solid rgba(0, 168, 255, 0.3);
+      border-radius: 10px;
+      text-align: center;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      background: rgba(0, 168, 255, 0.08);
+    }
+
+    .free-popup__counter-number {
+      display: block;
+      color: var(--blue-electric);
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 900;
+      margin-bottom: 2px;
+    }
+
+    .free-popup__counter-label {
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .free-popup__text {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .free-popup__actions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .toast-wrap {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 1200;
+      display: grid;
+      gap: 8px;
+    }
+
+    .toast {
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #fff;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: toastIn 0.25s ease;
+    }
+
+    .toast--success {
+      background: rgba(0, 168, 255, 0.9);
+      color: #0a0a0a;
+    }
+
+    .toast--error {
+      background: rgba(255, 72, 104, 0.88);
+    }
+
+    .toast--info {
+      background: rgba(204, 85, 0, 0.9);
+    }
+
+    .empty {
+      color: var(--muted-2);
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 16px 8px;
+    }
+
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 920px) {
+      .tickets-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      body {
+        padding: 12px;
+      }
+
+      .cart-widget {
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .cart-widget__toggle {
+        min-width: 132px;
+        padding: 10px 12px;
+      }
+
+      .theater-map__zones {
+        gap: 8px;
+      }
+
+      .theater-map__zone {
+        min-height: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="tickets-shell">
+    <span class="tickets-shell__eyebrow">Entradas</span>
+    <h1 class="tickets-shell__title">Selecciona tu Ubicación</h1>
+    <p class="tickets-shell__description">
+      Elige tu sector en el Teatro Municipal de Valparaíso.
+      <strong>Tercer Nivel: ¡Gratis!</strong> para los primeros registrados.
+    </p>
+
+    <section class="tickets-layout" aria-label="Mapa de tickets">
+      <div>
+        <div class="theater-map" id="theaterMap">
+          <div class="theater-map__stage">Escenario</div>
+
+          <article class="theater-map__section theater-map__section--platea" data-section="platea">
+            <div class="theater-map__zones">
+              <button class="theater-map__zone" type="button" data-zone="platea-left" data-section="platea" data-price="10000" data-fee="2000" data-total="12000" aria-label="Platea baja izquierda, total 12000"></button>
+              <button class="theater-map__zone" type="button" data-zone="platea-center" data-section="platea" data-price="10000" data-fee="2000" data-total="12000" aria-label="Platea baja centro, total 12000"></button>
+              <button class="theater-map__zone" type="button" data-zone="platea-right" data-section="platea" data-price="10000" data-fee="2000" data-total="12000" aria-label="Platea baja derecha, total 12000"></button>
+            </div>
+            <div class="theater-map__meta">
+              <span class="theater-map__label">Platea Baja</span>
+              <span class="theater-map__price">$10.000 + $2.000 = $12.000</span>
+            </div>
+          </article>
+
+          <article class="theater-map__section theater-map__section--balcon" data-section="balcon">
+            <div class="theater-map__zones">
+              <button class="theater-map__zone" type="button" data-zone="balcon-left" data-section="balcon" data-price="5000" data-fee="1000" data-total="6000" aria-label="Balcón lateral izquierda, total 6000"></button>
+              <button class="theater-map__zone" type="button" data-zone="balcon-center" data-section="balcon" data-price="5000" data-fee="1000" data-total="6000" aria-label="Balcón centro, total 6000"></button>
+              <button class="theater-map__zone" type="button" data-zone="balcon-right" data-section="balcon" data-price="5000" data-fee="1000" data-total="6000" aria-label="Balcón lateral derecha, total 6000"></button>
+            </div>
+            <div class="theater-map__meta">
+              <span class="theater-map__label">Balcón</span>
+              <span class="theater-map__price">$5.000 + $1.000 = $6.000</span>
+            </div>
+          </article>
+
+          <article class="theater-map__section theater-map__section--galeria" data-section="galeria">
+            <span class="theater-map__badge-free">Limitado</span>
+            <div class="theater-map__zones">
+              <button class="theater-map__zone" type="button" data-zone="galeria-left" data-section="galeria" data-price="0" data-fee="0" data-total="0" data-free="true" aria-label="Galería lateral izquierda, gratis"></button>
+              <button class="theater-map__zone" type="button" data-zone="galeria-center" data-section="galeria" data-price="0" data-fee="0" data-total="0" data-free="true" aria-label="Galería centro, gratis"></button>
+              <button class="theater-map__zone" type="button" data-zone="galeria-right" data-section="galeria" data-price="0" data-fee="0" data-total="0" data-free="true" aria-label="Galería lateral derecha, gratis"></button>
+            </div>
+            <div class="theater-map__meta">
+              <span class="theater-map__label">Galería</span>
+              <span class="theater-map__price theater-map__price--free">¡Gratis!</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="theater-legend" aria-label="Leyenda de zonas">
+          <div class="theater-legend__item">
+            <span class="theater-legend__dot theater-legend__dot--platea" aria-hidden="true"></span>
+            <span>Platea Baja - $12.000</span>
+          </div>
+          <div class="theater-legend__item">
+            <span class="theater-legend__dot theater-legend__dot--balcon" aria-hidden="true"></span>
+            <span>Balcón - $6.000</span>
+          </div>
+          <div class="theater-legend__item">
+            <span class="theater-legend__dot theater-legend__dot--galeria" aria-hidden="true"></span>
+            <span>Galería - Gratis (limitado)</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="theater-reference" aria-label="Referencia del teatro">
+        <img src="assets/images/TEATRO3.jpeg" alt="Mapa del Teatro Municipal de Valparaíso">
+        <p class="theater-reference__caption">
+          Referencia visual del teatro. Selecciona las zonas en el mapa interactivo.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <div class="cart-widget" id="cartWidget" aria-label="Carrito de compras" hidden>
+    <button class="cart-widget__toggle" id="cartToggle" aria-expanded="false" aria-controls="cartPanel">
+      <span>Tickets</span>
+      <span class="cart-widget__count" id="cartCount">0</span>
+      <span id="cartTotal">$0</span>
+    </button>
+
+    <div class="cart-widget__panel" id="cartPanel" hidden>
+      <div class="cart-widget__header">
+        <h3>Tu selección</h3>
+        <button class="cart-widget__close" id="cartClose" aria-label="Cerrar carrito">×</button>
+      </div>
+      <div class="cart-widget__items" id="cartItems">
+        <p class="empty">Tu carrito está vacío.</p>
+      </div>
+      <div class="cart-widget__footer">
+        <div class="cart-widget__summary">
+          <div class="cart-widget__row"><span>Subtotal</span><span id="cartSubtotal">$0</span></div>
+          <div class="cart-widget__row"><span>Cargos</span><span id="cartFees">$0</span></div>
+          <div class="cart-widget__row cart-widget__row--total"><span>Total</span><span id="cartGrandTotal">$0</span></div>
+        </div>
+        <div class="cart-widget__actions">
+          <button class="btn btn--primary" id="checkoutBtn" disabled>Proceder al pago</button>
+          <button class="btn btn--ghost" id="clearCartBtn">Vaciar carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="free-popup" id="freeRegistrationPopup" aria-hidden="true">
+    <div class="free-popup__backdrop" id="freePopupBackdrop"></div>
+    <div class="free-popup__card" role="dialog" aria-modal="true" aria-labelledby="freePopupTitle">
+      <span class="free-popup__badge">Oferta especial</span>
+      <h2 class="free-popup__title" id="freePopupTitle">¡Entradas gratis disponibles!</h2>
+      <p class="free-popup__subtitle">Tercer Nivel - Galería</p>
+
+      <div class="free-popup__counter">
+        <span class="free-popup__counter-number" id="freeSeatsCount">50</span>
+        <span class="free-popup__counter-label">lugares gratuitos</span>
+      </div>
+
+      <p class="free-popup__text">
+        Regístrate ahora y asegura tu entrada sin costo para galería.
+        Una vez agotados, solo quedarán entradas de pago.
+      </p>
+
+      <div class="free-popup__actions">
+        <button class="btn btn--primary" id="claimFreeBtn">Agarrar entrada gratis</button>
+        <button class="btn btn--ghost" id="dismissFreeBtn">Ver otras opciones</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      class TicketSystem {
+        constructor() {
+          this.storageKeys = {
+            flags: "mm_ticket_flags_v1",
+            cart: "mm_ticket_cart_v1",
+            freeSeats: "mm_ticket_free_seats_v1"
+          };
+
+          this.cart = [];
+          this.freeSeatsAvailable = 50;
+          this.flags = {
+            freeRegistrationClicked: false,
+            timerStarted: false,
+            popupShown: false,
+            timerStartedAt: null
+          };
+
+          this.popupTimerRef = null;
+
+          this.dom = {
+            zones: Array.from(document.querySelectorAll(".theater-map__zone")),
+            cartWidget: document.getElementById("cartWidget"),
+            cartToggle: document.getElementById("cartToggle"),
+            cartPanel: document.getElementById("cartPanel"),
+            cartClose: document.getElementById("cartClose"),
+            cartCount: document.getElementById("cartCount"),
+            cartTotal: document.getElementById("cartTotal"),
+            cartItems: document.getElementById("cartItems"),
+            cartSubtotal: document.getElementById("cartSubtotal"),
+            cartFees: document.getElementById("cartFees"),
+            cartGrandTotal: document.getElementById("cartGrandTotal"),
+            checkoutBtn: document.getElementById("checkoutBtn"),
+            clearCartBtn: document.getElementById("clearCartBtn"),
+            freePopup: document.getElementById("freeRegistrationPopup"),
+            freePopupBackdrop: document.getElementById("freePopupBackdrop"),
+            freeSeatsCount: document.getElementById("freeSeatsCount"),
+            claimFreeBtn: document.getElementById("claimFreeBtn"),
+            dismissFreeBtn: document.getElementById("dismissFreeBtn"),
+            toastWrap: document.getElementById("toastWrap")
+          };
+
+          this.zoneNames = {
+            "platea-left": "Platea Baja - Izquierda",
+            "platea-center": "Platea Baja - Centro",
+            "platea-right": "Platea Baja - Derecha",
+            "balcon-left": "Balcón - Izquierda",
+            "balcon-center": "Balcón - Centro",
+            "balcon-right": "Balcón - Derecha",
+            "galeria-left": "Galería - Izquierda",
+            "galeria-center": "Galería - Centro",
+            "galeria-right": "Galería - Derecha"
+          };
+
+          this.init();
+        }
+
+        init() {
+          this.loadState();
+          this.bindZoneEvents();
+          this.bindCartEvents();
+          this.bindPopupEvents();
+          this.restoreSelectedZones();
+          this.updateCartUI();
+          this.startFreePopupTimerIfNeeded();
+        }
+
+        loadState() {
+          const savedFlags = this.readJson(this.storageKeys.flags);
+          if (savedFlags) {
+            this.flags = { ...this.flags, ...savedFlags };
+          }
+
+          const savedCart = this.readJson(this.storageKeys.cart);
+          if (Array.isArray(savedCart)) {
+            this.cart = savedCart;
+          }
+
+          const savedSeats = Number(localStorage.getItem(this.storageKeys.freeSeats));
+          if (Number.isFinite(savedSeats) && savedSeats >= 0) {
+            this.freeSeatsAvailable = savedSeats;
+          } else {
+            localStorage.setItem(this.storageKeys.freeSeats, String(this.freeSeatsAvailable));
+          }
+        }
+
+        readJson(key) {
+          try {
+            const raw = localStorage.getItem(key);
+            return raw ? JSON.parse(raw) : null;
+          } catch (_error) {
+            return null;
+          }
+        }
+
+        saveFlags() {
+          localStorage.setItem(this.storageKeys.flags, JSON.stringify(this.flags));
+        }
+
+        saveCart() {
+          localStorage.setItem(this.storageKeys.cart, JSON.stringify(this.cart));
+        }
+
+        saveFreeSeats() {
+          localStorage.setItem(this.storageKeys.freeSeats, String(this.freeSeatsAvailable));
+        }
+
+        bindZoneEvents() {
+          this.dom.zones.forEach((zone) => {
+            zone.addEventListener("click", () => {
+              const zoneId = zone.dataset.zone;
+              const isFree = zone.dataset.free === "true";
+              const alreadySelected = zone.classList.contains("is-selected");
+
+              if (alreadySelected) {
+                this.removeFromCart(zoneId);
+                return;
+              }
+
+              if (isFree) {
+                if (this.freeSeatsAvailable <= 0) {
+                  this.notify("No quedan entradas gratis disponibles.", "error");
+                  return;
+                }
+                if (this.cart.some((item) => item.isFree)) {
+                  this.notify("Solo se permite 1 entrada gratis por persona.", "error");
+                  return;
+                }
+              }
+
+              this.addToCart(zone);
+            });
+          });
+        }
+
+        bindCartEvents() {
+          this.dom.cartToggle.addEventListener("click", () => {
+            const isOpening = this.dom.cartPanel.hidden;
+            this.dom.cartPanel.hidden = !isOpening;
+            this.dom.cartToggle.setAttribute("aria-expanded", String(isOpening));
+          });
+
+          this.dom.cartClose.addEventListener("click", () => {
+            this.dom.cartPanel.hidden = true;
+            this.dom.cartToggle.setAttribute("aria-expanded", "false");
+          });
+
+          this.dom.clearCartBtn.addEventListener("click", () => this.clearCart());
+          this.dom.checkoutBtn.addEventListener("click", () => this.checkout());
+        }
+
+        bindPopupEvents() {
+          this.dom.claimFreeBtn.addEventListener("click", () => this.claimFreeFromPopup());
+          this.dom.dismissFreeBtn.addEventListener("click", () => this.hideFreePopup());
+          this.dom.freePopupBackdrop.addEventListener("click", () => this.hideFreePopup());
+
+          document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+              this.hideFreePopup();
+              if (!this.dom.cartPanel.hidden) {
+                this.dom.cartPanel.hidden = true;
+                this.dom.cartToggle.setAttribute("aria-expanded", "false");
+              }
+            }
+          });
+        }
+
+        addToCart(zone) {
+          const item = {
+            id: zone.dataset.zone,
+            name: this.zoneNames[zone.dataset.zone] || zone.dataset.zone,
+            section: zone.dataset.section || "general",
+            price: Number(zone.dataset.price || 0),
+            fee: Number(zone.dataset.fee || 0),
+            total: Number(zone.dataset.total || 0),
+            isFree: zone.dataset.free === "true"
+          };
+
+          this.cart.push(item);
+          zone.classList.add("is-selected");
+          this.saveCart();
+
+          if (item.isFree) {
+            this.flags.freeRegistrationClicked = true;
+            this.saveFlags();
+            if (this.freeSeatsAvailable > 0) {
+              this.freeSeatsAvailable -= 1;
+              this.saveFreeSeats();
+            }
+            this.cancelPopupTimer();
+            this.hideFreePopup();
+            this.notify("Entrada gratis agregada al carrito.", "success");
+          } else {
+            this.notify("Entrada agregada al carrito.", "success");
+          }
+
+          this.updateCartUI();
+        }
+
+        removeFromCart(zoneId) {
+          const targetIndex = this.cart.findIndex((item) => item.id === zoneId);
+          if (targetIndex === -1) return;
+
+          const [removed] = this.cart.splice(targetIndex, 1);
+          const zone = this.dom.zones.find((item) => item.dataset.zone === zoneId);
+          if (zone) {
+            zone.classList.remove("is-selected");
+          }
+
+          if (removed && removed.isFree) {
+            this.freeSeatsAvailable += 1;
+            this.saveFreeSeats();
+          }
+
+          this.saveCart();
+          this.updateCartUI();
+          this.notify("Entrada removida del carrito.", "info");
+        }
+
+        clearCart() {
+          this.cart = [];
+          this.saveCart();
+          this.dom.zones.forEach((zone) => zone.classList.remove("is-selected"));
+          this.updateCartUI();
+        }
+
+        checkout() {
+          if (!this.cart.length) return;
+          const total = this.cart.reduce((sum, item) => sum + item.total, 0);
+
+          if (total === 0) {
+            this.notify("Registro gratis confirmado. Revisa tu correo.", "success");
+            this.clearCart();
+            return;
+          }
+
+          this.notify("Pasarela de pago lista para integrar (siguiente paso).", "info");
+        }
+
+        restoreSelectedZones() {
+          if (!this.cart.length) return;
+          this.cart.forEach((item) => {
+            const zone = this.dom.zones.find((z) => z.dataset.zone === item.id);
+            if (zone) {
+              zone.classList.add("is-selected");
+            }
+          });
+        }
+
+        updateCartUI() {
+          const subtotal = this.cart.reduce((sum, item) => sum + item.price, 0);
+          const fees = this.cart.reduce((sum, item) => sum + item.fee, 0);
+          const total = this.cart.reduce((sum, item) => sum + item.total, 0);
+
+          this.dom.cartCount.textContent = String(this.cart.length);
+          this.dom.cartTotal.textContent = this.formatMoney(total);
+          this.dom.cartSubtotal.textContent = this.formatMoney(subtotal);
+          this.dom.cartFees.textContent = this.formatMoney(fees);
+          this.dom.cartGrandTotal.textContent = this.formatMoney(total);
+          this.dom.checkoutBtn.disabled = this.cart.length === 0;
+          this.dom.checkoutBtn.textContent = total === 0 && this.cart.length > 0
+            ? "Confirmar registro gratis"
+            : "Proceder al pago";
+
+          this.dom.freeSeatsCount.textContent = String(this.freeSeatsAvailable);
+
+          this.dom.cartWidget.hidden = this.cart.length === 0;
+          if (!this.cart.length) {
+            this.dom.cartPanel.hidden = true;
+            this.dom.cartToggle.setAttribute("aria-expanded", "false");
+          }
+
+          if (!this.cart.length) {
+            this.dom.cartItems.innerHTML = '<p class="empty">Tu carrito está vacío.</p>';
+            return;
+          }
+
+          this.dom.cartItems.innerHTML = this.cart.map((item) => {
+            const detail = item.isFree
+              ? "Entrada gratuita"
+              : `${this.formatMoney(item.price)} + ${this.formatMoney(item.fee)} cargo`;
+
+            const price = item.isFree ? "GRATIS" : this.formatMoney(item.total);
+
+            return `
+              <div class="cart-widget__item">
+                <div>
+                  <p class="cart-widget__item-name">${item.name}</p>
+                  <p class="cart-widget__item-detail">${detail}</p>
+                </div>
+                <span class="cart-widget__item-price">${price}</span>
+                <button class="cart-widget__remove" type="button" data-remove="${item.id}" aria-label="Eliminar ${item.name}">×</button>
+              </div>
+            `;
+          }).join("");
+
+          this.dom.cartItems.querySelectorAll("[data-remove]").forEach((button) => {
+            button.addEventListener("click", () => this.removeFromCart(button.dataset.remove));
+          });
+        }
+
+        formatMoney(value) {
+          return `$${Number(value).toLocaleString("es-CL")}`;
+        }
+
+        startFreePopupTimerIfNeeded() {
+          if (this.flags.freeRegistrationClicked || this.flags.popupShown || this.freeSeatsAvailable <= 0) {
+            return;
+          }
+
+          const now = Date.now();
+          if (!this.flags.timerStarted) {
+            this.flags.timerStarted = true;
+            this.flags.timerStartedAt = now;
+            this.saveFlags();
+          }
+
+          const startedAt = Number(this.flags.timerStartedAt || now);
+          const elapsed = now - startedAt;
+          const remaining = Math.max(0, 20000 - elapsed);
+
+          this.cancelPopupTimer();
+          this.popupTimerRef = window.setTimeout(() => {
+            this.showFreePopup();
+          }, remaining);
+        }
+
+        cancelPopupTimer() {
+          if (this.popupTimerRef) {
+            clearTimeout(this.popupTimerRef);
+            this.popupTimerRef = null;
+          }
+        }
+
+        showFreePopup() {
+          if (this.flags.freeRegistrationClicked || this.flags.popupShown || this.freeSeatsAvailable <= 0) {
+            return;
+          }
+
+          this.flags.popupShown = true;
+          this.saveFlags();
+          this.dom.freeSeatsCount.textContent = String(this.freeSeatsAvailable);
+          this.dom.freePopup.classList.add("is-active");
+          this.dom.freePopup.setAttribute("aria-hidden", "false");
+        }
+
+        hideFreePopup() {
+          this.dom.freePopup.classList.remove("is-active");
+          this.dom.freePopup.setAttribute("aria-hidden", "true");
+        }
+
+        claimFreeFromPopup() {
+          if (this.freeSeatsAvailable <= 0) {
+            this.notify("No quedan entradas gratis disponibles.", "error");
+            this.hideFreePopup();
+            return;
+          }
+          if (this.cart.some((item) => item.isFree)) {
+            this.hideFreePopup();
+            return;
+          }
+
+          const targetZone = this.dom.zones.find((zone) => zone.dataset.free === "true" && !zone.classList.contains("is-selected"));
+          if (!targetZone) {
+            this.notify("No quedan zonas gratis disponibles.", "error");
+            this.hideFreePopup();
+            return;
+          }
+
+          this.addToCart(targetZone);
+          this.dom.cartPanel.hidden = false;
+          this.dom.cartToggle.setAttribute("aria-expanded", "true");
+          this.hideFreePopup();
+        }
+
+        notify(message, type) {
+          const toast = document.createElement("div");
+          toast.className = `toast toast--${type || "info"}`;
+          toast.textContent = message;
+          this.dom.toastWrap.appendChild(toast);
+
+          window.setTimeout(() => {
+            toast.remove();
+          }, 2600);
+        }
+      }
+
+      new TicketSystem();
+    })();
+  </script>
+</body>
+</html>

@@ -100,6 +100,7 @@
                 <a href="#ubicacion" class="header__link">Ubicación</a>
                 <a href="#galeria" class="header__link">Galería</a>
                 <a href="#contacto" class="header__link">Contacto</a>
+                <a href="#" class="header__link header__link--tickets" data-popup="tickets">Comprar Tickets</a>
                 <a href="https://www.minimalmarimba.cl" target="_blank" class="header__link header__link--external">
                     Sitio Oficial
                 </a>
@@ -132,6 +133,7 @@
                 <a href="#ubicacion" class="header__mobile-link">Ubicación</a>
                 <a href="#galeria" class="header__mobile-link">Galería</a>
                 <a href="#contacto" class="header__mobile-link">Contacto</a>
+                <a href="#" class="header__mobile-link header__mobile-link--tickets" data-popup="tickets">Comprar Tickets</a>
             </div>
         </div>
     </header>
@@ -307,6 +309,35 @@
                 <button class="btn btn--ghost" type="button" data-repertoire-close>
                     Cerrar
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- POPUP: COMPRA DE TICKETS -->
+    <!-- ============================================ -->
+    <div class="popup popup--tickets" id="ticketsPopup" aria-hidden="true">
+        <div class="popup__backdrop"></div>
+        <div class="popup__container">
+            <div class="popup__header">
+                <div>
+                    <h2 class="popup__title">Compra de Tickets</h2>
+                    <p class="popup__subtitle">Sistema independiente de entradas</p>
+                </div>
+                <button class="popup__close" type="button" aria-label="Cerrar compra de tickets">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="popup__body popup__body--tickets">
+                <iframe
+                    src="tickets.html"
+                    class="tickets-popup__frame"
+                    title="Sistema de tickets - Teatro Municipal de Valparaíso"
+                    loading="lazy"
+                ></iframe>
             </div>
         </div>
     </div>
@@ -962,32 +993,35 @@
                 </p>
             </div>
             
-            <div class="speakers__grid">
-                <div class="speaker-card">
-                    <div class="speaker-card__image parallax-image reverb-section">
+            <div class="speakers__grid speakers__grid--featured">
+                <article class="speaker-card speaker-card--featured">
+                    <div class="speaker-card__image reverb-section">
                         <div class="reverb-section__echo" aria-hidden="true"></div>
-                        <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #cc5500 0%, #993300 100%); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); font-size: 14px; text-align: center; padding: 20px;">
-                            [Foto del Artista]<br/>400x300px
+                        <div>
+                            <img src="assets/images/marimba01.jpg" alt="Minimal Marimba en interpretación y setup de marimba" width="677" height="446" loading="lazy">
                         </div>
                     </div>
                     <div class="speaker-card__content">
-                        <h3 class="speaker-card__name">Compositor/Intérprete</h3>
-                        <p class="speaker-card__role">Minimal Marimba - Creador & Performer</p>
-                        <p class="speaker-card__bio">
-                            Especialista en síntesis modular y composición algorítmica. Ha trabajado con 
-                            instituciones de música experimental en América Latina. Su práctica explora la 
-                            percusión extendida y el procesamiento de audio en tiempo real.
-                        </p>
-                        <div class="speaker-card__socials">
-                            <a href="#" aria-label="Instagram" class="speaker-card__social">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M7 7a5 5 0 015-5v0a5 5 0 015 5v0a5 5 0 01-5 5v0a5 5 0 01-5-5v0z"/></svg>
-                            </a>
-                            <a href="#" aria-label="SoundCloud" class="speaker-card__social">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13c0 2 1 4 2 4s2-2 2-4"/></svg>
-                            </a>
+                        <h3 class="speaker-card__name">Minimal Marimba</h3>
+                        <p class="speaker-card__role">Percusión contemporánea &amp; Experimentación electrónica</p>
+                        <div class="speaker-card__summary">
+                            <p>
+                                Minimal Marimba es el proyecto artístico de Cristóbal Nicolás Zurita Quintanilla que
+                                une la tradición de la marimba acústica con síntesis y procesamiento digital en tiempo real.
+                                La propuesta no superpone mundos: los integra en un lenguaje sonoro propio.
+                            </p>
+                            <p>
+                                Su evolución combina formación clásica en percusión, exploración electrónica y la vertiente
+                                Meng-Âmok, consolidando desde 2020 un formato híbrido entre instrumento acústico y diseño sonoro.
+                            </p>
+                            <p>
+                                El repertorio cruza obras de marimba, reinterpretaciones electrónicas de música orquestal e
+                                intervenciones en espacios públicos, buscando una escucha inmersiva y una experiencia sensible
+                                entre resonancia, textura y ritmo.
+                            </p>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
@@ -1124,90 +1158,66 @@
             <!-- Gallery Grid -->
             <div class="gallery">
                 <div class="gallery__item" data-index="0">
-                                        <picture>
-                                            <source srcset="assets/images/maquinas01.webp" type="image/webp">
-                                            <img src="assets/images/maquinas01.jpg" alt="Setup Principal" class="gallery__image" width="600" height="400" loading="lazy">
-                                        </picture>
+                    <img src="assets/images/marimba06.jpg" alt="Marimba 06" class="gallery__image" width="600" height="400" loading="lazy">
                     <div class="gallery__overlay">
-                        <div class="gallery__caption">Setup Principal</div>
-                        <div class="gallery__description">Configuración completa del sistema</div>
+                        <div class="gallery__caption">Marimba 06</div>
+                        <div class="gallery__description">Registro visual</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item gallery__item--wide" data-index="1">
-                                        <picture>
-                                            <source srcset="assets/images/Cover_photo_minimal_001.webp" type="image/webp">
-                                            <img src="assets/images/Cover_photo_minimal_001.png" alt="Presentación 2025" class="gallery__image" width="600" height="400" loading="lazy">
-                                        </picture>
+                <div class="gallery__item" data-index="1">
+                    <img src="assets/images/marimba05.jpg" alt="Marimba 05" class="gallery__image" width="600" height="400" loading="lazy">
                     <div class="gallery__overlay">
-                        <div class="gallery__caption">Presentación 2025</div>
-                        <div class="gallery__description">Centro Cultural GAM</div>
+                        <div class="gallery__caption">Marimba 05</div>
+                        <div class="gallery__description">Registro visual</div>
                     </div>
                 </div>
                 
                 <div class="gallery__item" data-index="2">
-                                        <picture>
-                                            <source srcset="assets/images/SOLISTA.webp" type="image/webp">
-                                            <img src="assets/images/SOLISTA.jpg" alt="Sistema Visual" class="gallery__image" width="600" height="400" loading="lazy">
-                                        </picture>
+                    <img src="assets/images/marimba04.jpg" alt="Marimba 04" class="gallery__image" width="600" height="400" loading="lazy">
                     <div class="gallery__overlay">
-                        <div class="gallery__caption">Sistema Visual</div>
-                        <div class="gallery__description">Proyecciones sincronizadas</div>
+                        <div class="gallery__caption">Marimba 04</div>
+                        <div class="gallery__description">Registro visual</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item gallery__item--tall" data-index="3">
-                                        <picture>
-                                            <source srcset="assets/images/marimba01.webp" type="image/webp">
-                                            <img src="assets/images/marimba01.jpg" alt="Marimba Preparada" class="gallery__image" width="600" height="400" loading="lazy">
-                                        </picture>
+                <div class="gallery__item" data-index="3">
+                    <img src="assets/images/marimba03.jpg" alt="Marimba 03" class="gallery__image" width="600" height="400" loading="lazy">
                     <div class="gallery__overlay">
-                        <div class="gallery__caption">Marimba Preparada</div>
-                        <div class="gallery__description">Técnicas extendidas</div>
+                        <div class="gallery__caption">Marimba 03</div>
+                        <div class="gallery__description">Registro visual</div>
                     </div>
                 </div>
                 
                 <div class="gallery__item" data-index="4">
-                                        <picture>
-                                            <source srcset="assets/images/MAQUINAS.webp" type="image/webp">
-                                            <img src="assets/images/MAQUINAS.jpg" alt="Eurorack System" class="gallery__image" width="600" height="400" loading="lazy">
-                                        </picture>
+                    <img src="assets/images/marimba02.jpg" alt="Marimba 02" class="gallery__image" width="600" height="400" loading="lazy">
                     <div class="gallery__overlay">
-                        <div class="gallery__caption">Eurorack System</div>
-                        <div class="gallery__description">Síntesis modular en vivo</div>
+                        <div class="gallery__caption">Marimba 02</div>
+                        <div class="gallery__description">Registro visual</div>
                     </div>
                 </div>
                 
                 <div class="gallery__item" data-index="5">
-                                        <picture>
-                                            <source srcset="assets/images/MIX.webp" type="image/webp">
-                                            <img src="assets/images/MIX.jpg" alt="Estudio" class="gallery__image" width="600" height="400" loading="lazy">
-                                        </picture>
+                    <img src="assets/images/CORO.jpg" alt="Coro" class="gallery__image" width="600" height="400" loading="lazy">
                     <div class="gallery__overlay">
-                        <div class="gallery__caption">Estudio</div>
-                        <div class="gallery__description">Composición y producción</div>
+                        <div class="gallery__caption">Coro</div>
+                        <div class="gallery__description">Registro visual</div>
                     </div>
                 </div>
                 
-                <div class="gallery__item gallery__item--wide" data-index="6">
-                                        <picture>
-                                            <source srcset="assets/images/marimba02.webp" type="image/webp">
-                                            <img src="assets/images/marimba02.jpg" alt="Experiencia Inmersiva" class="gallery__image" width="600" height="400" loading="lazy">
-                                        </picture>
+                <div class="gallery__item" data-index="6">
+                    <img src="assets/images/maquinas01.jpg" alt="Máquinas 01" class="gallery__image" width="600" height="400" loading="lazy">
                     <div class="gallery__overlay">
-                        <div class="gallery__caption">Experiencia Inmersiva</div>
-                        <div class="gallery__description">Audio espacializado 4.1</div>
+                        <div class="gallery__caption">Máquinas 01</div>
+                        <div class="gallery__description">Registro visual</div>
                     </div>
                 </div>
                 
                 <div class="gallery__item" data-index="7">
-                                        <picture>
-                                            <source srcset="assets/images/maquinas02.webp" type="image/webp">
-                                            <img src="assets/images/maquinas02.jpg" alt="Soundcheck" class="gallery__image" width="600" height="400" loading="lazy">
-                                        </picture>
+                    <img src="assets/images/maquinas02.jpg" alt="Máquinas 02" class="gallery__image" width="600" height="400" loading="lazy">
                     <div class="gallery__overlay">
-                        <div class="gallery__caption">Soundcheck</div>
-                        <div class="gallery__description">Preparación técnica</div>
+                        <div class="gallery__caption">Máquinas 02</div>
+                        <div class="gallery__description">Registro visual</div>
                     </div>
                 </div>
             </div>
