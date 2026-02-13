@@ -24,7 +24,7 @@ class ParticleSystem {
         this.particleCount = options.particleCount || 50;
         this.connectionDistance = options.connectionDistance || 150;
         this.gridSize = options.gridSize || 150; // Spatial grid cell size
-        this.colors = options.colors || ['#cc5500', '#ff6b3d', '#00ff9d'];
+        this.colors = options.colors || ['#cc5500', '#ff6b3d', '#00a8ff'];
 
         // Physics
         this.friction = 0.98;

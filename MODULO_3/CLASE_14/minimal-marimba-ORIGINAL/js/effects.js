@@ -30,7 +30,7 @@ export function initializeEffects(config = {}) {
             effects.audioVisualizer = new AudioVisualizer({
                 container: visualizerContainer,
                 barCount: 60,
-                colors: ['#cc5500', '#ff6b3d', '#00ff9d']
+                colors: ['#cc5500', '#ff6b3d', '#00a8ff']
             });
 
             // Mostrar visualizer solo al llegar al footer
@@ -74,7 +74,7 @@ export function initializeEffects(config = {}) {
                 size: 20,
                 height: 80,
                 color1: '#cc5500',
-                color2: '#00ff9d'
+                color2: '#00a8ff'
             });
         }
 

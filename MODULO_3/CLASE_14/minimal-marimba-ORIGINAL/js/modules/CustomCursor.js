@@ -16,7 +16,7 @@ class CustomCursor {
         this.size = options.size || 20;
         this.height = options.height || 80;
         this.color1 = options.color1 || '#cc5500';
-        this.color2 = options.color2 || '#00ff9d';
+        this.color2 = options.color2 || '#00a8ff';
 
         // State
         this.x = 0;

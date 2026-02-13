@@ -308,9 +308,9 @@ class AccessibilityManager {
     this.speakPageBtn.addEventListener('click', () => this.speakPageContent());
     this.speakSectionBtn.addEventListener('click', () => this.speakVisibleSection());
     this.toggleSpeechBtn?.addEventListener('click', () => this.toggleSpeechPlayback());
-    this.stopSpeechBtn.addEventListener('click', () => this.stopSpeaking());
+    this.stopSpeechBtn.addEventListener('click', () => this.requestStopSpeaking());
     this.floatingPlayPauseBtn?.addEventListener('click', () => this.toggleSpeechPlayback());
-    this.floatingStopBtn?.addEventListener('click', () => this.stopSpeaking());
+    this.floatingStopBtn?.addEventListener('click', () => this.requestStopSpeaking());
 
     this.voiceReadingCheckbox?.addEventListener('change', () => {
       const enabled = Boolean(this.voiceReadingCheckbox.checked);
@@ -347,7 +347,7 @@ class AccessibilityManager {
 
       if (key === 'x') {
         event.preventDefault();
-        this.stopSpeaking();
+        this.requestStopSpeaking();
       }
 
       if (key === 'p') {
@@ -396,6 +396,14 @@ class AccessibilityManager {
     }
 
     return false;
+  }
+
+  requestStopSpeaking(announce = true) {
+    if (!this.canUseSpeechControls(true)) {
+      return;
+    }
+
+    this.stopSpeaking(announce);
   }
 
   applyVoiceReadingMode(enabled, announce = false) {

@@ -35,7 +35,7 @@ El diseño se inspira en las siguientes referencias estéticas:
 
 ### Paleta de Color Principal:
 - **Background:** #0a0a0a (Negro profundo)
-- **Accent Primary:** #00ff9d (Verde eléctrico)
+- **Accent Primary:** #00a8ff (Azul eléctrico)
 - **Accent Secondary:** #00d9ff (Cian vibrante)
 - **Texto:** Escala de grises desde #ffffff hasta #707070
 
@@ -233,7 +233,7 @@ Bootstrap se utiliza **selectivamente** y siempre adaptado con estilos propios:
 ```scss
 // Colores
 $color-dark-bg: #0a0a0a;
-$color-primary: #00ff9d;
+$color-primary: #00a8ff;
 $color-secondary: #00d9ff;
 
 // Tipografía

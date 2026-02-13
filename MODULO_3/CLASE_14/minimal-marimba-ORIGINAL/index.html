@@ -201,13 +201,13 @@
                             </span>
                             <span>Leer sección visible</span>
                         </button>
-                        <button type="button" class="accessibility-action-btn accessibility-action-btn--ghost" id="toggleSpeechBtn">
+                        <button type="button" class="accessibility-action-btn accessibility-action-btn--ghost" id="toggleSpeechBtn" disabled aria-disabled="true">
                             <span class="voice-control-label">
                                 <span class="voice-control-symbol" aria-hidden="true">▶</span>
                                 <span>PLAY/PAUSA</span>
                             </span>
                         </button>
-                        <button type="button" class="accessibility-action-btn accessibility-action-btn--ghost" id="stopSpeechBtn">
+                        <button type="button" class="accessibility-action-btn accessibility-action-btn--ghost" id="stopSpeechBtn" disabled aria-disabled="true">
                             <span class="voice-control-label">
                                 <span class="voice-control-symbol" aria-hidden="true">■</span>
                                 <span>STOP</span>
@@ -336,7 +336,7 @@
                 <path d="M0,50 Q360,20 720,50 T1440,50 L1440,100 L0,100 Z" fill="rgba(255, 107, 61, 0.05)" />
             </svg>
             <svg class="hero__wave hero__wave--3" viewBox="0 0 1440 100" preserveAspectRatio="none">
-                <path d="M0,60 Q360,30 720,60 T1440,60 L1440,100 L0,100 Z" fill="rgba(0, 255, 157, 0.03)" />
+                <path d="M0,60 Q360,30 720,60 T1440,60 L1440,100 L0,100 Z" fill="rgba(0, 168, 255, 0.03)" />
             </svg>
         </div>
 
@@ -1487,6 +1487,8 @@
             id="floatingPlayPauseBtn"
             aria-label="Pausar o reanudar lectura por voz"
             title="Play / Pausa"
+            disabled
+            aria-disabled="true"
         >
             <span class="voice-control-label">
                 <span class="voice-control-symbol" aria-hidden="true">▶</span>
@@ -1499,6 +1501,8 @@
             id="floatingStopBtn"
             aria-label="Detener lectura por voz"
             title="Stop"
+            disabled
+            aria-disabled="true"
         >
             <span class="voice-control-label">
                 <span class="voice-control-symbol" aria-hidden="true">■</span>
