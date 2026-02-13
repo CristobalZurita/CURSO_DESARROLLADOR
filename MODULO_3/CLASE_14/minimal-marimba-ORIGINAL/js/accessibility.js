@@ -21,17 +21,27 @@ class AccessibilityManager {
 
     this.speakPageBtn = document.getElementById('speakPageBtn');
     this.speakSectionBtn = document.getElementById('speakSectionBtn');
+    this.toggleSpeechBtn = document.getElementById('toggleSpeechBtn');
     this.stopSpeechBtn = document.getElementById('stopSpeechBtn');
     this.voiceRateInput = document.getElementById('voiceRate');
+    this.voiceReadingCheckbox = document.getElementById('voiceReadingEnabled');
     this.voiceCommandsCheckbox = document.getElementById('voiceCommands');
     this.voiceStatus = document.getElementById('voiceStatus');
+    this.voiceFloatingControls = document.getElementById('voiceFloatingControls');
+    this.floatingPlayPauseBtn = document.getElementById('floatingPlayPauseBtn');
+    this.floatingStopBtn = document.getElementById('floatingStopBtn');
 
     this.storagePrefix = 'a11y_';
 
     this.speechSupported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
     this.speechSynthesis = this.speechSupported ? window.speechSynthesis : null;
     this.currentUtterance = null;
+    this.speechQueue = [];
+    this.currentSpeechIndex = 0;
+    this.cancelRequested = false;
     this.isSpeaking = false;
+    this.isPaused = false;
+    this.lastSpeechText = '';
 
     this.recognitionSupported = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window;
     this.recognition = null;
@@ -146,6 +156,7 @@ class AccessibilityManager {
     const largeText = this.getPreference('largeText', false);
     const focusVisible = this.getPreference('focusVisible', false);
     const voiceRate = this.getPreference('voiceRate', 1);
+    const voiceReadingEnabled = this.getPreference('voiceReadingEnabled', false);
     const voiceCommands = this.getPreference('voiceCommands', false);
 
     if (this.highContrastCheckbox) {
@@ -165,6 +176,10 @@ class AccessibilityManager {
 
     if (this.voiceRateInput) {
       this.voiceRateInput.value = String(voiceRate);
+    }
+
+    if (this.voiceReadingCheckbox) {
+      this.voiceReadingCheckbox.checked = voiceReadingEnabled;
     }
 
     if (this.voiceCommandsCheckbox) {
@@ -292,7 +307,16 @@ class AccessibilityManager {
 
     this.speakPageBtn.addEventListener('click', () => this.speakPageContent());
     this.speakSectionBtn.addEventListener('click', () => this.speakVisibleSection());
+    this.toggleSpeechBtn?.addEventListener('click', () => this.toggleSpeechPlayback());
     this.stopSpeechBtn.addEventListener('click', () => this.stopSpeaking());
+    this.floatingPlayPauseBtn?.addEventListener('click', () => this.toggleSpeechPlayback());
+    this.floatingStopBtn?.addEventListener('click', () => this.stopSpeaking());
+
+    this.voiceReadingCheckbox?.addEventListener('change', () => {
+      const enabled = Boolean(this.voiceReadingCheckbox.checked);
+      this.savePreference('voiceReadingEnabled', enabled);
+      this.applyVoiceReadingMode(enabled, true);
+    });
 
     this.voiceRateInput.addEventListener('change', () => {
       this.savePreference('voiceRate', Number(this.voiceRateInput.value));
@@ -325,11 +349,19 @@ class AccessibilityManager {
         event.preventDefault();
         this.stopSpeaking();
       }
+
+      if (key === 'p') {
+        event.preventDefault();
+        this.toggleSpeechPlayback();
+      }
     });
+
+    this.applyVoiceReadingMode(this.isVoiceReadingModeEnabled(), false);
+    this.updatePlaybackControls();
   }
 
   disableSpeechControls(message) {
-    [this.speakPageBtn, this.speakSectionBtn, this.stopSpeechBtn, this.voiceRateInput].forEach((element) => {
+    [this.speakPageBtn, this.speakSectionBtn, this.toggleSpeechBtn, this.stopSpeechBtn, this.voiceRateInput, this.voiceReadingCheckbox, this.floatingPlayPauseBtn, this.floatingStopBtn].forEach((element) => {
       if (!element) {
         return;
       }
@@ -340,6 +372,70 @@ class AccessibilityManager {
 
     if (this.voiceStatus) {
       this.voiceStatus.textContent = `Estado: ${message}`;
+    }
+
+    this.setFloatingControlsVisible(false);
+  }
+
+  isVoiceReadingModeEnabled() {
+    return this.voiceReadingCheckbox ? Boolean(this.voiceReadingCheckbox.checked) : true;
+  }
+
+  canUseSpeechControls(announce = true) {
+    if (!this.speechSupported) {
+      return false;
+    }
+
+    if (this.isVoiceReadingModeEnabled()) {
+      return true;
+    }
+
+    if (announce) {
+      this.updateVoiceStatus('Estado: activa "Lectura por Voz" para usar los controles');
+      this.announceToScreenReader('Activa la casilla de lectura por voz para usar esta función');
+    }
+
+    return false;
+  }
+
+  applyVoiceReadingMode(enabled, announce = false) {
+    const controls = [this.speakPageBtn, this.speakSectionBtn, this.toggleSpeechBtn, this.stopSpeechBtn, this.voiceRateInput, this.floatingPlayPauseBtn, this.floatingStopBtn];
+
+    controls.forEach((element) => {
+      if (!element) {
+        return;
+      }
+
+      if (enabled) {
+        element.removeAttribute('disabled');
+        element.setAttribute('aria-disabled', 'false');
+        return;
+      }
+
+      element.setAttribute('disabled', 'true');
+      element.setAttribute('aria-disabled', 'true');
+    });
+
+    if (!enabled) {
+      this.stopSpeaking(false);
+      this.setFloatingControlsVisible(false);
+      this.updatePlaybackControls();
+
+      if (announce) {
+        this.updateVoiceStatus(this.isListening ? 'Estado: comandos de voz activos' : 'Estado: lectura por voz desactivada');
+        this.announceToScreenReader('Lectura por voz desactivada');
+      }
+      return;
+    }
+
+    this.setFloatingControlsVisible(true);
+    this.updatePlaybackControls();
+
+    if (announce) {
+      this.updateVoiceStatus(this.isListening ? 'Estado: comandos de voz activos' : 'Estado: lectura por voz activada');
+      this.announceToScreenReader('Lectura por voz activada');
+    } else if (!this.isListening && !this.isSpeaking && !this.speechSynthesis?.speaking && !this.speechSynthesis?.paused) {
+      this.updateVoiceStatus('Estado: lectura por voz activada');
     }
   }
 
@@ -360,14 +456,74 @@ class AccessibilityManager {
     );
   }
 
-  speak(text) {
-    if (!this.speechSupported || !text) {
-      return;
+  splitTextForSpeech(text, maxChunkLength = 280) {
+    const normalizedText = text.replace(/\s+/g, ' ').trim();
+    if (!normalizedText) {
+      return [];
     }
 
-    this.stopSpeaking(false);
+    if (normalizedText.length <= maxChunkLength) {
+      return [normalizedText];
+    }
 
-    const utterance = new SpeechSynthesisUtterance(text);
+    const sentenceParts = normalizedText.match(/[^.!?]+[.!?]?/g) || [normalizedText];
+    const chunks = [];
+    let currentChunk = '';
+
+    const pushChunk = (chunkText) => {
+      const cleanChunk = chunkText.trim();
+      if (cleanChunk) {
+        chunks.push(cleanChunk);
+      }
+    };
+
+    const splitLongPart = (longPart) => {
+      const words = longPart.split(/\s+/);
+      let partial = '';
+
+      words.forEach((word) => {
+        const candidate = partial ? `${partial} ${word}` : word;
+        if (candidate.length <= maxChunkLength) {
+          partial = candidate;
+          return;
+        }
+
+        pushChunk(partial);
+        partial = word;
+      });
+
+      pushChunk(partial);
+    };
+
+    sentenceParts.forEach((part) => {
+      const sentence = part.trim();
+      if (!sentence) {
+        return;
+      }
+
+      if (sentence.length > maxChunkLength) {
+        pushChunk(currentChunk);
+        currentChunk = '';
+        splitLongPart(sentence);
+        return;
+      }
+
+      const candidate = currentChunk ? `${currentChunk} ${sentence}` : sentence;
+      if (candidate.length <= maxChunkLength) {
+        currentChunk = candidate;
+        return;
+      }
+
+      pushChunk(currentChunk);
+      currentChunk = sentence;
+    });
+
+    pushChunk(currentChunk);
+    return chunks;
+  }
+
+  createUtterance(textChunk) {
+    const utterance = new SpeechSynthesisUtterance(textChunk);
     utterance.lang = 'es-CL';
     utterance.rate = Number(this.voiceRateInput?.value || 1);
     utterance.pitch = 1;
@@ -378,26 +534,95 @@ class AccessibilityManager {
       utterance.voice = preferredVoice;
     }
 
+    return utterance;
+  }
+
+  finalizeSpeech(success = true) {
+    this.currentUtterance = null;
+    this.speechQueue = [];
+    this.currentSpeechIndex = 0;
+    this.cancelRequested = false;
+    this.isSpeaking = false;
+    this.isPaused = false;
+
+    if (success) {
+      this.updateVoiceStatus(this.isListening ? 'Estado: comandos de voz activos' : 'Estado: inactivo');
+      this.announceToScreenReader('Lectura finalizada');
+    } else {
+      this.updateVoiceStatus('Estado: error de lectura');
+      this.announceToScreenReader('Error en lectura por voz');
+    }
+
+    this.setFloatingControlsVisible(false);
+    this.updatePlaybackControls();
+  }
+
+  speakQueueChunk() {
+    if (!this.speechSupported || this.cancelRequested) {
+      return;
+    }
+
+    if (this.currentSpeechIndex >= this.speechQueue.length) {
+      this.finalizeSpeech(true);
+      return;
+    }
+
+    const textChunk = this.speechQueue[this.currentSpeechIndex];
+    const utterance = this.createUtterance(textChunk);
+
     utterance.onstart = () => {
-      this.isSpeaking = true;
-      this.updateVoiceStatus('Estado: leyendo contenido');
-      this.announceToScreenReader('Lectura iniciada');
+      if (this.currentSpeechIndex === 0) {
+        this.isSpeaking = true;
+        this.isPaused = false;
+        this.updateVoiceStatus('Estado: leyendo contenido');
+        this.announceToScreenReader('Lectura iniciada');
+        this.setFloatingControlsVisible(true);
+        this.updatePlaybackControls();
+      }
     };
 
     utterance.onend = () => {
-      this.isSpeaking = false;
-      this.updateVoiceStatus(this.isListening ? 'Estado: comandos de voz activos' : 'Estado: inactivo');
-      this.announceToScreenReader('Lectura finalizada');
+      if (this.cancelRequested) {
+        return;
+      }
+
+      this.currentSpeechIndex += 1;
+      this.speakQueueChunk();
     };
 
     utterance.onerror = () => {
-      this.isSpeaking = false;
-      this.updateVoiceStatus('Estado: error de lectura');
-      this.announceToScreenReader('Error en lectura por voz');
+      if (this.cancelRequested) {
+        return;
+      }
+
+      this.finalizeSpeech(false);
     };
 
     this.currentUtterance = utterance;
     this.speechSynthesis.speak(utterance);
+  }
+
+  speak(text) {
+    if (!this.speechSupported || !text || !this.canUseSpeechControls(true)) {
+      return;
+    }
+
+    this.stopSpeaking(false);
+    const chunks = this.splitTextForSpeech(text);
+    if (!chunks.length) {
+      this.updateVoiceStatus('Estado: sin contenido para leer');
+      this.announceToScreenReader('No se encontró contenido para leer');
+      this.setFloatingControlsVisible(false);
+      this.updatePlaybackControls();
+      return;
+    }
+
+    this.lastSpeechText = text;
+    this.speechQueue = chunks;
+    this.currentSpeechIndex = 0;
+    this.cancelRequested = false;
+    this.isPaused = false;
+    this.speakQueueChunk();
   }
 
   stopSpeaking(announce = true) {
@@ -405,24 +630,117 @@ class AccessibilityManager {
       return;
     }
 
+    this.cancelRequested = true;
     this.speechSynthesis.cancel();
     this.currentUtterance = null;
+    this.speechQueue = [];
+    this.currentSpeechIndex = 0;
     this.isSpeaking = false;
+    this.isPaused = false;
 
     if (announce) {
       this.announceToScreenReader('Lectura detenida');
     }
 
     this.updateVoiceStatus(this.isListening ? 'Estado: comandos de voz activos' : 'Estado: inactivo');
+    this.setFloatingControlsVisible(false);
+    this.updatePlaybackControls();
+  }
+
+  toggleSpeechPlayback() {
+    if (!this.canUseSpeechControls(true)) {
+      return;
+    }
+
+    if (this.speechSynthesis.speaking && !this.speechSynthesis.paused) {
+      this.speechSynthesis.pause();
+      this.isPaused = true;
+      this.updateVoiceStatus('Estado: lectura en pausa');
+      this.announceToScreenReader('Lectura en pausa');
+      this.setFloatingControlsVisible(true);
+      this.updatePlaybackControls();
+      return;
+    }
+
+    if (this.speechSynthesis.paused || this.isPaused) {
+      this.speechSynthesis.resume();
+      this.isPaused = false;
+      this.updateVoiceStatus('Estado: leyendo contenido');
+      this.announceToScreenReader('Lectura reanudada');
+      this.setFloatingControlsVisible(true);
+      this.updatePlaybackControls();
+      return;
+    }
+
+    this.announceToScreenReader('No hay lectura en pausa para reanudar');
+  }
+
+  setFloatingControlsVisible(visible) {
+    if (!this.voiceFloatingControls) {
+      return;
+    }
+
+    if (!this.speechSupported || !this.isVoiceReadingModeEnabled()) {
+      this.voiceFloatingControls.hidden = true;
+      return;
+    }
+
+    this.voiceFloatingControls.hidden = !(visible || this.isVoiceReadingModeEnabled());
+  }
+
+  updatePlaybackControls() {
+    const voiceReadingEnabled = this.speechSupported && this.isVoiceReadingModeEnabled();
+    const hasActiveSpeech = Boolean(this.speechSynthesis && (this.speechSynthesis.speaking || this.speechSynthesis.paused || this.isSpeaking || this.isPaused));
+    const isPaused = Boolean(this.speechSynthesis?.paused || this.isPaused);
+    const playPauseIcon = hasActiveSpeech && !isPaused ? '⏸' : '▶';
+    const playPauseAriaLabel = !hasActiveSpeech ? 'No hay lectura activa. Usa leer página o leer sección para iniciar' : (isPaused ? 'Reanudar lectura por voz' : 'Pausar lectura por voz');
+
+    if (this.floatingPlayPauseBtn) {
+      const symbol = this.floatingPlayPauseBtn.querySelector('.voice-control-symbol');
+      if (symbol) {
+        symbol.textContent = playPauseIcon;
+      }
+      this.floatingPlayPauseBtn.setAttribute('aria-label', playPauseAriaLabel);
+      this.floatingPlayPauseBtn.disabled = !voiceReadingEnabled;
+      this.floatingPlayPauseBtn.setAttribute('aria-disabled', String(!voiceReadingEnabled));
+    }
+
+    if (this.toggleSpeechBtn) {
+      const symbol = this.toggleSpeechBtn.querySelector('.voice-control-symbol');
+      if (symbol) {
+        symbol.textContent = playPauseIcon;
+      }
+      this.toggleSpeechBtn.setAttribute('aria-label', playPauseAriaLabel);
+      this.toggleSpeechBtn.disabled = !voiceReadingEnabled;
+      this.toggleSpeechBtn.setAttribute('aria-disabled', String(!voiceReadingEnabled));
+    }
+
+    if (this.stopSpeechBtn) {
+      this.stopSpeechBtn.disabled = !voiceReadingEnabled;
+      this.stopSpeechBtn.setAttribute('aria-disabled', String(!voiceReadingEnabled));
+    }
+
+    if (this.floatingStopBtn) {
+      this.floatingStopBtn.disabled = !voiceReadingEnabled;
+      this.floatingStopBtn.setAttribute('aria-disabled', String(!voiceReadingEnabled));
+    }
   }
 
   speakPageContent() {
+    if (!this.canUseSpeechControls(true)) {
+      return;
+    }
+
     const mainContent = document.getElementById('main') || document.body;
     const text = this.extractReadableContent(mainContent);
     this.speak(text);
   }
 
   speakVisibleSection() {
+    if (!this.canUseSpeechControls(true)) {
+      return;
+    }
+
     const sections = Array.from(document.querySelectorAll('main section[id]'));
     if (!sections.length) {
       return;

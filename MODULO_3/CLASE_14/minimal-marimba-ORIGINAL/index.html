@@ -172,19 +172,50 @@
                     <p class="accessibility-option__description accessibility-option__description--inline">
                         Permite escuchar el contenido principal del sitio con síntesis de voz.
                     </p>
+                    <label for="voiceReadingEnabled" class="accessibility-option__label accessibility-option__label--voice-toggle">
+                        <input type="checkbox" id="voiceReadingEnabled" class="accessibility-option__input" aria-describedby="voiceReadingEnabledDesc">
+                        <span>Activar lectura por voz</span>
+                    </label>
+                    <p id="voiceReadingEnabledDesc" class="accessibility-option__description">
+                        Si está activado, se habilitan los controles de lectura y aparece la botonera flotante con PLAY/PAUSA y STOP.
+                    </p>
                     <div class="accessibility-voice-controls" role="group" aria-label="Controles de lectura por voz">
                         <button type="button" class="accessibility-action-btn" id="speakPageBtn" aria-describedby="voiceControlsDesc">
-                            Leer página completa
+                            <span class="accessibility-action-btn__icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 3h6l5 5v13H8z"/>
+                                    <path d="M14 3v5h5"/>
+                                    <path d="M11 13h5"/>
+                                    <path d="M11 17h5"/>
+                                </svg>
+                            </span>
+                            <span>Leer página completa</span>
                         </button>
                         <button type="button" class="accessibility-action-btn" id="speakSectionBtn" aria-describedby="voiceControlsDesc">
-                            Leer sección visible
+                            <span class="accessibility-action-btn__icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 5h16v14H4z"/>
+                                    <path d="M4 10h16"/>
+                                    <path d="M9 10v9"/>
+                                </svg>
+                            </span>
+                            <span>Leer sección visible</span>
+                        </button>
+                        <button type="button" class="accessibility-action-btn accessibility-action-btn--ghost" id="toggleSpeechBtn">
+                            <span class="voice-control-label">
+                                <span class="voice-control-symbol" aria-hidden="true">▶</span>
+                                <span>PLAY/PAUSA</span>
+                            </span>
                         </button>
                         <button type="button" class="accessibility-action-btn accessibility-action-btn--ghost" id="stopSpeechBtn">
-                            Detener lectura
+                            <span class="voice-control-label">
+                                <span class="voice-control-symbol" aria-hidden="true">■</span>
+                                <span>STOP</span>
+                            </span>
                         </button>
                     </div>
                     <p id="voiceControlsDesc" class="accessibility-option__description">
-                        Atajos: Alt + L (leer página), Alt + K (leer sección), Alt + X (detener lectura)
+                        Atajos: Alt + L (leer página), Alt + K (leer sección), Alt + P (play/pausa), Alt + X (detener lectura)
                     </p>
                     <div class="accessibility-range-control">
                         <label for="voiceRate" class="accessibility-range-control__label">Velocidad de lectura</label>
@@ -1409,6 +1440,39 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/>
         </svg>
     </button>
+
+    <div
+        class="voice-floating-controls"
+        id="voiceFloatingControls"
+        role="group"
+        aria-label="Controles de lectura por voz"
+        hidden
+    >
+        <button
+            type="button"
+            class="btn btn--secondary btn--small voice-floating-btn"
+            id="floatingPlayPauseBtn"
+            aria-label="Pausar o reanudar lectura por voz"
+            title="Play / Pausa"
+        >
+            <span class="voice-control-label">
+                <span class="voice-control-symbol" aria-hidden="true">▶</span>
+                <span>PLAY/PAUSA</span>
+            </span>
+        </button>
+        <button
+            type="button"
+            class="btn btn--secondary btn--small voice-floating-btn"
+            id="floatingStopBtn"
+            aria-label="Detener lectura por voz"
+            title="Stop"
+        >
+            <span class="voice-control-label">
+                <span class="voice-control-symbol" aria-hidden="true">■</span>
+                <span>STOP</span>
+            </span>
+        </button>
+    </div>
     
     <!-- jQuery (requerido por Bootstrap) - Deferred para no bloquear carga -->
     <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
