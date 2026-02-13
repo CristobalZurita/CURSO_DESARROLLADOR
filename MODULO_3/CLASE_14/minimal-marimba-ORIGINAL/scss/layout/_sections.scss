@@ -65,17 +65,28 @@
   &__content {
     display: grid;
     gap: $spacing-xl;
-    align-items: center;
+    align-items: start;
     
     @include respond-to(lg) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas:
+        "text image"
+        "features features";
       gap: $spacing-3xl;
     }
   }
   
   &__text {
+    @include respond-to(lg) {
+      grid-area: text;
+    }
+
     h3 {
       margin-bottom: $spacing-md;
+
+      @include respond-to(lg) {
+        white-space: nowrap;
+      }
     }
     
     p {
@@ -89,6 +100,11 @@
     position: relative;
     border-radius: $border-radius-xl;
     overflow: hidden;
+
+    @include respond-to(lg) {
+      grid-area: image;
+      align-self: start;
+    }
     
     img {
       width: 100%;
@@ -114,10 +130,16 @@
   &__features {
     display: grid;
     gap: $spacing-lg;
-    margin-top: $spacing-xl;
+    margin-top: $spacing-lg;
     
     @include respond-to(md) {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to(lg) {
+      grid-area: features;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: $spacing-sm;
     }
   }
   

@@ -660,16 +660,27 @@ p.lead {
 .concept__content {
   display: grid;
   gap: 48px;
-  align-items: center;
+  align-items: start;
 }
 @media (min-width: 992px) {
   .concept__content {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "text image" "features features";
     gap: 96px;
+  }
+}
+@media (min-width: 992px) {
+  .concept__text {
+    grid-area: text;
   }
 }
 .concept__text h3 {
   margin-bottom: 24px;
+}
+@media (min-width: 992px) {
+  .concept__text h3 {
+    white-space: nowrap;
+  }
 }
 .concept__text p {
   margin-bottom: 24px;
@@ -680,6 +691,12 @@ p.lead {
   position: relative;
   border-radius: 24px;
   overflow: hidden;
+}
+@media (min-width: 992px) {
+  .concept__image {
+    grid-area: image;
+    align-self: start;
+  }
 }
 .concept__image img {
   width: 100%;
@@ -702,11 +719,18 @@ p.lead {
 .concept__features {
   display: grid;
   gap: 32px;
-  margin-top: 48px;
+  margin-top: 32px;
 }
 @media (min-width: 768px) {
   .concept__features {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 992px) {
+  .concept__features {
+    grid-area: features;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 16px;
   }
 }
 .concept__feature {
@@ -2869,10 +2893,10 @@ p.lead {
   text-shadow: 0 0 20px rgba(204, 85, 0, 0.4);
 }
 .hero__title {
-  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: 64px;
+  margin-bottom: 10px;
   margin-top: 0;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
   color: #cc5500;
@@ -2891,6 +2915,7 @@ p.lead {
   line-height: 1.8;
   margin-bottom: 48px;
   max-width: 1000px;
+  text-wrap: pretty;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.8), 1px -1px 0 rgba(0, 0, 0, 0.8), -1px 1px 0 rgba(0, 0, 0, 0.8), 1px 1px 0 rgba(0, 0, 0, 0.8), 0 0 3px rgba(0, 0, 0, 0.8), 0 0 4.5px rgba(0, 0, 0, 0.8);
 }
@@ -2898,8 +2923,6 @@ p.lead {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  margin-top: -18px;
-  margin-bottom: 18px;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s backwards;
 }
 .hero__scroll {
