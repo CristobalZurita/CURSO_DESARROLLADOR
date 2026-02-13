@@ -243,12 +243,12 @@
     // Hacer más sutil que el hover
     &::before,
     &::after {
-      opacity: 0;
+      opacity: 0.14;
     }
     
     &:hover::before,
     &:hover::after {
-      opacity: 0.5;
+      opacity: 0.45;
     }
   }
 }
@@ -272,4 +272,3 @@
     }
   }
 }
-

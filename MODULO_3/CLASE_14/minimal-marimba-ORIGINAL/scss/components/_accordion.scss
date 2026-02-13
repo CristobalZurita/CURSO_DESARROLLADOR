@@ -172,7 +172,7 @@
     bottom: 0;
     width: 2px;
     background: linear-gradient(180deg, $color-audio-primary, $color-audio-secondary);
-    opacity: 0.3;
+    opacity: 0.45;
     z-index: $z-background;
     
     @media (max-width: $breakpoint-md) {
@@ -190,7 +190,7 @@
       &::before {
         content: '';
         position: absolute;
-        left: -20px;
+        left: 12px;
         top: 50%;
         transform: translateY(-50%);
         width: 12px;
@@ -201,7 +201,7 @@
         z-index: $z-content;
         
         @media (max-width: $breakpoint-md) {
-          left: 2px;
+          left: 10px;
         }
       }
       
@@ -216,4 +216,3 @@
     }
   }
 }
-

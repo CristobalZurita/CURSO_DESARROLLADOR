@@ -203,6 +203,8 @@
     display: flex;
     flex-wrap: wrap;
     gap: $spacing-md;
+    margin-top: -18px;
+    margin-bottom: 18px;
     animation: fadeInUp 1s $easing-smooth 0.6s backwards;
   }
   

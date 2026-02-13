@@ -1311,10 +1311,10 @@ p.lead {
   }
 }
 .card--electronic .card__title::before, .card--electronic .card__title::after {
-  opacity: 0;
+  opacity: 0.14;
 }
 .card--electronic .card__title:hover::before, .card--electronic .card__title:hover::after {
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 .cards-grid {
@@ -1651,7 +1651,7 @@ p.lead {
   bottom: 0;
   width: 2px;
   background: linear-gradient(180deg, #cc5500, #00ff9d);
-  opacity: 0.3;
+  opacity: 0.45;
   z-index: -1;
 }
 @media (max-width: 768px) {
@@ -1666,7 +1666,7 @@ p.lead {
 .accordion-container--modular .accordion__item--active::before {
   content: "";
   position: absolute;
-  left: -20px;
+  left: 12px;
   top: 50%;
   transform: translateY(-50%);
   width: 12px;
@@ -1679,7 +1679,7 @@ p.lead {
 }
 @media (max-width: 768px) {
   .accordion-container--modular .accordion__item--active::before {
-    left: 2px;
+    left: 10px;
   }
 }
 .accordion-container--modular .accordion__item--active .accordion__header {
@@ -2898,6 +2898,8 @@ p.lead {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
+  margin-top: -18px;
+  margin-bottom: 18px;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s backwards;
 }
 .hero__scroll {
