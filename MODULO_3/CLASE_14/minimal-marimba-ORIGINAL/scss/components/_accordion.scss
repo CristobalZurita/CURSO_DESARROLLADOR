@@ -4,6 +4,17 @@
 
 @use '../abstracts/' as *;
 
+$accordion-led-color: #00a8ff;
+
+@keyframes accordion-led-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px $accordion-led-color, 0 0 20px rgba($accordion-led-color, 0.8), 0 0 30px rgba($accordion-led-color, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 18px $accordion-led-color, 0 0 34px rgba($accordion-led-color, 0.8), 0 0 46px rgba($accordion-led-color, 0.6);
+  }
+}
+
 .accordion {
   &__item {
     background: $color-dark-surface;
@@ -195,9 +206,10 @@
         transform: translateY(-50%);
         width: 12px;
         height: 12px;
-        background: $color-audio-secondary;
+        background: $accordion-led-color;
         border-radius: 50%;
-        @include modular-glow($color-audio-secondary);
+        box-shadow: 0 0 10px $accordion-led-color, 0 0 20px rgba($accordion-led-color, 0.8), 0 0 30px rgba($accordion-led-color, 0.6);
+        animation: accordion-led-pulse $duration-pulse ease-in-out infinite;
         z-index: $z-content;
         
         @media (max-width: $breakpoint-md) {

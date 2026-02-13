@@ -1558,6 +1558,14 @@ p.lead {
     transform: translateY(0) scale(1);
   }
 }
+@keyframes accordion-led-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px #00a8ff, 0 0 20px rgba(0, 168, 255, 0.8), 0 0 30px rgba(0, 168, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 18px #00a8ff, 0 0 34px rgba(0, 168, 255, 0.8), 0 0 46px rgba(0, 168, 255, 0.6);
+  }
+}
 .accordion__item {
   background: #151515;
   border-radius: 16px;
@@ -1719,10 +1727,10 @@ p.lead {
   transform: translateY(-50%);
   width: 12px;
   height: 12px;
-  background: #00ff9d;
+  background: #00a8ff;
   border-radius: 50%;
-  box-shadow: 0 0 10px #00ff9d, 0 0 20px rgba(0, 255, 157, 0.8), 0 0 30px rgba(0, 255, 157, 0.6);
-  animation: pulse-glow 1s ease-in-out infinite;
+  box-shadow: 0 0 10px #00a8ff, 0 0 20px rgba(0, 168, 255, 0.8), 0 0 30px rgba(0, 168, 255, 0.6);
+  animation: accordion-led-pulse 1s ease-in-out infinite;
   z-index: 10;
 }
 @media (max-width: 768px) {
