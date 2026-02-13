@@ -8,6 +8,7 @@ import ParticleSystem from './modules/ParticleSystem.js';
 import CustomCursor from './modules/CustomCursor.js';
 import RippleEffect from './modules/RippleEffect.js';
 import ParallaxReverb from './modules/ParallaxReverb.js';
+import ElectricArcs from './modules/ElectricArcs.js';
 
 /**
  * Initialize all effects
@@ -31,43 +32,57 @@ export function initializeEffects(config = {}) {
                 barCount: 60,
                 colors: ['#cc5500', '#ff6b3d', '#00ff9d']
             });
+
+            // Mostrar visualizer solo al llegar al footer
+            visualizerContainer.classList.remove('visualizer--active');
+            const footer = document.querySelector('footer.footer, footer');
+            if (footer) {
+                effects.visualizerObserver = new IntersectionObserver((entries) => {
+                    const isFooterVisible = entries.some((entry) => entry.isIntersecting);
+                    visualizerContainer.classList.toggle('visualizer--active', isFooterVisible);
+                }, {
+                    threshold: 0.15
+                });
+                effects.visualizerObserver.observe(footer);
+            }
         } else {
             console.log('ℹ️ AudioVisualizer: No .visualizer container found');
         }
 
-        // Particle System (hero section) - SOLO si existe el contenedor
-        const particlesContainer = document.querySelector('.hero__particles');
-        if (particlesContainer) {
-            effects.particleSystem = new ParticleSystem({
-                container: particlesContainer,
-                particleCount: 50,
-                connectionDistance: 150,
-                gridSize: 150,
-                colors: ['#cc5500', '#ff6b3d', '#00ff9d']
+        // Electric arcs (hero section - full hero)
+        const heroContainer = document.querySelector('.hero');
+        if (heroContainer) {
+            effects.electricArcs = new ElectricArcs({
+                container: heroContainer,
+                intensity: 0.22,
+                minDelay: 380,
+                maxDelay: 1200
             });
+            heroContainer.classList.add('hero--electric');
         } else {
-            console.log('ℹ️ ParticleSystem: No .hero__particles container found');
+            console.log('ℹ️ ElectricArcs: No .hero container found');
         }
 
-        // Custom Cursor (baqueta) - SOLO si hay mouse y existe el elemento
-// Reemplazar la condición por:
-const cursorElement = document.querySelector('.custom-cursor');
-if (cursorElement) {
-    effects.customCursor = new CustomCursor({
-        cursor: cursorElement,
-        size: 20,
-        height: 80,
-        color1: '#cc5500',
-        color2: '#00ff9d'
-    });
-    console.log('✨ CustomCursor initialized (forced)');
-}
+        // Particle System disabled by request
+        console.log('ℹ️ ParticleSystem: Disabled by request');
+
+        // Custom Cursor (baqueta) - no se fuerza en dispositivos sin puntero fino
+        const cursorElement = document.querySelector('.custom-cursor');
+        if (cursorElement && window.matchMedia('(pointer: fine)').matches) {
+            effects.customCursor = new CustomCursor({
+                cursor: cursorElement,
+                size: 20,
+                height: 80,
+                color1: '#cc5500',
+                color2: '#00ff9d'
+            });
+        }
 
         // Ripple Effect (cards) - SIEMPRE inicializar
         effects.rippleEffect = new RippleEffect({
             selector: '.card--marimba',
-            duration: 600,
-            color: 'rgba(255, 107, 61, 0.3)'
+            duration: 720,
+            color: 'rgba(255, 107, 61, 0.48)'
         });
 
         // Parallax Reverb (scroll effect) - SIEMPRE inicializar
@@ -91,7 +106,8 @@ export {
     ParticleSystem,
     CustomCursor,
     RippleEffect,
-    ParallaxReverb
+    ParallaxReverb,
+    ElectricArcs
 };
 
 // Auto-initialize when DOM is ready

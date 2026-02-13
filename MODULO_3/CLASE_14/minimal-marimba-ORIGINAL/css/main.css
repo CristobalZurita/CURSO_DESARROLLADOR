@@ -1011,6 +1011,7 @@ p.lead {
 
 .reverb-section {
   position: relative;
+  isolation: isolate;
 }
 .reverb-section__echo {
   position: absolute;
@@ -1018,18 +1019,18 @@ p.lead {
   left: 0;
   width: 100%;
   height: 100%;
-  background: inherit;
-  opacity: 0.1;
-  transform: translateY(20px) scale(0.98);
+  background: radial-gradient(circle at 50% 20%, rgba(204, 85, 0, 0.16), rgba(0, 255, 157, 0.08) 55%, transparent 100%);
+  opacity: 0.14;
+  transform: translateY(16px) scale(0.985);
   z-index: -1;
-  filter: blur(10px);
+  filter: blur(16px);
   pointer-events: none;
 }
 
 .parallax-image {
-  will-change: transform;
-  transition: transform 0.1s linear;
-  transform: translateZ(0);
+  will-change: transform, filter;
+  transition: transform 0.08s linear, filter 0.18s ease;
+  transform: translate3d(0, 0, 0);
 }
 .parallax-image img {
   will-change: transform;
@@ -1037,6 +1038,7 @@ p.lead {
 @media (prefers-reduced-motion: reduce) {
   .parallax-image {
     will-change: auto;
+    transition: none;
   }
 }
 
@@ -1327,6 +1329,7 @@ p.lead {
 .card--marimba {
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 .card--marimba .ripple {
   position: absolute;
@@ -1362,6 +1365,9 @@ p.lead {
 }
 .card--marimba:hover {
   box-shadow: 0 0 30px rgba(204, 85, 0, 0.3);
+}
+.card--marimba:active {
+  box-shadow: 0 0 38px rgba(204, 85, 0, 0.35);
 }
 
 .card--electronic {
@@ -1413,10 +1419,10 @@ p.lead {
   }
 }
 .card--electronic .card__title::before, .card--electronic .card__title::after {
-  opacity: 0;
+  opacity: 0.14;
 }
 .card--electronic .card__title:hover::before, .card--electronic .card__title:hover::after {
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 .cards-grid {
@@ -1753,7 +1759,7 @@ p.lead {
   bottom: 0;
   width: 2px;
   background: linear-gradient(180deg, #cc5500, #00ff9d);
-  opacity: 0.3;
+  opacity: 0.45;
   z-index: -1;
 }
 @media (max-width: 768px) {
@@ -1768,7 +1774,7 @@ p.lead {
 .accordion-container--modular .accordion__item--active::before {
   content: "";
   position: absolute;
-  left: -20px;
+  left: 12px;
   top: 50%;
   transform: translateY(-50%);
   width: 12px;
@@ -1781,7 +1787,7 @@ p.lead {
 }
 @media (max-width: 768px) {
   .accordion-container--modular .accordion__item--active::before {
-    left: 2px;
+    left: 10px;
   }
 }
 .accordion-container--modular .accordion__item--active .accordion__header {
@@ -2746,10 +2752,12 @@ p.lead {
   left: 0;
   width: 100%;
   height: 120px;
-  z-index: 30;
+  z-index: 360;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.12) 100%);
 }
 .visualizer canvas {
   width: 100%;
@@ -2758,8 +2766,8 @@ p.lead {
   display: block;
 }
 .visualizer--active {
-  opacity: 0.6;
-  pointer-events: auto;
+  opacity: 0.58;
+  pointer-events: none;
 }
 .visualizer--inline {
   position: relative;
@@ -2885,6 +2893,7 @@ p.lead {
   bottom: 0;
   width: 200%;
   height: 100%;
+  z-index: 1;
   animation: waveMove 10s linear infinite;
   animation-direction: normal;
 }
@@ -2911,15 +2920,34 @@ p.lead {
     display: none;
   }
 }
-.hero__particles {
+.hero__waves--electric {
+  opacity: 0.82;
+}
+.hero__waves--electric svg {
+  opacity: 0.08;
+}
+.hero__waves--electric canvas {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 10;
+  opacity: 0.82;
+  mix-blend-mode: screen;
   pointer-events: none;
-  opacity: 0.4;
+}
+.hero--electric .hero-electric-arcs {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 150;
+  opacity: 0.78;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.hero__particles {
+  display: none;
 }
 .hero__container {
   max-width: 1440px;

@@ -220,3 +220,143 @@ document.querySelectorAll('.parallax-image').length // Debe ser 2+
 ---
 
 **Tiempo total estimado:** 2.5 - 3 horas de trabajo concentrado.
+
+
+
+**Plan Maestro de Trabajo (Referencia Ejecutable)**
+
+**1) Marco de operación (lo que SÍ y lo que NO)**
+
+1. Se trabaja en modo `aditivo` o `sustractivo controlado`, nunca destructivo.
+2. No se toca `cursor` (ni `js/modules/CustomCursor.js` ni CSS asociado).
+3. No se refactoriza por gusto; solo cambios necesarios para cada ítem.
+4. Cada cambio queda reversible por bandera (`feature flag`).
+5. No se activa nada que no esté en tus 7 puntos.
+6. Se valida visualmente en desktop + mobile + `prefers-reduced-motion`.
+
+**2) Matriz completa 1–7 (estado actual y acción exacta)**
+
+| Ítem                                     | Estado actual                       | Acción planificada                                                         | Archivos objetivo                                                                                      | Criterio de éxito                                     |
+| ----------------------------------------- | ----------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| 1. Rayos eléctricos sutiles              | Hay ondas SVG (`hero__waves`)     | Mutar visual a rayos sutiles en el mismo contenedor, con fallback           | `js/modules/ElectricArcs.js` (nuevo), `js/effects.js`, `css/main.css`, `scss/pages/_home.scss` | Rayos finos, aleatorios, no invasivos, sin romper hero |
+| 2. Levantar visualizer                    | Existe, pero visualmente apagado    | Activar clase visual y mantener intensidad baja                             | `js/modules/AudioVisualizer.js`, `css/main.css`                                                    | Se ve en parte baja, sutil, sin tapar contenido        |
+| 3. Levantar glitch                        | CSS existe, no aplicado en títulos | Aplicar solo en títulos seleccionados (subtle)                             | `index.html`                                                                                         | Glitch visible en hover/sutil en títulos elegidos     |
+| 4. Partículas (qué es y dónde se ve)   | Existe en hero                      | Dejar visible-controlado y documentado                                      | `js/modules/ParticleSystem.js`, `css/main.css`                                                     | Partículas identificables, sin ruido excesivo         |
+| 5. Tecla marimba (qué es y dónde se ve) | Existe ripple + press en cards      | Asegurar percepción clara en cards marimba                                 | `js/modules/RippleEffect.js`, `css/main.css`, `index.html`                                       | Click da ripple + feedback físico evidente            |
+| 6. Síntesis modular cronograma           | Existe estilo modular               | Ajustar visibilidad del “LED”/línea si está muy tenue                   | `css/main.css`, `scss/components/_accordion.scss`                                                  | Estado activo modular claramente visible               |
+| 7. Reverb/parallax + confirmar glitch     | JS existe, casi no se nota          | Conectar a elementos reales (`.parallax-image`) y confirmar glitch activo | `index.html`, `js/effects.js`, `css/main.css`                                                    | Parallax perceptible y estable, glitch confirmado      |
+
+**3) Estrategia técnica por fases (orden real de ejecución)**
+
+1. **Fase 0: Preparación segura**
+   Crear bandera de efectos en `js/effects.js` para controlar activación por ítem.
+
+```js
+const EFFECT_FLAGS = {
+  electricArcs: true,
+  visualizer: true,
+  glitchTitles: true,
+  particles: true,
+  marimbaKey: true,
+  modularAccordion: true,
+  parallaxReverb: true
+};
+```
+
+2. **Fase 1: Levantar 2 (visualizer) primero**
+   Cambio mínimo de riesgo bajo: activar clase visual al iniciar el módulo.
+
+```js
+this.container.classList.add('visualizer--active');
+```
+
+3. **Fase 2: Levantar 3 (glitch) en HTML**Aplicar clases solo en títulos acordados, modo `--subtle`, sin globalizar.
+4. **Fase 3: Ejecutar 1 (rayos eléctricos)**Agregar módulo nuevo `ElectricArcs`, dibujando en canvas dentro de `.hero__waves`, con opacidad baja y eventos espaciados.
+5. **Fase 4: Validar 4 (partículas)**No reescritura grande; solo calibración de opacidad/cantidad si está sobrecargado.
+6. **Fase 5: Validar 5 (tecla marimba)**Confirmar ripple + active press en cards `card--marimba`; reforzar solo si no se percibe.
+7. **Fase 6: Validar 6 (modular accordion)**Ajustar contraste del LED/línea modular en estado activo.
+8. **Fase 7: Levantar 7 (reverb/parallax)**Conectar el efecto a elementos reales agregando `.parallax-image` en bloques concretos (imagen concepto y speaker).
+9. **Fase 8: Cierre técnico**
+   Revisión visual final + verificación sin errores JS + fallback `reduced-motion`.
+
+**4) Propuesta concreta de implementación por ítem (código/arquitectura)**
+
+1. **Ítem 1: ElectricArcs (nuevo módulo)**
+
+```js
+// js/modules/ElectricArcs.js
+class ElectricArcs {
+  constructor({ container, intensity = 0.25, minDelay = 350, maxDelay = 1200 }) {}
+  createBoltPath() {}
+  drawBolt(path, alpha) {}
+  loop() {}
+  destroy() {}
+}
+export default ElectricArcs;
+```
+
+```css
+/* aditivo */
+.hero__waves--electric svg { opacity: 0; }
+.hero__waves--electric canvas {
+  position: absolute;
+  inset: 0;
+  opacity: .22;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+```
+
+2. **Ítem 2: Visualizer**
+
+```js
+// en AudioVisualizer constructor
+this.container.classList.add('visualizer--active');
+```
+
+3. **Ítem 3: Glitch en títulos**
+
+```html
+<h3 class="card__title glitch-text glitch-text--subtle" data-text="Patrones Interferentes">Patrones Interferentes</h3>
+<h3 class="card__title glitch-text glitch-text--subtle" data-text="Microtonos Digitales">Microtonos Digitales</h3>
+```
+
+4. **Ítem 4: Partículas**
+5. Mantener `ParticleSystem` actual.
+6. Ajustar `particleCount` y `opacity` si el hero se ve cargado.
+7. No tocar cursor ni navegación.
+8. **Ítem 5: Tecla marimba**
+9. Verificar que `RippleEffect` esté activo en `.card--marimba`.
+10. Ajustar color/alpha del ripple si hoy no se nota.
+11. **Ítem 6: Modular accordion**
+12. Reforzar visibilidad de `accordion-container--modular .accordion__item--active::before`.
+13. Mantener animación suave, no invasiva.
+14. **Ítem 7: Reverb/parallax**
+15. Agregar `.parallax-image` a contenedores existentes de imagen.
+16. Mantener `speed` conservador para evitar mareo.
+
+**5) Criterios de aceptación (DoD) por ítem**
+
+1. Ítem 1 aprobado si los rayos se perciben como “eléctricos sutiles” y no tapan texto.
+2. Ítem 2 aprobado si el visualizer se ve y no invade lectura.
+3. Ítem 3 aprobado si el glitch se nota en los títulos seleccionados.
+4. Ítem 4 aprobado si partículas se distinguen sin ruido visual.
+5. Ítem 5 aprobado si click en card marimba da feedback claro.
+6. Ítem 6 aprobado si el estado activo modular se entiende visualmente.
+7. Ítem 7 aprobado si parallax se percibe suave y estable.
+
+**6) Plan de rollback (por si no te gusta un cambio)**
+
+1. Cada ítem se puede apagar por `EFFECT_FLAGS`.
+2. Ítem 1 se revierte quitando clase `hero__waves--electric`.
+3. Ítem 3 se revierte quitando `glitch-text` del HTML.
+4. Ítem 7 se revierte quitando `.parallax-image` del HTML.
+
+**7) Entregable final esperado**
+
+1. Sitio con 7 efectos visibles/entendibles según tu criterio.
+2. Sin tocar cursor.
+3. Sin romper navbar ni flujo actual.
+4. Todo controlable por banderas para ajuste fino.
+
+Si apruebas este plan, ejecuto exactamente en ese orden y te voy mostrando avance por fase (1→8), sin saltos ni cambios fuera de alcance.

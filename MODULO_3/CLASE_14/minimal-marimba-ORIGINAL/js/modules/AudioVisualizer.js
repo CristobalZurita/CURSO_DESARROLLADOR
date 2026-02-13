@@ -65,24 +65,34 @@ class AudioVisualizer {
 
         // Generate demo spectrum using sine waves
         for (let i = 0; i < 60; i++) {
-            const frequency = Math.sin(this.phase + i * 0.1) * 100 + 100;
+            const frequency = Math.sin(this.phase + i * 0.14) * 110 + 105;
             this.dataArray[i] = Math.abs(frequency);
         }
-        this.phase += 0.02;
+        this.phase += 0.024;
 
         const barWidth = this.width / 60;
 
-        // Clear canvas
-        this.ctx.fillStyle = '#0a0a0a';
+        // Clear canvas with subtle depth layer
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        const depthGradient = this.ctx.createLinearGradient(0, 0, 0, this.height);
+        depthGradient.addColorStop(0, 'rgba(10, 10, 10, 0)');
+        depthGradient.addColorStop(1, 'rgba(10, 10, 10, 0.08)');
+        this.ctx.fillStyle = depthGradient;
         this.ctx.fillRect(0, 0, this.width, this.height);
 
-        // Draw bars
+        // Draw bars (full-color palette, but transparent)
         for (let i = 0; i < 60; i++) {
             const value = this.dataArray[i];
             const barHeight = (value / 255) * this.height * 0.9;
-            const hue = (i / 60 * 360) % 360;
+            const hueA = ((i / 60) * 360 + this.phase * 140) % 360;
+            const hueB = (hueA + 52) % 360;
+            const alphaTop = 0.24 + (value / 255) * 0.26;
+            const alphaBottom = 0.12 + (value / 255) * 0.2;
+            const barGradient = this.ctx.createLinearGradient(0, this.height - barHeight, 0, this.height);
+            barGradient.addColorStop(0, `hsla(${hueA}, 96%, 62%, ${alphaTop})`);
+            barGradient.addColorStop(1, `hsla(${hueB}, 94%, 50%, ${alphaBottom})`);
 
-            this.ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+            this.ctx.fillStyle = barGradient;
             this.ctx.fillRect(
                 i * barWidth + 1,
                 this.height - barHeight,
@@ -99,4 +109,3 @@ class AudioVisualizer {
     }
 }
 export default AudioVisualizer;
-

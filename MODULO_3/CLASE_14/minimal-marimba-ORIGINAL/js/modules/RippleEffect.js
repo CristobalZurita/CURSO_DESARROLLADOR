@@ -62,16 +62,16 @@ class RippleEffect {
         // Only create ripple on left click
         if (event.button && event.button !== 0) return;
 
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height) * 0.82;
         let x, y;
 
         if (isKeyboard) {
             // For keyboard, center the ripple
-            const rect = element.getBoundingClientRect();
             x = rect.width / 2;
             y = rect.height / 2;
         } else {
             // For mouse, use click position
-            const rect = element.getBoundingClientRect();
             x = event.clientX - rect.left;
             y = event.clientY - rect.top;
         }
@@ -83,12 +83,13 @@ class RippleEffect {
             position: absolute;
             top: ${y}px;
             left: ${x}px;
-            width: 20px;
-            height: 20px;
+            width: ${size}px;
+            height: ${size}px;
             background: ${this.color};
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
+            box-shadow: 0 0 24px rgba(255, 107, 61, 0.4);
             animation: ripple ${this.duration}ms ease-out forwards;
             z-index: 10;
         `;
@@ -108,4 +109,3 @@ class RippleEffect {
 }
 
 export default RippleEffect;
-
