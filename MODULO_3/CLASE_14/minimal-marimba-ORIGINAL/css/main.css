@@ -21,7 +21,6 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -459,7 +458,9 @@ p.lead {
 }
 .header__link {
   position: relative;
-  transition: color 0.3s ease ease;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  font-size: clamp(1.155rem, 1.045rem + 0.352vw, 1.375rem);
 }
 .header__link::after {
   content: "";
@@ -469,17 +470,13 @@ p.lead {
   width: 0;
   height: 2px;
   background: #cc5500;
-  transition: width 0.3s ease ease;
+  transition: width 0.3s ease;
 }
 .header__link:hover {
   color: #cc5500;
 }
 .header__link:hover::after {
   width: 100%;
-}
-.header__link {
-  font-weight: 500;
-  font-size: clamp(1.155rem, 1.045rem + 0.352vw, 1.375rem);
 }
 .header__link--active {
   color: #cc5500;
@@ -2594,6 +2591,10 @@ p.lead {
   color: #cc5500;
   border: 1px solid #cc5500;
   font-size: 14px;
+}
+.header__cta #accessibilityToggle {
+  position: relative;
+  left: 38px;
 }
 .btn--accessibility:hover {
   background: #cc5500;

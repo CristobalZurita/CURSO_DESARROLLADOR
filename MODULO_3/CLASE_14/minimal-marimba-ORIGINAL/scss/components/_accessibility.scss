@@ -277,6 +277,11 @@
   }
 }
 
+.header__cta #accessibilityToggle {
+  position: relative;
+  left: 38px;
+}
+
 // RESPUESTAS DE LECTORES DE PANTALLA (sr-only)
 // ============================================
 .sr-only {

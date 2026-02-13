@@ -19,7 +19,8 @@ html {
   font-size: $font-size-base;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @include smooth-scroll;
+  // Native smooth scroll is disabled because JS handles offset with fixed header.
+  @include smooth-scroll(false);
 }
 
 body {

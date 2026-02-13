@@ -126,8 +126,10 @@
 
 // SMOOTH SCROLL
 // --------------------------------------------
-@mixin smooth-scroll {
-  scroll-behavior: smooth;
+@mixin smooth-scroll($use-native: true) {
+  @if $use-native {
+    scroll-behavior: smooth;
+  }
   -webkit-overflow-scrolling: touch;
 }
 
@@ -303,7 +305,7 @@
 // --------------------------------------------
 @mixin underline-animation($color: $color-primary, $height: 2px) {
   position: relative;
-  transition: color $transition-base ease;
+  transition: color $transition-base;
   
   &::after {
     content: '';
@@ -313,7 +315,7 @@
     width: 0;
     height: $height;
     background: $color;
-    transition: width $transition-base ease;
+    transition: width $transition-base;
   }
   
   &:hover {
@@ -550,4 +552,3 @@
 // ============================================
 // FIN - MICROINTERACCIONES
 // ============================================
-
