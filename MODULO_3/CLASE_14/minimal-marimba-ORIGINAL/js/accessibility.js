@@ -436,7 +436,8 @@ class AccessibilityManager {
       return;
     }
 
-    this.setFloatingControlsVisible(true);
+    const hasActiveSpeech = Boolean(this.speechSynthesis && (this.speechSynthesis.speaking || this.speechSynthesis.paused || this.isSpeaking || this.isPaused));
+    this.setFloatingControlsVisible(hasActiveSpeech);
     this.updatePlaybackControls();
 
     if (announce) {
@@ -693,7 +694,7 @@ class AccessibilityManager {
       return;
     }
 
-    this.voiceFloatingControls.hidden = !(visible || this.isVoiceReadingModeEnabled());
+    this.voiceFloatingControls.hidden = !visible;
   }
 
   updatePlaybackControls() {
