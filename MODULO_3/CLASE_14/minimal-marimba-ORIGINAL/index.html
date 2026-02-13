@@ -167,6 +167,42 @@
                     </label>
                     <p id="focusVisibleDesc" class="accessibility-option__description">Muestra un borde visible alrededor de los elementos interactivos al navegar con teclado</p>
                 </div>
+                <div class="accessibility-option">
+                    <h3 class="accessibility-option__heading">Lectura por Voz</h3>
+                    <p class="accessibility-option__description accessibility-option__description--inline">
+                        Permite escuchar el contenido principal del sitio con síntesis de voz.
+                    </p>
+                    <div class="accessibility-voice-controls" role="group" aria-label="Controles de lectura por voz">
+                        <button type="button" class="accessibility-action-btn" id="speakPageBtn" aria-describedby="voiceControlsDesc">
+                            Leer página completa
+                        </button>
+                        <button type="button" class="accessibility-action-btn" id="speakSectionBtn" aria-describedby="voiceControlsDesc">
+                            Leer sección visible
+                        </button>
+                        <button type="button" class="accessibility-action-btn accessibility-action-btn--ghost" id="stopSpeechBtn">
+                            Detener lectura
+                        </button>
+                    </div>
+                    <p id="voiceControlsDesc" class="accessibility-option__description">
+                        Atajos: Alt + L (leer página), Alt + K (leer sección), Alt + X (detener lectura)
+                    </p>
+                    <div class="accessibility-range-control">
+                        <label for="voiceRate" class="accessibility-range-control__label">Velocidad de lectura</label>
+                        <input type="range" id="voiceRate" class="accessibility-range-control__input" min="0.7" max="1.6" step="0.1" value="1" aria-label="Velocidad de lectura por voz">
+                    </div>
+                </div>
+                <div class="accessibility-option">
+                    <label for="voiceCommands" class="accessibility-option__label">
+                        <input type="checkbox" id="voiceCommands" class="accessibility-option__input" aria-describedby="voiceCommandsDesc">
+                        <span>Comandos de Voz</span>
+                    </label>
+                    <p id="voiceCommandsDesc" class="accessibility-option__description">
+                        Permite operar funciones básicas diciendo: “leer página”, “leer sección”, “detener”, “subir”.
+                    </p>
+                    <p class="accessibility-option__status" id="voiceStatus" aria-live="polite">
+                        Estado: inactivo
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -363,11 +399,16 @@
                     <img
                         src="assets/images/MARIMBA_COLOR.png"
                         alt="Marimba con setup electrónico"
+                        aria-describedby="conceptImageDesc"
+                        data-a11y-description="Imagen principal del concepto artístico: una marimba acústica junto a sintetizadores y equipo electrónico de directo."
                         class="concept__media-image"
                         width="2148"
                         height="1253"
                         loading="lazy"
                     >
+                    <p id="conceptImageDesc" class="sr-only">
+                        Marimba acústica acompañada por sintetizadores y hardware de procesamiento en vivo, representando la fusión entre percusión tradicional y electrónica.
+                    </p>
                 </div>
             </div>
         </div>
@@ -900,6 +941,21 @@
             <div class="location__content">
                 <div class="location__details">
                     <div class="location__card">
+                        <div class="location__vignette">
+                            <img
+                                src="assets/images/TEATRO3.jpeg"
+                                alt="Fachada del Teatro Municipal de Valparaíso"
+                                aria-describedby="locationImageDesc"
+                                data-a11y-description="Fachada del Teatro Municipal de Valparaíso, edificio histórico de color claro y estilo clásico."
+                                class="location__vignette-image"
+                                width="1600"
+                                height="1066"
+                                loading="lazy"
+                            >
+                            <p id="locationImageDesc" class="sr-only">
+                                Imagen de la fachada del Teatro Municipal de Valparaíso, sede oficial del evento, con arquitectura patrimonial y vista exterior frontal.
+                            </p>
+                        </div>
                         <h3>Teatro Municipal de Valparaíso</h3>
                         <p class="location__address">
                             Condell 1546<br/>
@@ -1226,7 +1282,7 @@
     <!-- ============================================ -->
     <!-- FOOTER -->
     <!-- ============================================ -->
-    <footer class="footer" role="contentinfo" aria-label="Pie de página"
+    <footer class="footer" role="contentinfo" aria-label="Pie de página">
         <div class="footer__container">
             <div class="footer__content">
                 <div class="footer__brand">
