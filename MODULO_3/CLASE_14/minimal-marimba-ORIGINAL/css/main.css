@@ -684,6 +684,19 @@ p.lead {
   height: auto;
   display: block;
 }
+.concept__media-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px;
+  display: block;
+}
+@media (max-width: 767px) {
+  .concept__media-image {
+    height: 360px;
+  }
+}
 .concept__image::before {
   content: "";
   position: absolute;
