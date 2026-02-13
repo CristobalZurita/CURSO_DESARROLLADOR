@@ -21,6 +21,9 @@
   border-radius: $border-radius-lg;
   border: 1px solid rgba($color-primary, 0.1);
   transition: all $transition-base;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
   
   &:hover {
     border-color: rgba($color-primary, 0.3);
@@ -31,17 +34,41 @@
   &:hover .faq__question::before {
     background: $color-primary;
   }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &--active {
+    border-color: rgba($color-primary, 0.35);
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+
+    .faq__question::after {
+      content: '−';
+      color: $color-primary;
+    }
+
+    .faq__answer {
+      max-height: 1000px;
+      opacity: 1;
+      margin-top: $spacing-md;
+    }
+  }
 }
 
 .faq__question {
   font-size: $font-size-large;
   font-weight: $font-weight-semibold;
   color: $color-text-primary;
-  margin-bottom: $spacing-md;
+  margin-bottom: 0;
   position: relative;
   padding-left: $spacing-lg;
+  padding-right: $spacing-lg;
   display: flex;
   align-items: center;
+  width: 100%;
   
   &::before {
     content: '?';
@@ -59,10 +86,27 @@
     font-size: 12px;
     transition: background $transition-base ease;
   }
+
+  &::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-text-secondary;
+    font-size: 1.35rem;
+    line-height: 1;
+    transition: color $transition-fast;
+  }
 }
 
 .faq__answer {
   color: $color-text-secondary;
   line-height: 1.6;
   font-size: $font-size-base;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transition: max-height 0.35s ease, opacity 0.25s ease, margin-top 0.35s ease;
 }

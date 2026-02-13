@@ -195,10 +195,10 @@
 
     const repertoireData = {
         mitos: {
-            title: 'Mitos Brasileños (Mitos Brasileiros), Op. 14',
-            subtitle: 'Ney Rosauro (1952- ) · Cuarteto de Percusión',
+            title: 'Mitos Brasileiros, Op. 14',
+            subtitle: 'Ney Rosauro (1952- ) · Cuarteto de Percusión · c. 18:41',
             image: 'assets/images/MITOS.jpg',
-            imageAlt: 'Mitos Brasileños de Ney Rosauro',
+            imageAlt: 'Mitos Brasileiros de Ney Rosauro',
             bio: [
                 'Ney Rosauro nació el 24 de octubre de 1952 en Río de Janeiro, Brasil. Comenzó con la guitarra y, antes de dedicarse por completo a la percusión, trabajó como músico en clubes de Brasilia.',
                 'Estudió Composición y Dirección en la Universidad de Brasilia. En 1977 comenzó su formación especializada en percusión con Luiz Anunciação, y en 1980 recibió una beca para estudiar en la Hochschule für Musik de Würzburg con Siegfried Fink.',
@@ -211,8 +211,8 @@
             ]
         },
         toccata: {
-            title: 'Toccata para Instrumentos de Percusión',
-            subtitle: 'Carlos Chávez (1899-1978) · Ensemble de Percusión',
+            title: 'Toccata for Percussion Instruments',
+            subtitle: 'Carlos Chávez (1899-1978) · Sexteto de Percusión · c. 12:00',
             image: 'assets/images/TOCCATA.jpg',
             imageAlt: 'Toccata para Instrumentos de Percusión de Carlos Chávez',
             bio: [
@@ -228,7 +228,7 @@
         },
         mudra: {
             title: 'Mudra',
-            subtitle: 'Bob Becker (1947- ) · Quinteto de Percusión',
+            subtitle: 'Bob Becker (1947- ) · Quinteto de Percusión · c. 14:00',
             image: 'assets/images/MUDRA.jpg',
             imageAlt: 'Mudra de Bob Becker',
             bio: [
@@ -244,7 +244,7 @@
         },
         gainsborough: {
             title: 'Gainsborough',
-            subtitle: 'Thomas Gauger (1935- ) · Quinteto de Percusión',
+            subtitle: 'Thomas Gauger (1935- ) · Quinteto de Percusión · c. 12:05',
             image: 'assets/images/GAUINSBORROUGH.png',
             imageAlt: 'Gainsborough de Thomas Gauger',
             bio: [
@@ -259,8 +259,8 @@
             ]
         },
         brandenburg: {
-            title: 'Concierto de Brandeburgo No. 3 en Sol Mayor, BWV 1048',
-            subtitle: 'Johann Sebastian Bach (1685-1750) · Ensemble de Cuerdas',
+            title: 'Brandenburg Concerto No. 3 in G Major, BWV 1048',
+            subtitle: 'Johann Sebastian Bach (1685-1750) · Ensemble de Cuerdas · c. 10:00-12:03',
             image: 'assets/images/BRANDENBURGO.png',
             imageAlt: 'Concierto de Brandeburgo No. 3 de Johann Sebastian Bach',
             bio: [
@@ -276,7 +276,7 @@
         },
         spiritual: {
             title: 'Marimba Spiritual',
-            subtitle: 'Minoru Miki (1930-2011) · Marimba Solista y Trío de Percusión',
+            subtitle: 'Minoru Miki (1930-2011) · Marimba Solista y Trío de Percusión · c. 14:00-15:00',
             image: 'assets/images/SPIRITUAL.jpg',
             imageAlt: 'Marimba Spiritual de Minoru Miki',
             bio: [
@@ -371,6 +371,41 @@
             });
         }
     });
+
+    // ==========================================
+    // FAQ INTERACTIVO (expansión suave en la grilla)
+    // ==========================================
+    const faqItems = document.querySelectorAll('.faq__item');
+    if (faqItems.length) {
+        const setFaqState = function(targetItem, shouldOpen) {
+            targetItem.classList.toggle('faq__item--active', shouldOpen);
+            targetItem.setAttribute('aria-expanded', String(shouldOpen));
+        };
+
+        faqItems.forEach((item, index) => {
+            item.setAttribute('role', 'button');
+            item.setAttribute('tabindex', '0');
+            item.setAttribute('aria-expanded', 'false');
+
+            const toggleItem = function() {
+                const isActive = item.classList.contains('faq__item--active');
+                setFaqState(item, !isActive);
+            };
+
+            item.addEventListener('click', toggleItem);
+            item.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    toggleItem();
+                }
+            });
+
+            // Primera pregunta abierta por defecto
+            if (index === 0) {
+                setFaqState(item, true);
+            }
+        });
+    }
 
     // ==========================================
     // GALLERY + LIGHTBOX
