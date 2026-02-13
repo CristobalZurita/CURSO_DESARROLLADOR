@@ -42,10 +42,13 @@
     position: relative;
     width: 100%;
     max-width: 600px;
+    max-height: 92vh;
     background: $color-dark-surface;
     border-radius: $border-radius-xl;
     border: 1px solid rgba($color-primary, 0.2);
     padding: $spacing-xl;
+    display: flex;
+    flex-direction: column;
     transform: scale(0.9);
     transition: transform $transition-base;
     
@@ -107,6 +110,9 @@
   
   // ELEMENTO - BODY
   &__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
     margin-bottom: $spacing-lg;
   }
   
@@ -133,8 +139,10 @@
     img {
       width: 100%;
       height: auto;
-      object-fit: cover;
+      max-height: min(42vh, 420px);
+      object-fit: contain;
       border-radius: $border-radius-lg;
+      background: $color-dark-bg;
     }
   }
   
@@ -165,6 +173,7 @@
     
     .popup__body {
       padding: 0 $spacing-xl $spacing-xl;
+      overflow-y: auto;
     }
     
     .popup__image {
@@ -181,6 +190,7 @@
   &--tickets {
     .popup__container {
       max-width: min(1100px, 96vw);
+      max-height: 95vh;
       padding: $spacing-lg;
     }
 

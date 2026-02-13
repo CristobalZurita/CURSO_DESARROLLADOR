@@ -1447,10 +1447,13 @@ p.lead {
   position: relative;
   width: 100%;
   max-width: 600px;
+  max-height: 92vh;
   background: #151515;
   border-radius: 24px;
   border: 1px solid rgba(204, 85, 0, 0.2);
   padding: 48px;
+  display: flex;
+  flex-direction: column;
   transform: scale(0.9);
   transition: transform 0.3s ease;
 }
@@ -1512,6 +1515,9 @@ p.lead {
   height: 20px;
 }
 .popup__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
   margin-bottom: 32px;
 }
 .popup__content {
@@ -1533,8 +1539,10 @@ p.lead {
 .popup__image img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  max-height: min(42vh, 420px);
+  object-fit: contain;
   border-radius: 16px;
+  background: #0a0a0a;
 }
 .popup__footer {
   display: flex;
@@ -1561,6 +1569,7 @@ p.lead {
 }
 .popup--announcement .popup__body {
   padding: 0 48px 48px;
+  overflow-y: auto;
 }
 .popup--announcement .popup__image {
   margin: 0 0 32px 0;
@@ -1571,6 +1580,7 @@ p.lead {
 }
 .popup--tickets .popup__container {
   max-width: min(1100px, 96vw);
+  max-height: 95vh;
   padding: 32px;
 }
 .popup--tickets .popup__header {
