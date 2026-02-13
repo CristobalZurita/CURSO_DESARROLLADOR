@@ -7,58 +7,41 @@
 
 // Solo en dispositivos con puntero fino (no táctil)
 @media (pointer: fine) {
-  body {
-    cursor: none;
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active body * {
+    cursor: none !important;
   }
-  
+
   .custom-cursor {
     position: fixed;
-    width: $cursor-size;
-    height: $cursor-height;
-    background: linear-gradient(180deg, $color-audio-primary 0%, #993300 100%);
-    border-radius: 10px;
+    top: 0;
+    left: 0;
     pointer-events: none;
     z-index: $z-cursor;
-    transform: translate(-50%, -50%) rotate(-15deg);
-    transition: transform $duration-transition-fast ease, background $duration-transition-base ease;
-    mix-blend-mode: difference;
+    transform: translate(-50%, -8.2%);
     will-change: transform;
-  
-    // Punta de la baqueta
-    &::after {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 8px;
-      height: 15px;
-      background: #f5f5dc;
-      border-radius: 4px;
+
+    svg,
+    img {
+      display: block;
+      width: 103.4px;
+      height: 154px;
     }
-  
+
     // Estado: Clicking
     &--clicking {
-      transform: translate(-50%, -50%) rotate(-15deg) scale(0.9);
+      transform: translate(-50%, -8.2%) scale(0.9);
     }
-  
+
     // Estado: Hovering sobre elementos interactivos
     &--hovering {
-      transform: translate(-50%, -50%) rotate(0deg) scale(1.2);
-      background: $color-audio-secondary;
-      mix-blend-mode: normal;
-      box-shadow: 0 0 15px rgba($color-audio-secondary, 0.4);
+      transform: translate(-50%, -8.2%) scale(1.1);
     }
   }
-  
-  // Ocultar cursor nativo en elementos interactivos
-  a, button, .card, input, textarea, select, label {
-    cursor: none;
-  }
-  
-  // Mostrar cursor nativo nuevamente en focus (accesibilidad)
+
+  // Mantener anillo de foco para accesibilidad
   *:focus-visible {
-    cursor: auto !important;
     outline: $focus-ring-width solid $focus-ring-color;
     outline-offset: 2px;
   }
