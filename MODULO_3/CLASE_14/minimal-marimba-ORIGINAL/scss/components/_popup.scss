@@ -73,13 +73,16 @@
     font-size: $h3-size;
     font-weight: $font-weight-bold;
     color: $color-primary;
-    @include gradient-text;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    text-shadow: none;
     margin-bottom: $spacing-sm;
   }
   
   &__subtitle {
     color: $color-text-secondary;
     font-size: $font-size-base;
+    text-shadow: none;
   }
   
   // ELEMENTO - CLOSE
@@ -119,6 +122,12 @@
   &__content {
     color: $color-text-secondary;
     line-height: 1.7;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: $color-text-primary;
+      text-shadow: none;
+      margin-bottom: $spacing-sm;
+    }
     
     p {
       margin-bottom: $spacing-md;

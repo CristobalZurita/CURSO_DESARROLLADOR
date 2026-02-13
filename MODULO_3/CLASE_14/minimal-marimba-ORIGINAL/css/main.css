@@ -1475,15 +1475,15 @@ p.lead {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: #cc5500;
-  background: linear-gradient(135deg, #cc5500 0%, #cc5500 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  text-shadow: none;
   margin-bottom: 16px;
 }
 .popup__subtitle {
   color: #b0b0b0;
   font-size: 17px;
+  text-shadow: none;
 }
 .popup__close {
   background: none;
@@ -1523,6 +1523,11 @@ p.lead {
 .popup__content {
   color: #b0b0b0;
   line-height: 1.7;
+}
+.popup__content h1, .popup__content h2, .popup__content h3, .popup__content h4, .popup__content h5, .popup__content h6 {
+  color: #ffffff;
+  text-shadow: none;
+  margin-bottom: 16px;
 }
 .popup__content p {
   margin-bottom: 24px;
