@@ -2271,23 +2271,20 @@ p.lead {
 
 .location__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
 }
 @media (min-width: 768px) {
   .location__content {
     gap: 48px;
   }
 }
-@media (min-width: 576px) {
-  .location__content {
-    grid-template-columns: 1fr;
-  }
-}
 
 .location__details {
-  flex: 1;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .location__card {
@@ -2782,6 +2779,60 @@ p.lead {
   opacity: 0.58;
   pointer-events: none;
 }
+
+.floating-action {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 500;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.floating-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+.floating-action:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+.floating-action--whatsapp {
+  left: 20px;
+  background: #25d366;
+}
+.floating-action--top {
+  right: 20px;
+  background: #d97a2c;
+  color: #ffffff;
+}
+@media (max-width: 768px) {
+  .floating-action {
+    width: 50px;
+    height: 50px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+  .floating-action--whatsapp {
+    left: 14px;
+  }
+  .floating-action--top {
+    right: 14px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floating-action {
+    transition: none;
+  }
+}
+
 .visualizer--inline {
   position: relative;
   height: 80px;

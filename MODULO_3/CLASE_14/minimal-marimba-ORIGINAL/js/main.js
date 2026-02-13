@@ -99,6 +99,16 @@
     });
 
     // ==========================================
+    // FLOATING SCROLL TOP BUTTON
+    // ==========================================
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // ==========================================
     // POPUP / MODAL
     // ==========================================
     const popup = document.getElementById('popup');
