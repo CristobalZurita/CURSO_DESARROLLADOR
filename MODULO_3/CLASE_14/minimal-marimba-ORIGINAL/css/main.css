@@ -784,7 +784,18 @@ p.lead {
 }
 @media (min-width: 768px) {
   .footer__content {
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 40px;
+  }
+}
+@media (min-width: 1200px) {
+  .footer__content {
+    grid-template-columns: 1fr max-content 1fr;
+    column-gap: clamp(56px, 7vw, 140px);
+    align-items: start;
+    justify-items: stretch;
+    gap: 48px;
   }
 }
 .footer__brand h3 {
@@ -798,6 +809,23 @@ p.lead {
 .footer__brand p {
   color: #b0b0b0;
   margin-bottom: 24px;
+}
+@media (min-width: 768px) {
+  .footer__brand {
+    width: min(100%, 520px);
+    transform: none;
+    text-align: center;
+  }
+}
+@media (min-width: 1200px) {
+  .footer__brand {
+    justify-self: end;
+    width: min(100%, 620px);
+    text-align: left;
+    transform: translateX(-56px);
+    align-self: stretch;
+    min-height: 320px;
+  }
 }
 .footer__logo-link {
   display: inline-block;
@@ -825,8 +853,16 @@ p.lead {
   .footer__location-box {
     min-height: 320px;
     margin-left: 0;
-    width: 100%;
-    transform: translateX(100px);
+    width: min(100%, 760px);
+    justify-self: center;
+    transform: none;
+  }
+}
+@media (min-width: 1200px) {
+  .footer__location-box {
+    justify-self: end;
+    width: min(100%, 680px);
+    margin-right: clamp(50px, 5vw, 90px);
   }
 }
 .footer__location-info {
@@ -871,7 +907,7 @@ p.lead {
   .footer__section {
     justify-self: center;
     text-align: center;
-    transform: translateX(100px);
+    transform: none;
   }
 }
 .footer__cta {
@@ -912,6 +948,16 @@ p.lead {
   gap: 16px;
   margin-top: 24px;
 }
+@media (min-width: 768px) {
+  .footer__social {
+    justify-content: center;
+  }
+}
+@media (min-width: 1200px) {
+  .footer__social {
+    justify-content: flex-start;
+  }
+}
 .footer__social-link {
   width: 40px;
   height: 40px;
@@ -927,6 +973,23 @@ p.lead {
   background: #cc5500;
   color: #0a0a0a;
   transform: translateY(-2px);
+}
+@media (min-width: 1200px) {
+  .footer__logo {
+    height: 92px;
+  }
+  .footer__brand p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .footer__social {
+    gap: 18px;
+    margin-top: 28px;
+  }
+  .footer__social-link {
+    width: 44px;
+    height: 44px;
+  }
 }
 .footer__bottom {
   padding-top: 32px;

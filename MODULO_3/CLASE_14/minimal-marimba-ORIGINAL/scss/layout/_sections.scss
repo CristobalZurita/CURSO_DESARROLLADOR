@@ -210,6 +210,10 @@
   }
   
   &__brand {
+    @include respond-to(md) {
+      transform: translateX(40px);
+    }
+
     h3 {
       font-size: $h3-size;
       @include gradient-text;
@@ -251,7 +255,7 @@
       min-height: 320px;
       margin-left: 0;
       width: 100%;
-      transform: translateX(100px);
+      transform: translateX(60px);
     }
   }
   
@@ -419,4 +423,3 @@
     will-change: auto;
   }
 }
-
