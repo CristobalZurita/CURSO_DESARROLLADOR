@@ -2915,7 +2915,6 @@ p.lead {
   line-height: 1.8;
   margin-bottom: 48px;
   max-width: 1000px;
-  text-wrap: pretty;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.8), 1px -1px 0 rgba(0, 0, 0, 0.8), -1px 1px 0 rgba(0, 0, 0, 0.8), 1px 1px 0 rgba(0, 0, 0, 0.8), 0 0 3px rgba(0, 0, 0, 0.8), 0 0 4.5px rgba(0, 0, 0, 0.8);
 }
@@ -2983,6 +2982,7 @@ p.lead {
 .hero--centered .hero__description {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 .hero--centered .hero__actions {
   justify-content: center;
