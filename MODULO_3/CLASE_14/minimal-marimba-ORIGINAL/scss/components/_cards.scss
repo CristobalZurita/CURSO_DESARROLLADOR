@@ -188,6 +188,39 @@
   }
 }
 
+// Imágenes completas dentro del marco para todas las obras del programa
+.card[data-work-id] {
+  .card__image {
+    background: $color-dark-bg;
+  }
+
+  .card__image img {
+    object-fit: contain;
+    object-position: center;
+    background: $color-dark-bg;
+  }
+
+  &:hover .card__image img {
+    transform: none;
+  }
+}
+
+// Ajuste puntual: TOCCATA y MUDRA
+// Se amplían para eliminar el blanco inferior y centrar el contenido útil.
+.card[data-work-id='toccata'],
+.card[data-work-id='mudra'] {
+  .card__image img {
+    margin-bottom: 0;
+    transform: none;
+    object-fit: cover;
+    object-position: center 14.35%;
+  }
+
+  &:hover .card__image img {
+    transform: none;
+  }
+}
+
 
 
 // ============================================

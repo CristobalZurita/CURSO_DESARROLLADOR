@@ -7,16 +7,13 @@
 
 .location__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: $spacing-2xl;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
   align-items: center;
   
   @include respond-to(md) {
-    gap: $spacing-xl;
-  }
-  
-  @include respond-to(sm) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
   }
 }
 
@@ -63,9 +60,9 @@
 
 .location__map {
   flex: 1;
-  min-height: 400px;
+  min-height: 300px;
   
-  @include respond-to(sm) {
-    min-height: 300px;
+  @include respond-to(md) {
+    min-height: 400px;
   }
 }

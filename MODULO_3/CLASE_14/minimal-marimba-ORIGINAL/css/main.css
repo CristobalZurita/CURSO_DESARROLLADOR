@@ -1246,6 +1246,30 @@ p.lead {
   margin: -24px -24px 16px -24px;
 }
 
+.card[data-work-id] .card__image {
+  background: #0a0a0a;
+}
+.card[data-work-id] .card__image img {
+  object-fit: contain;
+  object-position: center;
+  background: #0a0a0a;
+}
+.card[data-work-id]:hover .card__image img {
+  transform: none;
+}
+
+.card[data-work-id=toccata] .card__image img,
+.card[data-work-id=mudra] .card__image img {
+  margin-bottom: 0;
+  transform: none;
+  object-fit: cover;
+  object-position: center 14.35%;
+}
+.card[data-work-id=toccata]:hover .card__image img,
+.card[data-work-id=mudra]:hover .card__image img {
+  transform: none;
+}
+
 .card--marimba {
   position: relative;
   overflow: hidden;
@@ -2174,18 +2198,14 @@ p.lead {
 
 .location__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  grid-template-columns: 1fr;
+  gap: 48px;
   align-items: center;
 }
 @media (min-width: 768px) {
   .location__content {
-    gap: 48px;
-  }
-}
-@media (min-width: 576px) {
-  .location__content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
   }
 }
 
@@ -2230,11 +2250,11 @@ p.lead {
 
 .location__map {
   flex: 1;
-  min-height: 400px;
+  min-height: 300px;
 }
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   .location__map {
-    min-height: 300px;
+    min-height: 400px;
   }
 }
 
@@ -2528,18 +2548,6 @@ p.lead {
 .header__cta #accessibilityToggle {
   position: relative;
   left: 38px;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
 }
 
 .skip-to-main {

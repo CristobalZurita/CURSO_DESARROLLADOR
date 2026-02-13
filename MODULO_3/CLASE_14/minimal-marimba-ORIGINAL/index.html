@@ -279,6 +279,39 @@
     </div>
 
     <!-- ============================================ -->
+    <!-- POPUP: FICHA COMPLETA DE OBRAS -->
+    <!-- ============================================ -->
+    <div class="popup popup--announcement" id="repertoirePopup" aria-hidden="true">
+        <div class="popup__backdrop" data-repertoire-close></div>
+        <div class="popup__container">
+            <div class="popup__header">
+                <div>
+                    <h2 class="popup__title" id="repertoirePopupTitle">Obra</h2>
+                    <p class="popup__subtitle" id="repertoirePopupSubtitle"></p>
+                </div>
+                <button class="popup__close" type="button" data-repertoire-close aria-label="Cerrar ficha de obra">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="popup__body">
+                <div class="popup__image">
+                    <img id="repertoirePopupImage" src="" alt="">
+                </div>
+                <div class="popup__content" id="repertoirePopupContent"></div>
+            </div>
+
+            <div class="popup__footer">
+                <button class="btn btn--ghost" type="button" data-repertoire-close>
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
     <!-- CONTENIDO PRINCIPAL -->
     <!-- ============================================ -->
     <main id="main">
@@ -454,26 +487,26 @@
                 <span class="section__eyebrow">Repertorio</span>
                 <h2 class="section__title">Programa del Concierto</h2>
                 <p class="section__description">
-                    Una selección de obras originales que exploran diferentes facetas de la relación 
-                    entre percusión acústica y electrónica.
+                    Obras para percusión y ensambles de cámara. Haz clic en cada tarjeta para ver la ficha
+                    completa del compositor y la obra.
                 </p>
             </div>
             
             <!-- Cards Grid con Bootstrap -->
             <div class="cards-grid">
                 <!-- Card 1 -->
-                <div class="card card--marimba">
+                <div class="card card--marimba" data-work-id="mitos" role="button" tabindex="0" aria-label="Abrir ficha completa de Mitos Brasileños">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a3a3a 100%);"></div>
+                        <img src="assets/images/MITOS.jpg" alt="Mitos Brasileños de Ney Rosauro" loading="lazy" width="640" height="360">
                     </div>
                     <div class="card__header">
-                        <div class="card__subtitle">Obra I • 12 min</div>
-                        <h3 class="card__title">Resonancia Primaria</h3>
+                        <div class="card__subtitle">Obra I • Ney Rosauro</div>
+                        <h3 class="card__title">Mitos Brasileños</h3>
                     </div>
                     <div class="card__body">
                         <p class="card__text">
-                            Exploración de frecuencias fundamentales utilizando marimba bajo y síntesis 
-                            aditiva. Los armónicos naturales del instrumento dialogan con osciladores sinusoidales.
+                            Suite para cuarteto de percusión en cinco movimientos inspirados en criaturas
+                            del folclore brasileño: Curupira, Iara, Saci, Uirapurú y Mula sin Cabeza.
                         </p>
                     </div>
                     <div class="card__meta">
@@ -481,30 +514,30 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            12 minutos
+                            Cuarteto de percusión
                         </span>
                         <span class="card__meta-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                             </svg>
-                            Marimba + Síntesis
+                            Folclore brasileño
                         </span>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="card card--electronic">
+                <div class="card card--electronic" data-work-id="toccata" role="button" tabindex="0" aria-label="Abrir ficha completa de Toccata para Instrumentos de Percusión">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a3a 100%);"></div>
+                        <img src="assets/images/TOCCATA.jpg" alt="Toccata para Instrumentos de Percusión de Carlos Chávez" loading="lazy" width="640" height="360">
                     </div>
                     <div class="card__header">
-                        <div class="card__subtitle">Obra II • 8 min</div>
-                        <h3 class="card__title" data-text="Patrones Interferentes">Patrones Interferentes</h3>
+                        <div class="card__subtitle">Obra II • Carlos Chávez</div>
+                        <h3 class="card__title" data-text="Toccata para Instrumentos de Percusión">Toccata para Instrumentos de Percusión</h3>
                     </div>
                     <div class="card__body">
                         <p class="card__text">
-                            Composición algorítmica basada en polirritmias que se desfasan progresivamente. 
-                            El sistema genera variaciones en tiempo real respondiendo a la interpretación.
+                            Obra clave del siglo XX para ensemble de percusión: estructura tripartita sin pausa,
+                            riqueza tímbrica y escritura rítmica de alta exigencia.
                         </p>
                     </div>
                     <div class="card__meta">
@@ -512,62 +545,62 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            8 minutos
+                            6 percusionistas
                         </span>
                         <span class="card__meta-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                             </svg>
-                            Generativo
+                            Repertorio histórico
                         </span>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="card card--featured">
+                <div class="card card--featured" data-work-id="mudra" role="button" tabindex="0" aria-label="Abrir ficha completa de Mudra">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #003a1a 0%, #00ff9d 100%);"></div>
+                        <img src="assets/images/MUDRA.jpg" alt="Mudra de Bob Becker" loading="lazy" width="640" height="360">
                     </div>
                     <div class="card__header">
-                        <div class="card__subtitle">Obra III • 15 min</div>
-                        <h3 class="card__title">Ecos de Silicio</h3>
+                        <div class="card__subtitle">Obra III • Bob Becker</div>
+                        <h3 class="card__title">Mudra</h3>
                     </div>
                     <div class="card__body">
                         <p class="card__text">
-                            Pieza central del concierto. Integra marimba preparada, síntesis granular y 
-                            espacialización cuadrafónica. Exploración de la memoria sonora y la degradación del timbre.
+                            Quinteto de percusión de fuerte influencia indo-occidental. Integra lenguaje de raga,
+                            técnicas rudimentales y escritura camerística de gran precisión.
                         </p>
-                        <span class="card__tag">Estreno Mundial</span>
+                        <span class="card__tag">Quinteto de Percusión</span>
                     </div>
                     <div class="card__meta">
                         <span class="card__meta-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            15 minutos
+                            Raga Chandrakauns
                         </span>
                         <span class="card__meta-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                             </svg>
-                            Destacada
+                            Versión revisada 2003
                         </span>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="card card--marimba">
+                <div class="card card--marimba" data-work-id="gainsborough" role="button" tabindex="0" aria-label="Abrir ficha completa de Gainsborough">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a0a0a 0%, #3a1a1a 100%);"></div>
+                        <img src="assets/images/GAUINSBORROUGH.png" alt="Gainsborough de Thomas Gauger" loading="lazy" width="640" height="360">
                     </div>
                     <div class="card__header">
-                        <div class="card__subtitle">Obra IV • 10 min</div>
-                        <h3 class="card__title">Deriva Espectral</h3>
+                        <div class="card__subtitle">Obra IV • Thomas Gauger</div>
+                        <h3 class="card__title">Gainsborough</h3>
                     </div>
                     <div class="card__body">
                         <p class="card__text">
-                            Improvisación estructurada sobre un paisaje sonoro generado en vivo. 
-                            El intérprete responde a las texturas electrónicas en un diálogo continuo.
+                            Obra para quinteto de percusión de texturas refinadas y diálogo íntimo entre
+                            intérpretes, escrita desde una sólida experiencia orquestal.
                         </p>
                     </div>
                     <div class="card__meta">
@@ -575,30 +608,30 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            10 minutos
+                            Quinteto de percusión
                         </span>
                         <span class="card__meta-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            Improvisación
+                            Tradición estadounidense
                         </span>
                     </div>
                 </div>
 
                 <!-- Card 5 -->
-                <div class="card card--electronic">
+                <div class="card card--electronic" data-work-id="brandenburg" role="button" tabindex="0" aria-label="Abrir ficha completa del Concierto de Brandeburgo No. 3">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);"></div>
+                        <img src="assets/images/BRANDENBURGO.png" alt="Concierto de Brandeburgo No. 3 de Johann Sebastian Bach" loading="lazy" width="640" height="360">
                     </div>
                     <div class="card__header">
-                        <div class="card__subtitle">Obra V • 7 min</div>
-                        <h3 class="card__title" data-text="Microtonos Digitales">Microtonos Digitales</h3>
+                        <div class="card__subtitle">Obra V • J. S. Bach</div>
+                        <h3 class="card__title" data-text="Concierto de Brandeburgo No. 3">Concierto de Brandeburgo No. 3</h3>
                     </div>
                     <div class="card__body">
                         <p class="card__text">
-                            Exploración de microintervalos utilizando afinación dinámica y pitch-shifting. 
-                            La marimba se transforma en un instrumento de afinación variable.
+                            BWV 1048 en Sol Mayor. Monumento barroco de arquitectura contrapuntística,
+                            presentado en versión para ensemble de cuerdas dentro del programa.
                         </p>
                     </div>
                     <div class="card__meta">
@@ -606,30 +639,30 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            7 minutos
+                            Barroco alemán
                         </span>
                         <span class="card__meta-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                             </svg>
-                            Experimental
+                            BWV 1048
                         </span>
                     </div>
                 </div>
 
                 <!-- Card 6 -->
-                <div class="card card--marimba">
+                <div class="card card--marimba" data-work-id="spiritual" role="button" tabindex="0" aria-label="Abrir ficha completa de Marimba Spiritual">
                     <div class="card__image">
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 100%);"></div>
+                        <img src="assets/images/SPIRITUAL.jpg" alt="Marimba Spiritual de Minoru Miki" loading="lazy" width="640" height="360">
                     </div>
                     <div class="card__header">
-                        <div class="card__subtitle">Encore • 5 min</div>
-                        <h3 class="card__title">Ritualística Binaria</h3>
+                        <div class="card__subtitle">Obra VI • Minoru Miki</div>
+                        <h3 class="card__title">Marimba Spiritual</h3>
                     </div>
                     <div class="card__body">
                         <p class="card__text">
-                            Cierre energético que fusiona patrones rítmicos tradicionales con glitch y 
-                            síntesis FM. Una celebración del encuentro entre lo ancestral y lo digital.
+                            Obra emblemática para marimba solista y trío de percusión: Réquiem y Resurrección
+                            en respuesta a la tragedia humanitaria de Etiopía.
                         </p>
                     </div>
                     <div class="card__meta">
@@ -637,13 +670,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            5 minutos
+                            Marimba de 5 octavas
                         </span>
                         <span class="card__meta-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
-                            Energético
+                            Repertorio esencial
                         </span>
                     </div>
                 </div>
