@@ -54,9 +54,9 @@ export function initializeEffects(config = {}) {
         if (heroContainer) {
             effects.electricArcs = new ElectricArcs({
                 container: heroContainer,
-                intensity: 0.22,
-                minDelay: 380,
-                maxDelay: 1200
+                intensity: 0.28,
+                minDelay: 3000,
+                maxDelay: 3000
             });
             heroContainer.classList.add('hero--electric');
         } else {
