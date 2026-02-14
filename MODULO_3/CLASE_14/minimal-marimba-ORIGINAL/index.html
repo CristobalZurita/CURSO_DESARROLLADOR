@@ -47,9 +47,6 @@
             </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>Minimal Marimba - Resonancias Electrónicas 2026</title>
     
     <!-- ========== PERFORMANCE OPTIMIZATIONS (McMaster-Carr Style) ========== -->
@@ -63,8 +60,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@700&family=IBM+Plex+Mono:wght@400&display=swap" as="style">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
     
     <!-- Bootstrap 4 CSS - Async Load (no render-blocking) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
@@ -72,11 +67,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/main.css?v=20260213a">
     
-    <!-- Prefetch HTML para navegación principal (mejora HPP) -->
-    <link rel="prefetch" href="#concepto">
-    <link rel="prefetch" href="#programa">
-    <link rel="prefetch" href="#artistas">
-    <link rel="prefetch" href="#ubicacion">
 </head>
 <body>
 
@@ -100,7 +90,7 @@
                 <a href="#ubicacion" class="header__link">Ubicación</a>
                 <a href="#galeria" class="header__link">Galería</a>
                 <a href="#" class="header__link header__link--tickets" data-popup="tickets">Comprar Tickets</a>
-                <a href="https://www.minimalmarimba.cl" target="_blank" class="header__link header__link--external">
+                <a href="https://www.minimalmarimba.cl" target="_blank" rel="noopener noreferrer" class="header__link header__link--external">
                     Sitio Oficial
                 </a>
             </nav>
@@ -1228,17 +1218,17 @@
                         con electrónica en vivo y procesamiento generativo.
                     </p>
                     <div class="footer__social">
-                        <a href="https://instagram.com/minimalmarimba" class="footer__social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                        <a href="https://instagram.com/minimalmarimba" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                             </svg>
                         </a>
-                        <a href="https://youtube.com/@minimalmarimba" class="footer__social-link" target="_blank" rel="noopener" aria-label="YouTube">
+                        <a href="https://youtube.com/@minimalmarimba" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                             </svg>
                         </a>
-                        <a href="https://soundcloud.com/minimalmarimba" class="footer__social-link" target="_blank" rel="noopener" aria-label="SoundCloud">
+                        <a href="https://soundcloud.com/minimalmarimba" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="SoundCloud">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.255-2.154c-.009-.057-.049-.1-.099-.1zm1.016.363c-.063 0-.115.053-.124.116l-.214 1.791.214 1.743c.009.063.061.115.124.115.064 0 .119-.052.127-.115l.247-1.743-.247-1.791c-.008-.063-.063-.116-.127-.116zm1.014.024c-.077 0-.141.065-.15.14l-.187 1.404.187 1.375c.009.077.073.139.15.139.075 0 .137-.062.145-.139l.215-1.375-.215-1.404c-.008-.075-.07-.14-.145-.14zm1.018.012c-.088 0-.162.075-.171.164l-.161 1.368.161 1.337c.009.088.083.163.171.163.089 0 .164-.075.173-.163l.189-1.337-.189-1.368c-.009-.089-.084-.164-.173-.164zm1.017.007c-.102 0-.186.084-.195.187l-.139 1.361.139 1.321c.009.103.093.188.195.188.103 0 .188-.085.197-.188l.163-1.321-.163-1.361c-.009-.103-.094-.187-.197-.187zm1.017-.004c-.115 0-.21.096-.219.211l-.117 1.365.117 1.308c.009.116.104.212.219.212.114 0 .209-.096.218-.212l.137-1.308-.137-1.365c-.009-.115-.104-.211-.218-.211zm1.017.005c-.128 0-.233.107-.242.236l-.097 1.36.097 1.294c.009.129.114.235.242.235.127 0 .232-.106.241-.235l.115-1.294-.115-1.36c-.009-.129-.114-.236-.241-.236zm1.018-.004c-.142 0-.256.117-.267.259l-.077 1.364.077 1.28c.011.142.125.258.267.258.141 0 .255-.116.266-.258l.092-1.28-.092-1.364c-.011-.142-.125-.259-.266-.259zm1.017.007c-.155 0-.281.127-.292.282l-.059 1.357.059 1.267c.011.155.137.281.292.281.154 0 .279-.126.289-.281l.071-1.267-.071-1.357c-.01-.155-.135-.282-.289-.282zm1.018-.004c-.169 0-.305.137-.316.305l-.04 1.361.04 1.254c.011.168.147.304.316.304.168 0 .304-.136.315-.304l.053-1.254-.053-1.361c-.011-.168-.147-.305-.315-.305zm1.017.005c-.182 0-.329.148-.341.33l-.021 1.356.021 1.24c.012.182.159.329.341.329.181 0 .328-.147.339-.329l.031-1.24-.031-1.356c-.011-.182-.158-.33-.339-.33zm1.018-.004c-.195 0-.353.158-.365.353l-.001 1.36.001 1.226c.012.195.17.353.365.353.195 0 .353-.158.365-.353l.012-1.226-.012-1.36c-.012-.195-.17-.353-.365-.353zm1.017.007c-.209 0-.377.169-.388.377v2.583c.011.208.179.376.388.376.208 0 .376-.168.387-.376v-2.583c-.011-.208-.179-.377-.387-.377zm1.018-.004c-.222 0-.401.179-.412.4v2.579c.011.221.19.4.412.4.221 0 .4-.179.411-.4v-2.579c-.011-.221-.19-.4-.411-.4zm1.017.005c-.235 0-.424.19-.435.424v2.57c.011.234.2.423.435.423.234 0 .423-.189.434-.423v-2.57c-.011-.234-.2-.424-.434-.424zm1.018-.004c-.248 0-.448.2-.459.448v2.574c.011.248.211.447.459.447.247 0 .447-.199.458-.447v-2.574c-.011-.248-.211-.448-.458-.448zm1.017.005c-.261 0-.471.211-.482.471v2.565c.011.261.221.47.482.47.26 0 .47-.209.481-.47v-2.565c-.011-.26-.221-.471-.481-.471zm1.018-.004c-.274 0-.494.221-.505.494v2.57c.011.273.231.493.505.493.273 0 .493-.22.504-.493v-2.57c-.011-.273-.231-.494-.504-.494zm1.017.005c-.287 0-.518.232-.529.518v2.561c.011.286.242.517.529.517.286 0 .517-.231.528-.517v-2.561c-.011-.286-.242-.518-.528-.518zm1.018-.004c-.3 0-.541.242-.552.541v2.565c.011.3.252.54.552.54.299 0 .54-.24.551-.54v-2.565c-.011-.299-.252-.541-.551-.541zm1.017.005c-.313 0-.564.252-.575.564v2.556c.011.313.262.563.575.563.312 0 .563-.25.574-.563v-2.556c-.011-.312-.262-.564-.574-.564zm1.018-.004c-.326 0-.587.262-.598.587v2.561c.011.325.272.586.598.586.325 0 .586-.261.597-.586v-2.561c-.011-.325-.272-.587-.597-.587z"/>
                             </svg>
@@ -1260,7 +1250,7 @@
                         <a href="#artistas" class="footer__link">Artistas</a>
                         <a href="#ubicacion" class="footer__link">Ubicación</a>
                         <a href="#galeria" class="footer__link">Galería</a>
-                        <a href="https://www.minimalmarimba.cl" target="_blank" class="footer__link header__link--external">
+                        <a href="https://www.minimalmarimba.cl" target="_blank" rel="noopener noreferrer" class="footer__link header__link--external">
                             Sitio Oficial
                         </a>
                     </nav>
@@ -1278,7 +1268,7 @@
                         <p style="color: #b0b0b0; margin-bottom: 12px; font-size: 14px;">
                             <strong>15 de Marzo, 2026 · 20:00 hrs</strong>
                         </p>
-                        <a href="https://www.google.com/maps/place/Teatro+Municipal+de+Valpara%C3%ADso/@-33.0475858,-71.6109242,17z" target="_blank" rel="noopener" class="footer__map-link">
+                        <a href="https://www.google.com/maps/place/Teatro+Municipal+de+Valpara%C3%ADso/@-33.0475858,-71.6109242,17z" target="_blank" rel="noopener noreferrer" class="footer__map-link">
                             Ver en Google Maps →
                         </a>
                     </div>
@@ -1319,7 +1309,7 @@
         class="floating-action floating-action--whatsapp"
         href="https://wa.me/56912345678?text=Hola%20Minimal%20Marimba%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n."
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"
         title="WhatsApp"
     >
@@ -1385,19 +1375,10 @@
     <script type="module" src="js/effects.js?v=20260213a"></script>
     <!-- Accessibility Module - Deferred para no bloquear carga -->
     <script defer src="js/accessibility.js?v=20260213a"></script>
+    <!-- Security Hardening - Safe link handling -->
+    <script defer src="js/security-hardening.js?v=20260213a"></script>
     <!-- Custom JavaScript - Deferred para no bloquear carga -->
     <script defer src="js/main.js?v=20260213a"></script>
 
-    <!-- Diagnóstico de carga de efectos -->
-    <script>
-      window.addEventListener('error', function(e) {
-        console.error('💥 Error global capturado:', e.message, 'en', e.filename, 'línea', e.lineno);
-      });
-      
-      // Verificar carga de efectos después de 2 segundos
-      setTimeout(() => {
-        console.log('🔍 Estado de efectos:', window.resonanciasEffects);
-      }, 2000);
-    </script>
 </body>
 </html>

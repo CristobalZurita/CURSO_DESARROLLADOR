@@ -60,13 +60,23 @@ class CustomCursor {
      * Initialize cursor styling
      */
     setupCursor() {
-        // Solo la imagen PNG, sin elementos extra
-        const svg = `
-            <svg viewBox="0 0 40 60" xmlns="http://www.w3.org/2000/svg" width="103.4" height="154">
-                <image href="assets/images/MALLET4.png" x="0" y="0" width="40" height="60" preserveAspectRatio="xMidYMid meet"/>
-            </svg>
-        `;
-        this.cursor.innerHTML = svg;
+        // Solo la imagen PNG, sin inyeccion HTML por string.
+        const svgNs = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(svgNs, 'svg');
+        svg.setAttribute('viewBox', '0 0 40 60');
+        svg.setAttribute('width', '103.4');
+        svg.setAttribute('height', '154');
+
+        const image = document.createElementNS(svgNs, 'image');
+        image.setAttribute('href', 'assets/images/MALLET4.png');
+        image.setAttribute('x', '0');
+        image.setAttribute('y', '0');
+        image.setAttribute('width', '40');
+        image.setAttribute('height', '60');
+        image.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        svg.appendChild(image);
+
+        this.cursor.replaceChildren(svg);
         this.cursor.style.position = 'fixed';
         this.cursor.style.top = '0';
         this.cursor.style.left = '0';

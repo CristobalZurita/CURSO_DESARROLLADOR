@@ -292,10 +292,30 @@
         }
     };
 
-    function buildRepertoireContent(work) {
-        const bioHtml = work.bio.map(paragraph => `<p>${paragraph}</p>`).join('');
-        const reviewHtml = work.review.map(paragraph => `<p>${paragraph}</p>`).join('');
-        return `<h4>Biografía del Compositor</h4>${bioHtml}<h4>Reseña de la Obra</h4>${reviewHtml}`;
+    function renderRepertoireContent(container, work) {
+        if (!container || !work) return;
+
+        container.textContent = '';
+
+        const bioTitle = document.createElement('h4');
+        bioTitle.textContent = 'Biografía del Compositor';
+        container.appendChild(bioTitle);
+
+        work.bio.forEach(paragraph => {
+            const paragraphNode = document.createElement('p');
+            paragraphNode.textContent = paragraph;
+            container.appendChild(paragraphNode);
+        });
+
+        const reviewTitle = document.createElement('h4');
+        reviewTitle.textContent = 'Reseña de la Obra';
+        container.appendChild(reviewTitle);
+
+        work.review.forEach(paragraph => {
+            const paragraphNode = document.createElement('p');
+            paragraphNode.textContent = paragraph;
+            container.appendChild(paragraphNode);
+        });
     }
 
     if (repertoirePopup) {
@@ -317,7 +337,7 @@
                 repertoirePopupImage.src = work.image;
                 repertoirePopupImage.alt = work.imageAlt;
             }
-            if (repertoirePopupContent) repertoirePopupContent.innerHTML = buildRepertoireContent(work);
+            renderRepertoireContent(repertoirePopupContent, work);
 
             repertoirePopup.classList.add('popup--active');
             repertoirePopup.setAttribute('aria-hidden', 'false');
