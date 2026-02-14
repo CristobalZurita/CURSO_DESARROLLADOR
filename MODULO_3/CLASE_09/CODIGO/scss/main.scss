@@ -1,130 +1,40 @@
-// ===========================
-// BIKEFIX WORKSHOP - MAIN SCSS
-// Modern, Interactive Design
-// ===========================
+// ============================================================
+// MAIN.SCSS - ARCHIVO DE ENTRADA
+// Arquitectura 7-1 Pattern
+// ============================================================
 
-// === ABSTRACTS ===
-@use 'abstracts/variables' as *;
-@use 'abstracts/mixins' as *;
+// 1. ABSTRACTS (Configuración)
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
 
-// === BASE ===
-@use 'base/reset';
-@use 'base/typography';
+// 2. VENDORS (Librerías de terceros)
+@import 'vendors/bootstrap';
 
-// === LAYOUT ===
-@use 'layout/header';
-@use 'layout/footer';
-@use 'layout/main';
+// 3. BASE (Estilos base)
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/base';
 
-// === COMPONENTS ===
-@use 'components/buttons';
-@use 'components/cards';
-@use 'components/contact';
-@use 'components/gallery';
-@use 'components/hero';
-@use 'components/shop';
-@use 'components/whatsapp';
+// 4. LAYOUT (Estructura)
+@import 'layout/grids';        // Corregido: grids (no grid)
+@import 'layout/navbar';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/sections';
 
-// === RESPONSIVE ===
-@include tablet {
-  .nav {
-    gap: $space-sm;
-    
-    &__link {
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
-    }
-  }
-  
-  .hero {
-    min-height: 80vh;
-    
-    &__actions {
-      flex-direction: column;
-    }
-  }
-  
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-  
-  .shop {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-}
+// 5. COMPONENTS (Componentes UI)
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/carousel';
+@import 'components/form';      // Corregido: form (no forms)
+@import 'components/hero';
+@import 'components/gallery';
+@import 'components/shop';
+@import 'components/whatsapp';
 
-@include mobile {
-  .brand {
-    font-size: 1.5rem;
-  }
-  
-  .nav {
-    display: none;
-  }
-  
-  .section__title {
-    font-size: 2rem;
-  }
-  
-  .footer__content {
-    flex-direction: column;
-    text-align: center;
-  }
-}
+// 6. PAGES (Estilos específicos de páginas)
+@import 'pages/home';
 
-// === RESPONSIVE ===
-@include tablet {
-  .nav {
-    gap: $space-sm;
-    
-    &__link {
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
-    }
-  }
-  
-  .hero {
-    min-height: 80vh;
-    
-    &__actions {
-      flex-direction: column;
-    }
-  }
-  
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-  
-  .shop {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-}
-
-@include mobile {
-  .brand {
-    font-size: 1.5rem;
-  }
-  
-  .nav {
-    display: none;
-  }
-  
-  .section__title {
-    font-size: 2rem;
-  }
-  
-  .footer__content {
-    flex-direction: column;
-    text-align: center;
-  }
-}
+// 7. THEMES (Temas)
+@import 'themes/default';

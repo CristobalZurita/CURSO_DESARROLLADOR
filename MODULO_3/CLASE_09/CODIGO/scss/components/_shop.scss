@@ -1,112 +1,171 @@
-// ===========================
-// SHOP & PRODUCTS
-// ===========================
-
-@use '../abstracts/variables' as *;
+// ============================================================
+// TIENDA / PRODUCTOS
+// ============================================================
 
 .shop {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: $space-lg;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $space-4;
+    
+    @include respond-to(md) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: $space-6;
+    }
+    
+    @include respond-to(lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  &__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    justify-content: center;
+    margin-bottom: $space-8;
+  }
+  
+  &__filter {
+    padding: $space-2 $space-6;
+    border: 2px solid $color-gray-300;
+    border-radius: $border-radius-full;
+    background: $color-white;
+    color: $color-gray-700;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $transition-fast;
+    
+    &:hover,
+    &.active {
+      border-color: $color-primary;
+      background: $color-primary;
+      color: $color-white;
+    }
+  }
 }
 
-.product {
-  background: $white;
-  border-radius: $radius-lg;
+.product-card {
+  background: $color-white;
+  border-radius: $border-radius-2xl;
   overflow: hidden;
-  box-shadow: $shadow-md;
+  box-shadow: $shadow-sm;
   transition: all $transition-base;
-  animation: scaleIn 0.5s ease both;
-
-  &:nth-child(1) { animation-delay: 0.1s; }
-  &:nth-child(2) { animation-delay: 0.15s; }
-  &:nth-child(3) { animation-delay: 0.2s; }
-  &:nth-child(4) { animation-delay: 0.25s; }
-  &:nth-child(5) { animation-delay: 0.3s; }
-  &:nth-child(6) { animation-delay: 0.35s; }
-  &:nth-child(7) { animation-delay: 0.4s; }
-  &:nth-child(8) { animation-delay: 0.45s; }
-
+  position: relative;
+  
   &:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     box-shadow: $shadow-xl;
   }
-
+  
+  &__badge {
+    position: absolute;
+    top: $space-4;
+    left: $space-4;
+    background: $color-danger;
+    color: $color-white;
+    padding: $space-1 $space-3;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    z-index: 2;
+    
+    &--new {
+      background: $color-secondary;
+    }
+    
+    &--sale {
+      background: $color-accent;
+      color: $color-gray-900;
+    }
+  }
+  
   &__image {
-    position: relative;
+    aspect-ratio: 1;
     overflow: hidden;
-    aspect-ratio: 1/1;
-
+    background: $color-gray-100;
+    
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: $transition-slow;
+      transition: transform $transition-slow;
+    }
+    
+    .product-card:hover & img {
+      transform: scale(1.05);
     }
   }
-
-  &:hover &__image img {
-    transform: scale(1.1);
+  
+  &__content {
+    padding: $space-6;
   }
-
-  &__badge {
-    position: absolute;
-    top: $space-sm;
-    right: $space-sm;
-    padding: 0.4rem 1rem;
-    border-radius: $radius-full;
-    font-size: 0.75rem;
-    font-weight: 700;
+  
+  &__category {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: $white;
-    box-shadow: $shadow-sm;
-
-    &--red { background: $badge-red; }
-    &--orange { background: $badge-orange; }
-    &--blue { background: $badge-blue; }
-    &--green { background: $badge-green; }
-    &--purple { background: $badge-purple; }
-    &--cyan { background: $badge-cyan; }
-    &--yellow { background: $badge-yellow; }
-    &--pink { background: $badge-pink; }
+    margin-bottom: $space-2;
   }
-
-  &__content {
-    padding: $space-md;
-  }
-
+  
   &__title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: $space-xs;
-    color: $dark;
+    font-size: $font-size-lg;
+    margin-bottom: $space-3;
+    color: $color-gray-900;
+    @include text-truncate;
   }
-
+  
   &__price {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: $primary;
-    font-family: $font-display;
-    display: block;
-    margin-bottom: $space-md;
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-4;
+    
+    &-current {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+    }
+    
+    &-old {
+      font-size: $font-size-base;
+      color: $color-gray-500;
+      text-decoration: line-through;
+    }
   }
-
+  
+  &__actions {
+    display: flex;
+    gap: $space-3;
+  }
+  
   &__btn {
-    width: 100%;
-    padding: 0.8rem;
-    background: $dark;
-    color: $white;
-    border-radius: $radius-sm;
-    font-weight: 700;
-    transition: $transition-base;
-
-    &:hover {
-      background: $primary;
-      transform: translateY(-2px);
-      box-shadow: $shadow-md;
+    flex: 1;
+    padding: $space-3;
+    border-radius: $border-radius-lg;
+    font-weight: $font-weight-semibold;
+    transition: all $transition-fast;
+    
+    &--cart {
+      background: $color-primary;
+      color: $color-white;
+      border: none;
+      
+      &:hover {
+        background: $color-primary-dark;
+      }
+    }
+    
+    &--view {
+      background: $color-gray-100;
+      color: $color-gray-700;
+      border: none;
+      
+      &:hover {
+        background: $color-gray-200;
+      }
     }
   }
 }

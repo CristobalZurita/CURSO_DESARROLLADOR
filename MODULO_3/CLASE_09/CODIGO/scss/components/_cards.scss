@@ -1,67 +1,82 @@
-// ===========================
-// CARDS COMPONENT
-// ===========================
+// ============================================================
+// CARDS
+// ============================================================
 
-@use '../abstracts/variables' as *;
-
-// Info cards used in contact section
-.info-card {
-  background: $white;
-  padding: $space-md;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-sm;
-  display: flex;
-  gap: $space-md;
-  align-items: flex-start;
-  transition: $transition-base;
-
-  &:hover {
-    box-shadow: $shadow-md;
-    transform: translateX(5px);
-  }
-
-  &__icon {
-    font-size: 2rem;
-    flex-shrink: 0;
-  }
-
-  &__content {
-    h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      color: $dark;
-    }
-
-    p {
-      color: $gray;
-    }
-  }
-
-  &--map {
-    grid-column: 1 / -1;
-    padding: 0;
-    overflow: hidden;
-
-    iframe {
+.card {
+  background: $color-white;
+  border-radius: $border-radius-2xl;
+  overflow: hidden;
+  @include card-hover;
+  
+  &--service {
+    padding: $space-8 $space-6;
+    text-align: center;
+    border: none;
+    box-shadow: $shadow-sm;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 300px;
-      border: none;
+      height: 5px;
+      @include gradient-primary;
+      transform: scaleX(0);
+      transition: transform $transition-base;
+    }
+    
+    &:hover::before {
+      transform: scaleX(1);
     }
   }
-}
-
-// Bike info card
-.bike-info {
-  text-align: center;
-
-  &__title {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    font-family: $font-display;
+  
+  &--testimonial {
+    padding: $space-8;
+    position: relative;
+    border: 1px solid $color-gray-200;
+    
+    &::before {
+      content: '"';
+      position: absolute;
+      top: $space-4;
+      left: $space-6;
+      font-size: 4rem;
+      color: $color-primary;
+      opacity: 0.2;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
   }
-
+  
+  &__icon {
+    width: 80px;
+    height: 80px;
+    @include gradient-primary;
+    border-radius: $border-radius-xl;
+    @include flex-center;
+    margin: 0 auto $space-6;
+    font-size: 2rem;
+    color: $color-white;
+    transition: transform 0.6s ease;
+    
+    .card:hover & {
+      transform: rotateY(360deg);
+    }
+  }
+  
+  &__title {
+    font-size: $font-size-xl;
+    margin-bottom: $space-4;
+    color: $color-gray-900;
+  }
+  
   &__text {
-    opacity: 0.95;
-    font-size: 1.05rem;
+    color: $color-gray-600;
+    flex-grow: 1;
+    margin-bottom: $space-6;
   }
 }

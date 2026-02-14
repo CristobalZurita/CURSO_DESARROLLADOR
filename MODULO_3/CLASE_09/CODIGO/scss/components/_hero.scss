@@ -1,8 +1,6 @@
-// ===========================
+// ============================================================
 // HERO COMPONENT
-// ===========================
-
-@use '../abstracts/variables' as *;
+// ============================================================
 
 .hero {
   position: relative;
@@ -11,13 +9,13 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: $white;
+  color: $color-white;
   overflow: hidden;
 
   &__bg {
     position: absolute;
     inset: 0;
-    background: $gradient-hero;
+    background: linear-gradient(135deg, $color-gray-900 0%, darken($color-gray-900, 10%) 50%, darken($color-gray-900, 5%) 100%);
     z-index: 0;
 
     &::before {
@@ -25,8 +23,8 @@
       position: absolute;
       inset: 0;
       background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(0, 78, 137, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba($color-primary, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba($color-secondary, 0.1) 0%, transparent 50%);
       animation: float 6s ease-in-out infinite;
     }
   }
@@ -35,28 +33,28 @@
     position: relative;
     z-index: 1;
     max-width: 800px;
-    padding: $space-md;
+    padding: $space-4;
     animation: fadeInUp 0.8s ease;
   }
 
   &__badge {
     display: inline-block;
     padding: 0.5rem 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba($color-white, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: $radius-full;
+    border-radius: $border-radius-full;
     font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: $space-md;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: $font-weight-semibold;
+    margin-bottom: $space-4;
+    border: 1px solid rgba($color-white, 0.2);
     animation: fadeIn 1s ease 0.3s both;
   }
 
   &__title {
-    font-family: $font-display;
+    font-family: $font-primary;
     font-size: clamp(2.5rem, 8vw, 4.5rem);
     line-height: 1.1;
-    margin-bottom: $space-sm;
+    margin-bottom: $space-2;
     letter-spacing: 2px;
     animation: fadeInUp 0.8s ease 0.2s both;
   }
@@ -64,13 +62,13 @@
   &__subtitle {
     font-size: clamp(1rem, 3vw, 1.3rem);
     opacity: 0.9;
-    margin-bottom: $space-lg;
+    margin-bottom: $space-8;
     animation: fadeInUp 0.8s ease 0.4s both;
   }
 
   &__actions {
     display: flex;
-    gap: $space-md;
+    gap: $space-4;
     justify-content: center;
     flex-wrap: wrap;
     animation: fadeInUp 0.8s ease 0.6s both;
@@ -78,7 +76,7 @@
 
   &__scroll {
     position: absolute;
-    bottom: $space-lg;
+    bottom: $space-8;
     left: 50%;
     transform: translateX(-50%);
     display: flex;

@@ -1,0 +1,23 @@
+// ==========================================================================
+// CONTENEDOR PRINCIPAL
+// ==========================================================================
+
+.l-container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Variantes de layout según la actividad
+.l-container--fluid {
+  max-width: 100%;
+}
+
+.l-container--fixed {
+  max-width: 800px;
+}
+
+.l-container--narrow {
+  max-width: 600px;
+}

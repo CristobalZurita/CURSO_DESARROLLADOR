@@ -1,0 +1,70 @@
+// ==========================================================================
+// FLEXBOX - MÓDULO 4
+// ==========================================================================
+
+.c-flex-examples {
+  display: grid;
+  gap: $space-xl;
+  margin: $space-xl 0;
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.c-flex-example {
+  @include card;
+  
+  &__title {
+    font-size: $font-size-md;
+    color: $color-primary;
+    margin-bottom: $space-lg;
+  }
+}
+
+.c-flex-container {
+  background: $color-gray-100;
+  padding: $space-md;
+  border-radius: $border-radius-md;
+  min-height: 150px;
+  gap: $space-md;
+  
+  &--row {
+    @include flex(row, flex-start, stretch);
+  }
+  
+  &--column {
+    @include flex(column, flex-start, stretch);
+  }
+  
+  &--center {
+    @include flex(row, center, center);
+  }
+  
+  &--space-between {
+    @include flex(row, space-between, center);
+  }
+  
+  &--wrap {
+    flex-wrap: wrap;
+  }
+}
+
+.c-flex-item {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+  color: $color-white;
+  padding: $space-lg;
+  border-radius: $border-radius-md;
+  text-align: center;
+  font-weight: $font-weight-medium;
+  min-width: 80px;
+  
+  // Variantes de tamaño para demos
+  &--grow {
+    flex: 1;
+  }
+  
+  &--large {
+    flex: 2;
+  }
+}

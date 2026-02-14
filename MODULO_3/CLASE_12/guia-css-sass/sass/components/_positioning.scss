@@ -1,0 +1,124 @@
+// ==========================================================================
+// POSITIONING - MÓDULO 3
+// ==========================================================================
+
+.c-position-container {
+  position: relative;
+  height: 400px;
+  background: $color-gray-100;
+  border: 2px dashed $color-gray-300;
+  border-radius: $border-radius-lg;
+  margin: $space-xl 0;
+  overflow: hidden;
+}
+
+.c-position-box {
+  padding: $space-md;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  text-align: center;
+  color: $color-white;
+  
+  &--static {
+    position: static;
+    background: $color-gray-500;
+    margin-bottom: $space-md;
+  }
+  
+  &--relative {
+    position: relative;
+    background: $color-primary;
+    top: 30px;
+    left: 50px;
+    box-shadow: $shadow-md;
+    z-index: 10;
+    
+    &::after {
+      content: 'Desplazado desde su posición original';
+      display: block;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-normal;
+      opacity: 0.8;
+      margin-top: $space-xs;
+    }
+  }
+  
+  &--absolute {
+    position: absolute;
+    background: $color-secondary;
+    top: 100px;
+    right: 50px;
+    width: 150px;
+    box-shadow: $shadow-lg;
+    
+    &::after {
+      content: 'Posicionado respecto al contenedor';
+      display: block;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-normal;
+      opacity: 0.8;
+      margin-top: $space-xs;
+    }
+  }
+  
+  &--fixed {
+    position: fixed;
+    background: $color-accent;
+    bottom: 20px;
+    right: 20px;
+    z-index: $z-fixed;
+    box-shadow: $shadow-xl;
+    animation: pulse 2s infinite;
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  }
+  
+  &--sticky {
+    position: sticky;
+    top: 0;
+    background: $color-warning;
+    margin-top: $space-xl;
+    z-index: $z-sticky;
+  }
+}
+
+// Tabla de referencia
+.c-reference-table {
+  width: 100%;
+  margin: $space-xl 0;
+  background: $color-white;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  
+  th {
+    background: $color-gray-800;
+    color: $color-white;
+    padding: $space-md;
+    text-align: left;
+    font-weight: $font-weight-bold;
+  }
+  
+  td {
+    padding: $space-md;
+    border-bottom: 1px solid $color-gray-200;
+    
+    &:first-child {
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+      width: 120px;
+    }
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+  
+  tr:hover td {
+    background: $color-gray-50;
+  }
+}

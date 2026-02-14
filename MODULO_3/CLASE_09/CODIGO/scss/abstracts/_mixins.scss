@@ -1,35 +1,33 @@
-// ===========================
-// BIKEFIX WORKSHOP - MIXINS
-// ===========================
+// ============================================================
+// MIXINS REUTILIZABLES
+// ============================================================
 
-@use 'variables' as *;
-
-// === RESPONSIVE MIXINS ===
-@mixin mobile {
-  @media (max-width: $breakpoint-mobile) {
-    @content;
+// Responsive
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  } @else if $breakpoint == xxl {
+    @media (min-width: $breakpoint-xxl) { @content; }
   }
 }
 
-@mixin tablet {
-  @media (max-width: $breakpoint-tablet) {
-    @content;
+@mixin respond-down($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: #{$breakpoint-sm - 1px}) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: #{$breakpoint-md - 1px}) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: #{$breakpoint-lg - 1px}) { @content; }
   }
 }
 
-@mixin desktop {
-  @media (min-width: $breakpoint-desktop) {
-    @content;
-  }
-}
-
-@mixin tablet-up {
-  @media (min-width: $breakpoint-tablet) {
-    @content;
-  }
-}
-
-// === FLEXBOX MIXINS ===
+// Flexbox
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -38,19 +36,149 @@
 
 @mixin flex-between {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-// === POSITION MIXINS ===
-@mixin absolute-cover {
+// Posicionamiento absoluto centrado
+@mixin absolute-center {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-// === PSEUDO ELEMENTS ===
-@mixin pseudo($display: block, $pos: absolute, $content: '') {
-  content: $content;
-  display: $display;
-  position: $pos;
+// Botón base
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  font-family: $font-primary;
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: $border-radius-full;
+  cursor: pointer;
+  transition: all $transition-base;
+  
+  &:hover {
+    transform: translateY(-3px);
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+// Glassmorphism
+@mixin glass-effect($opacity: 0.1) {
+  background: rgba($color-white, $opacity);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba($color-white, 0.2);
+}
+
+// Gradiente primario
+@mixin gradient-primary {
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+}
+
+// Texto truncado
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Líneas decorativas bajo títulos
+@mixin title-underline($color: $color-secondary, $width: 60px) {
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -$space-3;
+    left: 50%;
+    transform: translateX(-50%);
+    width: $width;
+    height: 4px;
+    background: $color;
+    border-radius: $border-radius-sm;
+  }
+}
+
+// Scrollbar personalizada
+@mixin custom-scrollbar($width: 10px, $track-color: $color-gray-200, $thumb-color: $color-primary) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $width / 2;
+    
+    &:hover {
+      background: darken($thumb-color, 10%);
+    }
+  }
+}
+
+// Animación fadeIn
+@mixin fade-in($direction: up, $delay: 0s) {
+  opacity: 0;
+  animation: fadeIn#{$direction} 1s ease $delay forwards;
+  
+  @if $direction == up {
+    transform: translateY(30px);
+  } @else if $direction == down {
+    transform: translateY(-30px);
+  } @else if $direction == left {
+    transform: translateX(30px);
+  } @else if $direction == right {
+    transform: translateX(-30px);
+  }
+  
+  @keyframes fadeIn#{$direction} {
+    to {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+}
+
+// Card hover effect
+@mixin card-hover {
+  transition: all $transition-base;
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: $shadow-xl;
+  }
+}
+
+// Aspect ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-top: ($height / $width) * 100%;
+  }
+  
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }

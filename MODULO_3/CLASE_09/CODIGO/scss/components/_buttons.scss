@@ -1,61 +1,83 @@
-// ===========================
-// BUTTONS COMPONENT
-// ===========================
-
-@use '../abstracts/variables' as *;
+// ============================================================
+// BOTONES
+// ============================================================
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  border-radius: $radius-full;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: all $transition-base;
-  position: relative;
-  overflow: hidden;
-
-  svg {
-    width: 20px;
-    height: 20px;
-    transition: $transition-base;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(-100%);
-    transition: $transition-base;
-  }
-
-  &:hover::before {
-    transform: translateX(0);
-  }
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: $shadow-lg;
-  }
-
-  &:hover svg {
-    transform: translateX(4px);
-  }
-
+  @include button-base;
+  
+  // Variantes de color
   &--primary {
-    background: $gradient-primary;
-    color: $white;
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+    color: $color-white;
+    
+    &:hover {
+      background-color: transparent;
+      color: $color-secondary;
+    }
   }
-
+  
   &--secondary {
-    background: $white;
-    color: $dark;
+    background-color: transparent;
+    border-color: rgba($color-white, 0.5);
+    color: $color-white;
+    
+    &:hover {
+      background-color: $color-white;
+      color: $color-gray-900;
+    }
   }
+  
+  &--outline {
+    background-color: transparent;
+    border-color: $color-secondary;
+    color: $color-secondary;
+    
+    &:hover {
+      background-color: $color-secondary;
+      color: $color-white;
+    }
+  }
+  
+  // Tamaños
+  &--sm {
+    padding: $space-2 $space-4;
+    font-size: $font-size-sm;
+  }
+  
+  &--lg {
+    padding: $space-4 $space-8;
+    font-size: $font-size-lg;
+  }
+  
+  // Con icono
+  &--icon {
+    padding-left: $space-4;
+    padding-right: $space-4;
+    
+    i {
+      font-size: 1.2em;
+    }
+  }
+}
 
-  &--full {
-    width: 100%;
-    justify-content: center;
+// Botones de redes sociales
+.social-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: $border-radius-lg;
+  @include flex-center;
+  color: $color-white;
+  font-size: $font-size-lg;
+  transition: all $transition-base;
+  
+  &:hover {
+    transform: translateY(-5px);
+    color: $color-white;
   }
+  
+  &--facebook { background-color: #3b5998; }
+  &--twitter { background-color: #1da1f2; }
+  &--instagram { background-color: #e4405f; }
+  &--whatsapp { background-color: #25d366; }
 }

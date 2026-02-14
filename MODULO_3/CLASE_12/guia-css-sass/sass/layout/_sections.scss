@@ -1,0 +1,60 @@
+// ==========================================================================
+// SECCIONES
+// ==========================================================================
+
+.l-section {
+  @include section-padding;
+  
+  // Variantes de fondo
+  &--light {
+    background-color: $color-white;
+  }
+  
+  &--dark {
+    background-color: $color-gray-800;
+    color: $color-gray-100;
+    
+    h2, h3 {
+      color: $color-white;
+    }
+    
+    p {
+      color: $color-gray-300;
+    }
+  }
+  
+  &--gradient {
+    background: linear-gradient(135deg, $color-gray-100 0%, $color-gray-200 100%);
+  }
+  
+  &--primary {
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+    color: $color-white;
+    
+    h2, h3 {
+      color: $color-white;
+    }
+  }
+  
+  &__title {
+    font-size: $font-size-2xl;
+    color: $color-gray-900;
+    margin-bottom: $space-xl;
+    padding-bottom: $space-md;
+    border-bottom: 3px solid $color-primary;
+    display: inline-block;
+    
+    .l-section--dark &,
+    .l-section--primary & {
+      border-bottom-color: rgba($color-white, 0.5);
+    }
+  }
+  
+  &__description {
+    font-size: $font-size-md;
+    color: $color-gray-600;
+    margin-bottom: $space-xl;
+    max-width: 800px;
+    line-height: $line-height-relaxed;
+  }
+}

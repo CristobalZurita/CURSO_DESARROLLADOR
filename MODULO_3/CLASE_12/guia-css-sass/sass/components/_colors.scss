@@ -1,0 +1,45 @@
+// ==========================================================================
+// COLORES - MÓDULO 6
+// ==========================================================================
+
+.c-color-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $space-lg;
+  margin: $space-xl 0;
+}
+
+.c-color-demo {
+  padding: $space-xl;
+  border-radius: $border-radius-lg;
+  text-align: center;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  box-shadow: $shadow-md;
+  transition: transform $transition-base;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-xl;
+  }
+  
+  &--hex {
+    background: #e74c3c;
+  }
+  
+  &--rgb {
+    background: rgb(52, 152, 219);
+  }
+  
+  &--rgba {
+    background: rgba(46, 204, 113, 0.7);
+  }
+  
+  &--hsl {
+    background: hsl(280, 50%, 60%);
+  }
+  
+  &--gradient {
+    background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+  }
+}

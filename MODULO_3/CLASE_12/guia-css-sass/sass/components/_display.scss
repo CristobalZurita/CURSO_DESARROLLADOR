@@ -1,0 +1,81 @@
+// ==========================================================================
+// DISPLAY - MÓDULO 2
+// ==========================================================================
+
+.c-display-examples {
+  display: grid;
+  gap: $space-xl;
+  margin: $space-xl 0;
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.c-display-example {
+  @include card;
+  
+  &__title {
+    font-size: $font-size-md;
+    color: $color-primary;
+    margin-bottom: $space-lg;
+    padding-bottom: $space-sm;
+    border-bottom: 2px solid $color-gray-200;
+  }
+  
+  &__container {
+    background: $color-gray-100;
+    padding: $space-lg;
+    border-radius: $border-radius-md;
+    margin-bottom: $space-lg;
+    min-height: 100px;
+  }
+}
+
+// Tipos de display
+.c-display-block {
+  display: block;
+  background: $color-secondary;
+  color: $color-white;
+  padding: $space-md;
+  margin-bottom: $space-sm;
+  border-radius: $border-radius-sm;
+  text-align: center;
+  font-weight: $font-weight-medium;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.c-display-inline {
+  display: inline;
+  background: $color-primary;
+  color: $color-white;
+  padding: $space-sm $space-md;
+  margin-right: $space-sm;
+  border-radius: $border-radius-sm;
+  font-weight: $font-weight-medium;
+  
+  // Forzar visualización en línea para demo
+  &:not(:last-child) {
+    margin-bottom: $space-sm;
+  }
+}
+
+.c-display-inline-block {
+  display: inline-block;
+  background: $color-accent;
+  color: $color-white;
+  padding: $space-md $space-lg;
+  margin-right: $space-sm;
+  margin-bottom: $space-sm;
+  border-radius: $border-radius-sm;
+  font-weight: $font-weight-medium;
+  width: 100px;
+  text-align: center;
+}

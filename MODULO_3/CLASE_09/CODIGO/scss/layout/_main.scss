@@ -1,114 +1,18 @@
-// ===========================
-// MAIN LAYOUT & SECTIONS
-// ===========================
+// ============================================================
+// LAYOUT MAIN - Contenedor principal
+// ============================================================
 
-@use '../abstracts/variables' as *;
-
-.section {
-  padding: $space-xl $space-md;
-  animation: fadeIn 0.6s ease;
-
-  &--partes {
-    background: $white;
-  }
-
-  &--gallery {
-    background: $light;
-  }
-
-  &--shop {
-    background: $white;
-  }
-
-  &--contact {
-    background: $light;
-  }
-
-  &__header {
-    max-width: 700px;
-    margin: 0 auto $space-xl;
-    text-align: center;
-  }
-
-  &__badge {
-    display: inline-block;
-    padding: 0.4rem 1.2rem;
-    background: $primary;
-    color: $white;
-    border-radius: $radius-full;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: $space-sm;
-  }
-
-  &__title {
-    font-family: $font-display;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: $dark;
-    margin-bottom: $space-sm;
-    letter-spacing: 1px;
-  }
-
-  &__subtitle {
-    font-size: 1.1rem;
-    color: $gray;
-  }
-}
-
-// === BIKE DIAGRAM ===
-.bike-diagram {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  gap: $space-lg;
-
+.main {
+  min-height: calc(100vh - 80px);
+  padding-top: 0;
+  
   &__container {
-    background: $white;
-    padding: $space-lg;
-    border-radius: $radius-lg;
-    box-shadow: $shadow-md;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    transition: $transition-base;
-
-    &:hover {
-      box-shadow: $shadow-xl;
-      transform: translateY(-5px);
-    }
-
-    svg {
-      max-width: 100%;
-      height: auto;
-      transition: $transition-slow;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $space-4;
+    
+    @include respond-to(md) {
+      padding: 0 $space-6;
     }
   }
-
-  &__info {
-    background: $gradient-primary;
-    padding: $space-lg;
-    border-radius: $radius-lg;
-    color: $white;
-    box-shadow: $shadow-md;
-    min-height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }
-
-// SVG Interactive Styles
-.bike-part {
-  cursor: pointer;
-  transition: all $transition-base;
-  transform-origin: center;
-
-  &:hover {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.8));
-  }
-}
-

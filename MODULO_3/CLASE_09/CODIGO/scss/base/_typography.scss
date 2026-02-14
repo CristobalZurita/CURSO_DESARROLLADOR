@@ -1,6 +1,68 @@
-// ===========================
-// TYPOGRAPHY
-// ===========================
+// ============================================================
+// TIPOGRAFÍA
+// ============================================================
 
-// Typography styles are handled in components
-// This file is available for future typography utilities
+// Importar Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+// Títulos
+.heading {
+  font-family: $font-primary;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  
+  &--1 {
+    font-size: $font-size-6xl;
+    
+    @include respond-down(md) {
+      font-size: $font-size-4xl;
+    }
+  }
+  
+  &--2 {
+    font-size: $font-size-4xl;
+    
+    @include respond-down(md) {
+      font-size: $font-size-3xl;
+    }
+  }
+  
+  &--3 {
+    font-size: $font-size-2xl;
+  }
+  
+  &--4 {
+    font-size: $font-size-xl;
+  }
+}
+
+// Texto body
+.text {
+  &--lead {
+    font-size: $font-size-lg;
+    color: $color-gray-600;
+  }
+  
+  &--small {
+    font-size: $font-size-sm;
+  }
+  
+  &--muted {
+    color: $color-gray-600;
+  }
+}
+
+// Utilidades de texto
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+.text-uppercase { text-transform: uppercase; }
+.text-lowercase { text-transform: lowercase; }
+.text-capitalize { text-transform: capitalize; }
+
+.font-weight-light { font-weight: $font-weight-light; }
+.font-weight-normal { font-weight: $font-weight-normal; }
+.font-weight-medium { font-weight: $font-weight-medium; }
+.font-weight-bold { font-weight: $font-weight-bold; }

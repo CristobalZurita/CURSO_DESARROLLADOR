@@ -1,0 +1,14 @@
+// ==========================================================================
+// TEMA POR DEFECTO
+// ==========================================================================
+
+// Variaciones de tema si se necesitan en el futuro
+// Por ahora usa las variables por defecto
+
+:root {
+  // CSS Custom Properties para uso en JS o overrides
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --font-family-primary: #{$font-family-primary};
+  --container-max-width: #{$container-max-width};
+}

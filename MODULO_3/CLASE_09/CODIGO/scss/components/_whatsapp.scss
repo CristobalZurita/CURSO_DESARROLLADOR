@@ -1,60 +1,170 @@
-// ===========================
-// WHATSAPP & SCROLL BUTTONS
-// ===========================
-
-@use '../abstracts/variables' as *;
+// ============================================================
+// BOTÓN FLOTANTE DE WHATSAPP
+// ============================================================
 
 .whatsapp {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 60px;
-  height: 60px;
-  background: $whatsapp-green;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: $shadow-lg;
-  z-index: 1000;
-  transition: $transition-base;
-  animation: pulse 2s infinite;
-
-  svg {
-    width: 32px;
-    height: 32px;
-    color: $white;
+  bottom: $space-6;
+  right: $space-6;
+  z-index: z('fixed');
+  
+  &__button {
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    @include flex-center;
+    color: $color-white;
+    font-size: $font-size-2xl;
+    box-shadow: $shadow-lg;
+    transition: all $transition-base;
+    position: relative;
+    animation: whatsapp-bounce 2s infinite;
+    
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: $shadow-2xl;
+    }
+    
+    // Indicador de mensajes
+    &::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      background: $color-danger;
+      border-radius: 50%;
+      border: 3px solid $color-white;
+    }
   }
-
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: $shadow-xl;
+  
+  &__tooltip {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: $color-gray-900;
+    color: $color-white;
+    padding: $space-2 $space-4;
+    border-radius: $border-radius-md;
+    font-size: $font-size-sm;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all $transition-fast;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      right: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 8px solid transparent;
+      border-left-color: $color-gray-900;
+    }
+    
+    .whatsapp:hover & {
+      opacity: 1;
+      visibility: visible;
+      right: 75px;
+    }
   }
 }
 
-.scroll-top {
+@keyframes whatsapp-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+// Variante con chat expandido
+.whatsapp-chat {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: $primary;
-  border-radius: 50%;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  box-shadow: $shadow-lg;
-  z-index: 1000;
-  transition: $transition-base;
-
-  svg {
-    width: 24px;
-    height: 24px;
-    color: $white;
+  bottom: 90px;
+  right: $space-6;
+  width: 300px;
+  background: $color-white;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-2xl;
+  overflow: hidden;
+  z-index: z('fixed');
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: transform $transition-base;
+  
+  &.active {
+    transform: scale(1);
   }
-
-  &:hover {
-    background: $primary-dark;
-    transform: translateY(-5px);
+  
+  &__header {
+    background: #25d366;
+    color: $color-white;
+    padding: $space-4;
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    h4 {
+      color: $color-white;
+      font-size: $font-size-base;
+      margin: 0;
+    }
+    
+    p {
+      font-size: $font-size-sm;
+      opacity: 0.9;
+      margin: 0;
+    }
+  }
+  
+  &__body {
+    padding: $space-4;
+    background: #f0f2f5;
+    min-height: 150px;
+  }
+  
+  &__message {
+    background: $color-white;
+    padding: $space-3;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-sm;
+    font-size: $font-size-sm;
+    margin-bottom: $space-3;
+  }
+  
+  &__input {
+    display: flex;
+    padding: $space-3;
+    background: $color-white;
+    border-top: 1px solid $color-gray-200;
+    
+    input {
+      flex: 1;
+      border: none;
+      padding: $space-2;
+      font-size: $font-size-sm;
+      
+      &:focus {
+        outline: none;
+      }
+    }
+    
+    button {
+      color: $color-gray-500;
+      font-size: $font-size-lg;
+      transition: color $transition-fast;
+      
+      &:hover {
+        color: #25d366;
+      }
+    }
   }
 }

@@ -1,0 +1,60 @@
+// ==========================================================================
+// GRID - MÓDULO 5
+// ==========================================================================
+
+.c-grid-example {
+  margin: $space-xl 0;
+  
+  &__title {
+    font-size: $font-size-lg;
+    color: $color-gray-800;
+    margin-bottom: $space-lg;
+  }
+}
+
+.c-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $space-lg;
+  
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.c-grid-item {
+  background: linear-gradient(135deg, $color-secondary 0%, $color-secondary-dark 100%);
+  color: $color-white;
+  padding: $space-xl;
+  border-radius: $border-radius-md;
+  text-align: center;
+  font-weight: $font-weight-bold;
+  min-height: 120px;
+  @include flex(column, center, center);
+  transition: transform $transition-base;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  // Variantes de color
+  &--1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+  &--2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+  &--3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+  &--4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+  &--5 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+  &--6 { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+  
+  // Span de columnas
+  &--span-2 {
+    @include respond-to(md) {
+      grid-column: span 2;
+    }
+  }
+  
+  &--span-3 {
+    @include respond-to(md) {
+      grid-column: span 3;
+    }
+  }
+}

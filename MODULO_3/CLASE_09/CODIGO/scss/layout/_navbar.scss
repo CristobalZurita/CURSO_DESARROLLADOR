@@ -1,0 +1,127 @@
+// ============================================================
+// NAVBAR - Barra de navegación fija
+// ============================================================
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: z('fixed');
+  padding: $space-4 0;
+  background: rgba($color-primary, 0.95);
+  backdrop-filter: blur(10px);
+  transition: all $transition-base;
+  
+  &.scrolled {
+    padding: $space-2 0;
+    box-shadow: $shadow-lg;
+  }
+  
+  &__container {
+    @include flex-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $space-4;
+  }
+  
+  &__brand {
+    font-family: $font-primary;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-extrabold;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    
+    i, svg {
+      font-size: 1.5em;
+      animation: pulse 2s infinite;
+    }
+    
+    img {
+      height: 40px;
+      width: auto;
+    }
+  }
+  
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    
+    @include respond-down(lg) {
+      position: fixed;
+      top: $navbar-height;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba($color-primary, 0.98);
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: $space-8 $space-6;
+      transform: translateX(100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all $transition-base;
+      overflow-y: auto;
+      
+      &.active {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  
+  &__link {
+    color: rgba($color-white, 0.9);
+    font-weight: $font-weight-medium;
+    padding: $space-2 $space-4;
+    border-radius: $border-radius-full;
+    transition: all $transition-fast;
+    position: relative;
+    
+    &:hover,
+    &.active {
+      color: $color-white;
+      background: rgba($color-white, 0.15);
+    }
+    
+    // Indicador de página activa
+    &.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background: $color-accent;
+      border-radius: $border-radius-sm;
+    }
+  }
+  
+  &__toggle {
+    display: none;
+    color: $color-white;
+    font-size: $font-size-2xl;
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+    @include respond-down(lg) {
+      display: block;
+    }
+  }
+}
+
+// Espaciador para el navbar fijo
+.header-spacer {
+  height: $navbar-height;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}

@@ -1,0 +1,81 @@
+// ============================================================
+// FORMULARIOS
+// ============================================================
+
+.form {
+  &__group {
+    margin-bottom: $space-4;
+  }
+  
+  &__label {
+    display: block;
+    margin-bottom: $space-2;
+    font-weight: $font-weight-medium;
+    color: $color-gray-700;
+  }
+  
+  &__control {
+    width: 100%;
+    padding: $space-3 $space-4;
+    border: 2px solid $color-gray-200;
+    border-radius: $border-radius-lg;
+    transition: all $transition-fast;
+    
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 0.25rem rgba($color-primary, 0.25);
+    }
+    
+    &--textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+  }
+  
+  &__floating {
+    position: relative;
+    
+    .form__control {
+      height: calc(3.5rem + 2px);
+      padding: $space-6 $space-4 $space-2;
+    }
+    
+    .form__label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      padding: $space-4;
+      pointer-events: none;
+      transform-origin: 0 0;
+      transition: all $transition-fast;
+    }
+    
+    .form__control:focus ~ .form__label,
+    .form__control:not(:placeholder-shown) ~ .form__label {
+      transform: scale(0.85) translateY(-0.5rem);
+      color: $color-primary;
+    }
+  }
+  
+  &__select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right $space-4 center;
+    background-size: 16px 12px;
+  }
+}
+
+// Formulario de contacto específico
+.contact-form {
+  background: $color-white;
+  border-radius: $border-radius-2xl;
+  padding: $space-10;
+  box-shadow: $shadow-xl;
+  
+  @include respond-down(md) {
+    padding: $space-6;
+  }
+}

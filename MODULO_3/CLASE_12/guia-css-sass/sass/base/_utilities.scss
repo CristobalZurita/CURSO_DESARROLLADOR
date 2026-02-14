@@ -1,0 +1,36 @@
+// ==========================================================================
+// CLASES UTILITARIAS
+// ==========================================================================
+
+// Text alignment
+.u-text-center { text-align: center; }
+.u-text-left { text-align: left; }
+.u-text-right { text-align: right; }
+.u-text-justify { text-align: justify; }
+
+// Display
+.u-d-block { display: block; }
+.u-d-inline { display: inline; }
+.u-d-inline-block { display: inline-block; }
+.u-d-none { display: none; }
+
+// Spacing utilities (margin)
+.u-m-0 { margin: 0; }
+.u-mt-sm { margin-top: $space-sm; }
+.u-mt-md { margin-top: $space-md; }
+.u-mt-lg { margin-top: $space-lg; }
+.u-mb-sm { margin-bottom: $space-sm; }
+.u-mb-md { margin-bottom: $space-md; }
+.u-mb-lg { margin-bottom: $space-lg; }
+
+// Spacing utilities (padding)
+.u-p-0 { padding: 0; }
+.u-p-sm { padding: $space-sm; }
+.u-p-md { padding: $space-md; }
+.u-p-lg { padding: $space-lg; }
+
+// Colors
+.u-color-primary { color: $color-primary; }
+.u-color-secondary { color: $color-secondary; }
+.u-bg-light { background-color: $color-gray-100; }
+.u-bg-white { background-color: $color-white; }

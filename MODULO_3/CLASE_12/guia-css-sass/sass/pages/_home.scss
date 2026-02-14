@@ -1,0 +1,77 @@
+// ==========================================================================
+// PÁGINA HOME - ESTILOS ESPECÍFICOS
+// ==========================================================================
+
+// Layout examples para el módulo 10
+.p-layout-examples {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+  margin: $space-xl 0;
+}
+
+.p-layout {
+  padding: $space-xl;
+  background: $color-gray-200;
+  border-radius: $border-radius-md;
+  text-align: center;
+  font-weight: $font-weight-bold;
+  color: $color-gray-700;
+  
+  &--fluid {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: $color-white;
+  }
+  
+  &--fixed {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: $color-white;
+  }
+  
+  &--container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    width: 100%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: $color-white;
+  }
+}
+
+// Tipografía examples
+.p-typography-examples {
+  background: $color-white;
+  padding: $space-xl;
+  border-radius: $border-radius-lg;
+  
+  .p-text {
+    margin-bottom: $space-lg;
+    padding: $space-md;
+    background: $color-gray-50;
+    border-radius: $border-radius-sm;
+    
+    &--large {
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+    }
+    
+    &--medium {
+      font-size: $font-size-lg;
+    }
+    
+    &--small {
+      font-size: $font-size-sm;
+      font-style: italic;
+    }
+    
+    &--center { text-align: center; }
+    &--right { text-align: right; }
+    &--justify { 
+      text-align: justify;
+      max-width: 600px;
+    }
+  }
+}

@@ -3,113 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guía Visual Didáctica de CSS - Arquitectura SASS</title>
+    <title>Guía Visual Didáctica de CSS - Arquitectura SASS 7-1</title>
     
     <!-- CSS compilado desde SASS -->
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <div class="container">
-        <!-- ========================================= -->
-        <!-- HEADER PRINCIPAL -->
-        <!-- ========================================= -->
-        <header class="header">
-            <h1 class="header__title">📚 GUÍA VISUAL DIDÁCTICA DE CSS</h1>
-            <p class="header__subtitle">Aprende CSS con arquitectura SASS profesional</p>
-            <p class="header__badge">Proyecto escalable con BEM + SASS</p>
-        </header>
 
+    <!-- ========================================= -->
+    <!-- NAVEGACIÓN STICKY (NUEVO) -->
+    <!-- ========================================= -->
+    <nav class="l-nav">
+        <div class="l-nav__container">
+            <a href="#" class="l-nav__logo">📚 CSS Guide</a>
+            
+            <!-- Botón hamburguesa para móvil -->
+            <button class="l-nav__toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Menú de navegación -->
+            <ul class="l-nav__menu">
+                <li><a href="#box-model" class="l-nav__link">Box Model</a></li>
+                <li><a href="#display" class="l-nav__link">Display</a></li>
+                <li><a href="#positioning" class="l-nav__link">Position</a></li>
+                <li><a href="#flexbox" class="l-nav__link">Flexbox</a></li>
+                <li><a href="#grid" class="l-nav__link">Grid</a></li>
+                <li><a href="#colors" class="l-nav__link">Colores</a></li>
+                <li><a href="#typography" class="l-nav__link">Tipografía</a></li>
+                <li><a href="#layouts" class="l-nav__link">Layouts</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="l-container">
+
+    <!-- ========================================= -->
+    <!-- HEADER PRINCIPAL -->
+    <!-- ========================================= -->
+    <header class="l-header">
+        <h1 class="l-header__title">📚 GUÍA VISUAL DIDÁCTICA DE CSS</h1>
+        <p class="l-header__subtitle">Aprende CSS con arquitectura SASS profesional</p>
+        <span class="l-header__badge">Proyecto escalable con BEM + SASS 7-1</span>
+    </header>
+
+    <!-- Contenedor principal -->
+    <div class="l-container">
         <!-- ========================================= -->
         <!-- MÓDULO 1: MODELO DE CAJA -->
         <!-- ========================================= -->
-        <section class="section section--light">
-            <h2 class="section__title">📦 MÓDULO 1: El Modelo de Caja (Box Model)</h2>
+        <section class="l-section l-section--light">
+            <h2 class="l-section__title">📦 MÓDULO 1: El Modelo de Caja (Box Model)</h2>
             
-            <div class="description">
+            <div class="l-section__description">
                 <strong>📖 ¿Qué es?</strong> Cada elemento HTML es una caja rectangular con 4 capas: 
                 contenido, padding (relleno), border (borde) y margin (margen externo).
             </div>
 
-            <div class="box-demo">
-                <div class="box-model">
-                    <div class="box-model__label box-model__label--margin">MARGIN (40px) - Espacio externo</div>
-                    <div class="box-model__label box-model__label--border">BORDER (10px) - Borde naranja</div>
-                    <div class="box-model__label box-model__label--padding">PADDING (40px) - Espacio interno</div>
+            <div class="c-box-demo">
+                <div class="c-box-model">
+                    <span class="c-box-model__border-label">BORDER (10px)</span>
+                    <span class="c-box-model__padding-label">PADDING (40px)</span>
                     
-                    <div class="box-model__content">
+                    <div class="c-box-model__content">
                         ESTO ES EL CONTENIDO
-                        <div class="box-model__label box-model__label--content">CONTENT - El texto o contenido</div>
+                        <span class="c-box-model__content-label">CONTENT - El texto o contenido real</span>
                     </div>
                 </div>
             </div>
 
-            <div class="code-snippet">
-.caja {<br>
-&nbsp;&nbsp;margin: 40px;        /* Espacio fuera de la caja */<br>
-&nbsp;&nbsp;border: 10px solid;  /* El borde visible */<br>
-&nbsp;&nbsp;padding: 40px;       /* Espacio dentro de la caja */<br>
+            <div class="c-code-snippet">
+.c-box-model {<br>
+&nbsp;&nbsp;margin: 40px;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Espacio fuera de la caja (rojo) */<br>
+&nbsp;&nbsp;border: 10px solid;&nbsp;/* El borde visible (amarillo) */<br>
+&nbsp;&nbsp;padding: 40px;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* Espacio dentro del borde (verde) */<br>
+&nbsp;&nbsp;/* El contenido está en el centro (azul) */<br>
 }
             </div>
 
-            <div class="note note--important">
-                <strong>💡 Importante:</strong> El tamaño total de una caja = content + padding + border + margin
+            <div class="c-note c-note--important">
+                <strong>💡 Importante:</strong> El tamaño total de una caja = content + padding + border + margin. 
+                Usa <code>box-sizing: border-box</code> para que el width incluya padding y border.
             </div>
         </section>
 
         <!-- ========================================= -->
         <!-- MÓDULO 2: DISPLAY -->
         <!-- ========================================= -->
-        <section class="section">
-            <h2 class="section__title">🎭 MÓDULO 2: Propiedad Display</h2>
+        <section class="l-section">
+            <h2 class="l-section__title">🎭 MÓDULO 2: Propiedad Display</h2>
             
-            <div class="description">
-                <strong>📖 ¿Qué es?</strong> La propiedad <code>display</code> define cómo se comporta un elemento en el flujo del documento.
+            <div class="l-section__description">
+                <strong>📖 ¿Qué es?</strong> La propiedad <code>display</code> define cómo se comporta un elemento 
+                en el flujo del documento y su relación con otros elementos.
             </div>
 
-            <div class="display-examples">
-                <div class="display-example">
-                    <h3 class="display-example__title">🔴 DISPLAY: BLOCK</h3>
-                    <div class="display-block">CAJA ROJA - Ocupa todo el ancho disponible</div>
-                    <div class="display-block">OTRA CAJA ROJA - Se apila verticalmente</div>
-                    
-                    <div class="code-snippet">
-.display-block { display: block; }
+            <div class="c-display-examples">
+                <!-- BLOCK -->
+                <article class="c-display-example">
+                    <h3 class="c-display-example__title">🔴 DISPLAY: BLOCK</h3>
+                    <div class="c-display-example__container">
+                        <div class="c-display-block">CAJA ROJA 1 - Ocupa todo el ancho</div>
+                        <div class="c-display-block">CAJA ROJA 2 - Se apila verticalmente</div>
                     </div>
-                </div>
+                    <div class="c-code-snippet">display: block;</div>
+                    <p><strong>Características:</strong> Ocupa 100% del ancho, fuerza salto de línea, acepta width/height/margin.</p>
+                </article>
 
-                <div class="display-example">
-                    <h3 class="display-example__title">🔵 DISPLAY: INLINE</h3>
-                    <div class="display-example__container">
-                        <span class="display-inline">CAJA AZUL 1</span>
-                        <span class="display-inline">CAJA AZUL 2</span>
-                        <span class="display-inline">CAJA AZUL 3</span>
+                <!-- INLINE -->
+                <article class="c-display-example">
+                    <h3 class="c-display-example__title">🔵 DISPLAY: INLINE</h3>
+                    <div class="c-display-example__container">
+                        <span class="c-display-inline">SPAN 1</span>
+                        <span class="c-display-inline">SPAN 2</span>
+                        <span class="c-display-inline">SPAN 3</span>
                     </div>
-                    
-                    <div class="code-snippet">
-.display-inline { display: inline; }
-                    </div>
-                </div>
+                    <div class="c-code-snippet">display: inline;</div>
+                    <p><strong>Características:</strong> Fluye en línea con el texto, NO acepta width/height, respeta margin horizontal.</p>
+                </article>
 
-                <div class="display-example">
-                    <h3 class="display-example__title">🟢 DISPLAY: INLINE-BLOCK</h3>
-                    <div class="display-example__container">
-                        <div class="display-inline-block">CAJA 1</div>
-                        <div class="display-inline-block">CAJA 2</div>
-                        <div class="display-inline-block">CAJA 3</div>
+                <!-- INLINE-BLOCK -->
+                <article class="c-display-example">
+                    <h3 class="c-display-example__title">🟢 DISPLAY: INLINE-BLOCK</h3>
+                    <div class="c-display-example__container">
+                        <div class="c-display-inline-block">CAJA 1</div>
+                        <div class="c-display-inline-block">CAJA 2</div>
+                        <div class="c-display-inline-block">CAJA 3</div>
                     </div>
-                    
-                    <div class="code-snippet">
-.display-inline-block { display: inline-block; }
-                    </div>
-                </div>
+                    <div class="c-code-snippet">display: inline-block;</div>
+                    <p><strong>Características:</strong> Flujo en línea + comportamiento de bloque. Acepta width/height.</p>
+                </article>
             </div>
 
-            <div class="note note--tip">
-                <strong>💡 Recuerda:</strong> 
+            <div class="c-note c-note--tip">
+                <strong>💡 Recuerda:</strong>
                 <ul>
-                    <li><strong>block:</strong> Ocupa todo el ancho, se apila verticalmente</li>
-                    <li><strong>inline:</strong> Fluye con el texto, no acepta width/height</li>
-                    <li><strong>inline-block:</strong> Fluye en línea pero acepta dimensiones</li>
+                    <li><strong>block:</strong> Elementos como &lt;div&gt;, &lt;p&gt;, &lt;h1&gt;-&lt;h6&gt;</li>
+                    <li><strong>inline:</strong> Elementos como &lt;span&gt;, &lt;a&gt;, &lt;strong&gt;, &lt;em&gt;</li>
+                    <li><strong>inline-block:</strong> Útil para menús horizontales, botones en línea</li>
+                    <li><strong>none:</strong> Oculta el elemento completamente (no ocupa espacio)</li>
                 </ul>
             </div>
         </section>
@@ -117,36 +151,24 @@
         <!-- ========================================= -->
         <!-- MÓDULO 3: POSICIONAMIENTO -->
         <!-- ========================================= -->
-        <section class="section section--light">
-            <h2 class="section__title">📍 MÓDULO 3: Posicionamiento CSS</h2>
+        <section class="l-section l-section--light">
+            <h2 class="l-section__title">📍 MÓDULO 3: Posicionamiento CSS</h2>
             
-            <div class="description">
-                <strong>📖 ¿Qué es?</strong> La propiedad <code>position</code> controla cómo se ubica un elemento en la página.
+            <div class="l-section__description">
+                <strong>📖 ¿Qué es?</strong> La propiedad <code>position</code> controla cómo se ubica un elemento 
+                en la página y su relación con el flujo del documento.
             </div>
 
-            <div class="position-container">
-                <div class="position-box position-box--static">
-                    STATIC<br>(por defecto)
-                </div>
-
-                <div class="position-box position-box--relative">
-                    RELATIVE<br>top: 30px; left: 50px
-                </div>
-
-                <div class="position-box position-box--absolute">
-                    ABSOLUTE<br>top: 100px; right: 50px
-                </div>
-
-                <div class="position-box position-box--sticky">
-                    STICKY<br>(Se pega al scroll)
-                </div>
+            <div class="c-position-container">
+                <div class="c-position-box c-position-box--static">STATIC<br>(por defecto)</div>
+                <div class="c-position-box c-position-box--relative">RELATIVE<br>top: 30px; left: 50px</div>
+                <div class="c-position-box c-position-box--absolute">ABSOLUTE<br>top: 100px; right: 50px</div>
+                <div class="c-position-box c-position-box--sticky">STICKY<br>(Se pega al hacer scroll)</div>
             </div>
 
-            <div class="position-box position-box--fixed">
-                FIXED<br>bottom: 20px; right: 20px
-            </div>
+            <div class="c-position-box c-position-box--fixed">FIXED<br>bottom: 20px; right: 20px</div>
 
-            <table class="reference-table">
+            <table class="c-reference-table">
                 <thead>
                     <tr>
                         <th>Posición</th>
@@ -156,29 +178,29 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>static</strong></td>
-                        <td>Flujo normal del documento</td>
-                        <td>Valor por defecto</td>
+                        <td>static</td>
+                        <td>Flujo normal del documento. No acepta top/left/right/bottom.</td>
+                        <td>Valor por defecto de todos los elementos</td>
                     </tr>
                     <tr>
-                        <td><strong>relative</strong></td>
-                        <td>Se mueve desde su posición original</td>
-                        <td>Ajustes pequeños de posición</td>
+                        <td>relative</td>
+                        <td>Se mueve desde su posición original sin afectar a otros elementos.</td>
+                        <td>Ajustes pequeños, base para elementos absolutos</td>
                     </tr>
                     <tr>
-                        <td><strong>absolute</strong></td>
-                        <td>Sale del flujo, se posiciona respecto al padre</td>
-                        <td>Tooltips, modales, overlays</td>
+                        <td>absolute</td>
+                        <td>Sale del flujo. Se posiciona respecto al ancestro posicionado más cercano.</td>
+                        <td>Tooltips, modales, dropdowns, overlays</td>
                     </tr>
                     <tr>
-                        <td><strong>fixed</strong></td>
-                        <td>Fijo en la ventana del navegador</td>
-                        <td>Menús fijos, botones flotantes</td>
+                        <td>fixed</td>
+                        <td>Fijo respecto a la ventana del navegador (viewport).</td>
+                        <td>Menús fijos, botones flotantes, headers sticky</td>
                     </tr>
                     <tr>
-                        <td><strong>sticky</strong></td>
-                        <td>Híbrido entre relative y fixed</td>
-                        <td>Headers que se pegan al hacer scroll</td>
+                        <td>sticky</td>
+                        <td>Híbrido: relative hasta que cruza umbral, luego fixed.</td>
+                        <td>Headers de tabla, navegación sticky</td>
                     </tr>
                 </tbody>
             </table>
@@ -187,160 +209,246 @@
         <!-- ========================================= -->
         <!-- MÓDULO 4: FLEXBOX -->
         <!-- ========================================= -->
-        <section class="section">
-            <h2 class="section__title">🔲 MÓDULO 4: Flexbox</h2>
+        <section class="l-section">
+            <h2 class="l-section__title">🔲 MÓDULO 4: Flexbox (Caja Flexible)</h2>
             
-            <div class="description">
-                <strong>📖 ¿Qué es?</strong> Flexbox facilita la alineación y distribución de elementos en un contenedor.
+            <div class="l-section__description">
+                <strong>📖 ¿Qué es?</strong> Flexbox es un sistema de layout unidimensional que facilita 
+                la alineación, distribución y ordenamiento de elementos en un contenedor.
             </div>
 
-            <div class="flex-examples">
-                <div class="flex-example">
-                    <h3 class="flex-example__title">↔️ Flex Direction: ROW</h3>
-                    <div class="flex-container flex-container--row">
-                        <div class="flex-item">Item 1</div>
-                        <div class="flex-item">Item 2</div>
-                        <div class="flex-item">Item 3</div>
+            <div class="c-flex-examples">
+                <article class="c-flex-example">
+                    <h3 class="c-flex-example__title">↔️ Flex Direction: ROW (fila)</h3>
+                    <div class="c-flex-container c-flex-container--row">
+                        <div class="c-flex-item">Item 1</div>
+                        <div class="c-flex-item">Item 2</div>
+                        <div class="c-flex-item">Item 3</div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-example">
-                    <h3 class="flex-example__title">↕️ Flex Direction: COLUMN</h3>
-                    <div class="flex-container flex-container--column">
-                        <div class="flex-item">Item 1</div>
-                        <div class="flex-item">Item 2</div>
-                        <div class="flex-item">Item 3</div>
+                <article class="c-flex-example">
+                    <h3 class="c-flex-example__title">↕️ Flex Direction: COLUMN</h3>
+                    <div class="c-flex-container c-flex-container--column">
+                        <div class="c-flex-item">Item 1</div>
+                        <div class="c-flex-item">Item 2</div>
+                        <div class="c-flex-item">Item 3</div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-example">
-                    <h3 class="flex-example__title">⭕ Justify-Content: CENTER</h3>
-                    <div class="flex-container flex-container--center">
-                        <div class="flex-item">Centrado</div>
-                        <div class="flex-item">Horizontal</div>
+                <article class="c-flex-example">
+                    <h3 class="c-flex-example__title">⭕ Justify-Content: CENTER</h3>
+                    <div class="c-flex-container c-flex-container--center">
+                        <div class="c-flex-item">Centrado</div>
+                        <div class="c-flex-item">Horizontal</div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-example">
-                    <h3 class="flex-example__title">↔️ Space Between</h3>
-                    <div class="flex-container flex-container--space-between">
-                        <div class="flex-item">Inicio</div>
-                        <div class="flex-item">Centro</div>
-                        <div class="flex-item">Final</div>
+                <article class="c-flex-example">
+                    <h3 class="c-flex-example__title">↔️ Space Between</h3>
+                    <div class="c-flex-container c-flex-container--space-between">
+                        <div class="c-flex-item">Inicio</div>
+                        <div class="c-flex-item">Centro</div>
+                        <div class="c-flex-item">Final</div>
                     </div>
-                </div>
+                </article>
+            </div>
+
+            <div class="c-note c-note--tip">
+                <strong>💡 Propiedades clave de Flexbox:</strong>
+                <ul>
+                    <li><code>display: flex</code> - Activa flexbox en el contenedor</li>
+                    <li><code>justify-content</code> - Alineación en eje principal (horizontal)</li>
+                    <li><code>align-items</code> - Alineación en eje transversal (vertical)</li>
+                    <li><code>flex-direction</code> - Dirección: row (fila) o column (columna)</li>
+                    <li><code>gap</code> - Espacio entre elementos</li>
+                </ul>
             </div>
         </section>
 
         <!-- ========================================= -->
         <!-- MÓDULO 5: GRID -->
         <!-- ========================================= -->
-        <section class="section section--light">
-            <h2 class="section__title">🎯 MÓDULO 5: CSS Grid</h2>
+        <section class="l-section l-section--light">
+            <h2 class="l-section__title">🎯 MÓDULO 5: CSS Grid</h2>
             
-            <div class="description">
-                <strong>📖 ¿Qué es?</strong> CSS Grid permite crear layouts bidimensionales (filas y columnas).
+            <div class="l-section__description">
+                <strong>📖 ¿Qué es?</strong> CSS Grid es un sistema de layout bidimensional que permite 
+                crear diseños complejos con filas y columnas simultáneamente.
             </div>
 
-            <div class="grid-example">
-                <h3 class="grid-example__title">📊 Grid de 3 Columnas</h3>
-                <div class="grid-container">
-                    <div class="grid-item grid-item--1">Grid 1</div>
-                    <div class="grid-item grid-item--2">Grid 2</div>
-                    <div class="grid-item grid-item--3">Grid 3</div>
-                    <div class="grid-item grid-item--4">Grid 4</div>
-                    <div class="grid-item grid-item--5">Grid 5</div>
-                    <div class="grid-item grid-item--6">Grid 6</div>
+            <div class="c-grid-example">
+                <h3 class="c-grid-example__title">📊 Grid de 3 Columnas Responsivo</h3>
+                <div class="c-grid-container">
+                    <div class="c-grid-item c-grid-item--1">Grid 1</div>
+                    <div class="c-grid-item c-grid-item--2">Grid 2</div>
+                    <div class="c-grid-item c-grid-item--3">Grid 3</div>
+                    <div class="c-grid-item c-grid-item--4">Grid 4</div>
+                    <div class="c-grid-item c-grid-item--5">Grid 5</div>
+                    <div class="c-grid-item c-grid-item--6">Grid 6</div>
                 </div>
+            </div>
+
+            <div class="c-code-snippet">
+.grid-container {<br>
+&nbsp;&nbsp;display: grid;<br>
+&nbsp;&nbsp;grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));<br>
+&nbsp;&nbsp;gap: 20px;<br>
+}
+            </div>
+
+            <div class="c-note c-note--important">
+                <strong>💡 Diferencia clave:</strong> Flexbox es unidimensional (fila O columna), 
+                mientras que Grid es bidimensional (filas Y columnas simultáneamente).
             </div>
         </section>
 
         <!-- ========================================= -->
         <!-- MÓDULO 6: COLORES -->
         <!-- ========================================= -->
-        <section class="section">
-            <h2 class="section__title">🎨 MÓDULO 6: Colores y Fondos</h2>
+        <section class="l-section">
+            <h2 class="l-section__title">🎨 MÓDULO 6: Colores y Fondos</h2>
             
-            <div class="description">
-                <strong>📖 ¿Qué es?</strong> CSS ofrece múltiples formas de definir colores.
+            <div class="l-section__description">
+                <strong>📖 ¿Qué es?</strong> CSS ofrece múltiples formatos para definir colores: 
+                HEX, RGB, RGBA (con transparencia), HSL y gradientes.
             </div>
 
-            <div class="color-palette">
-                <div class="color-demo color-demo--hex">HEX: #e74c3c</div>
-                <div class="color-demo color-demo--rgb">RGB: rgb(52, 152, 219)</div>
-                <div class="color-demo color-demo--rgba">RGBA: rgba(46, 204, 113, 0.7)</div>
-                <div class="color-demo color-demo--hsl">HSL: hsl(280, 50%, 60%)</div>
-                <div class="color-demo color-demo--gradient">GRADIENT</div>
+            <div class="c-color-palette">
+                <div class="c-color-demo c-color-demo--hex">
+                    HEX: #e74c3c<br>
+                    <small>Formato hexadecimal</small>
+                </div>
+                <div class="c-color-demo c-color-demo--rgb">
+                    RGB: rgb(52, 152, 219)<br>
+                    <small>Red, Green, Blue (0-255)</small>
+                </div>
+                <div class="c-color-demo c-color-demo--rgba">
+                    RGBA: rgba(46, 204, 113, 0.7)<br>
+                    <small>RGB + Alpha (transparencia)</small>
+                </div>
+                <div class="c-color-demo c-color-demo--hsl">
+                    HSL: hsl(280, 50%, 60%)<br>
+                    <small>Hue, Saturation, Lightness</small>
+                </div>
+                <div class="c-color-demo c-color-demo--gradient">
+                    GRADIENT<br>
+                    <small>Linear-gradient</small>
+                </div>
             </div>
         </section>
 
         <!-- ========================================= -->
         <!-- MÓDULO 7: TIPOGRAFÍA -->
         <!-- ========================================= -->
-        <section class="section section--light">
-            <h2 class="section__title">✍️ MÓDULO 7: Tipografía y Texto</h2>
+        <section class="l-section l-section--light">
+            <h2 class="l-section__title">✍️ MÓDULO 7: Tipografía y Texto</h2>
             
-            <div class="typography-examples">
-                <div class="text text--large">Texto GRANDE y NEGRITA</div>
-                <div class="text text--medium">Texto mediano y normal</div>
-                <div class="text text--small">Texto pequeño e itálica</div>
+            <div class="p-typography-examples">
+                <div class="p-text p-text--large">Texto GRANDE (2rem) y NEGRITA - font-weight: 700</div>
+                <div class="p-text p-text--medium">Texto mediano (1.25rem) y normal - font-weight: 400</div>
+                <div class="p-text p-text--small">Texto pequeño (0.875rem) e itálica - font-style: italic</div>
                 
-                <div class="text text--center">TEXTO CENTRADO</div>
-                <div class="text text--right">TEXTO A LA DERECHA</div>
-                <div class="text text--justify">TEXTO JUSTIFICADO - Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                <div class="p-text p-text--center">TEXTO CENTRADO - text-align: center</div>
+                <div class="p-text p-text--right">TEXTO A LA DERECHA - text-align: right</div>
+                <div class="p-text p-text--justify">
+                    TEXTO JUSTIFICADO - text-align: justify. Lorem ipsum dolor sit amet, consectetur 
+                    adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
             </div>
         </section>
 
         <!-- ========================================= -->
         <!-- MÓDULO 8: EFECTOS -->
         <!-- ========================================= -->
-        <section class="section">
-            <h2 class="section__title">✨ MÓDULO 8: Bordes y Sombras</h2>
+        <section class="l-section">
+            <h2 class="l-section__title">✨ MÓDULO 8: Bordes y Sombras</h2>
             
-            <div class="effects-grid">
-                <div class="effect-box effect-box--border-solid">BORDE SÓLIDO</div>
-                <div class="effect-box effect-box--border-rounded">BORDE REDONDEADO</div>
-                <div class="effect-box effect-box--shadow-soft">SOMBRA SUAVE</div>
-                <div class="effect-box effect-box--shadow-strong">SOMBRA FUERTE</div>
+            <div class="c-effects-grid">
+                <div class="c-effect-box c-effect-box--border-solid">
+                    BORDE SÓLIDO<br>
+                    <code>border: 4px solid #3498db</code>
+                </div>
+                <div class="c-effect-box c-effect-box--border-rounded">
+                    BORDE REDONDEADO<br>
+                    <code>border-radius: 9999px</code>
+                </div>
+                <div class="c-effect-box c-effect-box--shadow-soft">
+                    SOMBRA SUAVE<br>
+                    <code>box-shadow: 0 4px 6px rgba(0,0,0,0.1)</code>
+                </div>
+                <div class="c-effect-box c-effect-box--shadow-strong">
+                    SOMBRA FUERTE + HOVER<br>
+                    <code>box-shadow: 0 20px 40px rgba(0,0,0,0.3)</code>
+                </div>
             </div>
         </section>
 
         <!-- ========================================= -->
         <!-- MÓDULO 9: ESPACIADO -->
         <!-- ========================================= -->
-        <section class="section section--light">
-            <h2 class="section__title">📏 MÓDULO 9: Espaciado</h2>
+        <section class="l-section l-section--light">
+            <h2 class="l-section__title">📏 MÓDULO 9: Espaciado (Padding)</h2>
             
-            <div class="spacing-demo">
-                <div class="spacing-box spacing-box--padding-large">PADDING GRANDE</div>
-                <div class="spacing-box spacing-box--padding-medium">PADDING MEDIANO</div>
-                <div class="spacing-box spacing-box--padding-small">PADDING PEQUEÑO</div>
+            <div class="c-spacing-demo">
+                <div class="c-spacing-box c-spacing-box--padding-large">
+                    PADDING GRANDE (4rem / 64px)<br>
+                    <code>padding: 4rem</code>
+                </div>
+                <div class="c-spacing-box c-spacing-box--padding-medium">
+                    PADDING MEDIANO (2rem / 32px)<br>
+                    <code>padding: 2rem</code>
+                </div>
+                <div class="c-spacing-box c-spacing-box--padding-small">
+                    PADDING PEQUEÑO (1rem / 16px)<br>
+                    <code>padding: 1rem</code>
+                </div>
+            </div>
+
+            <div class="c-note c-note--tip">
+                <strong>💡 Sistema de espaciado:</strong> Usa un sistema consistente (8pt grid) para mantener 
+                ritmo visual. Margin = espacio entre elementos, Padding = espacio interno.
             </div>
         </section>
 
         <!-- ========================================= -->
         <!-- MÓDULO 10: LAYOUTS -->
         <!-- ========================================= -->
-        <section class="section">
-            <h2 class="section__title">📱 MÓDULO 10: Layouts Responsive</h2>
+        <section class="l-section">
+            <h2 class="l-section__title">📱 MÓDULO 10: Layouts Responsive</h2>
             
-            <div class="layout-examples">
-                <div class="layout layout--fluid">LAYOUT FLUIDO (100%)</div>
-                <div class="layout layout--fixed">LAYOUT FIJO (max-width: 800px)</div>
-                <div class="layout layout--container">CONTENEDOR (max-width: 1200px)</div>
+            <div class="l-section__description">
+                <strong>📖 Tipos de Layout:</strong> Según la actividad, exploramos layouts 
+                <strong>Fluido</strong> (%), <strong>Fijo</strong> (px) y con <strong>Max-width</strong>.
+            </div>
+
+            <div class="p-layout-examples">
+                <div class="p-layout p-layout--fluid">
+                    LAYOUT FLUIDO (100%)<br>
+                    <code>width: 100%</code> - Se adapta al ancho de pantalla
+                </div>
+                <div class="p-layout p-layout--fixed">
+                    LAYOUT FIJO (max-width: 800px)<br>
+                    <code>max-width: 800px; margin: 0 auto</code> - Centrado y limitado
+                </div>
+                <div class="p-layout p-layout--container">
+                    CONTENEDOR (max-width: 1200px)<br>
+                    <code>max-width: 1200px; margin: 0 auto</code> - Contenedor principal
+                </div>
             </div>
         </section>
 
         <!-- ========================================= -->
         <!-- FOOTER -->
         <!-- ========================================= -->
-        <footer class="footer">
-            <p class="footer__text">📚 Guía Visual Didáctica de CSS</p>
-            <p class="footer__subtext">Arquitectura SASS 7-1 + Metodología BEM</p>
+        <footer class="l-footer">
+            <p class="l-footer__text">📚 Guía Visual Didáctica de CSS</p>
+            <p class="l-footer__subtext">Arquitectura SASS 7-1 + Metodología BEM | Kibernum IT Academy</p>
+            <p class="l-footer__subtext">CRISTÓBAL NICOLÁS ZURITA QUINTANILLA  @2026 </p>
         </footer>
     </div>
 
-    <!-- JavaScript para interactividad -->
+    <!-- JavaScript -->
     <script src="js/main.js"></script>
 </body>
 </html>

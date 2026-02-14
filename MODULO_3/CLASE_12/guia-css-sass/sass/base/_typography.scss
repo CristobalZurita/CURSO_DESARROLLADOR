@@ -1,0 +1,34 @@
+// ==========================================================================
+// TIPOGRAFÍA BASE
+// ==========================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-gray-900;
+  margin-bottom: $space-md;
+}
+
+h1 { font-size: $font-size-3xl; }
+h2 { font-size: $font-size-2xl; }
+h3 { font-size: $font-size-xl; }
+h4 { font-size: $font-size-lg; }
+
+p {
+  margin-bottom: $space-md;
+  color: $color-gray-600;
+}
+
+code {
+  font-family: $font-family-mono;
+  background: $color-gray-200;
+  padding: $space-xs $space-sm;
+  border-radius: $border-radius-sm;
+  font-size: 0.9em;
+  color: $color-secondary;
+}
+
+strong {
+  font-weight: $font-weight-bold;
+  color: $color-gray-800;
+}

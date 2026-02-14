@@ -1,0 +1,134 @@
+// ==========================================================================
+// COMPONENTES GENERADOS POR JS
+// ==========================================================================
+
+// Botón copiar
+.c-copy-btn {
+  position: absolute;
+  top: $space-sm;
+  right: $space-sm;
+  background: $color-gray-700;
+  color: $color-white;
+  border: none;
+  padding: $space-xs $space-sm;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-xs;
+  cursor: pointer;
+  opacity: 0;
+  transition: all $transition-fast;
+  
+  .c-code-snippet:hover & {
+    opacity: 1;
+  }
+  
+  &:hover {
+    background: $color-primary;
+  }
+  
+  &.is-copied {
+    background: $color-accent;
+  }
+}
+
+// Tooltip
+.c-tooltip {
+  position: fixed;
+  background: $color-gray-900;
+  color: $color-white;
+  padding: $space-sm $space-md;
+  border-radius: $border-radius-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  z-index: $z-tooltip;
+  pointer-events: none;
+  animation: fadeIn 0.3s ease;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid $color-gray-900;
+  }
+}
+
+// Botón volver arriba
+.c-back-to-top {
+  position: fixed;
+  bottom: $space-xl;
+  right: $space-xl;
+  width: 50px;
+  height: 50px;
+  background: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $border-radius-full;
+  font-size: $font-size-lg;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all $transition-base;
+  z-index: $z-fixed;
+  box-shadow: $shadow-lg;
+  
+  &.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  &:hover {
+    background: $color-primary-dark;
+    transform: translateY(-5px);
+  }
+}
+
+// Animación fade in
+.u-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// Estados del box model interactivo
+.c-box-model {
+  &.is-highlight-margin {
+    box-shadow: 0 0 0 10px rgba($box-margin-color, 0.5);
+  }
+  
+  &.is-highlight-border {
+    border-color: darken($box-border-color, 20%);
+    border-width: 15px;
+  }
+  
+  &.is-highlight-padding {
+    background: rgba($box-padding-color, 0.3);
+  }
+  
+  &.is-highlight-content {
+    .c-box-model__content {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba($box-content-color, 0.5);
+    }
+  }
+}

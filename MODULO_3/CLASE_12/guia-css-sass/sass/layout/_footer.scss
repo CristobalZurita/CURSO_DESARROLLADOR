@@ -1,0 +1,22 @@
+// ==========================================================================
+// FOOTER
+// ==========================================================================
+
+.l-footer {
+  background: $color-gray-900;
+  color: $color-gray-400;
+  padding: $space-2xl $space-lg;
+  text-align: center;
+  
+  &__text {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    color: $color-white;
+    margin-bottom: $space-sm;
+  }
+  
+  &__subtext {
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+  }
+}

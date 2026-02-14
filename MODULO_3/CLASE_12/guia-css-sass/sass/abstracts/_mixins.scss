@@ -1,0 +1,104 @@
+// ==========================================================================
+// MIXINS REUTILIZABLES
+// ==========================================================================
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+}
+
+// Flexbox utilities
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Centrado absoluto
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Clearfix
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Truncar texto
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Box model visual (para la guía)
+@mixin box-layer($color, $size, $label) {
+  position: relative;
+  
+  &::before {
+    content: '#{$label}';
+    position: absolute;
+    top: $space-xs;
+    left: $space-xs;
+    font-size: $font-size-xs;
+    color: $color-white;
+    background-color: $color;
+    padding: $space-xs $space-sm;
+    border-radius: $border-radius-sm;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Card style base
+@mixin card {
+  background: $color-white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-md;
+  padding: $space-xl;
+  transition: transform $transition-base, box-shadow $transition-base;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-xl;
+  }
+}
+
+// Code block style
+@mixin code-block {
+  background: $color-gray-900;
+  color: #abb2bf;
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  padding: $space-lg;
+  border-radius: $border-radius-md;
+  overflow-x: auto;
+  line-height: $line-height-relaxed;
+}
+
+// Section spacing
+@mixin section-padding {
+  padding: $space-3xl $space-lg;
+  
+  @include respond-to(md) {
+    padding: $space-4xl $space-xl;
+  }
+}

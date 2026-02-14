@@ -1,0 +1,27 @@
+// ==========================================================================
+// TARJETAS
+// ==========================================================================
+
+.c-card {
+  @include card;
+  
+  &__header {
+    margin-bottom: $space-lg;
+  }
+  
+  &__title {
+    font-size: $font-size-lg;
+    color: $color-gray-900;
+    margin-bottom: $space-sm;
+  }
+  
+  &__body {
+    color: $color-gray-600;
+  }
+  
+  &__footer {
+    margin-top: $space-lg;
+    padding-top: $space-lg;
+    border-top: 1px solid $color-gray-200;
+  }
+}

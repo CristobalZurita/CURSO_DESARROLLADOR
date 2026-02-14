@@ -1,0 +1,42 @@
+// ============================================================
+// FUNCIONES UTILITARIAS
+// ============================================================
+
+// Convertir px a rem
+@function rem($pixels, $base: 16) {
+  @return #{$pixels / $base}rem;
+}
+
+// Calcular línea de contraste para texto
+@function text-contrast($background) {
+  @if (lightness($background) > 50) {
+    @return $color-gray-900;
+  } @else {
+    @return $color-white;
+  }
+}
+
+// Oscurecer color
+@function shade($color, $percentage) {
+  @return mix($color-black, $color, $percentage);
+}
+
+// Aclarar color
+@function tint($color, $percentage) {
+  @return mix($color-white, $color, $percentage);
+}
+
+// Z-index por nombre
+@function z($name) {
+  $z-indexes: (
+    'dropdown': $z-dropdown,
+    'sticky': $z-sticky,
+    'fixed': $z-fixed,
+    'modal-backdrop': $z-modal-backdrop,
+    'modal': $z-modal,
+    'popover': $z-popover,
+    'tooltip': $z-tooltip
+  );
+  
+  @return map-get($z-indexes, $name);
+}

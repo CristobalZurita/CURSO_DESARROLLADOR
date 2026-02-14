@@ -1,0 +1,64 @@
+// ==========================================================================
+// BLOQUES DE CÓDIGO
+// ==========================================================================
+
+.c-code-snippet {
+  @include code-block;
+  margin: $space-lg 0;
+  position: relative;
+  
+  // Etiqueta del lenguaje
+  &::before {
+    content: 'CSS';
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: $color-primary;
+    color: $color-white;
+    padding: $space-xs $space-sm;
+    font-size: $font-size-xs;
+    border-bottom-left-radius: $border-radius-sm;
+    font-weight: $font-weight-bold;
+  }
+  
+  // Sintaxis básica de colores
+  .selector { color: #e06c75; }
+  .property { color: #d19a66; }
+  .value { color: #98c379; }
+  .punctuation { color: #abb2bf; }
+  .comment { color: #5c6370; font-style: italic; }
+}
+
+.c-note {
+  padding: $space-lg;
+  border-radius: $border-radius-md;
+  margin: $space-lg 0;
+  border-left: 4px solid;
+  
+  &--important {
+    background: #fff3cd;
+    border-left-color: #ffc107;
+    color: #856404;
+  }
+  
+  &--tip {
+    background: #d1ecf1;
+    border-left-color: #17a2b8;
+    color: #0c5460;
+  }
+  
+  &--warning {
+    background: #f8d7da;
+    border-left-color: #dc3545;
+    color: #721c24;
+  }
+  
+  ul {
+    margin-left: $space-lg;
+    margin-top: $space-sm;
+    
+    li {
+      margin-bottom: $space-xs;
+    }
+  }
+}

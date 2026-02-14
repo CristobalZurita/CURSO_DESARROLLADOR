@@ -1,0 +1,56 @@
+// ==========================================================================
+// HEADER
+// ==========================================================================
+
+.l-header {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+  color: $color-white;
+  padding: $space-3xl $space-lg;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  
+  // Decoración de fondo
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: rgba($color-white, 0.1);
+    border-radius: 50%;
+  }
+  
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $space-md;
+    position: relative;
+    z-index: 1;
+    
+    @include respond-to(md) {
+      font-size: 3rem;
+    }
+  }
+  
+  &__subtitle {
+    font-size: $font-size-lg;
+    opacity: 0.9;
+    margin-bottom: $space-sm;
+    position: relative;
+    z-index: 1;
+  }
+  
+  &__badge {
+    display: inline-block;
+    background: rgba($color-white, 0.2);
+    padding: $space-sm $space-lg;
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+  }
+}

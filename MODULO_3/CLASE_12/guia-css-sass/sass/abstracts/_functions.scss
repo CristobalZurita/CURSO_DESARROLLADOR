@@ -1,0 +1,27 @@
+// ==========================================================================
+// FUNCIONES SASS
+// ==========================================================================
+
+// Convertir px a rem
+@function rem($pixels, $context: 16) {
+  @return #{$pixels / $context}rem;
+}
+
+// Calcular porcentaje
+@function percentage($value, $total) {
+  @return ($value / $total) * 100%;
+}
+
+// Mezclar color con opacidad
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+// Escalar color (aclarar/oscurecer)
+@function shade($color, $percent) {
+  @return mix($color-black, $color, $percent);
+}
+
+@function tint($color, $percent) {
+  @return mix($color-white, $color, $percent);
+}

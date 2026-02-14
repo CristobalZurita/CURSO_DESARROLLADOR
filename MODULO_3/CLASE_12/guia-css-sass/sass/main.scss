@@ -1,0 +1,44 @@
+// ==========================================================================
+// MAIN.SCSS - Entry Point
+// Arquitectura 7-1 + Metodologia BEM
+// ==========================================================================
+
+// 1. ABSTRACTS
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. VENDORS
+@import 'vendors/normalize';
+
+// 3. BASE
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/utilities';
+
+// 4. LAYOUT
+@import 'layout/container';
+@import 'layout/header';
+@import 'layout/navigation';
+@import 'layout/sections';
+@import 'layout/footer';
+
+// 5. COMPONENTS
+@import 'components/box-model';
+@import 'components/display';
+@import 'components/positioning';
+@import 'components/flexbox';
+@import 'components/grid';
+@import 'components/colors';
+@import 'components/effects';
+@import 'components/spacing';
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/code';
+@import 'components/js-components';
+
+// 6. PAGES
+@import 'pages/home';
+
+// 7. THEMES
+@import 'themes/default';

@@ -1,0 +1,84 @@
+// ==========================================================================
+// BOX MODEL - MÓDULO 1
+// ==========================================================================
+
+.c-box-model {
+  margin: 40px;
+  border: 10px solid $box-border-color;
+  padding: 40px;
+  background: $box-margin-color;
+  position: relative;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-lg;
+  
+  // Capa de margin (exterior)
+  &::before {
+    content: 'MARGIN (40px) - Espacio externo';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $box-margin-color;
+    color: $color-white;
+    padding: $space-xs $space-md;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    white-space: nowrap;
+  }
+  
+  // Capa de border
+  &__border-label {
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    background: $box-border-color;
+    color: $color-gray-900;
+    padding: $space-xs $space-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+  }
+  
+  // Capa de padding
+  &__padding-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: $box-padding-color;
+    color: $color-white;
+    padding: $space-xs $space-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+  }
+  
+  // Contenido
+  &__content {
+    background: $box-content-color;
+    padding: $space-xl;
+    text-align: center;
+    color: $color-white;
+    font-weight: $font-weight-bold;
+    border-radius: $border-radius-md;
+    min-height: 150px;
+    @include flex(column, center, center);
+  }
+  
+  &__content-label {
+    display: block;
+    margin-top: $space-md;
+    font-size: $font-size-sm;
+    opacity: 0.9;
+    font-weight: $font-weight-normal;
+  }
+}
+
+// Demo container
+.c-box-demo {
+  background: $color-white;
+  padding: $space-2xl;
+  border-radius: $border-radius-lg;
+  margin: $space-xl 0;
+  overflow-x: auto;
+}

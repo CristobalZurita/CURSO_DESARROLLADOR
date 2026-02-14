@@ -1,0 +1,40 @@
+// ============================================================
+// TEMA POR DEFECTO
+// ============================================================
+
+// Variables de tema (puedes crear temas alternativos)
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-accent: #{$color-accent};
+  --font-primary: #{$font-primary};
+  --font-secondary: #{$font-secondary};
+}
+
+// Modo oscuro (opcional - preparado para futuro)
+@media (prefers-color-scheme: dark) {
+  // Descomentar cuando se implemente tema oscuro
+  // :root {
+  //   --color-background: #{$color-gray-900};
+  //   --color-text: #{$color-white};
+  // }
+}
+
+// Clases de utilidad para temas
+.theme {
+  &--default {
+    // Ya aplicado globalmente
+  }
+  
+  &--contrast {
+    .btn--primary {
+      background: $color-black;
+      border-color: $color-black;
+      
+      &:hover {
+        background: transparent;
+        color: $color-black;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+// ============================================================
+// CUSTOMIZACIÓN DE BOOTSTRAP
+// ============================================================
+
+// Este archivo se usa si importas Bootstrap vía SCSS
+// Como usamos CDN, lo dejamos vacío o con overrides mínimos
+
+// Override de variables de Bootstrap si es necesario
+$primary: $color-primary;
+$secondary: $color-secondary;
+$success: $color-success;
+$info: $color-info;
+$warning: $color-warning;
+$danger: $color-danger;
+
+// Importar Bootstrap (descomentar si usas npm/yarn)
+// @import '~bootstrap/scss/bootstrap';

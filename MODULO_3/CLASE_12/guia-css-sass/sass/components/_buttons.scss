@@ -1,0 +1,43 @@
+// ==========================================================================
+// BOTONES
+// ==========================================================================
+
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-sm $space-lg;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  border-radius: $border-radius-md;
+  transition: all $transition-fast;
+  cursor: pointer;
+  border: 2px solid transparent;
+  
+  &--primary {
+    background: $color-primary;
+    color: $color-white;
+    
+    &:hover {
+      background: $color-primary-dark;
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+  }
+  
+  &--secondary {
+    background: transparent;
+    color: $color-primary;
+    border-color: $color-primary;
+    
+    &:hover {
+      background: $color-primary;
+      color: $color-white;
+    }
+  }
+  
+  &--large {
+    padding: $space-md $space-xl;
+    font-size: $font-size-lg;
+  }
+}

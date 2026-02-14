@@ -1,0 +1,238 @@
+// ==========================================================================
+// NAVEGACIÓN
+// ==========================================================================
+
+// Navegación principal (para futura expansión)
+.l-nav {
+  background: $color-white;
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: $z-sticky;
+  
+  &__container {
+    @include flex(row, space-between, center);
+    height: 60px;
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $container-padding;
+  }
+  
+  &__logo {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+  }
+  
+  &__menu {
+    @include flex(row, flex-end, center);
+    gap: $space-lg;
+  }
+  
+  &__link {
+    color: $color-gray-600;
+    font-weight: $font-weight-medium;
+    padding: $space-sm 0;
+    position: relative;
+    transition: color $transition-fast;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: $color-primary;
+      transition: width $transition-fast;
+    }
+    
+    &:hover,
+    &.is-active {
+      color: $color-primary;
+      
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+  
+  // Variante para móvil
+  &--mobile {
+    @include respond-to(md) {
+      display: none;
+    }
+    
+    .l-nav__menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: $color-white;
+      flex-direction: column;
+      padding: $space-lg;
+      box-shadow: $shadow-lg;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all $transition-base;
+      
+      &.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+// Botón hamburguesa
+.l-nav__toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: $space-sm;
+  
+  @include respond-to(md) {
+    display: none;
+  }
+  
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: $color-gray-700;
+    transition: all $transition-fast;
+  }
+  
+  &.is-active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+  }
+}
+
+// Navegación de anclas para la guía (tabla de contenidos)
+.l-toc {
+  background: $color-white;
+  border-radius: $border-radius-lg;
+  padding: $space-xl;
+  box-shadow: $shadow-md;
+  margin-bottom: $space-xl;
+  
+  &__title {
+    font-size: $font-size-lg;
+    color: $color-gray-900;
+    margin-bottom: $space-lg;
+    padding-bottom: $space-sm;
+    border-bottom: 2px solid $color-gray-200;
+  }
+  
+  &__list {
+    display: grid;
+    gap: $space-sm;
+  }
+  
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+  }
+  
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    padding: $space-sm $space-md;
+    color: $color-gray-600;
+    border-radius: $border-radius-sm;
+    transition: all $transition-fast;
+    
+    &:hover {
+      background: $color-gray-100;
+      color: $color-primary;
+      transform: translateX(5px);
+    }
+    
+    &.is-active {
+      background: $color-primary;
+      color: $color-white;
+    }
+  }
+  
+  &__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: $color-gray-200;
+    color: $color-gray-700;
+    border-radius: $border-radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    
+    .l-toc__link:hover & {
+      background: rgba($color-white, 0.2);
+      color: $color-primary;
+    }
+    
+    .l-toc__link.is-active & {
+      background: rgba($color-white, 0.3);
+      color: $color-white;
+    }
+  }
+}
+
+// Navegación entre módulos (anterior/siguiente)
+.l-module-nav {
+  @include flex(row, space-between, center);
+  margin-top: $space-3xl;
+  padding-top: $space-xl;
+  border-top: 1px solid $color-gray-200;
+  
+  &__link {
+    @include flex(row, flex-start, center);
+    gap: $space-md;
+    padding: $space-md $space-lg;
+    color: $color-gray-600;
+    border-radius: $border-radius-md;
+    transition: all $transition-fast;
+    
+    &:hover {
+      background: $color-gray-100;
+      color: $color-primary;
+    }
+    
+    &--next {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+  }
+  
+  &__arrow {
+    font-size: $font-size-xl;
+  }
+  
+  &__label {
+    display: block;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $color-gray-400;
+    margin-bottom: $space-xs;
+  }
+  
+  &__title {
+    font-weight: $font-weight-bold;
+    color: $color-gray-800;
+  }
+}

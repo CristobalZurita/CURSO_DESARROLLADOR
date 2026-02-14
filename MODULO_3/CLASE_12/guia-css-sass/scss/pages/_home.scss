@@ -1,9 +1,0 @@
-// PÁGINA HOME
-body {
-  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
-  padding: $spacing-lg;
-  
-  @include respond-to(md) {
-    padding: $spacing-xl;
-  }
-}
