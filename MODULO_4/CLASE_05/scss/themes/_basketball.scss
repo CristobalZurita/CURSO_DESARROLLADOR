@@ -606,8 +606,14 @@
     }
 
     .modal {
+      background:
+        linear-gradient(180deg, rgba($primary, 0.13), rgba($dark, 0.92) 35%),
+        mix($dark, $primary, 79%);
       border-color: mix($text, $primary, 56%);
       border-top-color: $secondary;
+      box-shadow:
+        inset 0 1px 0 rgba($secondary, 0.2),
+        0 8px 28px rgba(0, 0, 0, 0.52);
     }
 
     .modal::before {
