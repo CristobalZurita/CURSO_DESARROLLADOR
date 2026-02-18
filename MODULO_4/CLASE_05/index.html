@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torneo de Básquetbol — Registro de Jugadores</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏀</text></svg>" />
+</head>
+<body>
+
+  <!-- ===== HEADER — ESTILO TABLERO ===== -->
+  <header class="scoreboard-header">
+    <div class="scoreboard-inner">
+      <div class="scoreboard-brand">
+        <span class="scoreboard-logo" role="img" aria-label="Basketball">🏀</span>
+        <div class="scoreboard-titles">
+          <h1 class="scoreboard-main-title">TORNEO <em>BASKET</em></h1>
+          <span class="scoreboard-sub-title">Sistema de Registro de Jugadores</span>
+        </div>
+      </div>
+      <div class="scoreboard-stats" role="region" aria-label="Estadísticas">
+        <div class="stat-panel">
+          <span class="stat-value" id="stat-total">00</span>
+          <span class="stat-label">Total</span>
+        </div>
+        <div class="stat-panel">
+          <span class="stat-value" id="stat-adultos">00</span>
+          <span class="stat-label">Adultos</span>
+        </div>
+        <div class="stat-panel">
+          <span class="stat-value" id="stat-juveniles">00</span>
+          <span class="stat-label">Juveniles</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="site-wrapper">
+    <div class="main-content">
+
+      <!-- Intro strip -->
+      <div class="page-intro">
+        <div class="page-intro-line"></div>
+        <span class="page-intro-text">Nuevo Torneo regional de Basketball · valparaíso · chile · 2026 </span>
+        <div class="page-intro-line page-intro-line--reverse"></div>
+      </div>
+
+      <div class="content-grid">
+
+        <!-- COL IZQUIERDA: FORMULARIO -->
+        <aside class="col-form">
+          <form class="registration-form" id="form-registro" novalidate>
+            <div class="corner-deco corner-deco--top-left"></div>
+            <div class="corner-deco corner-deco--top-right"></div>
+
+            <div class="form-title">
+              Registro de Participante
+              <span>INSCRIPCIÓN</span>
+            </div>
+
+            <div class="form-grid">
+
+              <div class="form-group form-group--full">
+                <label class="form-label" for="nombre">Nombre del Jugador</label>
+                <input type="text" id="nombre" class="form-input"
+                  placeholder="Ej. Carlos González"
+                  autocomplete="off" maxlength="60"
+                  pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+"
+                  title="Solo letras y espacios"
+                  aria-describedby="error-nombre" />
+                <span class="form-error" id="error-nombre" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="edad">Edad (años)</label>
+                <input type="number" id="edad" class="form-input"
+                  placeholder="Ej. 22" min="16" max="65"
+                  aria-describedby="error-edad" />
+                <span class="form-error" id="error-edad" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="altura">Altura (cm)</label>
+                <input type="number" id="altura" class="form-input"
+                  placeholder="Ej. 185" min="160" max="250"
+                  aria-describedby="error-altura" />
+                <span class="form-error" id="error-altura" role="alert"></span>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label class="form-label" for="posicion">Posición Preferida</label>
+                <select id="posicion" class="form-select" aria-describedby="error-posicion">
+                  <option value="">— Seleccionar posición —</option>
+                  <option value="base">Base (PG)</option>
+                  <option value="escolta">Escolta (SG)</option>
+                  <option value="alero">Alero (SF)</option>
+                  <option value="ala-pivot">Ala-Pívot (PF)</option>
+                  <option value="pivot">Pívot (C)</option>
+                </select>
+                <span class="form-error" id="error-posicion" role="alert"></span>
+              </div>
+
+            </div>
+
+            <!-- Leyenda de categorías -->
+            <div class="court-line"></div>
+            <div class="category-legend">
+              <span class="legend-item">
+                <span class="legend-dot legend-dot--juvenil">●</span> Juvenil: 16–17 años
+              </span>
+              <span class="legend-item">
+                <span class="legend-dot legend-dot--adulto">●</span> Adulto: 18+ años
+              </span>
+              <span class="legend-item">
+                <span class="legend-dot legend-dot--min">●</span> Mín. inscrip.: 16 años
+              </span>
+            </div>
+
+            <div class="form-submit-row">
+              <button type="submit" class="btn btn--primary">
+                <span>⊕</span> Registrar Jugador
+              </button>
+            </div>
+          </form>
+
+          <div class="btn-group">
+            <button type="button" class="btn btn--secondary" id="btn-teams">
+              <span>⚡</span> Armar Equipos
+            </button>
+            <button type="button" class="btn btn--ghost" id="btn-clear">
+              <span>✕</span> Limpiar Lista
+            </button>
+          </div>
+        </aside>
+
+        <!-- COL DERECHA: LISTA DE JUGADORES -->
+        <section class="col-players players-section" aria-label="Lista de jugadores registrados">
+          <div class="section-header">
+            <div class="section-title">
+              Jugadores Registrados
+              <span class="count-badge" id="count-badge">0</span>
+            </div>
+            <span class="section-sort-label">↑ más reciente primero</span>
+          </div>
+          <div class="players-table">
+            <div class="players-table-head" aria-hidden="true">
+              <span>N° Jugador</span>
+              <span>Nombre</span>
+              <span>Edad</span>
+              <span>Altura</span>
+              <span>Posición</span>
+              <span>Categoría</span>
+              <span>Equipo</span>
+              <span>Rol</span>
+              <span>Estado</span>
+              <span>Hora</span>
+            </div>
+            <div class="players-list" id="players-list" role="list" aria-live="polite"></div>
+          </div>
+          <div class="players-actions">
+            <button type="button" class="btn btn--secondary" id="btn-view-teams">
+              <span>◫</span> Ver Equipos Armados
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== MODAL DE EQUIPOS ===== -->
+  <div class="modal-overlay" id="modal-equipos" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-title">
+          Equipos del Torneo
+          <span class="modal-title-main">CLASIFICACIÓN POR CATEGORÍA</span>
+        </div>
+        <button class="modal-close" id="modal-close" aria-label="Cerrar modal">✕</button>
+      </div>
+
+      <div class="court-line"></div>
+
+      <div class="teams-grid">
+        <div class="team-column">
+          <div class="team-header team-adulto">
+            <span class="team-icon">🏆</span>
+            <span class="team-name">Adultos</span>
+            <span class="team-count" id="team-adulto-count">0 jugadores</span>
+          </div>
+          <div class="team-players-list" id="team-adulto-list" role="list"></div>
+        </div>
+
+        <div class="team-column">
+          <div class="team-header team-juvenil">
+            <span class="team-icon">⭐</span>
+            <span class="team-name">Juveniles</span>
+            <span class="team-count" id="team-juvenil-count">0 jugadores</span>
+          </div>
+          <div class="team-players-list" id="team-juvenil-list" role="list"></div>
+        </div>
+      </div>
+
+      <div class="court-line court-line--spaced"></div>
+      <div class="modal-note">
+        <span class="modal-note__text">
+          FIBA OFICIAL · 12 POR EQUIPO (5 CANCHA + 7 BANCA) · MÍNIMO 2 EQUIPOS ADULTOS Y 2 JUVENILES
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <span class="footer-text">Sitio web creado por Cristóbal Zurita Quintanilla, Valparaíso, Chile 2026.</span>
+    <div class="footer-palette" title="Paleta de colores del proyecto">
+      <small class="footer-palette-label">paleta oficial</small>
+      <span class="palette-swatch"></span>
+      <span class="palette-swatch"></span>
+      <span class="palette-swatch"></span>
+      <span class="palette-swatch"></span>
+      <span class="palette-swatch"></span>
+      <span class="palette-swatch"></span>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

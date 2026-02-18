@@ -1,0 +1,48 @@
+// =============================================================================
+// PAGE: HOME
+// =============================================================================
+
+// Intro strip
+.page-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp($space-xs, 1.5vw, $space-md);
+  margin-bottom: $space-xl;
+  padding: $space-sm 0;
+}
+
+.page-intro-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, $color-orange, transparent);
+
+  // Modificador: lado derecho con teal (reemplaza inline style)
+  &--reverse {
+    background: linear-gradient(90deg, transparent, $color-teal);
+  }
+}
+
+.page-intro-text {
+  font-family: $font-mono;
+  font-size: clamp(0.5rem, 1.45vw, 1.5rem);
+  letter-spacing: clamp(0.01em, 0.12vw, 0.14em);
+  text-transform: uppercase;
+  color: $color-steel;
+  white-space: nowrap;
+  text-align: center;
+  max-width: 100%;
+}
+
+// Confirmation flash on card entry
+.player-row.just-added {
+  box-shadow:
+    0 0 0 2px $color-teal,
+    0 0 20px rgba($color-teal, 0.3);
+  animation: slideIn 0.3s ease, glowPulse 1s ease 0.3s;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 2px $color-teal, 0 0 20px rgba($color-teal, 0.5); }
+  100% { box-shadow: none; }
+}

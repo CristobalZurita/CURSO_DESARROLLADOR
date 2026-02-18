@@ -1,0 +1,54 @@
+// =============================================================================
+// VARIABLES
+// Basketball Tournament - Paleta de colores oficial
+// =============================================================================
+
+// --- Color Palette (from design reference) ---
+$color-orange:      #fb3c19;   // Rojo naranja principal
+$color-salmon:      #fcea74;   // Salmón / durazno
+$color-navy:        #043578;   // Azul marino profundo
+$color-slate:       #728aa5;   // Azul grisáceo medio
+$color-steel:       #98a4bc;   // Azul grisáceo claro
+$color-teal:        #42e3bd;   // Verde agua / teal
+$color-teal2:        #00bbff;   // Verde agua / teal
+
+// --- Semantic Colors ---
+$color-bg:          #021f45;         // Fondo principal (más oscuro que navy)
+$color-surface:     #032960;         // Superficie de tarjetas
+$color-border:      $color-slate;
+$color-text-main:   #e8f0fe;
+$color-text-muted:  $color-steel;
+$color-success:     $color-teal;
+$color-error:       $color-orange;
+$color-accent:      $color-salmon;
+$color-highlight:   #f5c518;         // Amarillo display LED
+
+// --- Typography ---
+$font-display:      'Orbitron', 'Courier New', monospace;
+$font-body:         'Rajdhani', 'Trebuchet MS', sans-serif;
+$font-mono:         'Share Tech Mono', 'Courier New', monospace;
+
+// --- Spacing ---
+$space-xs:   4px;
+$space-sm:   8px;
+$space-md:   16px;
+$space-lg:   24px;
+$space-xl:   40px;
+$space-xxl:  64px;
+
+// --- Border ---
+$radius-sm:  4px;
+$radius-md:  8px;
+$radius-lg:  16px;
+$border-w:   2px;
+
+// --- Transitions ---
+$transition-fast:   0.15s ease;
+$transition-base:   0.3s ease;
+$transition-slow:   0.5s ease;
+
+// --- Breakpoints ---
+$bp-sm:  576px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;

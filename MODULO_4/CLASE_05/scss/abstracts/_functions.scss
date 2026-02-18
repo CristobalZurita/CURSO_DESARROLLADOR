@@ -1,0 +1,18 @@
+// =============================================================================
+// FUNCTIONS
+// =============================================================================
+
+// Convert px to rem
+@function rem($px, $base: 16) {
+  @return #{$px / $base}rem;
+}
+
+// Tint: mix color with white
+@function tint($color, $amount) {
+  @return mix(white, $color, $amount);
+}
+
+// Shade: mix color with black
+@function shade($color, $amount) {
+  @return mix(black, $color, $amount);
+}

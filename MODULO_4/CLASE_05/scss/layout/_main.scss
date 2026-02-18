@@ -1,0 +1,130 @@
+// =============================================================================
+// LAYOUT PRINCIPAL
+// =============================================================================
+
+.site-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: 
+    radial-gradient(ellipse at top left, rgba($color-navy, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba($color-orange, 0.04) 0%, transparent 50%),
+    $color-bg;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: $space-lg $space-md;
+  width: 100%;
+
+  @include respond-to('md') {
+    padding: $space-xl $space-xl;
+  }
+
+  @include respond-to('lg') {
+    padding: $space-xl clamp($space-lg, 4vw, $space-xxl);
+  }
+}
+
+// Layout de dos columnas
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-lg;
+
+  @include respond-to('md') {
+    gap: clamp($space-lg, 3vw, $space-xl);
+  }
+
+  @include respond-to('lg') {
+    grid-template-columns: minmax(400px, 460px) minmax(0, 1fr);
+    gap: clamp($space-lg, 3vw, 56px);
+    align-items: start;
+  }
+}
+
+// Columna izquierda: formulario
+.col-form {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+
+  @include respond-to('lg') {
+    max-width: none;
+    margin: 0;
+    justify-self: start;
+    position: sticky;
+    top: $space-lg;
+  }
+}
+
+// Columna derecha: lista de jugadores
+.col-players {
+  min-width: 0;
+}
+
+// Toast de notificación
+.toast {
+  position: fixed;
+  bottom: $space-xl;
+  right: $space-xl;
+  z-index: 999;
+  padding: $space-sm $space-lg;
+  border-radius: $radius-md;
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  animation: toastIn 0.3s ease;
+  max-width: 320px;
+
+  &.toast--success {
+    background: $color-navy;
+    border: 1px solid $color-teal;
+    border-left: 4px solid $color-teal;
+    color: $color-teal;
+  }
+
+  &.toast--error {
+    background: $color-navy;
+    border: 1px solid $color-orange;
+    border-left: 4px solid $color-orange;
+    color: $color-salmon;
+  }
+
+  &.toast--info {
+    background: $color-navy;
+    border: 1px solid $color-slate;
+    border-left: 4px solid $color-slate;
+    color: $color-text-main;
+  }
+
+  &.fade-out {
+    animation: toastOut 0.3s ease forwards;
+  }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}

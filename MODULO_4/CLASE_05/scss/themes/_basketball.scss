@@ -1,0 +1,162 @@
+// =============================================================================
+// THEME: BASKETBALL
+// Detalles decorativos con la paleta completa
+// =============================================================================
+
+// Línea decorativa de cancha
+.court-line {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    $color-slate 15%,
+    $color-steel 40%,
+    $color-slate 60%,
+    $color-teal 80%,
+    transparent 100%
+  );
+  margin: $space-md 0;
+  opacity: 0.5;
+
+  // Modificador: margen superior extra (reemplaza inline margin-top)
+  &--spaced {
+    margin-top: $space-lg;
+  }
+}
+
+// Footer
+.site-footer {
+  background: $color-navy;
+  border-top: 2px solid $color-orange;
+  padding: $space-sm $space-xl $space-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $space-xs;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $color-orange, $color-salmon, $color-orange);
+  }
+}
+
+.footer-text {
+  font-family: $font-mono;
+  font-size: clamp(0.62rem, 0.85vw, 0.72rem);
+  letter-spacing: 0.08em;
+  color: $color-steel;
+  text-transform: none;
+  max-width: 1200px;
+}
+
+.footer-palette {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border: 1px solid rgba($color-slate, 0.4);
+  border-radius: 999px;
+  background: rgba($color-bg, 0.28);
+}
+
+// Etiqueta "palette" en el footer (reemplaza inline style)
+.footer-palette-label {
+  font-family: $font-mono;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color-slate;
+  margin-right: 2px;
+}
+
+.palette-swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
+
+  &:nth-of-type(1) { background: $color-orange; }
+  &:nth-of-type(2) { background: $color-salmon; }
+  &:nth-of-type(3) { background: $color-navy; }
+  &:nth-of-type(4) { background: $color-slate; }
+  &:nth-of-type(5) { background: $color-steel; }
+  &:nth-of-type(6) { background: $color-teal; }
+}
+
+// Ribete deco: tres líneas paralelas en esquinas (guiño al parquet)
+.corner-deco {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    background: $color-orange;
+    border-radius: 1px;
+  }
+
+  &--top-left {
+    top: 0;
+    left: 0;
+    &::before {
+      top: 8px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+    }
+    &::after {
+      top: 0;
+      left: 8px;
+      width: 2px;
+      height: 30px;
+    }
+  }
+
+  &--top-right {
+    top: 0;
+    right: 0;
+    &::before {
+      top: 8px;
+      right: 0;
+      width: 30px;
+      height: 2px;
+    }
+    &::after {
+      top: 0;
+      right: 8px;
+      width: 2px;
+      height: 30px;
+    }
+  }
+}
+
+// Posición tag chips
+.pos-chip {
+  display: inline-block;
+  font-family: $font-display;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 2px;
+
+  &.pos-base { background: rgba($color-slate, 0.3); color: $color-steel; border: 1px solid $color-slate; }
+  &.pos-escolta { background: rgba($color-teal, 0.2); color: $color-teal; border: 1px solid rgba($color-teal, 0.5); }
+  &.pos-alero { background: rgba($color-salmon, 0.2); color: $color-salmon; border: 1px solid rgba($color-salmon, 0.5); }
+  &.pos-ala-pivot { background: rgba($color-steel, 0.2); color: $color-steel; border: 1px solid $color-steel; }
+  &.pos-pivot { background: rgba($color-orange, 0.2); color: $color-orange; border: 1px solid rgba($color-orange, 0.5); }
+}
