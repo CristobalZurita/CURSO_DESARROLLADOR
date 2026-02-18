@@ -215,14 +215,97 @@
   <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <span class="footer-text">Sitio web creado por Cristóbal Zurita Quintanilla, Valparaíso, Chile 2026.</span>
-    <div class="footer-palette" title="Paleta de colores del proyecto">
-      <small class="footer-palette-label">paleta oficial</small>
-      <span class="palette-swatch"></span>
-      <span class="palette-swatch"></span>
-      <span class="palette-swatch"></span>
-      <span class="palette-swatch"></span>
-      <span class="palette-swatch"></span>
-      <span class="palette-swatch"></span>
+    <div class="footer-theme-switcher" aria-label="Selector de temática NBA">
+      <small class="footer-theme-title">Temática NBA</small>
+      <div class="footer-theme-row" role="group" aria-label="Selecciona un tema NBA">
+        <button type="button" class="theme-chip" data-theme="original" aria-label="Tema Original">
+          <span class="theme-chip-logo" aria-hidden="true">
+            <svg viewBox="0 0 36 36" role="img">
+              <circle cx="18" cy="18" r="16" fill="#fb3c19" stroke="#fcea74" stroke-width="2"></circle>
+              <path d="M18 2 V34 M2 18 H34 M7.5 7.5 C14 11.5 22 11.5 28.5 7.5 M7.5 28.5 C14 24.5 22 24.5 28.5 28.5" stroke="#021f45" stroke-width="1.6" fill="none"></path>
+            </svg>
+          </span>
+          <span class="theme-chip-name-wrap">
+            <span class="theme-chip-name">Tema Original</span>
+            <span class="theme-chip-colors" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </span>
+          </span>
+        </button>
+        <button type="button" class="theme-chip" data-theme="lakers" aria-label="Tema Lakers">
+          <span class="theme-chip-logo" aria-hidden="true">
+            <svg viewBox="0 0 36 36" role="img">
+              <circle cx="18" cy="18" r="16" fill="#552583" stroke="#FDB927" stroke-width="2"></circle>
+              <path d="M10 24 L10 10 L14 10 L14 20 L24 20 L24 24 Z" fill="#FDB927"></path>
+            </svg>
+          </span>
+          <span class="theme-chip-name-wrap">
+            <span class="theme-chip-name">Lakers</span>
+            <span class="theme-chip-colors" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </span>
+          </span>
+        </button>
+        <button type="button" class="theme-chip" data-theme="celtics" aria-label="Tema Celtics">
+          <span class="theme-chip-logo" aria-hidden="true">
+            <svg viewBox="0 0 36 36" role="img">
+              <circle cx="18" cy="18" r="16" fill="#007A33" stroke="#CFC493" stroke-width="2"></circle>
+              <path d="M18 9 L20.6 14.2 L26.2 14.7 L21.8 18.5 L23.1 24 L18 21.1 L12.9 24 L14.2 18.5 L9.8 14.7 L15.4 14.2 Z" fill="#FFFFFF"></path>
+            </svg>
+          </span>
+          <span class="theme-chip-name-wrap">
+            <span class="theme-chip-name">Celtics</span>
+            <span class="theme-chip-colors" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </span>
+          </span>
+        </button>
+        <button type="button" class="theme-chip" data-theme="bulls" aria-label="Tema Bulls">
+          <span class="theme-chip-logo" aria-hidden="true">
+            <svg viewBox="0 0 36 36" role="img">
+              <circle cx="18" cy="18" r="16" fill="#CE1141" stroke="#FFFFFF" stroke-width="2"></circle>
+              <path d="M12 14 L15 11 L18 14 L21 11 L24 14 L23 22 L13 22 Z" fill="#000000"></path>
+              <path d="M13 13 L9 12 L12 16 Z M23 13 L27 12 L24 16 Z" fill="#FFFFFF"></path>
+            </svg>
+          </span>
+          <span class="theme-chip-name-wrap">
+            <span class="theme-chip-name">Bulls</span>
+            <span class="theme-chip-colors" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </span>
+          </span>
+        </button>
+        <button type="button" class="theme-chip" data-theme="heat" aria-label="Tema Heat">
+          <span class="theme-chip-logo" aria-hidden="true">
+            <svg viewBox="0 0 36 36" role="img">
+              <circle cx="18" cy="18" r="16" fill="#98002E" stroke="#F9A01B" stroke-width="2"></circle>
+              <path d="M18 8 C23 12, 21 16, 18 19 C15 17, 13 13, 18 8 Z" fill="#F9A01B"></path>
+              <circle cx="18" cy="24" r="5.5" fill="#FFFFFF"></circle>
+              <path d="M12.5 24 H23.5" stroke="#5A0019" stroke-width="1.5"></path>
+            </svg>
+          </span>
+          <span class="theme-chip-name-wrap">
+            <span class="theme-chip-name">Heat</span>
+            <span class="theme-chip-colors" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </span>
+          </span>
+        </button>
+        <button type="button" class="theme-chip" data-theme="pistons" aria-label="Tema Pistons">
+          <span class="theme-chip-logo" aria-hidden="true">
+            <svg viewBox="0 0 36 36" role="img">
+              <circle cx="18" cy="18" r="16" fill="#1D42BA" stroke="#C8102E" stroke-width="2"></circle>
+              <path d="M10 10 H20 C24 10 26 12 26 15 C26 18 24 20 20 20 H14 V26 H10 Z" fill="#FFFFFF"></path>
+            </svg>
+          </span>
+          <span class="theme-chip-name-wrap">
+            <span class="theme-chip-name">Pistons</span>
+            <span class="theme-chip-colors" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </span>
+          </span>
+        </button>
+      </div>
     </div>
   </footer>
 

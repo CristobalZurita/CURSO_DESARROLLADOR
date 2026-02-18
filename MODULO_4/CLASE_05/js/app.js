@@ -41,6 +41,10 @@ const TORNEO_CFG = {
   equiposMinimosPorCategoria: 2
 };
 
+/** Temas disponibles para cambio dinámico (incluye original/base) */
+const THEMES_NBA = ['original', 'lakers', 'celtics', 'bulls', 'heat', 'pistons'];
+const THEME_STORAGE_KEY = 'torneo_nba_theme';
+
 /** Dataset demo (60 jugadores: 30 adultos + 30 juveniles) */
 const JUGADORES_DEMO = [
   { nombre: 'Carlos Mendez', edad: 24, altura: 182, posicion: 'base' },
@@ -129,6 +133,83 @@ const teamAdultoList   = document.getElementById('team-adulto-list');
 const teamJuvenilList  = document.getElementById('team-juvenil-list');
 const teamAdultoCount  = document.getElementById('team-adulto-count');
 const teamJuvenilCount = document.getElementById('team-juvenil-count');
+const themeButtons     = Array.from(document.querySelectorAll('.theme-chip'));
+
+// =============================================================================
+// TEMAS NBA (FOOTER)
+// =============================================================================
+
+/**
+ * Persiste el tema seleccionado en localStorage
+ * @param {string|null} themeName
+ */
+function guardarTema(themeName) {
+  try {
+    if (themeName) {
+      localStorage.setItem(THEME_STORAGE_KEY, themeName);
+    } else {
+      localStorage.removeItem(THEME_STORAGE_KEY);
+    }
+  } catch (_) {
+    // Si el navegador bloquea storage, se ignora de forma segura.
+  }
+}
+
+/**
+ * Recupera tema guardado previamente
+ * @returns {string|null}
+ */
+function obtenerTemaGuardado() {
+  try {
+    return localStorage.getItem(THEME_STORAGE_KEY);
+  } catch (_) {
+    return null;
+  }
+}
+
+/**
+ * Aplica clase de tema en body y estado activo en botones
+ * @param {string|null} themeName
+ * @param {boolean} persist
+ */
+function aplicarTemaNBA(themeName, persist = true) {
+  const validTheme = THEMES_NBA.includes(themeName) ? themeName : 'original';
+  const themeClasses = THEMES_NBA
+    .filter((theme) => theme !== 'original')
+    .map((theme) => `theme--${theme}`);
+
+  document.body.classList.remove(...themeClasses);
+
+  themeButtons.forEach((button) => {
+    const isActive = button.dataset.theme === validTheme;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+  });
+
+  if (validTheme !== 'original') {
+    document.body.classList.add(`theme--${validTheme}`);
+  }
+
+  if (persist) {
+    guardarTema(validTheme);
+  }
+}
+
+/**
+ * Inicializa eventos del selector de temas del footer
+ */
+function inicializarTemasNBA() {
+  if (!themeButtons.length) return;
+
+  themeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      aplicarTemaNBA(button.dataset.theme);
+    });
+  });
+
+  const savedTheme = obtenerTemaGuardado() || 'original';
+  aplicarTemaNBA(savedTheme, false);
+}
 
 // =============================================================================
 // VALIDACIONES
@@ -833,6 +914,7 @@ document.addEventListener('keydown', (e) => {
 // =============================================================================
 
 (function init() {
+  inicializarTemasNBA();
   renderizarEmpty();
   actualizarStats();
   cargarJugadoresDemo();

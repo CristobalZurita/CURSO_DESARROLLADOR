@@ -1206,12 +1206,12 @@ p {
 .site-footer {
   background: #043578;
   border-top: 2px solid #fb3c19;
-  padding: 8px 40px 16px;
+  padding: 16px 40px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -1235,50 +1235,252 @@ p {
   max-width: 1200px;
 }
 
-.footer-palette {
+.footer-theme-switcher {
+  width: min(1200px, 100%);
   display: flex;
-  gap: 6px;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2px 8px;
-  border: 1px solid rgba(114, 138, 165, 0.4);
-  border-radius: 999px;
-  background: rgba(2, 31, 69, 0.28);
+  gap: 8px;
 }
 
-.footer-palette-label {
-  font-family: "Share Tech Mono", "Courier New", monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
+.footer-theme-title {
+  font-family: "Orbitron", "Courier New", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: #728aa5;
-  margin-right: 2px;
+  color: #42e3bd;
 }
 
-.palette-swatch {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+.footer-theme-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 3px 2px 6px;
+  scrollbar-width: thin;
 }
-.palette-swatch:nth-of-type(1) {
+
+.theme-chip {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  border: 1px solid rgba(114, 138, 165, 0.55);
+  border-radius: 14px;
+  background: rgba(2, 31, 69, 0.42);
+  color: #e8f0fe;
+  min-width: 174px;
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+.theme-chip:hover {
+  transform: translateY(-1px);
+  border-color: #42e3bd;
+}
+.theme-chip:focus-visible {
+  outline: none;
+  border-color: #42e3bd;
+  box-shadow: 0 0 0 2px rgba(66, 227, 189, 0.35);
+}
+.theme-chip.is-active {
+  border-color: #42e3bd;
+  background: rgba(66, 227, 189, 0.08);
+  box-shadow: 0 0 0 1px rgba(66, 227, 189, 0.35), 0 0 14px rgba(66, 227, 189, 0.3);
+}
+
+.theme-chip-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+}
+.theme-chip-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.theme-chip-name-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.theme-chip-name {
+  font-family: "Orbitron", "Courier New", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.theme-chip-colors {
+  display: inline-grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  width: 100%;
+  min-width: 98px;
+}
+.theme-chip-colors span {
+  height: 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.theme-chip[data-theme=lakers] .theme-chip-logo {
+  border-color: rgba(196, 160, 0, 0.75);
+}
+
+.theme-chip[data-theme=celtics] .theme-chip-logo {
+  border-color: rgba(207, 196, 147, 0.85);
+}
+
+.theme-chip[data-theme=bulls] .theme-chip-logo {
+  border-color: rgba(0, 0, 0, 0.8);
+}
+
+.theme-chip[data-theme=heat] .theme-chip-logo {
+  border-color: rgba(0, 0, 0, 0.75);
+}
+
+.theme-chip[data-theme=pistons] .theme-chip-logo {
+  border-color: rgba(200, 16, 46, 0.85);
+}
+
+.theme-chip[data-theme=original] .theme-chip-logo {
+  border-color: rgba(252, 234, 116, 0.85);
+}
+
+.theme-chip[data-theme=original] .theme-chip-colors span:nth-child(1) {
   background: #fb3c19;
 }
-.palette-swatch:nth-of-type(2) {
+
+.theme-chip[data-theme=original] .theme-chip-colors span:nth-child(2) {
   background: #fcea74;
 }
-.palette-swatch:nth-of-type(3) {
+
+.theme-chip[data-theme=original] .theme-chip-colors span:nth-child(3) {
   background: #043578;
 }
-.palette-swatch:nth-of-type(4) {
+
+.theme-chip[data-theme=original] .theme-chip-colors span:nth-child(4) {
   background: #728aa5;
 }
-.palette-swatch:nth-of-type(5) {
-  background: #98a4bc;
-}
-.palette-swatch:nth-of-type(6) {
+
+.theme-chip[data-theme=original] .theme-chip-colors span:nth-child(5) {
   background: #42e3bd;
+}
+
+.theme-chip[data-theme=lakers] .theme-chip-colors span:nth-child(1) {
+  background: #552583;
+}
+
+.theme-chip[data-theme=lakers] .theme-chip-colors span:nth-child(2) {
+  background: #FDB927;
+}
+
+.theme-chip[data-theme=lakers] .theme-chip-colors span:nth-child(3) {
+  background: #FFFFFF;
+}
+
+.theme-chip[data-theme=lakers] .theme-chip-colors span:nth-child(4) {
+  background: #1A1A1A;
+}
+
+.theme-chip[data-theme=lakers] .theme-chip-colors span:nth-child(5) {
+  background: #C4A000;
+}
+
+.theme-chip[data-theme=celtics] .theme-chip-colors span:nth-child(1) {
+  background: #007A33;
+}
+
+.theme-chip[data-theme=celtics] .theme-chip-colors span:nth-child(2) {
+  background: #FFFFFF;
+}
+
+.theme-chip[data-theme=celtics] .theme-chip-colors span:nth-child(3) {
+  background: #BA9653;
+}
+
+.theme-chip[data-theme=celtics] .theme-chip-colors span:nth-child(4) {
+  background: #003D1F;
+}
+
+.theme-chip[data-theme=celtics] .theme-chip-colors span:nth-child(5) {
+  background: #CFC493;
+}
+
+.theme-chip[data-theme=bulls] .theme-chip-colors span:nth-child(1) {
+  background: #CE1141;
+}
+
+.theme-chip[data-theme=bulls] .theme-chip-colors span:nth-child(2) {
+  background: #000000;
+}
+
+.theme-chip[data-theme=bulls] .theme-chip-colors span:nth-child(3) {
+  background: #FFFFFF;
+}
+
+.theme-chip[data-theme=bulls] .theme-chip-colors span:nth-child(4) {
+  background: #2C2C2C;
+}
+
+.theme-chip[data-theme=bulls] .theme-chip-colors span:nth-child(5) {
+  background: #B2001D;
+}
+
+.theme-chip[data-theme=heat] .theme-chip-colors span:nth-child(1) {
+  background: #98002E;
+}
+
+.theme-chip[data-theme=heat] .theme-chip-colors span:nth-child(2) {
+  background: #F9A01B;
+}
+
+.theme-chip[data-theme=heat] .theme-chip-colors span:nth-child(3) {
+  background: #000000;
+}
+
+.theme-chip[data-theme=heat] .theme-chip-colors span:nth-child(4) {
+  background: #FFFFFF;
+}
+
+.theme-chip[data-theme=heat] .theme-chip-colors span:nth-child(5) {
+  background: #5A0019;
+}
+
+.theme-chip[data-theme=pistons] .theme-chip-colors span:nth-child(1) {
+  background: #C8102E;
+}
+
+.theme-chip[data-theme=pistons] .theme-chip-colors span:nth-child(2) {
+  background: #1D42BA;
+}
+
+.theme-chip[data-theme=pistons] .theme-chip-colors span:nth-child(3) {
+  background: #FFFFFF;
+}
+
+.theme-chip[data-theme=pistons] .theme-chip-colors span:nth-child(4) {
+  background: #0C2340;
+}
+
+.theme-chip[data-theme=pistons] .theme-chip-colors span:nth-child(5) {
+  background: #A2AAAD;
 }
 
 .corner-deco {
@@ -1360,6 +1562,1796 @@ p {
   background: rgba(251, 60, 25, 0.2);
   color: #fb3c19;
   border: 1px solid rgba(251, 60, 25, 0.5);
+}
+
+body.theme--lakers {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+}
+body.theme--lakers .site-wrapper {
+  background: radial-gradient(ellipse at top left, rgba(85, 37, 131, 0.34) 0%, transparent 52%), radial-gradient(ellipse at bottom right, rgba(253, 185, 39, 0.09) 0%, transparent 56%), #1A1A1A;
+}
+body.theme--lakers .scoreboard-header {
+  background: rgb(42.52, 29.08, 55.4);
+  border-bottom-color: #552583;
+}
+body.theme--lakers .scoreboard-header::before {
+  background: linear-gradient(90deg, #FDB927, #C4A000, #FDB927);
+}
+body.theme--lakers .scoreboard-header::after {
+  background: rgba(85, 37, 131, 0.18);
+}
+body.theme--lakers .scoreboard-main-title {
+  color: white;
+}
+body.theme--lakers .scoreboard-main-title em {
+  color: #FDB927;
+}
+body.theme--lakers .scoreboard-sub-title {
+  color: #FDB927;
+}
+body.theme--lakers .scoreboard-stats .stat-panel {
+  background: rgba(26, 26, 26, 0.62);
+  border-color: rgba(253, 185, 39, 0.45);
+}
+body.theme--lakers .scoreboard-stats .stat-panel .stat-value {
+  color: #FDB927;
+  text-shadow: 0 0 10px rgba(253, 185, 39, 0.45);
+}
+body.theme--lakers .scoreboard-stats .stat-panel .stat-label {
+  color: rgb(254.16, 225.6, 164.28);
+}
+body.theme--lakers .page-intro-text {
+  color: rgb(253.9, 216.5, 136.2);
+}
+body.theme--lakers .page-intro-line {
+  background: linear-gradient(90deg, #552583, transparent);
+}
+body.theme--lakers .page-intro-line--reverse {
+  background: linear-gradient(90deg, transparent, #FDB927);
+}
+body.theme--lakers .registration-form {
+  background: rgb(38.39, 28.31, 48.05);
+  border-color: rgb(166.6, 141.64, 190.52);
+  box-shadow: inset 0 1px 0 rgba(253, 185, 39, 0.18), 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+body.theme--lakers .registration-form::before {
+  background: linear-gradient(180deg, #552583, #C4A000, #552583);
+}
+body.theme--lakers .form-title {
+  color: #FDB927;
+}
+body.theme--lakers .form-title span {
+  color: #552583;
+}
+body.theme--lakers .form-label {
+  color: rgb(254.16, 225.6, 164.28);
+}
+body.theme--lakers .form-input,
+body.theme--lakers .form-select {
+  background: rgba(26, 26, 26, 0.72);
+  border-color: rgba(253, 185, 39, 0.42);
+  color: white;
+}
+body.theme--lakers .form-input::placeholder,
+body.theme--lakers .form-select::placeholder {
+  color: rgba(253.9, 216.5, 136.2, 0.58);
+}
+body.theme--lakers .form-select option {
+  background: rgb(35.44, 27.76, 42.8);
+  color: white;
+}
+body.theme--lakers .form-input:focus,
+body.theme--lakers .form-select:focus {
+  border-color: #FDB927;
+  box-shadow: 0 0 0 3px rgba(253, 185, 39, 0.25);
+}
+body.theme--lakers .form-input.is-invalid,
+body.theme--lakers .form-select.is-invalid {
+  border-color: #552583;
+  box-shadow: 0 0 0 3px rgba(85, 37, 131, 0.24);
+}
+body.theme--lakers .form-error {
+  color: #552583;
+}
+body.theme--lakers .legend-item {
+  color: rgb(253.84, 214.4, 129.72);
+}
+body.theme--lakers .legend-dot--juvenil {
+  color: #FDB927;
+}
+body.theme--lakers .legend-dot--adulto {
+  color: #C4A000;
+}
+body.theme--lakers .legend-dot--min {
+  color: rgb(253.68, 208.8, 112.44);
+}
+body.theme--lakers .btn--primary {
+  background: #552583;
+  border-color: rgb(44.88, 29.52, 59.6);
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(85, 37, 131, 0.4);
+}
+body.theme--lakers .btn--primary:hover {
+  background: rgb(105.16, 54.76, 119.96);
+  box-shadow: 0 0 20px rgba(85, 37, 131, 0.65);
+}
+body.theme--lakers .btn--secondary {
+  background: rgb(35.44, 27.76, 42.8);
+  color: #FDB927;
+  border-color: #FDB927;
+  box-shadow: 0 0 10px rgba(253, 185, 39, 0.26);
+}
+body.theme--lakers .btn--secondary:hover {
+  background: rgb(43.7, 29.3, 57.5);
+  box-shadow: 0 0 20px rgba(253, 185, 39, 0.45);
+}
+body.theme--lakers .btn--ghost {
+  color: #C4A000;
+  border-color: #C4A000;
+}
+body.theme--lakers .btn--ghost:hover {
+  background: rgba(196, 160, 0, 0.15);
+  box-shadow: 0 0 14px rgba(196, 160, 0, 0.35);
+}
+body.theme--lakers .court-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(85, 37, 131, 0.72) 20%, rgba(253, 185, 39, 0.85) 50%, rgba(196, 160, 0, 0.72) 80%, transparent 100%);
+}
+body.theme--lakers .section-header {
+  border-bottom-color: rgba(253, 185, 39, 0.35);
+}
+body.theme--lakers .section-title {
+  color: rgb(254.08, 222.8, 155.64);
+}
+body.theme--lakers .section-title .count-badge {
+  background: #552583;
+  color: white;
+}
+body.theme--lakers .section-sort-label {
+  color: rgb(253.7, 209.5, 114.6);
+}
+body.theme--lakers .players-table {
+  border-color: rgba(253, 185, 39, 0.4);
+  background: linear-gradient(180deg, rgba(85, 37, 131, 0.2), transparent 34%), rgba(33.08, 27.32, 38.6, 0.56);
+  box-shadow: inset 0 1px 0 rgba(253, 185, 39, 0.14);
+}
+body.theme--lakers .players-list::-webkit-scrollbar-track {
+  background: rgb(31.31, 26.99, 35.45);
+}
+body.theme--lakers .players-list::-webkit-scrollbar-thumb {
+  background: rgba(253, 185, 39, 0.58);
+}
+body.theme--lakers .players-table-head {
+  background: linear-gradient(90deg, rgba(85, 37, 131, 0.09), rgba(253, 185, 39, 0.06));
+  border-bottom-color: rgba(253, 185, 39, 0.48);
+}
+body.theme--lakers .players-table-head span {
+  color: rgb(253.7, 209.5, 114.6);
+}
+body.theme--lakers .player-row {
+  border-color: rgba(253, 185, 39, 0.28);
+  border-left-color: rgba(253, 185, 39, 0.5);
+  background: linear-gradient(90deg, rgba(253, 185, 39, 0.08), transparent 30%), rgba(34.26, 27.54, 40.7, 0.82);
+}
+body.theme--lakers .player-row:hover {
+  border-color: rgba(253, 185, 39, 0.62);
+  background: linear-gradient(90deg, rgba(253, 185, 39, 0.16), transparent 34%), rgba(37.8, 28.2, 47, 0.92);
+}
+body.theme--lakers .player-row.player-row--ok {
+  border-left-color: rgba(253, 185, 39, 0.92);
+}
+body.theme--lakers .player-row.player-row--rejected {
+  border-left-color: rgba(85, 37, 131, 0.92);
+}
+body.theme--lakers .player-cell {
+  color: rgb(253.9, 216.5, 136.2);
+}
+body.theme--lakers .player-cell--num {
+  color: #FDB927;
+  text-shadow: 0 0 8px rgba(253, 185, 39, 0.44);
+}
+body.theme--lakers .player-cell--name,
+body.theme--lakers .player-cell--team {
+  color: white;
+}
+body.theme--lakers .player-cell--rol-cancha {
+  color: #FDB927;
+}
+body.theme--lakers .player-cell--rol-banca {
+  color: #C4A000;
+}
+body.theme--lakers .player-cell--cat-adulto {
+  color: #C4A000;
+}
+body.theme--lakers .player-cell--cat-juvenil {
+  color: #FDB927;
+}
+body.theme--lakers .player-row.player-row--ok .player-cell--estado {
+  color: #FDB927;
+}
+body.theme--lakers .player-row.player-row--rejected .player-cell--estado {
+  color: #552583;
+}
+body.theme--lakers .player-cell--time {
+  color: rgb(253.72, 210.2, 116.76);
+}
+body.theme--lakers .empty-state {
+  color: rgba(255, 255, 255, 0.56);
+}
+body.theme--lakers .empty-state .empty-icon {
+  filter: drop-shadow(0 0 16px rgba(85, 37, 131, 0.34));
+}
+body.theme--lakers .modal-overlay {
+  background: rgba(26, 26, 26, 0.92);
+}
+body.theme--lakers .scoreboard-logo {
+  filter: drop-shadow(0 0 8px rgba(85, 37, 131, 0.7));
+}
+body.theme--lakers .modal {
+  border-color: rgb(180.2, 159.08, 200.44);
+  border-top-color: #FDB927;
+}
+body.theme--lakers .modal::before {
+  background: linear-gradient(180deg, #552583 0%, #C4A000 50%, #552583 100%);
+}
+body.theme--lakers .modal-title {
+  color: #FDB927;
+}
+body.theme--lakers .modal-title .modal-title-main {
+  color: white;
+}
+body.theme--lakers .modal-header {
+  border-bottom-color: rgba(253, 185, 39, 0.45);
+}
+body.theme--lakers .modal-close {
+  border-color: rgba(253, 185, 39, 0.55);
+  color: rgb(253.96, 218.6, 142.68);
+}
+body.theme--lakers .modal-close:hover {
+  border-color: #552583;
+  color: #552583;
+}
+body.theme--lakers .team-header.team-adulto {
+  background: rgba(85, 37, 131, 0.14);
+  border-color: rgba(196, 160, 0, 0.95);
+  border-left-color: rgba(196, 160, 0, 0.95);
+}
+body.theme--lakers .team-header.team-juvenil {
+  background: rgba(253, 185, 39, 0.1);
+  border-color: rgba(253, 185, 39, 0.52);
+  border-left-color: rgba(253, 185, 39, 0.95);
+}
+body.theme--lakers .team-name {
+  color: white;
+}
+body.theme--lakers .team-count {
+  color: rgb(253.96, 218.6, 142.68);
+}
+body.theme--lakers .team-block {
+  border-color: rgba(253, 185, 39, 0.3);
+  border-left-color: rgba(253, 185, 39, 0.74);
+  background: rgba(26, 26, 26, 0.36);
+}
+body.theme--lakers .team-block--partial {
+  border-left-color: rgba(85, 37, 131, 0.85);
+}
+body.theme--lakers .team-block-header {
+  border-bottom-color: rgba(253, 185, 39, 0.3);
+}
+body.theme--lakers .team-block[open] .team-block-header {
+  border-bottom-color: rgba(253, 185, 39, 0.5);
+}
+body.theme--lakers .team-block-title {
+  color: white;
+}
+body.theme--lakers .team-block-meta {
+  color: rgb(253.92, 217.2, 138.36);
+}
+body.theme--lakers .team-subtitle {
+  color: rgb(253.76, 211.6, 121.08);
+}
+body.theme--lakers .team-player-item {
+  background: rgba(26, 26, 26, 0.66);
+  border-color: rgba(253, 185, 39, 0.3);
+}
+body.theme--lakers .team-player-item .item-num {
+  color: #C4A000;
+}
+body.theme--lakers .team-player-item .item-name {
+  color: white;
+}
+body.theme--lakers .team-player-item .item-pos {
+  color: rgb(253.9, 216.5, 136.2);
+}
+body.theme--lakers .team-player-item .item-age {
+  color: rgb(253.84, 214.4, 129.72);
+  border-color: rgba(253, 185, 39, 0.36);
+}
+body.theme--lakers .team-player-item .item-role--cancha {
+  color: #FDB927;
+}
+body.theme--lakers .team-player-item .item-role--banca {
+  color: #C4A000;
+}
+body.theme--lakers .team-empty {
+  color: rgba(255, 255, 255, 0.58);
+}
+body.theme--lakers .modal-note__text {
+  color: rgb(253.84, 214.4, 129.72);
+}
+body.theme--lakers .teams-divider {
+  background: linear-gradient(180deg, transparent, rgba(253, 185, 39, 0.65), transparent);
+}
+body.theme--lakers .site-footer {
+  background: rgb(41.34, 28.86, 53.3);
+  border-top-color: #552583;
+}
+body.theme--lakers .site-footer::before {
+  background: linear-gradient(90deg, #552583, #FDB927, #C4A000, #552583);
+}
+body.theme--lakers .footer-text {
+  color: white;
+}
+body.theme--lakers .footer-theme-title {
+  color: #FDB927;
+}
+body.theme--lakers .theme-chip {
+  border-color: rgba(253, 185, 39, 0.55);
+}
+body.theme--lakers .theme-chip.is-active {
+  border-color: #FDB927;
+  background: rgba(253, 185, 39, 0.1);
+  box-shadow: 0 0 0 1px rgba(253, 185, 39, 0.42), 0 0 14px rgba(253, 185, 39, 0.34);
+}
+body.theme--lakers .toast.toast--success {
+  background: rgb(35.44, 27.76, 42.8);
+  border-color: #FDB927;
+  border-left-color: #FDB927;
+  color: rgb(254.48, 236.8, 198.84);
+}
+body.theme--lakers .toast.toast--error {
+  background: rgb(35.44, 27.76, 42.8);
+  border-color: #552583;
+  border-left-color: #552583;
+  color: rgb(210.8, 198.32, 222.76);
+}
+body.theme--lakers .toast.toast--info {
+  background: rgb(35.44, 27.76, 42.8);
+  border-color: rgba(253, 185, 39, 0.56);
+  border-left-color: #C4A000;
+  color: white;
+}
+
+body.theme--celtics {
+  background-color: #003D1F;
+  color: #FFFFFF;
+}
+body.theme--celtics .site-wrapper {
+  background: radial-gradient(ellipse at top left, rgba(0, 122, 51, 0.34) 0%, transparent 52%), radial-gradient(ellipse at bottom right, rgba(186, 150, 83, 0.09) 0%, transparent 56%), #003D1F;
+}
+body.theme--celtics .scoreboard-header {
+  background: rgb(0, 78.08, 36.6);
+  border-bottom-color: #007A33;
+}
+body.theme--celtics .scoreboard-header::before {
+  background: linear-gradient(90deg, #BA9653, #CFC493, #BA9653);
+}
+body.theme--celtics .scoreboard-header::after {
+  background: rgba(0, 122, 51, 0.18);
+}
+body.theme--celtics .scoreboard-main-title {
+  color: white;
+}
+body.theme--celtics .scoreboard-main-title em {
+  color: #BA9653;
+}
+body.theme--celtics .scoreboard-sub-title {
+  color: #BA9653;
+}
+body.theme--celtics .scoreboard-stats .stat-panel {
+  background: rgba(0, 61, 31, 0.62);
+  border-color: rgba(186, 150, 83, 0.45);
+}
+body.theme--celtics .scoreboard-stats .stat-panel .stat-value {
+  color: #BA9653;
+  text-shadow: 0 0 10px rgba(186, 150, 83, 0.45);
+}
+body.theme--celtics .scoreboard-stats .stat-panel .stat-label {
+  color: rgb(226.02, 210.9, 182.76);
+}
+body.theme--celtics .page-intro-text {
+  color: rgb(217.05, 197.25, 160.4);
+}
+body.theme--celtics .page-intro-line {
+  background: linear-gradient(90deg, #007A33, transparent);
+}
+body.theme--celtics .page-intro-line--reverse {
+  background: linear-gradient(90deg, transparent, #BA9653);
+}
+body.theme--celtics .registration-form {
+  background: rgb(0, 73.81, 35.2);
+  border-color: rgb(122.4, 185.84, 148.92);
+  box-shadow: inset 0 1px 0 rgba(186, 150, 83, 0.18), 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+body.theme--celtics .registration-form::before {
+  background: linear-gradient(180deg, #007A33, #CFC493, #007A33);
+}
+body.theme--celtics .form-title {
+  color: #BA9653;
+}
+body.theme--celtics .form-title span {
+  color: #007A33;
+}
+body.theme--celtics .form-label {
+  color: rgb(226.02, 210.9, 182.76);
+}
+body.theme--celtics .form-input,
+body.theme--celtics .form-select {
+  background: rgba(0, 61, 31, 0.72);
+  border-color: rgba(186, 150, 83, 0.42);
+  color: white;
+}
+body.theme--celtics .form-input::placeholder,
+body.theme--celtics .form-select::placeholder {
+  color: rgba(217.05, 197.25, 160.4, 0.58);
+}
+body.theme--celtics .form-select option {
+  background: rgb(0, 70.76, 34.2);
+  color: white;
+}
+body.theme--celtics .form-input:focus,
+body.theme--celtics .form-select:focus {
+  border-color: #BA9653;
+  box-shadow: 0 0 0 3px rgba(186, 150, 83, 0.25);
+}
+body.theme--celtics .form-input.is-invalid,
+body.theme--celtics .form-select.is-invalid {
+  border-color: #007A33;
+  box-shadow: 0 0 0 3px rgba(0, 122, 51, 0.24);
+}
+body.theme--celtics .form-error {
+  color: #007A33;
+}
+body.theme--celtics .legend-item {
+  color: rgb(214.98, 194.1, 155.24);
+}
+body.theme--celtics .legend-dot--juvenil {
+  color: #BA9653;
+}
+body.theme--celtics .legend-dot--adulto {
+  color: #CFC493;
+}
+body.theme--celtics .legend-dot--min {
+  color: rgb(209.46, 185.7, 141.48);
+}
+body.theme--celtics .btn--primary {
+  background: #007A33;
+  border-color: rgb(0, 80.52, 37.4);
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(0, 122, 51, 0.4);
+}
+body.theme--celtics .btn--primary:hover {
+  background: rgb(22.32, 125.36, 54.84);
+  box-shadow: 0 0 20px rgba(0, 122, 51, 0.65);
+}
+body.theme--celtics .btn--secondary {
+  background: rgb(0, 70.76, 34.2);
+  color: #BA9653;
+  border-color: #BA9653;
+  box-shadow: 0 0 10px rgba(186, 150, 83, 0.26);
+}
+body.theme--celtics .btn--secondary:hover {
+  background: rgb(0, 79.3, 37);
+  box-shadow: 0 0 20px rgba(186, 150, 83, 0.45);
+}
+body.theme--celtics .btn--ghost {
+  color: #CFC493;
+  border-color: #CFC493;
+}
+body.theme--celtics .btn--ghost:hover {
+  background: rgba(207, 196, 147, 0.15);
+  box-shadow: 0 0 14px rgba(207, 196, 147, 0.35);
+}
+body.theme--celtics .court-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(0, 122, 51, 0.72) 20%, rgba(186, 150, 83, 0.85) 50%, rgba(207, 196, 147, 0.72) 80%, transparent 100%);
+}
+body.theme--celtics .section-header {
+  border-bottom-color: rgba(186, 150, 83, 0.35);
+}
+body.theme--celtics .section-title {
+  color: rgb(223.26, 206.7, 175.88);
+}
+body.theme--celtics .section-title .count-badge {
+  background: #007A33;
+  color: white;
+}
+body.theme--celtics .section-sort-label {
+  color: rgb(210.15, 186.75, 143.2);
+}
+body.theme--celtics .players-table {
+  border-color: rgba(186, 150, 83, 0.4);
+  background: linear-gradient(180deg, rgba(0, 122, 51, 0.2), transparent 34%), rgba(0, 68.32, 33.4, 0.56);
+  box-shadow: inset 0 1px 0 rgba(186, 150, 83, 0.14);
+}
+body.theme--celtics .players-list::-webkit-scrollbar-track {
+  background: rgb(0, 66.49, 32.8);
+}
+body.theme--celtics .players-list::-webkit-scrollbar-thumb {
+  background: rgba(186, 150, 83, 0.58);
+}
+body.theme--celtics .players-table-head {
+  background: linear-gradient(90deg, rgba(0, 122, 51, 0.09), rgba(186, 150, 83, 0.06));
+  border-bottom-color: rgba(186, 150, 83, 0.48);
+}
+body.theme--celtics .players-table-head span {
+  color: rgb(210.15, 186.75, 143.2);
+}
+body.theme--celtics .player-row {
+  border-color: rgba(186, 150, 83, 0.28);
+  border-left-color: rgba(186, 150, 83, 0.5);
+  background: linear-gradient(90deg, rgba(186, 150, 83, 0.08), transparent 30%), rgba(0, 69.54, 33.8, 0.82);
+}
+body.theme--celtics .player-row:hover {
+  border-color: rgba(186, 150, 83, 0.62);
+  background: linear-gradient(90deg, rgba(186, 150, 83, 0.16), transparent 34%), rgba(0, 73.2, 35, 0.92);
+}
+body.theme--celtics .player-row.player-row--ok {
+  border-left-color: rgba(186, 150, 83, 0.92);
+}
+body.theme--celtics .player-row.player-row--rejected {
+  border-left-color: rgba(0, 122, 51, 0.92);
+}
+body.theme--celtics .player-cell {
+  color: rgb(217.05, 197.25, 160.4);
+}
+body.theme--celtics .player-cell--num {
+  color: #BA9653;
+  text-shadow: 0 0 8px rgba(186, 150, 83, 0.44);
+}
+body.theme--celtics .player-cell--name,
+body.theme--celtics .player-cell--team {
+  color: white;
+}
+body.theme--celtics .player-cell--rol-cancha {
+  color: #BA9653;
+}
+body.theme--celtics .player-cell--rol-banca {
+  color: #CFC493;
+}
+body.theme--celtics .player-cell--cat-adulto {
+  color: #CFC493;
+}
+body.theme--celtics .player-cell--cat-juvenil {
+  color: #BA9653;
+}
+body.theme--celtics .player-row.player-row--ok .player-cell--estado {
+  color: #BA9653;
+}
+body.theme--celtics .player-row.player-row--rejected .player-cell--estado {
+  color: #007A33;
+}
+body.theme--celtics .player-cell--time {
+  color: rgb(210.84, 187.8, 144.92);
+}
+body.theme--celtics .empty-state {
+  color: rgba(255, 255, 255, 0.56);
+}
+body.theme--celtics .empty-state .empty-icon {
+  filter: drop-shadow(0 0 16px rgba(0, 122, 51, 0.34));
+}
+body.theme--celtics .modal-overlay {
+  background: rgba(0, 61, 31, 0.92);
+}
+body.theme--celtics .scoreboard-logo {
+  filter: drop-shadow(0 0 8px rgba(0, 122, 51, 0.7));
+}
+body.theme--celtics .modal {
+  border-color: rgb(142.8, 196.48, 165.24);
+  border-top-color: #BA9653;
+}
+body.theme--celtics .modal::before {
+  background: linear-gradient(180deg, #007A33 0%, #CFC493 50%, #007A33 100%);
+}
+body.theme--celtics .modal-title {
+  color: #BA9653;
+}
+body.theme--celtics .modal-title .modal-title-main {
+  color: white;
+}
+body.theme--celtics .modal-header {
+  border-bottom-color: rgba(186, 150, 83, 0.45);
+}
+body.theme--celtics .modal-close {
+  border-color: rgba(186, 150, 83, 0.55);
+  color: rgb(219.12, 200.4, 165.56);
+}
+body.theme--celtics .modal-close:hover {
+  border-color: #007A33;
+  color: #007A33;
+}
+body.theme--celtics .team-header.team-adulto {
+  background: rgba(0, 122, 51, 0.14);
+  border-color: rgba(207, 196, 147, 0.95);
+  border-left-color: rgba(207, 196, 147, 0.95);
+}
+body.theme--celtics .team-header.team-juvenil {
+  background: rgba(186, 150, 83, 0.1);
+  border-color: rgba(186, 150, 83, 0.52);
+  border-left-color: rgba(186, 150, 83, 0.95);
+}
+body.theme--celtics .team-name {
+  color: white;
+}
+body.theme--celtics .team-count {
+  color: rgb(219.12, 200.4, 165.56);
+}
+body.theme--celtics .team-block {
+  border-color: rgba(186, 150, 83, 0.3);
+  border-left-color: rgba(186, 150, 83, 0.74);
+  background: rgba(0, 61, 31, 0.36);
+}
+body.theme--celtics .team-block--partial {
+  border-left-color: rgba(0, 122, 51, 0.85);
+}
+body.theme--celtics .team-block-header {
+  border-bottom-color: rgba(186, 150, 83, 0.3);
+}
+body.theme--celtics .team-block[open] .team-block-header {
+  border-bottom-color: rgba(186, 150, 83, 0.5);
+}
+body.theme--celtics .team-block-title {
+  color: white;
+}
+body.theme--celtics .team-block-meta {
+  color: rgb(217.74, 198.3, 162.12);
+}
+body.theme--celtics .team-subtitle {
+  color: rgb(212.22, 189.9, 148.36);
+}
+body.theme--celtics .team-player-item {
+  background: rgba(0, 61, 31, 0.66);
+  border-color: rgba(186, 150, 83, 0.3);
+}
+body.theme--celtics .team-player-item .item-num {
+  color: #CFC493;
+}
+body.theme--celtics .team-player-item .item-name {
+  color: white;
+}
+body.theme--celtics .team-player-item .item-pos {
+  color: rgb(217.05, 197.25, 160.4);
+}
+body.theme--celtics .team-player-item .item-age {
+  color: rgb(214.98, 194.1, 155.24);
+  border-color: rgba(186, 150, 83, 0.36);
+}
+body.theme--celtics .team-player-item .item-role--cancha {
+  color: #BA9653;
+}
+body.theme--celtics .team-player-item .item-role--banca {
+  color: #CFC493;
+}
+body.theme--celtics .team-empty {
+  color: rgba(255, 255, 255, 0.58);
+}
+body.theme--celtics .modal-note__text {
+  color: rgb(214.98, 194.1, 155.24);
+}
+body.theme--celtics .teams-divider {
+  background: linear-gradient(180deg, transparent, rgba(186, 150, 83, 0.65), transparent);
+}
+body.theme--celtics .site-footer {
+  background: rgb(0, 76.86, 36.2);
+  border-top-color: #007A33;
+}
+body.theme--celtics .site-footer::before {
+  background: linear-gradient(90deg, #007A33, #BA9653, #CFC493, #007A33);
+}
+body.theme--celtics .footer-text {
+  color: white;
+}
+body.theme--celtics .footer-theme-title {
+  color: #BA9653;
+}
+body.theme--celtics .theme-chip {
+  border-color: rgba(186, 150, 83, 0.55);
+}
+body.theme--celtics .theme-chip.is-active {
+  border-color: #BA9653;
+  background: rgba(186, 150, 83, 0.1);
+  box-shadow: 0 0 0 1px rgba(186, 150, 83, 0.42), 0 0 14px rgba(186, 150, 83, 0.34);
+}
+body.theme--celtics .toast.toast--success {
+  background: rgb(0, 70.76, 34.2);
+  border-color: #BA9653;
+  border-left-color: #BA9653;
+  color: rgb(237.06, 227.7, 210.28);
+}
+body.theme--celtics .toast.toast--error {
+  background: rgb(0, 70.76, 34.2);
+  border-color: #007A33;
+  border-left-color: #007A33;
+  color: rgb(188.7, 220.42, 201.96);
+}
+body.theme--celtics .toast.toast--info {
+  background: rgb(0, 70.76, 34.2);
+  border-color: rgba(186, 150, 83, 0.56);
+  border-left-color: #CFC493;
+  color: white;
+}
+
+body.theme--bulls {
+  background-color: #2C2C2C;
+  color: #FFFFFF;
+}
+body.theme--bulls .site-wrapper {
+  background: radial-gradient(ellipse at top left, rgba(206, 17, 65, 0.34) 0%, transparent 52%), radial-gradient(ellipse at bottom right, rgba(255, 255, 255, 0.09) 0%, transparent 56%), #2C2C2C;
+}
+body.theme--bulls .scoreboard-header {
+  background: rgb(89.36, 36.44, 49.88);
+  border-bottom-color: #CE1141;
+}
+body.theme--bulls .scoreboard-header::before {
+  background: linear-gradient(90deg, #FFFFFF, #000000, #FFFFFF);
+}
+body.theme--bulls .scoreboard-header::after {
+  background: rgba(206, 17, 65, 0.18);
+}
+body.theme--bulls .scoreboard-main-title {
+  color: white;
+}
+body.theme--bulls .scoreboard-main-title em {
+  color: #FFFFFF;
+}
+body.theme--bulls .scoreboard-sub-title {
+  color: #FFFFFF;
+}
+body.theme--bulls .scoreboard-stats .stat-panel {
+  background: rgba(44, 44, 44, 0.62);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+body.theme--bulls .scoreboard-stats .stat-panel .stat-value {
+  color: #FFFFFF;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+}
+body.theme--bulls .scoreboard-stats .stat-panel .stat-label {
+  color: white;
+}
+body.theme--bulls .page-intro-text {
+  color: white;
+}
+body.theme--bulls .page-intro-line {
+  background: linear-gradient(90deg, #CE1141, transparent);
+}
+body.theme--bulls .page-intro-line--reverse {
+  background: linear-gradient(90deg, transparent, #FFFFFF);
+}
+body.theme--bulls .registration-form {
+  background: rgb(78.02, 38.33, 48.41);
+  border-color: rgb(229.52, 131.24, 156.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+body.theme--bulls .registration-form::before {
+  background: linear-gradient(180deg, #CE1141, #000000, #CE1141);
+}
+body.theme--bulls .form-title {
+  color: #FFFFFF;
+}
+body.theme--bulls .form-title span {
+  color: #CE1141;
+}
+body.theme--bulls .form-label {
+  color: white;
+}
+body.theme--bulls .form-input,
+body.theme--bulls .form-select {
+  background: rgba(44, 44, 44, 0.72);
+  border-color: rgba(255, 255, 255, 0.42);
+  color: white;
+}
+body.theme--bulls .form-input::placeholder,
+body.theme--bulls .form-select::placeholder {
+  color: rgba(255, 255, 255, 0.58);
+}
+body.theme--bulls .form-select option {
+  background: rgb(69.92, 39.68, 47.36);
+  color: white;
+}
+body.theme--bulls .form-input:focus,
+body.theme--bulls .form-select:focus {
+  border-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+body.theme--bulls .form-input.is-invalid,
+body.theme--bulls .form-select.is-invalid {
+  border-color: #CE1141;
+  box-shadow: 0 0 0 3px rgba(206, 17, 65, 0.24);
+}
+body.theme--bulls .form-error {
+  color: #CE1141;
+}
+body.theme--bulls .legend-item {
+  color: white;
+}
+body.theme--bulls .legend-dot--juvenil {
+  color: #FFFFFF;
+}
+body.theme--bulls .legend-dot--adulto {
+  color: #000000;
+}
+body.theme--bulls .legend-dot--min {
+  color: white;
+}
+body.theme--bulls .btn--primary {
+  background: #CE1141;
+  border-color: rgb(95.84, 35.36, 50.72);
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(206, 17, 65, 0.4);
+}
+body.theme--bulls .btn--primary:hover {
+  background: rgb(211.88, 45.56, 87.8);
+  box-shadow: 0 0 20px rgba(206, 17, 65, 0.65);
+}
+body.theme--bulls .btn--secondary {
+  background: rgb(69.92, 39.68, 47.36);
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.26);
+}
+body.theme--bulls .btn--secondary:hover {
+  background: rgb(92.6, 35.9, 50.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.45);
+}
+body.theme--bulls .btn--ghost {
+  color: #000000;
+  border-color: #000000;
+}
+body.theme--bulls .btn--ghost:hover {
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.35);
+}
+body.theme--bulls .court-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(206, 17, 65, 0.72) 20%, rgba(255, 255, 255, 0.85) 50%, rgba(0, 0, 0, 0.72) 80%, transparent 100%);
+}
+body.theme--bulls .section-header {
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+}
+body.theme--bulls .section-title {
+  color: white;
+}
+body.theme--bulls .section-title .count-badge {
+  background: #CE1141;
+  color: white;
+}
+body.theme--bulls .section-sort-label {
+  color: white;
+}
+body.theme--bulls .players-table {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(180deg, rgba(206, 17, 65, 0.2), transparent 34%), rgba(63.44, 40.76, 46.52, 0.56);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+body.theme--bulls .players-list::-webkit-scrollbar-track {
+  background: rgb(58.58, 41.57, 45.89);
+}
+body.theme--bulls .players-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.58);
+}
+body.theme--bulls .players-table-head {
+  background: linear-gradient(90deg, rgba(206, 17, 65, 0.09), rgba(255, 255, 255, 0.06));
+  border-bottom-color: rgba(255, 255, 255, 0.48);
+}
+body.theme--bulls .players-table-head span {
+  color: white;
+}
+body.theme--bulls .player-row {
+  border-color: rgba(255, 255, 255, 0.28);
+  border-left-color: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 30%), rgba(66.68, 40.22, 46.94, 0.82);
+}
+body.theme--bulls .player-row:hover {
+  border-color: rgba(255, 255, 255, 0.62);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), transparent 34%), rgba(76.4, 38.6, 48.2, 0.92);
+}
+body.theme--bulls .player-row.player-row--ok {
+  border-left-color: rgba(255, 255, 255, 0.92);
+}
+body.theme--bulls .player-row.player-row--rejected {
+  border-left-color: rgba(206, 17, 65, 0.92);
+}
+body.theme--bulls .player-cell {
+  color: white;
+}
+body.theme--bulls .player-cell--num {
+  color: #FFFFFF;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.44);
+}
+body.theme--bulls .player-cell--name,
+body.theme--bulls .player-cell--team {
+  color: white;
+}
+body.theme--bulls .player-cell--rol-cancha {
+  color: #FFFFFF;
+}
+body.theme--bulls .player-cell--rol-banca {
+  color: #000000;
+}
+body.theme--bulls .player-cell--cat-adulto {
+  color: #000000;
+}
+body.theme--bulls .player-cell--cat-juvenil {
+  color: #FFFFFF;
+}
+body.theme--bulls .player-row.player-row--ok .player-cell--estado {
+  color: #FFFFFF;
+}
+body.theme--bulls .player-row.player-row--rejected .player-cell--estado {
+  color: #CE1141;
+}
+body.theme--bulls .player-cell--time {
+  color: white;
+}
+body.theme--bulls .empty-state {
+  color: rgba(255, 255, 255, 0.56);
+}
+body.theme--bulls .empty-state .empty-icon {
+  filter: drop-shadow(0 0 16px rgba(206, 17, 65, 0.34));
+}
+body.theme--bulls .modal-overlay {
+  background: rgba(44, 44, 44, 0.92);
+}
+body.theme--bulls .scoreboard-logo {
+  filter: drop-shadow(0 0 8px rgba(206, 17, 65, 0.7));
+}
+body.theme--bulls .modal {
+  border-color: rgb(233.44, 150.28, 171.4);
+  border-top-color: #FFFFFF;
+}
+body.theme--bulls .modal::before {
+  background: linear-gradient(180deg, #CE1141 0%, #000000 50%, #CE1141 100%);
+}
+body.theme--bulls .modal-title {
+  color: #FFFFFF;
+}
+body.theme--bulls .modal-title .modal-title-main {
+  color: white;
+}
+body.theme--bulls .modal-header {
+  border-bottom-color: rgba(255, 255, 255, 0.45);
+}
+body.theme--bulls .modal-close {
+  border-color: rgba(255, 255, 255, 0.55);
+  color: white;
+}
+body.theme--bulls .modal-close:hover {
+  border-color: #CE1141;
+  color: #CE1141;
+}
+body.theme--bulls .team-header.team-adulto {
+  background: rgba(206, 17, 65, 0.14);
+  border-color: rgba(0, 0, 0, 0.95);
+  border-left-color: rgba(0, 0, 0, 0.95);
+}
+body.theme--bulls .team-header.team-juvenil {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.52);
+  border-left-color: rgba(255, 255, 255, 0.95);
+}
+body.theme--bulls .team-name {
+  color: white;
+}
+body.theme--bulls .team-count {
+  color: white;
+}
+body.theme--bulls .team-block {
+  border-color: rgba(255, 255, 255, 0.3);
+  border-left-color: rgba(255, 255, 255, 0.74);
+  background: rgba(44, 44, 44, 0.36);
+}
+body.theme--bulls .team-block--partial {
+  border-left-color: rgba(206, 17, 65, 0.85);
+}
+body.theme--bulls .team-block-header {
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+body.theme--bulls .team-block[open] .team-block-header {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+body.theme--bulls .team-block-title {
+  color: white;
+}
+body.theme--bulls .team-block-meta {
+  color: white;
+}
+body.theme--bulls .team-subtitle {
+  color: white;
+}
+body.theme--bulls .team-player-item {
+  background: rgba(44, 44, 44, 0.66);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+body.theme--bulls .team-player-item .item-num {
+  color: #000000;
+}
+body.theme--bulls .team-player-item .item-name {
+  color: white;
+}
+body.theme--bulls .team-player-item .item-pos {
+  color: white;
+}
+body.theme--bulls .team-player-item .item-age {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.36);
+}
+body.theme--bulls .team-player-item .item-role--cancha {
+  color: #FFFFFF;
+}
+body.theme--bulls .team-player-item .item-role--banca {
+  color: #000000;
+}
+body.theme--bulls .team-empty {
+  color: rgba(255, 255, 255, 0.58);
+}
+body.theme--bulls .modal-note__text {
+  color: white;
+}
+body.theme--bulls .teams-divider {
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+}
+body.theme--bulls .site-footer {
+  background: rgb(86.12, 36.98, 49.46);
+  border-top-color: #CE1141;
+}
+body.theme--bulls .site-footer::before {
+  background: linear-gradient(90deg, #CE1141, #FFFFFF, #000000, #CE1141);
+}
+body.theme--bulls .footer-text {
+  color: white;
+}
+body.theme--bulls .footer-theme-title {
+  color: #FFFFFF;
+}
+body.theme--bulls .theme-chip {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+body.theme--bulls .theme-chip.is-active {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.42), 0 0 14px rgba(255, 255, 255, 0.34);
+}
+body.theme--bulls .toast.toast--success {
+  background: rgb(69.92, 39.68, 47.36);
+  border-color: #FFFFFF;
+  border-left-color: #FFFFFF;
+  color: white;
+}
+body.theme--bulls .toast.toast--error {
+  background: rgb(69.92, 39.68, 47.36);
+  border-color: #CE1141;
+  border-left-color: #CE1141;
+  color: rgb(242.26, 193.12, 205.6);
+}
+body.theme--bulls .toast.toast--info {
+  background: rgb(69.92, 39.68, 47.36);
+  border-color: rgba(255, 255, 255, 0.56);
+  border-left-color: #000000;
+  color: white;
+}
+
+body.theme--heat {
+  background-color: #5A0019;
+  color: #FFFFFF;
+}
+body.theme--heat .site-wrapper {
+  background: radial-gradient(ellipse at top left, rgba(152, 0, 46, 0.34) 0%, transparent 52%), radial-gradient(ellipse at bottom right, rgba(249, 160, 27, 0.09) 0%, transparent 56%), #5A0019;
+}
+body.theme--heat .scoreboard-header {
+  background: rgb(107.36, 0, 30.88);
+  border-bottom-color: #98002E;
+}
+body.theme--heat .scoreboard-header::before {
+  background: linear-gradient(90deg, #F9A01B, #000000, #F9A01B);
+}
+body.theme--heat .scoreboard-header::after {
+  background: rgba(152, 0, 46, 0.18);
+}
+body.theme--heat .scoreboard-main-title {
+  color: white;
+}
+body.theme--heat .scoreboard-main-title em {
+  color: #F9A01B;
+}
+body.theme--heat .scoreboard-sub-title {
+  color: #F9A01B;
+}
+body.theme--heat .scoreboard-stats .stat-panel {
+  background: rgba(90, 0, 25, 0.62);
+  border-color: rgba(249, 160, 27, 0.45);
+}
+body.theme--heat .scoreboard-stats .stat-panel .stat-value {
+  color: #F9A01B;
+  text-shadow: 0 0 10px rgba(249, 160, 27, 0.45);
+}
+body.theme--heat .scoreboard-stats .stat-panel .stat-label {
+  color: rgb(252.48, 215.1, 159.24);
+}
+body.theme--heat .page-intro-text {
+  color: rgb(251.7, 202.75, 129.6);
+}
+body.theme--heat .page-intro-line {
+  background: linear-gradient(90deg, #98002E, transparent);
+}
+body.theme--heat .page-intro-line--reverse {
+  background: linear-gradient(90deg, transparent, #F9A01B);
+}
+body.theme--heat .registration-form {
+  background: rgb(103.02, 0, 29.41);
+  border-color: rgb(201.44, 122.4, 146.32);
+  box-shadow: inset 0 1px 0 rgba(249, 160, 27, 0.18), 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+body.theme--heat .registration-form::before {
+  background: linear-gradient(180deg, #98002E, #000000, #98002E);
+}
+body.theme--heat .form-title {
+  color: #F9A01B;
+}
+body.theme--heat .form-title span {
+  color: #98002E;
+}
+body.theme--heat .form-label {
+  color: rgb(252.48, 215.1, 159.24);
+}
+body.theme--heat .form-input,
+body.theme--heat .form-select {
+  background: rgba(90, 0, 25, 0.72);
+  border-color: rgba(249, 160, 27, 0.42);
+  color: white;
+}
+body.theme--heat .form-input::placeholder,
+body.theme--heat .form-select::placeholder {
+  color: rgba(251.7, 202.75, 129.6, 0.58);
+}
+body.theme--heat .form-select option {
+  background: rgb(99.92, 0, 28.36);
+  color: white;
+}
+body.theme--heat .form-input:focus,
+body.theme--heat .form-select:focus {
+  border-color: #F9A01B;
+  box-shadow: 0 0 0 3px rgba(249, 160, 27, 0.25);
+}
+body.theme--heat .form-input.is-invalid,
+body.theme--heat .form-select.is-invalid {
+  border-color: #98002E;
+  box-shadow: 0 0 0 3px rgba(152, 0, 46, 0.24);
+}
+body.theme--heat .form-error {
+  color: #98002E;
+}
+body.theme--heat .legend-item {
+  color: rgb(251.52, 199.9, 122.76);
+}
+body.theme--heat .legend-dot--juvenil {
+  color: #F9A01B;
+}
+body.theme--heat .legend-dot--adulto {
+  color: #000000;
+}
+body.theme--heat .legend-dot--min {
+  color: rgb(251.04, 192.3, 104.52);
+}
+body.theme--heat .btn--primary {
+  background: #98002E;
+  border-color: rgb(109.84, 0, 31.72);
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(152, 0, 46, 0.4);
+}
+body.theme--heat .btn--primary:hover {
+  background: rgb(163.64, 19.2, 43.72);
+  box-shadow: 0 0 20px rgba(152, 0, 46, 0.65);
+}
+body.theme--heat .btn--secondary {
+  background: rgb(99.92, 0, 28.36);
+  color: #F9A01B;
+  border-color: #F9A01B;
+  box-shadow: 0 0 10px rgba(249, 160, 27, 0.26);
+}
+body.theme--heat .btn--secondary:hover {
+  background: rgb(108.6, 0, 31.3);
+  box-shadow: 0 0 20px rgba(249, 160, 27, 0.45);
+}
+body.theme--heat .btn--ghost {
+  color: #000000;
+  border-color: #000000;
+}
+body.theme--heat .btn--ghost:hover {
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.35);
+}
+body.theme--heat .court-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(152, 0, 46, 0.72) 20%, rgba(249, 160, 27, 0.85) 50%, rgba(0, 0, 0, 0.72) 80%, transparent 100%);
+}
+body.theme--heat .section-header {
+  border-bottom-color: rgba(249, 160, 27, 0.35);
+}
+body.theme--heat .section-title {
+  color: rgb(252.24, 211.3, 150.12);
+}
+body.theme--heat .section-title .count-badge {
+  background: #98002E;
+  color: white;
+}
+body.theme--heat .section-sort-label {
+  color: rgb(251.1, 193.25, 106.8);
+}
+body.theme--heat .players-table {
+  border-color: rgba(249, 160, 27, 0.4);
+  background: linear-gradient(180deg, rgba(152, 0, 46, 0.2), transparent 34%), rgba(97.44, 0, 27.52, 0.56);
+  box-shadow: inset 0 1px 0 rgba(249, 160, 27, 0.14);
+}
+body.theme--heat .players-list::-webkit-scrollbar-track {
+  background: rgb(95.58, 0, 26.89);
+}
+body.theme--heat .players-list::-webkit-scrollbar-thumb {
+  background: rgba(249, 160, 27, 0.58);
+}
+body.theme--heat .players-table-head {
+  background: linear-gradient(90deg, rgba(152, 0, 46, 0.09), rgba(249, 160, 27, 0.06));
+  border-bottom-color: rgba(249, 160, 27, 0.48);
+}
+body.theme--heat .players-table-head span {
+  color: rgb(251.1, 193.25, 106.8);
+}
+body.theme--heat .player-row {
+  border-color: rgba(249, 160, 27, 0.28);
+  border-left-color: rgba(249, 160, 27, 0.5);
+  background: linear-gradient(90deg, rgba(249, 160, 27, 0.08), transparent 30%), rgba(98.68, 0, 27.94, 0.82);
+}
+body.theme--heat .player-row:hover {
+  border-color: rgba(249, 160, 27, 0.62);
+  background: linear-gradient(90deg, rgba(249, 160, 27, 0.16), transparent 34%), rgba(102.4, 0, 29.2, 0.92);
+}
+body.theme--heat .player-row.player-row--ok {
+  border-left-color: rgba(249, 160, 27, 0.92);
+}
+body.theme--heat .player-row.player-row--rejected {
+  border-left-color: rgba(152, 0, 46, 0.92);
+}
+body.theme--heat .player-cell {
+  color: rgb(251.7, 202.75, 129.6);
+}
+body.theme--heat .player-cell--num {
+  color: #F9A01B;
+  text-shadow: 0 0 8px rgba(249, 160, 27, 0.44);
+}
+body.theme--heat .player-cell--name,
+body.theme--heat .player-cell--team {
+  color: white;
+}
+body.theme--heat .player-cell--rol-cancha {
+  color: #F9A01B;
+}
+body.theme--heat .player-cell--rol-banca {
+  color: #000000;
+}
+body.theme--heat .player-cell--cat-adulto {
+  color: #000000;
+}
+body.theme--heat .player-cell--cat-juvenil {
+  color: #F9A01B;
+}
+body.theme--heat .player-row.player-row--ok .player-cell--estado {
+  color: #F9A01B;
+}
+body.theme--heat .player-row.player-row--rejected .player-cell--estado {
+  color: #98002E;
+}
+body.theme--heat .player-cell--time {
+  color: rgb(251.16, 194.2, 109.08);
+}
+body.theme--heat .empty-state {
+  color: rgba(255, 255, 255, 0.56);
+}
+body.theme--heat .empty-state .empty-icon {
+  filter: drop-shadow(0 0 16px rgba(152, 0, 46, 0.34));
+}
+body.theme--heat .modal-overlay {
+  background: rgba(90, 0, 25, 0.92);
+}
+body.theme--heat .scoreboard-logo {
+  filter: drop-shadow(0 0 8px rgba(152, 0, 46, 0.7));
+}
+body.theme--heat .modal {
+  border-color: rgb(209.68, 142.8, 163.04);
+  border-top-color: #F9A01B;
+}
+body.theme--heat .modal::before {
+  background: linear-gradient(180deg, #98002E 0%, #000000 50%, #98002E 100%);
+}
+body.theme--heat .modal-title {
+  color: #F9A01B;
+}
+body.theme--heat .modal-title .modal-title-main {
+  color: white;
+}
+body.theme--heat .modal-header {
+  border-bottom-color: rgba(249, 160, 27, 0.45);
+}
+body.theme--heat .modal-close {
+  border-color: rgba(249, 160, 27, 0.55);
+  color: rgb(251.88, 205.6, 136.44);
+}
+body.theme--heat .modal-close:hover {
+  border-color: #98002E;
+  color: #98002E;
+}
+body.theme--heat .team-header.team-adulto {
+  background: rgba(152, 0, 46, 0.14);
+  border-color: rgba(0, 0, 0, 0.95);
+  border-left-color: rgba(0, 0, 0, 0.95);
+}
+body.theme--heat .team-header.team-juvenil {
+  background: rgba(249, 160, 27, 0.1);
+  border-color: rgba(249, 160, 27, 0.52);
+  border-left-color: rgba(249, 160, 27, 0.95);
+}
+body.theme--heat .team-name {
+  color: white;
+}
+body.theme--heat .team-count {
+  color: rgb(251.88, 205.6, 136.44);
+}
+body.theme--heat .team-block {
+  border-color: rgba(249, 160, 27, 0.3);
+  border-left-color: rgba(249, 160, 27, 0.74);
+  background: rgba(90, 0, 25, 0.36);
+}
+body.theme--heat .team-block--partial {
+  border-left-color: rgba(152, 0, 46, 0.85);
+}
+body.theme--heat .team-block-header {
+  border-bottom-color: rgba(249, 160, 27, 0.3);
+}
+body.theme--heat .team-block[open] .team-block-header {
+  border-bottom-color: rgba(249, 160, 27, 0.5);
+}
+body.theme--heat .team-block-title {
+  color: white;
+}
+body.theme--heat .team-block-meta {
+  color: rgb(251.76, 203.7, 131.88);
+}
+body.theme--heat .team-subtitle {
+  color: rgb(251.28, 196.1, 113.64);
+}
+body.theme--heat .team-player-item {
+  background: rgba(90, 0, 25, 0.66);
+  border-color: rgba(249, 160, 27, 0.3);
+}
+body.theme--heat .team-player-item .item-num {
+  color: #000000;
+}
+body.theme--heat .team-player-item .item-name {
+  color: white;
+}
+body.theme--heat .team-player-item .item-pos {
+  color: rgb(251.7, 202.75, 129.6);
+}
+body.theme--heat .team-player-item .item-age {
+  color: rgb(251.52, 199.9, 122.76);
+  border-color: rgba(249, 160, 27, 0.36);
+}
+body.theme--heat .team-player-item .item-role--cancha {
+  color: #F9A01B;
+}
+body.theme--heat .team-player-item .item-role--banca {
+  color: #000000;
+}
+body.theme--heat .team-empty {
+  color: rgba(255, 255, 255, 0.58);
+}
+body.theme--heat .modal-note__text {
+  color: rgb(251.52, 199.9, 122.76);
+}
+body.theme--heat .teams-divider {
+  background: linear-gradient(180deg, transparent, rgba(249, 160, 27, 0.65), transparent);
+}
+body.theme--heat .site-footer {
+  background: rgb(106.12, 0, 30.46);
+  border-top-color: #98002E;
+}
+body.theme--heat .site-footer::before {
+  background: linear-gradient(90deg, #98002E, #F9A01B, #000000, #98002E);
+}
+body.theme--heat .footer-text {
+  color: white;
+}
+body.theme--heat .footer-theme-title {
+  color: #F9A01B;
+}
+body.theme--heat .theme-chip {
+  border-color: rgba(249, 160, 27, 0.55);
+}
+body.theme--heat .theme-chip.is-active {
+  border-color: #F9A01B;
+  background: rgba(249, 160, 27, 0.1);
+  box-shadow: 0 0 0 1px rgba(249, 160, 27, 0.42), 0 0 14px rgba(249, 160, 27, 0.34);
+}
+body.theme--heat .toast.toast--success {
+  background: rgb(99.92, 0, 28.36);
+  border-color: #F9A01B;
+  border-left-color: #F9A01B;
+  color: rgb(253.44, 230.3, 195.72);
+}
+body.theme--heat .toast.toast--error {
+  background: rgb(99.92, 0, 28.36);
+  border-color: #98002E;
+  border-left-color: #98002E;
+  color: rgb(228.22, 188.7, 200.66);
+}
+body.theme--heat .toast.toast--info {
+  background: rgb(99.92, 0, 28.36);
+  border-color: rgba(249, 160, 27, 0.56);
+  border-left-color: #000000;
+  color: white;
+}
+
+body.theme--pistons {
+  background-color: #0C2340;
+  color: #FFFFFF;
+}
+body.theme--pistons .site-wrapper {
+  background: radial-gradient(ellipse at top left, rgba(200, 16, 46, 0.34) 0%, transparent 52%), radial-gradient(ellipse at bottom right, rgba(29, 66, 186, 0.09) 0%, transparent 56%), #0C2340;
+}
+body.theme--pistons .scoreboard-header {
+  background: rgb(64.64, 29.68, 58.96);
+  border-bottom-color: #C8102E;
+}
+body.theme--pistons .scoreboard-header::before {
+  background: linear-gradient(90deg, #1D42BA, #A2AAAD, #1D42BA);
+}
+body.theme--pistons .scoreboard-header::after {
+  background: rgba(200, 16, 46, 0.18);
+}
+body.theme--pistons .scoreboard-main-title {
+  color: white;
+}
+body.theme--pistons .scoreboard-main-title em {
+  color: #1D42BA;
+}
+body.theme--pistons .scoreboard-sub-title {
+  color: #1D42BA;
+}
+body.theme--pistons .scoreboard-stats .stat-panel {
+  background: rgba(12, 35, 64, 0.62);
+  border-color: rgba(29, 66, 186, 0.45);
+}
+body.theme--pistons .scoreboard-stats .stat-panel .stat-value {
+  color: #1D42BA;
+  text-shadow: 0 0 10px rgba(29, 66, 186, 0.45);
+}
+body.theme--pistons .scoreboard-stats .stat-panel .stat-label {
+  color: rgb(160.08, 175.62, 226.02);
+}
+body.theme--pistons .page-intro-text {
+  color: rgb(130.7, 151.05, 217.05);
+}
+body.theme--pistons .page-intro-line {
+  background: linear-gradient(90deg, #C8102E, transparent);
+}
+body.theme--pistons .page-intro-line--reverse {
+  background: linear-gradient(90deg, transparent, #1D42BA);
+}
+body.theme--pistons .registration-form {
+  background: rgb(51.48, 31.01, 60.22);
+  border-color: rgb(226.4, 130.72, 146.32);
+  box-shadow: inset 0 1px 0 rgba(29, 66, 186, 0.18), 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+body.theme--pistons .registration-form::before {
+  background: linear-gradient(180deg, #C8102E, #A2AAAD, #C8102E);
+}
+body.theme--pistons .form-title {
+  color: #1D42BA;
+}
+body.theme--pistons .form-title span {
+  color: #C8102E;
+}
+body.theme--pistons .form-label {
+  color: rgb(160.08, 175.62, 226.02);
+}
+body.theme--pistons .form-input,
+body.theme--pistons .form-select {
+  background: rgba(12, 35, 64, 0.72);
+  border-color: rgba(29, 66, 186, 0.42);
+  color: white;
+}
+body.theme--pistons .form-input::placeholder,
+body.theme--pistons .form-select::placeholder {
+  color: rgba(130.7, 151.05, 217.05, 0.58);
+}
+body.theme--pistons .form-select option {
+  background: rgb(42.08, 31.96, 61.12);
+  color: white;
+}
+body.theme--pistons .form-input:focus,
+body.theme--pistons .form-select:focus {
+  border-color: #1D42BA;
+  box-shadow: 0 0 0 3px rgba(29, 66, 186, 0.25);
+}
+body.theme--pistons .form-input.is-invalid,
+body.theme--pistons .form-select.is-invalid {
+  border-color: #C8102E;
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.24);
+}
+body.theme--pistons .form-error {
+  color: #C8102E;
+}
+body.theme--pistons .legend-item {
+  color: rgb(123.92, 145.38, 214.98);
+}
+body.theme--pistons .legend-dot--juvenil {
+  color: #1D42BA;
+}
+body.theme--pistons .legend-dot--adulto {
+  color: #A2AAAD;
+}
+body.theme--pistons .legend-dot--min {
+  color: rgb(105.84, 130.26, 209.46);
+}
+body.theme--pistons .btn--primary {
+  background: #C8102E;
+  border-color: rgb(72.16, 28.92, 58.24);
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(200, 16, 46, 0.4);
+}
+body.theme--pistons .btn--primary:hover {
+  background: rgb(179.48, 22, 62.8);
+  box-shadow: 0 0 20px rgba(200, 16, 46, 0.65);
+}
+body.theme--pistons .btn--secondary {
+  background: rgb(42.08, 31.96, 61.12);
+  color: #1D42BA;
+  border-color: #1D42BA;
+  box-shadow: 0 0 10px rgba(29, 66, 186, 0.26);
+}
+body.theme--pistons .btn--secondary:hover {
+  background: rgb(68.4, 29.3, 58.6);
+  box-shadow: 0 0 20px rgba(29, 66, 186, 0.45);
+}
+body.theme--pistons .btn--ghost {
+  color: #A2AAAD;
+  border-color: #A2AAAD;
+}
+body.theme--pistons .btn--ghost:hover {
+  background: rgba(162, 170, 173, 0.15);
+  box-shadow: 0 0 14px rgba(162, 170, 173, 0.35);
+}
+body.theme--pistons .court-line {
+  background: linear-gradient(90deg, transparent 0%, rgba(200, 16, 46, 0.72) 20%, rgba(29, 66, 186, 0.85) 50%, rgba(162, 170, 173, 0.72) 80%, transparent 100%);
+}
+body.theme--pistons .section-header {
+  border-bottom-color: rgba(29, 66, 186, 0.35);
+}
+body.theme--pistons .section-title {
+  color: rgb(151.04, 168.06, 223.26);
+}
+body.theme--pistons .section-title .count-badge {
+  background: #C8102E;
+  color: white;
+}
+body.theme--pistons .section-sort-label {
+  color: rgb(108.1, 132.15, 210.15);
+}
+body.theme--pistons .players-table {
+  border-color: rgba(29, 66, 186, 0.4);
+  background: linear-gradient(180deg, rgba(200, 16, 46, 0.2), transparent 34%), rgba(34.56, 32.72, 61.84, 0.56);
+  box-shadow: inset 0 1px 0 rgba(29, 66, 186, 0.14);
+}
+body.theme--pistons .players-list::-webkit-scrollbar-track {
+  background: rgb(28.92, 33.29, 62.38);
+}
+body.theme--pistons .players-list::-webkit-scrollbar-thumb {
+  background: rgba(29, 66, 186, 0.58);
+}
+body.theme--pistons .players-table-head {
+  background: linear-gradient(90deg, rgba(200, 16, 46, 0.09), rgba(29, 66, 186, 0.06));
+  border-bottom-color: rgba(29, 66, 186, 0.48);
+}
+body.theme--pistons .players-table-head span {
+  color: rgb(108.1, 132.15, 210.15);
+}
+body.theme--pistons .player-row {
+  border-color: rgba(29, 66, 186, 0.28);
+  border-left-color: rgba(29, 66, 186, 0.5);
+  background: linear-gradient(90deg, rgba(29, 66, 186, 0.08), transparent 30%), rgba(38.32, 32.34, 61.48, 0.82);
+}
+body.theme--pistons .player-row:hover {
+  border-color: rgba(29, 66, 186, 0.62);
+  background: linear-gradient(90deg, rgba(29, 66, 186, 0.16), transparent 34%), rgba(49.6, 31.2, 60.4, 0.92);
+}
+body.theme--pistons .player-row.player-row--ok {
+  border-left-color: rgba(29, 66, 186, 0.92);
+}
+body.theme--pistons .player-row.player-row--rejected {
+  border-left-color: rgba(200, 16, 46, 0.92);
+}
+body.theme--pistons .player-cell {
+  color: rgb(130.7, 151.05, 217.05);
+}
+body.theme--pistons .player-cell--num {
+  color: #1D42BA;
+  text-shadow: 0 0 8px rgba(29, 66, 186, 0.44);
+}
+body.theme--pistons .player-cell--name,
+body.theme--pistons .player-cell--team {
+  color: white;
+}
+body.theme--pistons .player-cell--rol-cancha {
+  color: #1D42BA;
+}
+body.theme--pistons .player-cell--rol-banca {
+  color: #A2AAAD;
+}
+body.theme--pistons .player-cell--cat-adulto {
+  color: #A2AAAD;
+}
+body.theme--pistons .player-cell--cat-juvenil {
+  color: #1D42BA;
+}
+body.theme--pistons .player-row.player-row--ok .player-cell--estado {
+  color: #1D42BA;
+}
+body.theme--pistons .player-row.player-row--rejected .player-cell--estado {
+  color: #C8102E;
+}
+body.theme--pistons .player-cell--time {
+  color: rgb(110.36, 134.04, 210.84);
+}
+body.theme--pistons .empty-state {
+  color: rgba(255, 255, 255, 0.56);
+}
+body.theme--pistons .empty-state .empty-icon {
+  filter: drop-shadow(0 0 16px rgba(200, 16, 46, 0.34));
+}
+body.theme--pistons .modal-overlay {
+  background: rgba(12, 35, 64, 0.92);
+}
+body.theme--pistons .scoreboard-logo {
+  filter: drop-shadow(0 0 8px rgba(200, 16, 46, 0.7));
+}
+body.theme--pistons .modal {
+  border-color: rgb(230.8, 149.84, 163.04);
+  border-top-color: #1D42BA;
+}
+body.theme--pistons .modal::before {
+  background: linear-gradient(180deg, #C8102E 0%, #A2AAAD 50%, #C8102E 100%);
+}
+body.theme--pistons .modal-title {
+  color: #1D42BA;
+}
+body.theme--pistons .modal-title .modal-title-main {
+  color: white;
+}
+body.theme--pistons .modal-header {
+  border-bottom-color: rgba(29, 66, 186, 0.45);
+}
+body.theme--pistons .modal-close {
+  border-color: rgba(29, 66, 186, 0.55);
+  color: rgb(137.48, 156.72, 219.12);
+}
+body.theme--pistons .modal-close:hover {
+  border-color: #C8102E;
+  color: #C8102E;
+}
+body.theme--pistons .team-header.team-adulto {
+  background: rgba(200, 16, 46, 0.14);
+  border-color: rgba(162, 170, 173, 0.95);
+  border-left-color: rgba(162, 170, 173, 0.95);
+}
+body.theme--pistons .team-header.team-juvenil {
+  background: rgba(29, 66, 186, 0.1);
+  border-color: rgba(29, 66, 186, 0.52);
+  border-left-color: rgba(29, 66, 186, 0.95);
+}
+body.theme--pistons .team-name {
+  color: white;
+}
+body.theme--pistons .team-count {
+  color: rgb(137.48, 156.72, 219.12);
+}
+body.theme--pistons .team-block {
+  border-color: rgba(29, 66, 186, 0.3);
+  border-left-color: rgba(29, 66, 186, 0.74);
+  background: rgba(12, 35, 64, 0.36);
+}
+body.theme--pistons .team-block--partial {
+  border-left-color: rgba(200, 16, 46, 0.85);
+}
+body.theme--pistons .team-block-header {
+  border-bottom-color: rgba(29, 66, 186, 0.3);
+}
+body.theme--pistons .team-block[open] .team-block-header {
+  border-bottom-color: rgba(29, 66, 186, 0.5);
+}
+body.theme--pistons .team-block-title {
+  color: white;
+}
+body.theme--pistons .team-block-meta {
+  color: rgb(132.96, 152.94, 217.74);
+}
+body.theme--pistons .team-subtitle {
+  color: rgb(114.88, 137.82, 212.22);
+}
+body.theme--pistons .team-player-item {
+  background: rgba(12, 35, 64, 0.66);
+  border-color: rgba(29, 66, 186, 0.3);
+}
+body.theme--pistons .team-player-item .item-num {
+  color: #A2AAAD;
+}
+body.theme--pistons .team-player-item .item-name {
+  color: white;
+}
+body.theme--pistons .team-player-item .item-pos {
+  color: rgb(130.7, 151.05, 217.05);
+}
+body.theme--pistons .team-player-item .item-age {
+  color: rgb(123.92, 145.38, 214.98);
+  border-color: rgba(29, 66, 186, 0.36);
+}
+body.theme--pistons .team-player-item .item-role--cancha {
+  color: #1D42BA;
+}
+body.theme--pistons .team-player-item .item-role--banca {
+  color: #A2AAAD;
+}
+body.theme--pistons .team-empty {
+  color: rgba(255, 255, 255, 0.58);
+}
+body.theme--pistons .modal-note__text {
+  color: rgb(123.92, 145.38, 214.98);
+}
+body.theme--pistons .teams-divider {
+  background: linear-gradient(180deg, transparent, rgba(29, 66, 186, 0.65), transparent);
+}
+body.theme--pistons .site-footer {
+  background: rgb(60.88, 30.06, 59.32);
+  border-top-color: #C8102E;
+}
+body.theme--pistons .site-footer::before {
+  background: linear-gradient(90deg, #C8102E, #1D42BA, #A2AAAD, #C8102E);
+}
+body.theme--pistons .footer-text {
+  color: white;
+}
+body.theme--pistons .footer-theme-title {
+  color: #1D42BA;
+}
+body.theme--pistons .theme-chip {
+  border-color: rgba(29, 66, 186, 0.55);
+}
+body.theme--pistons .theme-chip.is-active {
+  border-color: #1D42BA;
+  background: rgba(29, 66, 186, 0.1);
+  box-shadow: 0 0 0 1px rgba(29, 66, 186, 0.42), 0 0 14px rgba(29, 66, 186, 0.34);
+}
+body.theme--pistons .toast.toast--success {
+  background: rgb(42.08, 31.96, 61.12);
+  border-color: #1D42BA;
+  border-left-color: #1D42BA;
+  color: rgb(196.24, 205.86, 237.06);
+}
+body.theme--pistons .toast.toast--error {
+  background: rgb(42.08, 31.96, 61.12);
+  border-color: #C8102E;
+  border-left-color: #C8102E;
+  color: rgb(240.7, 192.86, 200.66);
+}
+body.theme--pistons .toast.toast--info {
+  background: rgb(42.08, 31.96, 61.12);
+  border-color: rgba(29, 66, 186, 0.56);
+  border-left-color: #A2AAAD;
+  color: white;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -28,12 +28,12 @@
 .site-footer {
   background: $color-navy;
   border-top: 2px solid $color-orange;
-  padding: $space-sm $space-xl $space-md;
+  padding: $space-md $space-xl $space-lg;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: $space-xs;
+  gap: $space-sm;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -58,41 +58,174 @@
   max-width: 1200px;
 }
 
-.footer-palette {
+.footer-theme-switcher {
+  width: min(1200px, 100%);
   display: flex;
-  gap: 6px;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2px 8px;
-  border: 1px solid rgba($color-slate, 0.4);
-  border-radius: 999px;
-  background: rgba($color-bg, 0.28);
+  gap: $space-sm;
 }
 
-// Etiqueta "palette" en el footer (reemplaza inline style)
-.footer-palette-label {
-  font-family: $font-mono;
-  font-size: 0.58rem;
-  letter-spacing: 0.1em;
+.footer-theme-title {
+  font-family: $font-display;
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: $color-slate;
-  margin-right: 2px;
+  color: $color-teal;
 }
 
-.palette-swatch {
-  width: 11px;
-  height: 11px;
+.footer-theme-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: $space-md;
+  overflow-x: auto;
+  padding: 3px 2px 6px;
+  scrollbar-width: thin;
+}
+
+.theme-chip {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  border: 1px solid rgba($color-slate, 0.55);
+  border-radius: 14px;
+  background: rgba($color-bg, 0.42);
+  color: $color-text-main;
+  min-width: 174px;
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color $transition-fast, box-shadow $transition-fast, transform $transition-fast, background $transition-fast;
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: $color-teal;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: $color-teal;
+    box-shadow: 0 0 0 2px rgba($color-teal, 0.35);
+  }
+
+  &.is-active {
+    border-color: $color-teal;
+    background: rgba($color-teal, 0.08);
+    box-shadow: 0 0 0 1px rgba($color-teal, 0.35), 0 0 14px rgba($color-teal, 0.3);
+  }
+}
+
+.theme-chip-logo {
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.25);
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
 
-  &:nth-of-type(1) { background: $color-orange; }
-  &:nth-of-type(2) { background: $color-salmon; }
-  &:nth-of-type(3) { background: $color-navy; }
-  &:nth-of-type(4) { background: $color-slate; }
-  &:nth-of-type(5) { background: $color-steel; }
-  &:nth-of-type(6) { background: $color-teal; }
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 }
+
+.theme-chip-name-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.theme-chip-name {
+  font-family: $font-display;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.theme-chip-colors {
+  display: inline-grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  width: 100%;
+  min-width: 98px;
+
+  span {
+    height: 5px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+  }
+}
+
+.theme-chip[data-theme='lakers'] .theme-chip-logo {
+  border-color: rgba($theme-lakers-5, 0.75);
+}
+
+.theme-chip[data-theme='celtics'] .theme-chip-logo {
+  border-color: rgba($theme-celtics-5, 0.85);
+}
+
+.theme-chip[data-theme='bulls'] .theme-chip-logo {
+  border-color: rgba($theme-bulls-2, 0.8);
+}
+
+.theme-chip[data-theme='heat'] .theme-chip-logo {
+  border-color: rgba($theme-heat-3, 0.75);
+}
+
+.theme-chip[data-theme='pistons'] .theme-chip-logo {
+  border-color: rgba($theme-pistons-1, 0.85);
+}
+
+.theme-chip[data-theme='original'] .theme-chip-logo {
+  border-color: rgba($color-salmon, 0.85);
+}
+
+.theme-chip[data-theme='original'] .theme-chip-colors span:nth-child(1) { background: $color-orange; }
+.theme-chip[data-theme='original'] .theme-chip-colors span:nth-child(2) { background: $color-salmon; }
+.theme-chip[data-theme='original'] .theme-chip-colors span:nth-child(3) { background: $color-navy; }
+.theme-chip[data-theme='original'] .theme-chip-colors span:nth-child(4) { background: $color-slate; }
+.theme-chip[data-theme='original'] .theme-chip-colors span:nth-child(5) { background: $color-teal; }
+
+.theme-chip[data-theme='lakers'] .theme-chip-colors span:nth-child(1) { background: $theme-lakers-1; }
+.theme-chip[data-theme='lakers'] .theme-chip-colors span:nth-child(2) { background: $theme-lakers-2; }
+.theme-chip[data-theme='lakers'] .theme-chip-colors span:nth-child(3) { background: $theme-lakers-3; }
+.theme-chip[data-theme='lakers'] .theme-chip-colors span:nth-child(4) { background: $theme-lakers-4; }
+.theme-chip[data-theme='lakers'] .theme-chip-colors span:nth-child(5) { background: $theme-lakers-5; }
+
+.theme-chip[data-theme='celtics'] .theme-chip-colors span:nth-child(1) { background: $theme-celtics-1; }
+.theme-chip[data-theme='celtics'] .theme-chip-colors span:nth-child(2) { background: $theme-celtics-2; }
+.theme-chip[data-theme='celtics'] .theme-chip-colors span:nth-child(3) { background: $theme-celtics-3; }
+.theme-chip[data-theme='celtics'] .theme-chip-colors span:nth-child(4) { background: $theme-celtics-4; }
+.theme-chip[data-theme='celtics'] .theme-chip-colors span:nth-child(5) { background: $theme-celtics-5; }
+
+.theme-chip[data-theme='bulls'] .theme-chip-colors span:nth-child(1) { background: $theme-bulls-1; }
+.theme-chip[data-theme='bulls'] .theme-chip-colors span:nth-child(2) { background: $theme-bulls-2; }
+.theme-chip[data-theme='bulls'] .theme-chip-colors span:nth-child(3) { background: $theme-bulls-3; }
+.theme-chip[data-theme='bulls'] .theme-chip-colors span:nth-child(4) { background: $theme-bulls-4; }
+.theme-chip[data-theme='bulls'] .theme-chip-colors span:nth-child(5) { background: $theme-bulls-5; }
+
+.theme-chip[data-theme='heat'] .theme-chip-colors span:nth-child(1) { background: $theme-heat-1; }
+.theme-chip[data-theme='heat'] .theme-chip-colors span:nth-child(2) { background: $theme-heat-2; }
+.theme-chip[data-theme='heat'] .theme-chip-colors span:nth-child(3) { background: $theme-heat-3; }
+.theme-chip[data-theme='heat'] .theme-chip-colors span:nth-child(4) { background: $theme-heat-4; }
+.theme-chip[data-theme='heat'] .theme-chip-colors span:nth-child(5) { background: $theme-heat-5; }
+
+.theme-chip[data-theme='pistons'] .theme-chip-colors span:nth-child(1) { background: $theme-pistons-1; }
+.theme-chip[data-theme='pistons'] .theme-chip-colors span:nth-child(2) { background: $theme-pistons-2; }
+.theme-chip[data-theme='pistons'] .theme-chip-colors span:nth-child(3) { background: $theme-pistons-3; }
+.theme-chip[data-theme='pistons'] .theme-chip-colors span:nth-child(4) { background: $theme-pistons-4; }
+.theme-chip[data-theme='pistons'] .theme-chip-colors span:nth-child(5) { background: $theme-pistons-5; }
 
 // Ribete deco: tres líneas paralelas en esquinas (guiño al parquet)
 .corner-deco {
@@ -159,4 +292,488 @@
   &.pos-alero { background: rgba($color-salmon, 0.2); color: $color-salmon; border: 1px solid rgba($color-salmon, 0.5); }
   &.pos-ala-pivot { background: rgba($color-steel, 0.2); color: $color-steel; border: 1px solid $color-steel; }
   &.pos-pivot { background: rgba($color-orange, 0.2); color: $color-orange; border: 1px solid rgba($color-orange, 0.5); }
+}
+
+// Temas dinámicos NBA
+@each $theme-name, $palette in $nba-themes {
+  $primary: map-get($palette, primary);
+  $secondary: map-get($palette, secondary);
+  $text: map-get($palette, text);
+  $dark: map-get($palette, dark);
+  $accent: map-get($palette, accent);
+
+  body.theme--#{$theme-name} {
+    background-color: $dark;
+    color: $text;
+
+    .site-wrapper {
+      background:
+        radial-gradient(ellipse at top left, rgba($primary, 0.34) 0%, transparent 52%),
+        radial-gradient(ellipse at bottom right, rgba($secondary, 0.09) 0%, transparent 56%),
+        $dark;
+    }
+
+    .scoreboard-header {
+      background: mix($dark, $primary, 72%);
+      border-bottom-color: $primary;
+
+      &::before {
+        background: linear-gradient(90deg, $secondary, $accent, $secondary);
+      }
+
+      &::after {
+        background: rgba($primary, 0.18);
+      }
+    }
+
+    .scoreboard-main-title {
+      color: mix($text, #ffffff, 86%);
+    }
+
+    .scoreboard-main-title em {
+      color: $secondary;
+    }
+
+    .scoreboard-sub-title {
+      color: $secondary;
+    }
+
+    .scoreboard-stats .stat-panel {
+      background: rgba($dark, 0.62);
+      border-color: rgba($secondary, 0.45);
+    }
+
+    .scoreboard-stats .stat-panel .stat-value {
+      color: $secondary;
+      text-shadow: 0 0 10px rgba($secondary, 0.45);
+    }
+
+    .scoreboard-stats .stat-panel .stat-label {
+      color: mix($text, $secondary, 58%);
+    }
+
+    .page-intro-text {
+      color: mix($text, $secondary, 45%);
+    }
+
+    .page-intro-line {
+      background: linear-gradient(90deg, $primary, transparent);
+    }
+
+    .page-intro-line--reverse {
+      background: linear-gradient(90deg, transparent, $secondary);
+    }
+
+    .registration-form {
+      background: mix($dark, $primary, 79%);
+      border-color: mix($text, $primary, 48%);
+      box-shadow:
+        inset 0 1px 0 rgba($secondary, 0.18),
+        0 4px 20px rgba(0, 0, 0, 0.45);
+    }
+
+    .registration-form::before {
+      background: linear-gradient(180deg, $primary, $accent, $primary);
+    }
+
+    .form-title {
+      color: $secondary;
+
+      span {
+        color: $primary;
+      }
+    }
+
+    .form-label {
+      color: mix($text, $secondary, 58%);
+    }
+
+    .form-input,
+    .form-select {
+      background: rgba($dark, 0.72);
+      border-color: rgba($secondary, 0.42);
+      color: mix($text, #ffffff, 88%);
+    }
+
+    .form-input::placeholder,
+    .form-select::placeholder {
+      color: rgba(mix($text, $secondary, 45%), 0.58);
+    }
+
+    .form-select option {
+      background: mix($dark, $primary, 84%);
+      color: mix($text, #ffffff, 88%);
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: $secondary;
+      box-shadow: 0 0 0 3px rgba($secondary, 0.25);
+    }
+
+    .form-input.is-invalid,
+    .form-select.is-invalid {
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba($primary, 0.24);
+    }
+
+    .form-error {
+      color: $primary;
+    }
+
+    .legend-item {
+      color: mix($text, $secondary, 42%);
+    }
+
+    .legend-dot--juvenil {
+      color: $secondary;
+    }
+
+    .legend-dot--adulto {
+      color: $accent;
+    }
+
+    .legend-dot--min {
+      color: mix($text, $secondary, 34%);
+    }
+
+    .btn--primary {
+      background: $primary;
+      border-color: mix($dark, $primary, 68%);
+      color: $text;
+      box-shadow: 0 0 12px rgba($primary, 0.4);
+    }
+
+    .btn--primary:hover {
+      background: mix($primary, $secondary, 88%);
+      box-shadow: 0 0 20px rgba($primary, 0.65);
+    }
+
+    .btn--secondary {
+      background: mix($dark, $primary, 84%);
+      color: $secondary;
+      border-color: $secondary;
+      box-shadow: 0 0 10px rgba($secondary, 0.26);
+    }
+
+    .btn--secondary:hover {
+      background: mix($dark, $primary, 70%);
+      box-shadow: 0 0 20px rgba($secondary, 0.45);
+    }
+
+    .btn--ghost {
+      color: $accent;
+      border-color: $accent;
+    }
+
+    .btn--ghost:hover {
+      background: rgba($accent, 0.15);
+      box-shadow: 0 0 14px rgba($accent, 0.35);
+    }
+
+    .court-line {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba($primary, 0.72) 20%,
+        rgba($secondary, 0.85) 50%,
+        rgba($accent, 0.72) 80%,
+        transparent 100%
+      );
+    }
+
+    .section-header {
+      border-bottom-color: rgba($secondary, 0.35);
+    }
+
+    .section-title {
+      color: mix($text, $secondary, 54%);
+    }
+
+    .section-title .count-badge {
+      background: $primary;
+      color: mix($text, #ffffff, 92%);
+    }
+
+    .section-sort-label {
+      color: mix($text, $secondary, 35%);
+    }
+
+    .players-table {
+      border-color: rgba($secondary, 0.4);
+      background:
+        linear-gradient(180deg, rgba($primary, 0.2), transparent 34%),
+        rgba(mix($dark, $primary, 88%), 0.56);
+      box-shadow: inset 0 1px 0 rgba($secondary, 0.14);
+    }
+
+    .players-list::-webkit-scrollbar-track {
+      background: mix($dark, $primary, 91%);
+    }
+
+    .players-list::-webkit-scrollbar-thumb {
+      background: rgba($secondary, 0.58);
+    }
+
+    .players-table-head {
+      background: linear-gradient(90deg, rgba($primary, 0.09), rgba($secondary, 0.06));
+      border-bottom-color: rgba($secondary, 0.48);
+    }
+
+    .players-table-head span {
+      color: mix($secondary, $text, 65%);
+    }
+
+    .player-row {
+      border-color: rgba($secondary, 0.28);
+      border-left-color: rgba($secondary, 0.5);
+      background:
+        linear-gradient(90deg, rgba($secondary, 0.08), transparent 30%),
+        rgba(mix($dark, $primary, 86%), 0.82);
+    }
+
+    .player-row:hover {
+      border-color: rgba($secondary, 0.62);
+      background:
+        linear-gradient(90deg, rgba($secondary, 0.16), transparent 34%),
+        rgba(mix($dark, $primary, 80%), 0.92);
+    }
+
+    .player-row.player-row--ok {
+      border-left-color: rgba($secondary, 0.92);
+    }
+
+    .player-row.player-row--rejected {
+      border-left-color: rgba($primary, 0.92);
+    }
+
+    .player-cell {
+      color: mix($text, $secondary, 45%);
+    }
+
+    .player-cell--num {
+      color: $secondary;
+      text-shadow: 0 0 8px rgba($secondary, 0.44);
+    }
+
+    .player-cell--name,
+    .player-cell--team {
+      color: mix($text, #ffffff, 90%);
+    }
+
+    .player-cell--rol-cancha {
+      color: $secondary;
+    }
+
+    .player-cell--rol-banca {
+      color: $accent;
+    }
+
+    .player-cell--cat-adulto {
+      color: $accent;
+    }
+
+    .player-cell--cat-juvenil {
+      color: $secondary;
+    }
+
+    .player-row.player-row--ok .player-cell--estado {
+      color: $secondary;
+    }
+
+    .player-row.player-row--rejected .player-cell--estado {
+      color: $primary;
+    }
+
+    .player-cell--time {
+      color: mix($text, $secondary, 36%);
+    }
+
+    .empty-state {
+      color: rgba($text, 0.56);
+    }
+
+    .empty-state .empty-icon {
+      filter: drop-shadow(0 0 16px rgba($primary, 0.34));
+    }
+
+    .modal-overlay {
+      background: rgba($dark, 0.92);
+    }
+
+    .scoreboard-logo {
+      filter: drop-shadow(0 0 8px rgba($primary, 0.7));
+    }
+
+    .modal {
+      border-color: mix($text, $primary, 56%);
+      border-top-color: $secondary;
+    }
+
+    .modal::before {
+      background: linear-gradient(180deg, $primary 0%, $accent 50%, $primary 100%);
+    }
+
+    .modal-title {
+      color: $secondary;
+    }
+
+    .modal-title .modal-title-main {
+      color: mix($text, #ffffff, 88%);
+    }
+
+    .modal-header {
+      border-bottom-color: rgba($secondary, 0.45);
+    }
+
+    .modal-close {
+      border-color: rgba($secondary, 0.55);
+      color: mix($text, $secondary, 48%);
+    }
+
+    .modal-close:hover {
+      border-color: $primary;
+      color: $primary;
+    }
+
+    .team-header.team-adulto {
+      background: rgba($primary, 0.14);
+      border-color: rgba($accent, 0.95);
+      border-left-color: rgba($accent, 0.95);
+    }
+
+    .team-header.team-juvenil {
+      background: rgba($secondary, 0.1);
+      border-color: rgba($secondary, 0.52);
+      border-left-color: rgba($secondary, 0.95);
+    }
+
+    .team-name {
+      color: mix($text, #ffffff, 88%);
+    }
+
+    .team-count {
+      color: mix($text, $secondary, 48%);
+    }
+
+    .team-block {
+      border-color: rgba($secondary, 0.3);
+      border-left-color: rgba($secondary, 0.74);
+      background: rgba($dark, 0.36);
+    }
+
+    .team-block--partial {
+      border-left-color: rgba($primary, 0.85);
+    }
+
+    .team-block-header {
+      border-bottom-color: rgba($secondary, 0.3);
+    }
+
+    .team-block[open] .team-block-header {
+      border-bottom-color: rgba($secondary, 0.5);
+    }
+
+    .team-block-title {
+      color: mix($text, #ffffff, 88%);
+    }
+
+    .team-block-meta {
+      color: mix($text, $secondary, 46%);
+    }
+
+    .team-subtitle {
+      color: mix($text, $secondary, 38%);
+    }
+
+    .team-player-item {
+      background: rgba($dark, 0.66);
+      border-color: rgba($secondary, 0.3);
+    }
+
+    .team-player-item .item-num {
+      color: $accent;
+    }
+
+    .team-player-item .item-name {
+      color: mix($text, #ffffff, 88%);
+    }
+
+    .team-player-item .item-pos {
+      color: mix($text, $secondary, 45%);
+    }
+
+    .team-player-item .item-age {
+      color: mix($text, $secondary, 42%);
+      border-color: rgba($secondary, 0.36);
+    }
+
+    .team-player-item .item-role--cancha {
+      color: $secondary;
+    }
+
+    .team-player-item .item-role--banca {
+      color: $accent;
+    }
+
+    .team-empty {
+      color: rgba($text, 0.58);
+    }
+
+    .modal-note__text {
+      color: mix($text, $secondary, 42%);
+    }
+
+    .teams-divider {
+      background: linear-gradient(180deg, transparent, rgba($secondary, 0.65), transparent);
+    }
+
+    .site-footer {
+      background: mix($dark, $primary, 74%);
+      border-top-color: $primary;
+
+      &::before {
+        background: linear-gradient(90deg, $primary, $secondary, $accent, $primary);
+      }
+    }
+
+    .footer-text {
+      color: mix($text, #ffffff, 80%);
+    }
+
+    .footer-theme-title {
+      color: $secondary;
+    }
+
+    .theme-chip {
+      border-color: rgba($secondary, 0.55);
+    }
+
+    .theme-chip.is-active {
+      border-color: $secondary;
+      background: rgba($secondary, 0.1);
+      box-shadow: 0 0 0 1px rgba($secondary, 0.42), 0 0 14px rgba($secondary, 0.34);
+    }
+
+    .toast.toast--success {
+      background: mix($dark, $primary, 84%);
+      border-color: $secondary;
+      border-left-color: $secondary;
+      color: mix($text, $secondary, 74%);
+    }
+
+    .toast.toast--error {
+      background: mix($dark, $primary, 84%);
+      border-color: $primary;
+      border-left-color: $primary;
+      color: mix($text, $primary, 74%);
+    }
+
+    .toast.toast--info {
+      background: mix($dark, $primary, 84%);
+      border-color: rgba($secondary, 0.56);
+      border-left-color: $accent;
+      color: mix($text, #ffffff, 82%);
+    }
+  }
 }
