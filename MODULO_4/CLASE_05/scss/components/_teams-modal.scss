@@ -22,11 +22,12 @@
 .modal {
   @include board-panel;
   @include teal-border-top;
-  width: 90%;
-  max-width: 860px;
+  width: min(97vw, 1440px);
+  max-width: 1440px;
   max-height: 85vh;
   overflow-y: auto;
-  padding: $space-xl;
+  overflow-x: hidden;
+  padding: clamp($space-lg, 2.5vw, $space-xl);
   position: relative;
   animation: modalIn 0.3s ease;
   border: 2px solid $color-slate;
@@ -145,13 +146,171 @@
   color: $color-steel;
   margin-left: 0;
   text-align: right;
-  white-space: nowrap;
+  white-space: normal;
+  line-height: 1.35;
 }
 
 .team-players-list {
   display: flex;
   flex-direction: column;
   gap: $space-md;
+}
+
+.loose-players-section {
+  margin-top: $space-lg;
+  border: 1px solid rgba($color-slate, 0.4);
+  border-radius: $radius-sm;
+  background:
+    linear-gradient(180deg, rgba($color-navy, 0.16), transparent 35%),
+    rgba($color-surface, 0.36);
+  padding: $space-sm;
+}
+
+.loose-header {
+  @include flex-between;
+  gap: $space-sm;
+  padding: 0 $space-xs $space-xs;
+  border-bottom: 1px solid rgba($color-slate, 0.45);
+  margin-bottom: $space-xs;
+}
+
+.loose-title {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-steel;
+}
+
+.loose-count {
+  font-family: $font-mono;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  color: $color-slate;
+  text-align: right;
+}
+
+.loose-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.loose-table-head,
+.loose-row {
+  display: grid;
+  grid-template-columns:
+    92px
+    minmax(150px, 1.8fr)
+    minmax(58px, 0.7fr)
+    minmax(86px, 0.8fr)
+    minmax(112px, 1fr)
+    minmax(108px, 0.95fr)
+    minmax(118px, 1fr);
+  gap: $space-xs clamp($space-xs, 0.9vw, $space-sm);
+  align-items: center;
+  min-width: 820px;
+}
+
+.loose-table-head {
+  padding: $space-xs $space-xs 6px;
+  margin-bottom: $space-xs;
+  border-bottom: 1px solid rgba($color-slate, 0.55);
+  background: linear-gradient(90deg, rgba($color-orange, 0.05), rgba($color-teal, 0.04));
+}
+
+.loose-table-head span {
+  display: block;
+  font-family: $font-display;
+  font-size: 0.56rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-teal2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.loose-table-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.loose-row {
+  border: 1px solid rgba($color-slate, 0.36);
+  border-left: 3px solid rgba($color-orange, 0.78);
+  border-radius: $radius-sm;
+  background: rgba($color-bg, 0.56);
+  padding: $space-xs $space-sm;
+  transition: border-color $transition-fast, background $transition-fast;
+}
+
+.loose-row:hover {
+  border-color: rgba($color-steel, 0.6);
+  background: rgba($color-bg, 0.68);
+}
+
+.loose-cell {
+  font-family: $font-mono;
+  font-size: 0.67rem;
+  color: $color-steel;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.loose-cell--num {
+  color: $color-highlight;
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+}
+
+.loose-cell--name {
+  font-family: $font-display;
+  color: $color-text-main;
+  letter-spacing: 0.05em;
+}
+
+.loose-cell--cat-adulto {
+  color: $color-salmon;
+}
+
+.loose-cell--cat-juvenil {
+  color: $color-teal;
+}
+
+.loose-cell--status {
+  font-family: $font-display;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $color-orange;
+}
+
+.loose-empty {
+  font-family: $font-mono;
+  font-size: 0.78rem;
+  color: rgba($color-steel, 0.6);
+  text-align: center;
+  padding: $space-md;
+}
+
+@include respond-to('lg') {
+  .loose-table {
+    overflow-x: hidden;
+  }
+
+  .loose-table-head,
+  .loose-row {
+    min-width: 0;
+    grid-template-columns:
+      minmax(0, 0.65fr)
+      minmax(0, 1.8fr)
+      minmax(0, 0.56fr)
+      minmax(0, 0.72fr)
+      minmax(0, 0.95fr)
+      minmax(0, 0.86fr)
+      minmax(0, 0.98fr);
+  }
 }
 
 .team-block {
@@ -274,6 +433,10 @@
 
   .item-role--banca {
     color: $color-salmon;
+  }
+
+  .item-role--sin-equipo {
+    color: $color-orange;
   }
 }
 

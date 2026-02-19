@@ -22,7 +22,7 @@
       <div class="scoreboard-stats" role="region" aria-label="Estadísticas">
         <div class="stat-panel">
           <span class="stat-value" id="stat-total">00</span>
-          <span class="stat-label">Total</span>
+          <span class="stat-label">Inscritos</span>
         </div>
         <div class="stat-panel">
           <span class="stat-value" id="stat-adultos">00</span>
@@ -202,6 +202,27 @@
           <div class="team-players-list" id="team-juvenil-list" role="list"></div>
         </div>
       </div>
+
+      <section class="loose-players-section" aria-label="Jugadores sin equipo">
+        <div class="loose-header">
+          <span class="loose-title">Jugadores Sueltos</span>
+          <span class="loose-count" id="team-loose-count">Sin jugadores sueltos</span>
+        </div>
+        <div class="loose-table">
+          <div class="loose-table-head" aria-hidden="true">
+            <span>N° Jugador</span>
+            <span>Nombre</span>
+            <span>Edad</span>
+            <span>Altura</span>
+            <span>Posición</span>
+            <span>Categoría</span>
+            <span>Estado</span>
+          </div>
+          <div class="loose-table-list" id="team-loose-list" role="list">
+            <div class="loose-empty">No hay jugadores sueltos.</div>
+          </div>
+        </div>
+      </section>
 
       <div class="court-line court-line--spaced"></div>
       <div class="modal-note">

@@ -211,6 +211,10 @@
   color: $color-salmon;
 }
 
+.player-cell--rol-sin-equipo {
+  color: $color-orange;
+}
+
 .player-cell--cat-adulto {
   color: $color-salmon;
 }
@@ -248,16 +252,16 @@
   .player-row {
     min-width: 0;
     grid-template-columns:
-      minmax(0, 0.68fr)
-      minmax(0, 1.8fr)
-      minmax(0, 0.52fr)
-      minmax(0, 0.65fr)
-      minmax(0, 0.82fr)
-      minmax(0, 0.78fr)
-      minmax(0, 1.05fr)
-      minmax(0, 0.72fr)
-      minmax(0, 0.86fr)
-      minmax(0, 0.66fr);
+      minmax(58px, 0.62fr)
+      minmax(160px, 1.9fr)
+      minmax(52px, 0.5fr)
+      minmax(76px, 0.72fr)
+      minmax(96px, 0.95fr)
+      minmax(96px, 0.9fr)
+      minmax(120px, 1.08fr)
+      minmax(88px, 0.82fr)
+      minmax(104px, 0.95fr)
+      minmax(84px, 0.74fr);
   }
 }
 

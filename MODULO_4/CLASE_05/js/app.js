@@ -15,6 +15,7 @@
 let jugadores = [];
 let equiposSnapshot = null;
 let equiposDesactualizados = false;
+let nextJugadorId = 1;
 
 /** Posiciones válidas del básquetbol */
 const POSICIONES_VALIDAS = ['base', 'escolta', 'alero', 'ala-pivot', 'pivot'];
@@ -37,13 +38,32 @@ const TORNEO_CFG = {
   formato: 'FIBA',
   jugadoresPorEquipo: 12,
   titularesPorEquipo: 5,
-  bancaPorEquipo: 7,
   equiposMinimosPorCategoria: 2
 };
+TORNEO_CFG.bancaPorEquipo = TORNEO_CFG.jugadoresPorEquipo - TORNEO_CFG.titularesPorEquipo;
 
 /** Temas disponibles para cambio dinámico (incluye original/base) */
 const THEMES_NBA = ['original', 'lakers', 'celtics', 'bulls', 'heat', 'pistons'];
 const THEME_STORAGE_KEY = 'torneo_nba_theme';
+const PLAYERS_STORAGE_KEY = 'torneo_players_data';
+const PLAYERS_NEXT_ID_KEY = 'torneo_players_next_id';
+const PLAYERS_STORAGE_TEST_KEY = 'torneo_players_storage_test';
+
+let playersStorageWarned = false;
+const playersStorage = (() => {
+  const storages = [() => window.localStorage, () => window.sessionStorage];
+  for (const getStorage of storages) {
+    try {
+      const storage = getStorage();
+      storage.setItem(PLAYERS_STORAGE_TEST_KEY, 'ok');
+      storage.removeItem(PLAYERS_STORAGE_TEST_KEY);
+      return storage;
+    } catch (_) {
+      // Continúa al siguiente storage disponible.
+    }
+  }
+  return null;
+})();
 
 /** Dataset demo (60 jugadores: 30 adultos + 30 juveniles) */
 const JUGADORES_DEMO = [
@@ -133,6 +153,9 @@ const teamAdultoList   = document.getElementById('team-adulto-list');
 const teamJuvenilList  = document.getElementById('team-juvenil-list');
 const teamAdultoCount  = document.getElementById('team-adulto-count');
 const teamJuvenilCount = document.getElementById('team-juvenil-count');
+const teamLooseCount   = document.getElementById('team-loose-count');
+const teamLooseList    = document.getElementById('team-loose-list');
+const modalNoteText    = document.querySelector('.modal-note__text');
 const themeButtons     = Array.from(document.querySelectorAll('.theme-chip'));
 
 // =============================================================================
@@ -324,6 +347,102 @@ function determinarCategoria(edad) {
   return edad >= REQUISITOS.edadAdulto ? 'adulto' : 'juvenil';
 }
 
+function limpiarPersistenciaJugadores() {
+  if (!playersStorage) return;
+  try {
+    playersStorage.removeItem(PLAYERS_STORAGE_KEY);
+    playersStorage.removeItem(PLAYERS_NEXT_ID_KEY);
+  } catch (_) {
+    // Si storage no está disponible, se ignora.
+  }
+}
+
+function guardarPersistenciaJugadores() {
+  if (!playersStorage) {
+    if (!playersStorageWarned) {
+      playersStorageWarned = true;
+      showToast('Tu navegador bloquea guardado local. Al recargar volverás a la base.', 'info');
+    }
+    return;
+  }
+  try {
+    if (!jugadores.length) {
+      limpiarPersistenciaJugadores();
+      return;
+    }
+    playersStorage.setItem(PLAYERS_STORAGE_KEY, JSON.stringify(jugadores));
+    playersStorage.setItem(PLAYERS_NEXT_ID_KEY, String(nextJugadorId));
+  } catch (_) {
+    if (!playersStorageWarned) {
+      playersStorageWarned = true;
+      showToast('No se pudo guardar la lista en este navegador.', 'info');
+    }
+  }
+}
+
+function normalizarJugadorPersistido(jugador, index) {
+  const edad = Number(jugador?.edad);
+  const altura = Number(jugador?.altura);
+  const posicion = POSICIONES_VALIDAS.includes(jugador?.posicion) ? jugador.posicion : 'base';
+  const id = Number(jugador?.id);
+  const categoria = jugador?.categoria === 'adulto' || jugador?.categoria === 'juvenil'
+    ? jugador.categoria
+    : determinarCategoria(Number.isFinite(edad) ? edad : REQUISITOS.edadMinima);
+  const aprobado = Boolean(jugador?.aprobado);
+
+  return {
+    id: Number.isFinite(id) && id > 0 ? id : index + 1,
+    numero: index + 1,
+    nombre: typeof jugador?.nombre === 'string' && jugador.nombre.trim() ? jugador.nombre.trim() : 'SIN NOMBRE',
+    edad: Number.isFinite(edad) ? edad : REQUISITOS.edadMinima,
+    altura: Number.isFinite(altura) ? altura : REQUISITOS.alturaMinima,
+    posicion,
+    categoria,
+    aprobado,
+    motivos: Array.isArray(jugador?.motivos) ? jugador.motivos.filter((m) => typeof m === 'string') : [],
+    equipo: aprobado && typeof jugador?.equipo === 'string' && jugador.equipo.trim() ? jugador.equipo : null,
+    rolTorneo: aprobado && typeof jugador?.rolTorneo === 'string' && jugador.rolTorneo.trim() ? jugador.rolTorneo : null,
+    timestamp: typeof jugador?.timestamp === 'string' && jugador.timestamp.trim()
+      ? jugador.timestamp
+      : new Date().toLocaleTimeString('es-CL')
+  };
+}
+
+function cargarPersistenciaJugadores() {
+  if (!playersStorage) return false;
+  try {
+    const raw = playersStorage.getItem(PLAYERS_STORAGE_KEY);
+    if (!raw) return false;
+
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      limpiarPersistenciaJugadores();
+      return false;
+    }
+
+    jugadores = parsed.map((jugador, index) => normalizarJugadorPersistido(jugador, index));
+
+    const maxId = jugadores.reduce((max, jugador) => {
+      const id = Number(jugador.id);
+      return Number.isFinite(id) && id > max ? id : max;
+    }, 0);
+    const storedNextId = Number(playersStorage.getItem(PLAYERS_NEXT_ID_KEY));
+    nextJugadorId = Number.isFinite(storedNextId) && storedNextId > maxId
+      ? storedNextId
+      : maxId + 1;
+
+    equiposSnapshot = null;
+    equiposDesactualizados = jugadores.some((j) => Boolean(j.equipo) || Boolean(j.rolTorneo));
+
+    renderizarListaCompleta();
+    actualizarStats();
+    return true;
+  } catch (_) {
+    limpiarPersistenciaJugadores();
+    return false;
+  }
+}
+
 /**
  * Verifica si el jugador cumple los requisitos mínimos
  * @param {Object} jugador
@@ -353,10 +472,10 @@ function verificarRequisitos(jugador) {
 /**
  * Registra un nuevo jugador con validación completa
  * @param {Object} datos - Datos del formulario
- * @param {{ notify?: boolean, animate?: boolean }} [options]
+ * @param {{ notify?: boolean, animate?: boolean, persist?: boolean }} [options]
  */
 function registrarJugador(datos, options = {}) {
-  const { notify = true, animate = true } = options;
+  const { notify = true, animate = true, persist = true } = options;
 
   // Declarar variables con los datos ingresados
   const nombre   = datos.nombre.trim().replace(/\s+/g, ' ');
@@ -372,7 +491,7 @@ function registrarJugador(datos, options = {}) {
 
   // Construir objeto jugador
   const jugador = {
-    id: Date.now(),
+    id: nextJugadorId++,
     numero: jugadores.length + 1,
     nombre,
     edad,
@@ -393,6 +512,7 @@ function registrarJugador(datos, options = {}) {
   // Actualizar UI
   renderizarJugador(jugador, animate);
   actualizarStats();
+  if (persist) guardarPersistenciaJugadores();
 
   // Notificación
   if (notify) {
@@ -437,7 +557,9 @@ function renderizarJugador(jugador, animate = false) {
     ? ' player-cell--rol-cancha'
     : rolText === 'Banca'
       ? ' player-cell--rol-banca'
-      : '';
+      : rolText === 'SIN EQUIPO'
+        ? ' player-cell--rol-sin-equipo'
+        : '';
 
   const row = document.createElement('div');
   row.className = `player-row ${estadoClass}${animClass}`;
@@ -524,6 +646,88 @@ function etiquetaEquipo(index) {
   } while (n >= 0);
 
   return label;
+}
+
+function etiquetaEquipoToIndex(etiqueta) {
+  if (typeof etiqueta !== 'string') return -1;
+  const clean = etiqueta.trim().toUpperCase();
+  if (!/^[A-Z]+$/.test(clean)) return -1;
+
+  let result = 0;
+  for (let i = 0; i < clean.length; i += 1) {
+    result = (result * 26) + (clean.charCodeAt(i) - 64);
+  }
+  return result - 1;
+}
+
+function extraerEtiquetaDesdeEquipo(equipoNombre, categoriaEtiqueta) {
+  if (typeof equipoNombre !== 'string') return null;
+  const prefix = `${categoriaEtiqueta} `;
+  if (!equipoNombre.startsWith(prefix)) return null;
+  const etiqueta = equipoNombre.slice(prefix.length).trim().toUpperCase();
+  return /^[A-Z]+$/.test(etiqueta) ? etiqueta : null;
+}
+
+function reconstruirEquiposAsignados(jugadoresCategoria, categoriaEtiqueta) {
+  const groups = new Map();
+
+  jugadoresCategoria.forEach((jugador) => {
+    const etiqueta = extraerEtiquetaDesdeEquipo(jugador.equipo, categoriaEtiqueta);
+    if (!etiqueta) return;
+    if (jugador.rolTorneo !== 'Cancha' && jugador.rolTorneo !== 'Banca') return;
+
+    if (!groups.has(etiqueta)) {
+      groups.set(etiqueta, { etiqueta, titulares: [], banca: [] });
+    }
+
+    const team = groups.get(etiqueta);
+    if (jugador.rolTorneo === 'Cancha') team.titulares.push(jugador);
+    if (jugador.rolTorneo === 'Banca') team.banca.push(jugador);
+  });
+
+  const equiposCompletos = [];
+  const idsConEquipoCompleto = new Set();
+
+  groups.forEach((team) => {
+    team.titulares.sort((a, b) => a.numero - b.numero);
+    team.banca.sort((a, b) => a.numero - b.numero);
+
+    if (
+      team.titulares.length === TORNEO_CFG.titularesPorEquipo
+      && team.banca.length === TORNEO_CFG.bancaPorEquipo
+    ) {
+      equiposCompletos.push(team);
+      [...team.titulares, ...team.banca].forEach((jugador) => idsConEquipoCompleto.add(jugador.id));
+    }
+  });
+
+  equiposCompletos.sort((a, b) => etiquetaEquipoToIndex(a.etiqueta) - etiquetaEquipoToIndex(b.etiqueta));
+
+  const disponibles = jugadoresCategoria.filter((jugador) => !idsConEquipoCompleto.has(jugador.id));
+  return { equiposCompletos, disponibles };
+}
+
+function crearEquiposRespetandoAsignacion(jugadoresCategoria, categoriaEtiqueta) {
+  const reconstruidos = reconstruirEquiposAsignados(jugadoresCategoria, categoriaEtiqueta);
+  const nuevos = crearEquiposCompletosCategoria(reconstruidos.disponibles);
+
+  const etiquetasUsadas = new Set(reconstruidos.equiposCompletos.map((team) => team.etiqueta));
+  let idxEtiqueta = 0;
+
+  const equiposNuevosReetiquetados = nuevos.equipos.map((team) => {
+    while (etiquetasUsadas.has(etiquetaEquipo(idxEtiqueta))) {
+      idxEtiqueta += 1;
+    }
+    const etiqueta = etiquetaEquipo(idxEtiqueta);
+    etiquetasUsadas.add(etiqueta);
+    idxEtiqueta += 1;
+    return { ...team, etiqueta };
+  });
+
+  return {
+    equipos: [...reconstruidos.equiposCompletos, ...equiposNuevosReetiquetados],
+    sobrantes: nuevos.sobrantes
+  };
 }
 
 function crearEquiposCompletosCategoria(jugadoresCategoria) {
@@ -639,6 +843,37 @@ function teamBlockHTML(team) {
   `;
 }
 
+function etiquetaCantidadJugadores(cantidad) {
+  return `${cantidad} jugador${cantidad === 1 ? '' : 'es'}`;
+}
+
+function descripcionFormatoEquipo() {
+  return `${TORNEO_CFG.jugadoresPorEquipo} = ${TORNEO_CFG.titularesPorEquipo} cancha + ${TORNEO_CFG.bancaPorEquipo} banca`;
+}
+
+function actualizarNotaFormatoTorneo() {
+  if (!modalNoteText) return;
+  modalNoteText.textContent = `${TORNEO_CFG.formato} OFICIAL · ${TORNEO_CFG.jugadoresPorEquipo} POR EQUIPO (${TORNEO_CFG.titularesPorEquipo} CANCHA + ${TORNEO_CFG.bancaPorEquipo} BANCA) · MÍNIMO ${TORNEO_CFG.equiposMinimosPorCategoria} EQUIPOS ADULTOS Y ${TORNEO_CFG.equiposMinimosPorCategoria} JUVENILES`;
+}
+
+function loosePlayerRowHTML(jugador) {
+  const categoriaClass = jugador.categoria === 'adulto'
+    ? 'loose-cell--cat-adulto'
+    : 'loose-cell--cat-juvenil';
+
+  return `
+    <div class="loose-row" role="listitem">
+      <span class="loose-cell loose-cell--num">${String(jugador.numero).padStart(2, '0')}</span>
+      <span class="loose-cell loose-cell--name">${jugador.nombre.toUpperCase()}</span>
+      <span class="loose-cell">${jugador.edad}</span>
+      <span class="loose-cell">${jugador.altura} cm</span>
+      <span class="loose-cell">${formatPosicion(jugador.posicion)}</span>
+      <span class="loose-cell loose-cell--cat ${categoriaClass}">${jugador.categoria.toUpperCase()}</span>
+      <span class="loose-cell loose-cell--status">SIN EQUIPO</span>
+    </div>
+  `;
+}
+
 /**
  * Arma y muestra los equipos por categoría en el modal
  */
@@ -653,12 +888,12 @@ function mostrarEquipos() {
     return;
   }
 
-  const equiposAdultos = crearEquiposCompletosCategoria(adultos);
-  const equiposJuveniles = crearEquiposCompletosCategoria(juveniles);
+  const equiposAdultos = crearEquiposRespetandoAsignacion(adultos, 'Adulto');
+  const equiposJuveniles = crearEquiposRespetandoAsignacion(juveniles, 'Juvenil');
 
   if (equiposAdultos.equipos.length < minEquipos || equiposJuveniles.equipos.length < minEquipos) {
     showToast(
-      `FIBA oficial: se requieren mínimo ${minEquipos} equipos completos por categoría (12 = 5 cancha + 7 banca). Adultos: ${equiposAdultos.equipos.length}, Juveniles: ${equiposJuveniles.equipos.length}.`,
+      `${TORNEO_CFG.formato} oficial: se requieren mínimo ${minEquipos} equipos completos por categoría (${descripcionFormatoEquipo()}). Adultos: ${equiposAdultos.equipos.length}, Juveniles: ${equiposJuveniles.equipos.length}.`,
       'info'
     );
     return;
@@ -667,27 +902,59 @@ function mostrarEquipos() {
   limpiarAsignacionEquipos();
   asignarEquiposACategoria(equiposAdultos.equipos, 'Adulto');
   asignarEquiposACategoria(equiposJuveniles.equipos, 'Juvenil');
+
+  // Marcado explícito de inscritos que quedan fuera de equipos completos.
+  [...equiposAdultos.sobrantes, ...equiposJuveniles.sobrantes].forEach((jugador) => {
+    jugador.equipo = 'SIN EQUIPO';
+    jugador.rolTorneo = 'SIN EQUIPO';
+  });
+
   renderizarListaCompleta();
 
   // Render adultos
-  const adultosCountText = `${adultos.length} jugadores · ${equiposAdultos.equipos.length} equipos completos${equiposAdultos.sobrantes.length ? ` · ${equiposAdultos.sobrantes.length} sin equipo` : ''}`;
+  const adultosCountText = `${etiquetaCantidadJugadores(adultos.length)} · ${equiposAdultos.equipos.length} equipos completos${equiposAdultos.sobrantes.length ? ` · ${etiquetaCantidadJugadores(equiposAdultos.sobrantes.length)} sin equipo` : ''}`;
   const adultosHTML = equiposAdultos.equipos.map((team) => teamBlockHTML(team)).join('');
   teamAdultoCount.textContent = adultosCountText;
   teamAdultoList.innerHTML = adultosHTML;
 
   // Render juveniles
-  const juvenilesCountText = `${juveniles.length} jugadores · ${equiposJuveniles.equipos.length} equipos completos${equiposJuveniles.sobrantes.length ? ` · ${equiposJuveniles.sobrantes.length} sin equipo` : ''}`;
+  const juvenilesCountText = `${etiquetaCantidadJugadores(juveniles.length)} · ${equiposJuveniles.equipos.length} equipos completos${equiposJuveniles.sobrantes.length ? ` · ${etiquetaCantidadJugadores(equiposJuveniles.sobrantes.length)} sin equipo` : ''}`;
   const juvenilesHTML = equiposJuveniles.equipos.map((team) => teamBlockHTML(team)).join('');
   teamJuvenilCount.textContent = juvenilesCountText;
   teamJuvenilList.innerHTML = juvenilesHTML;
+
+  const sueltosTotal = [...equiposAdultos.sobrantes, ...equiposJuveniles.sobrantes]
+    .sort((a, b) => a.numero - b.numero);
+  const sueltosCountText = sueltosTotal.length
+    ? `${etiquetaCantidadJugadores(sueltosTotal.length)} sin equipo`
+    : 'Sin jugadores sueltos';
+  const sueltosHTML = sueltosTotal.length
+    ? sueltosTotal.map((jugador) => loosePlayerRowHTML(jugador)).join('')
+    : '<div class="loose-empty">No hay jugadores sueltos.</div>';
+
+  if (teamLooseCount) teamLooseCount.textContent = sueltosCountText;
+  if (teamLooseList) teamLooseList.innerHTML = sueltosHTML;
 
   equiposSnapshot = {
     adultosCountText,
     adultosHTML,
     juvenilesCountText,
-    juvenilesHTML
+    juvenilesHTML,
+    sueltosCountText,
+    sueltosHTML
   };
   equiposDesactualizados = false;
+  guardarPersistenciaJugadores();
+
+  const gruposListos = equiposAdultos.equipos.length + equiposJuveniles.equipos.length;
+  const jugadoresSueltos = equiposAdultos.sobrantes.length + equiposJuveniles.sobrantes.length;
+  const avisoBalancePosiciones = jugadoresSueltos >= TORNEO_CFG.jugadoresPorEquipo
+    ? ' Revisa balance de posiciones (base, escolta, alero, ala-pivot, pivot) para formar más equipos completos.'
+    : '';
+  showToast(
+    `Tenemos ${gruposListos} grupos listos y ${jugadoresSueltos} jugador${jugadoresSueltos === 1 ? '' : 'es'} suelto${jugadoresSueltos === 1 ? '' : 's'}.${avisoBalancePosiciones}`,
+    'success'
+  );
 
   // Abrir modal
   modalOverlay.classList.add('is-active');
@@ -703,6 +970,8 @@ function verEquiposArmados() {
   teamAdultoList.innerHTML = equiposSnapshot.adultosHTML;
   teamJuvenilCount.textContent = equiposSnapshot.juvenilesCountText;
   teamJuvenilList.innerHTML = equiposSnapshot.juvenilesHTML;
+  if (teamLooseCount) teamLooseCount.textContent = equiposSnapshot.sueltosCountText || 'Sin jugadores sueltos';
+  if (teamLooseList) teamLooseList.innerHTML = equiposSnapshot.sueltosHTML || '<div class="loose-empty">No hay jugadores sueltos.</div>';
   modalOverlay.classList.add('is-active');
 
   if (equiposDesactualizados) {
@@ -714,7 +983,11 @@ function verEquiposArmados() {
  * Genera HTML de item de jugador en la vista de equipos
  */
 function teamPlayerItem(jugador, index, rol) {
-  const rolClass = rol === 'Cancha' ? 'item-role--cancha' : 'item-role--banca';
+  const rolClass = rol === 'Cancha'
+    ? 'item-role--cancha'
+    : rol === 'Banca'
+      ? 'item-role--banca'
+      : 'item-role--sin-equipo';
 
   return `
     <div class="team-player-item">
@@ -740,8 +1013,10 @@ function limpiarLista() {
   if (!confirm('¿Seguro que deseas limpiar toda la lista de jugadores?')) return;
 
   jugadores = [];
+  nextJugadorId = 1;
   equiposSnapshot = null;
   equiposDesactualizados = false;
+  limpiarPersistenciaJugadores();
   renderizarEmpty();
   actualizarStats();
   showToast('Lista de jugadores limpiada.', 'info');
@@ -751,15 +1026,11 @@ function cargarJugadoresDemo() {
   if (!CARGAR_DEMO_AL_INICIO || jugadores.length > 0) return;
 
   JUGADORES_DEMO.forEach((jugador) => {
-    registrarJugador(jugador, { notify: false, animate: false });
+    registrarJugador(jugador, { notify: false, animate: false, persist: false });
   });
 
-  const adultos = JUGADORES_DEMO.filter(j => j.edad >= 18).length;
-  const juveniles = JUGADORES_DEMO.length - adultos;
-  showToast(
-    `Demo ${TORNEO_CFG.formato}: ${JUGADORES_DEMO.length} jugadores (${adultos} adultos + ${juveniles} juveniles).`,
-    'info'
-  );
+  guardarPersistenciaJugadores();
+  // No mostrar toast automático: la lista demo queda cargada en silencio.
 }
 
 // =============================================================================
@@ -915,8 +1186,14 @@ document.addEventListener('keydown', (e) => {
 
 (function init() {
   inicializarTemasNBA();
-  renderizarEmpty();
-  actualizarStats();
-  cargarJugadoresDemo();
+  actualizarNotaFormatoTorneo();
+  const cargoPersistencia = cargarPersistenciaJugadores();
+
+  if (!cargoPersistencia) {
+    renderizarEmpty();
+    actualizarStats();
+    cargarJugadoresDemo();
+  }
+
   inputNombre.focus();
 })();

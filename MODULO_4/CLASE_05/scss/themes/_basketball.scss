@@ -569,6 +569,10 @@
       color: $accent;
     }
 
+    .player-cell--rol-sin-equipo {
+      color: $primary;
+    }
+
     .player-cell--cat-adulto {
       color: $accent;
     }
@@ -595,6 +599,73 @@
 
     .empty-state .empty-icon {
       filter: drop-shadow(0 0 16px rgba($primary, 0.34));
+    }
+
+    .loose-players-section {
+      border-color: rgba($secondary, 0.36);
+      background:
+        linear-gradient(180deg, rgba($primary, 0.16), transparent 36%),
+        rgba(mix($dark, $primary, 87%), 0.5);
+    }
+
+    .loose-header {
+      border-bottom-color: rgba($secondary, 0.4);
+    }
+
+    .loose-title {
+      color: mix($text, $secondary, 55%);
+    }
+
+    .loose-count {
+      color: mix($text, $secondary, 42%);
+    }
+
+    .loose-table-head {
+      border-bottom-color: rgba($secondary, 0.46);
+      background: linear-gradient(90deg, rgba($primary, 0.09), rgba($secondary, 0.07));
+    }
+
+    .loose-table-head span {
+      color: mix($secondary, $text, 65%);
+    }
+
+    .loose-row {
+      border-color: rgba($secondary, 0.28);
+      border-left-color: rgba($primary, 0.84);
+      background: rgba($dark, 0.62);
+    }
+
+    .loose-row:hover {
+      border-color: rgba($secondary, 0.58);
+      background: rgba($dark, 0.72);
+    }
+
+    .loose-cell {
+      color: mix($text, $secondary, 45%);
+    }
+
+    .loose-cell--num {
+      color: $secondary;
+    }
+
+    .loose-cell--name {
+      color: mix($text, #ffffff, 88%);
+    }
+
+    .loose-cell--cat-adulto {
+      color: $accent;
+    }
+
+    .loose-cell--cat-juvenil {
+      color: $secondary;
+    }
+
+    .loose-cell--status {
+      color: $primary;
+    }
+
+    .loose-empty {
+      color: rgba($text, 0.58);
     }
 
     .modal-overlay {
@@ -720,6 +791,10 @@
 
     .team-player-item .item-role--banca {
       color: $accent;
+    }
+
+    .team-player-item .item-role--sin-equipo {
+      color: $primary;
     }
 
     .team-empty {

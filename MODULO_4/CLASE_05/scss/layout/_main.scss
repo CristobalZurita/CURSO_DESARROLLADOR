@@ -14,7 +14,7 @@
 
 .main-content {
   flex: 1;
-  max-width: 1380px;
+  max-width: 1680px;
   margin: 0 auto;
   padding: $space-lg $space-md;
   width: 100%;
@@ -24,7 +24,7 @@
   }
 
   @include respond-to('lg') {
-    padding: $space-xl clamp($space-lg, 4vw, $space-xxl);
+    padding: $space-xl clamp($space-sm, 1.8vw, $space-lg);
   }
 }
 
@@ -39,8 +39,8 @@
   }
 
   @include respond-to('lg') {
-    grid-template-columns: minmax(400px, 460px) minmax(0, 1fr);
-    gap: clamp($space-lg, 3vw, 56px);
+    grid-template-columns: minmax(350px, 400px) minmax(0, 1fr);
+    gap: clamp($space-md, 2vw, $space-xl);
     align-items: start;
   }
 }
@@ -64,6 +64,7 @@
 // Columna derecha: lista de jugadores
 .col-players {
   min-width: 0;
+  width: 100%;
 }
 
 // Toast de notificación
