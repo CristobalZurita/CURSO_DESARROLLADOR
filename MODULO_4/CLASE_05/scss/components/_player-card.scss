@@ -38,13 +38,16 @@
     justify-content: center;
     background: $color-orange;
     color: #fff;
-    border-radius: 50%;
-    width: 22px;
-    height: 22px;
-    font-size: 0.7rem;
+    border-radius: 999px;
+    min-width: 28px;
+    height: 28px;
+    padding: 0 8px;
+    font-size: 0.72rem;
     font-weight: 700;
+    line-height: 1;
     margin-left: 0;
     flex: 0 0 auto;
+    box-shadow: 0 0 0 2px rgba($color-bg, 0.45);
   }
 }
 
