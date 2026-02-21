@@ -1,0 +1,27 @@
+// ============================================
+// BASE / _typography.scss
+// ============================================
+
+body {
+  font-family: $font-body;
+  font-weight: 300;
+  font-size: $font-size-md;
+  line-height: 1.7;
+}
+
+h1 { font-size: $font-size-4xl; font-weight: 700; }
+h2 { font-size: $font-size-2xl; font-weight: 700; }
+h3 { font-size: $font-size-xl;  font-weight: 600; }
+h4 { font-size: $font-size-lg;  font-weight: 600; }
+
+p { margin-bottom: $space-4; }
+p:last-child { margin-bottom: 0; }
+
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+.text-muted  { color: $color-text-muted; }
+.text-accent { color: $color-accent; }
+.text-center { text-align: center; }
+.text-sm     { font-size: $font-size-sm; }
+.text-lg     { font-size: $font-size-lg; }

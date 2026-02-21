@@ -1,0 +1,22 @@
+// ============================================================
+// layout/_footer.scss
+// ============================================================
+
+.site-footer {
+  grid-area: footer;
+  text-align: center;
+  padding: $sp-4;
+  font-family: $font-mono;
+  font-size: .65rem;
+  letter-spacing: .12em;
+  color: $c-text-muted;
+  position: relative;
+
+  &::before {
+    @extend %divider;
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+  }
+
+  em { color: $c-yellow; font-style: normal; }
+}

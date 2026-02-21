@@ -1,0 +1,28 @@
+// ================================================================
+// base/_typography.scss
+// ================================================================
+@use '../abstracts/variables' as v;
+
+body { font-family: v.$font-body; font-size: v.$fs-16; line-height: 1.6; color: v.$c-umber; }
+
+h1, h2, h3, h4 { font-family: v.$font-serif; line-height: 1.1; color: v.$c-indigo; font-weight: 600; }
+h1 { font-size: clamp(2.8rem, 6vw, v.$fs-72); letter-spacing: -0.02em; }
+h2 { font-size: clamp(2rem, 4vw, v.$fs-48); letter-spacing: -0.02em; }
+h3 { font-size: clamp(1.4rem, 2.5vw, v.$fs-28); }
+h4 { font-size: v.$fs-20; }
+h5 { font-size: v.$fs-18; font-family: v.$font-body; font-weight: 700; color: v.$c-indigo; }
+p  { font-size: v.$fs-16; line-height: 1.75; color: v.$c-umber-soft; }
+
+.eyebrow {
+  font-family: v.$font-mono;
+  font-size: v.$fs-11;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: v.$c-terra;
+}
+
+.lead { font-size: v.$fs-18; line-height: 1.7; }
+
+small { font-size: v.$fs-13; }
+strong { font-weight: 700; color: v.$c-umber; }

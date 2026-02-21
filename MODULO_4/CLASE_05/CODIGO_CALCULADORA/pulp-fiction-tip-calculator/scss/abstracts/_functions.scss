@@ -1,0 +1,41 @@
+// ============================================================
+// abstracts/_functions.scss
+// Funciones SASS puras – sin output CSS
+// ============================================================
+
+// Elimina la unidad de un número
+// Uso: strip-unit(16px) → 16
+@function strip-unit($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+
+// Convierte px a rem relativo a base 16
+// Uso: rem(24px) → 1.5rem
+@function rem($px, $base: 16px) {
+  @return math.div($px, $base) * 1rem;
+}
+
+// Clamp fluido entre dos tamaños según viewport
+// Uso: fluid(16px, 24px, 320px, 1200px)
+@function fluid($min-size, $max-size, $min-vw: 320px, $max-vw: 1200px) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-size);
+  $u4: unit($max-size);
+
+  @return clamp(
+    #{$min-size},
+    calc(
+      #{$min-size} +
+      #{strip-unit($max-size - $min-size)} *
+      ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+    ),
+    #{$max-size}
+  );
+}
+
+// Genera una opacidad de color
+// Uso: alpha($c-yellow, .15)
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}

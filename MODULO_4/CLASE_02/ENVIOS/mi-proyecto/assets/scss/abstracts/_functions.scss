@@ -1,0 +1,12 @@
+/* abstracts/_functions.scss */
+@function px($value) {
+  @return $value * 1px;
+}
+
+@function rem($value, $base: 16) {
+  @return ($value / $base) * 1rem;
+}
+
+@function clamp-val($min, $preferred, $max) {
+  @return clamp($min, $preferred, $max);
+}

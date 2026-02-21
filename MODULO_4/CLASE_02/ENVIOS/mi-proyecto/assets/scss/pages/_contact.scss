@@ -1,0 +1,121 @@
+/* pages/_contact.scss */
+.contact-section {
+  padding: var(--sp-xl) 0;
+  background: linear-gradient(135deg, #121238 0%, #0b0b22 100%);
+  border-top: 4px solid var(--c-cyan);
+  border-bottom: 4px solid var(--c-cyan);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-lg);
+  align-items: start;
+}
+
+.contact-card,
+.contact-form {
+  background: rgba(255, 255, 255, 0.04);
+  border: 3px solid var(--c-yellow);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.35);
+  padding: var(--sp-lg);
+}
+
+.contact-card__title,
+.contact-form__title {
+  font-family: var(--font-px);
+  font-size: 10px;
+  color: var(--c-yellow);
+  text-shadow: 2px 2px 0 var(--c-dark);
+  margin-bottom: var(--sp-md);
+}
+
+.contact-card__line {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.contact-map {
+  margin-top: var(--sp-md);
+  border: 3px solid var(--c-dark);
+  background: #000;
+  overflow: hidden;
+}
+
+.contact-map__frame {
+  display: block;
+  width: 100%;
+  height: 300px;
+  border: 0;
+}
+
+.contact-form__group {
+  display: block;
+  margin-bottom: var(--sp-md);
+}
+
+.contact-form__label {
+  display: block;
+  font-family: var(--font-px);
+  font-size: 7px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 6px;
+}
+
+.contact-form__control {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  color: var(--c-white);
+  padding: 10px 12px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.contact-form__control:focus {
+  border-color: var(--c-cyan);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.contact-form__control--textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form__submit {
+  width: 100%;
+  background: var(--c-green);
+  color: var(--c-white);
+  border: 3px solid var(--c-dark);
+  padding: 14px;
+  font-family: var(--font-px);
+  font-size: 8px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 var(--c-dark);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+}
+
+.contact-form__submit:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--c-dark);
+  background: #00c000;
+}
+
+.contact-form__submit:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--c-dark);
+}
+
+@media (max-width: 980px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-map__frame {
+    height: 260px;
+  }
+}

@@ -1,0 +1,116 @@
+// =====================================================
+// abstracts/_mixins.scss
+// Reusable mixins for Mario Store
+// =====================================================
+@use 'variables' as *;
+
+// ---- Responsive breakpoints ----
+@mixin mobile  { @media (max-width: #{$bp-mobile})  { @content; } }
+@mixin tablet  { @media (max-width: #{$bp-tablet})  { @content; } }
+@mixin laptop  { @media (max-width: #{$bp-laptop})  { @content; } }
+@mixin desktop { @media (min-width: #{$bp-desktop}) { @content; } }
+
+// ---- Pixel-style button ----
+@mixin pixel-button($bg: $color-green, $color: $color-white) {
+  background: $bg;
+  color: $color;
+  border: $border-pixel;
+  font-family: $font-pixel;
+  padding: $sp-sm $sp-md;
+  cursor: pointer;
+  box-shadow: $shadow-md;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 $color-dark;
+  }
+}
+
+// ---- Pixel text shadow ----
+@mixin pixel-text-shadow($color: $color-dark) {
+  text-shadow:
+    2px  2px 0 $color,
+    -1px -1px 0 $color,
+     1px -1px 0 $color,
+    -1px  1px 0 $color;
+}
+
+// ---- Parallax layer ----
+@mixin parallax-layer($z: 0) {
+  position: absolute;
+  width: 100%;
+  z-index: $z;
+  will-change: transform;
+}
+
+// ---- Shimmer gradient animation ----
+@mixin shimmer($duration: 3s) {
+  background: linear-gradient(
+    90deg,
+    $color-red 0%, $color-yellow 33%,
+    $color-green 66%, $color-cyan 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer $duration linear infinite;
+}
+
+// ---- Flex center ----
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ---- Pixel card ----
+@mixin pixel-card($bg: $color-surface) {
+  background: $bg;
+  border: 4px solid $color-dark;
+  box-shadow: $shadow-md;
+  position: relative;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+
+  &:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// ---- Pixel art sprite container ----
+@mixin pixel-sprite {
+  width: 1px;
+  height: 1px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  position: absolute;
+}
+
+// ---- Truncate text ----
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ---- Screen reader only ----
+@mixin sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}

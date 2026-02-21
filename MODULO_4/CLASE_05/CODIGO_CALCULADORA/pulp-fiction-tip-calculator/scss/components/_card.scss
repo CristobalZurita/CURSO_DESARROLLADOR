@@ -1,0 +1,102 @@
+// ============================================================
+// components/_card.scss
+// Tarjeta calculadora principal
+// ============================================================
+
+.calc-card {
+  @extend %dark-box;
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+  overflow: hidden;
+  animation: slideInUp .7s cubic-bezier(.4,0,.2,1) .3s both;
+
+  // Borde superior amarillo
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $c-yellow, $c-orange, $c-red);
+  }
+
+  // Esquinas decorativas tipo film
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 60px; height: 60px;
+    background:
+      linear-gradient(225deg, $c-yellow 10px, transparent 10px),
+      linear-gradient(135deg, $c-orange 10px, transparent 10px);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    opacity: .3;
+  }
+}
+
+// ── Secciones internas de la card
+.calc-card__head {
+  padding: $sp-6 $sp-8 $sp-5;
+  border-bottom: 1px solid $c-border;
+  position: relative;
+
+  .card-label {
+    @extend .label-sm;
+  }
+
+  .card-title {
+    font-family: $font-display;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    color: $c-cream;
+    margin-top: $sp-2;
+    line-height: 1.2;
+
+    em {
+      color: $c-yellow;
+      font-style: normal;
+    }
+  }
+}
+
+.calc-card__body {
+  padding: $sp-6 $sp-8;
+}
+
+.calc-card__results {
+  display: none;
+  padding: $sp-5 $sp-8 $sp-6;
+  background: rgba($c-yellow, .03);
+  border-top: 1px solid $c-border;
+  position: relative;
+
+  &.is-visible {
+    display: block;
+    animation: fadeUp .4s ease both;
+  }
+
+  &::before {
+    @extend %divider;
+    position: absolute;
+    top: 0; left: $sp-8; right: $sp-8;
+  }
+}
+
+.calc-card__console {
+  display: none;
+  padding: $sp-4 $sp-8 $sp-6;
+  background: $c-bg;
+  border-top: 1px solid $c-border;
+
+  &.is-visible {
+    display: block;
+    animation: fadeUp .4s ease both;
+  }
+}
+
+.calc-card__foot {
+  padding: $sp-3 $sp-8;
+  background: rgba($c-black, .4);
+  border-top: 1px solid $c-border;
+  @include flex-between;
+}

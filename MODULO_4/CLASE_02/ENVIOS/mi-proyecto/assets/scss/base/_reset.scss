@@ -1,0 +1,85 @@
+/* base/_reset.scss */
+:root {
+  --c-red: #E52521;
+  --c-green: #00A000;
+  --c-green2: #007050;
+  --c-yellow: #FFD700;
+  --c-yellow2: #f5bc01;
+  --c-cyan: #00B4D8;
+  --c-sky: #6898F8;
+  --c-sky2: #92C2F0;
+  --c-ground: #C87028;
+  --c-ground-t: #50C000;
+  --c-block: #E09000;
+  --c-brown: #743A00;
+  --c-white: #FFFFFF;
+  --c-dark: #181830;
+  --c-pipe: #007800;
+  --c-pipe-d: #004800;
+
+  --font-px: 'Press Start 2P', cursive;
+  --font-ui: 'Nunito', sans-serif;
+
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 32px;
+  --sp-xl: 64px;
+
+  --z-sky: 0;
+  --z-stars: 1;
+  --z-clouds: 2;
+  --z-hills: 3;
+  --z-pipes: 4;
+  --z-ground: 5;
+  --z-chars: 6;
+  --z-ui: 10;
+  --z-header: 100;
+  --z-overlay: 190;
+  --z-cart: 200;
+  --page-scale: 1.2;
+  --navbar-scale: 1.4;
+  --hero-scene-lift: clamp(0px, calc((var(--navbar-scale) - 1) * 180px), 96px);
+  --hero-focus-lift: 78px;
+  --hero-cloud-drop: 40px;
+  --anchor-offset: 150px;
+
+  /* Header nav control */
+  --header-nav-font-size: 11px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--anchor-offset);
+  zoom: var(--page-scale);
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--c-dark);
+  color: var(--c-white);
+  overflow-x: hidden;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect width='8' height='8' fill='%23E52521'/%3E%3Crect x='8' y='8' width='8' height='8' fill='%23E52521'/%3E%3C/svg%3E") 4 4,
+    auto;
+}
+
+body.body--cart-open {
+  overflow: hidden;
+}
+
+@supports not (zoom: 1) {
+  body {
+    transform: scale(var(--page-scale));
+    transform-origin: top left;
+    width: calc(100% / var(--page-scale));
+    min-height: calc(100vh / var(--page-scale));
+  }
+}

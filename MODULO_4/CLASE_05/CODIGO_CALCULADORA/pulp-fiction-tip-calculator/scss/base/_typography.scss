@@ -1,0 +1,47 @@
+// ============================================================
+// base/_typography.scss
+// Escala tipográfica global
+// ============================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  line-height: 1.15;
+  font-weight: normal;
+  letter-spacing: .03em;
+}
+
+h1 { font-size: clamp(2rem,   5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
+
+p {
+  font-size: clamp(.88rem, 1.5vw, 1rem);
+  line-height: 1.65;
+  color: rgba($c-cream, .8);
+}
+
+strong { font-weight: 600; color: $c-yellow; }
+em     { font-style: italic; color: $c-orange; }
+
+code, .mono {
+  font-family: $font-mono;
+  font-size: .88em;
+  letter-spacing: .04em;
+}
+
+.label-sm {
+  font-family: $font-mono;
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: $c-yellow;
+}
+
+.label-md {
+  font-family: $font-body;
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba($c-cream, .6);
+}

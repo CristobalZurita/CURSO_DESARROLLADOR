@@ -1,0 +1,813 @@
+/* layout/_hero.scss */
+$mario-shadow:
+  32px 0px 0 0 #E52521,
+  40px 0px 0 0 #E52521,
+  48px 0px 0 0 #E52521,
+  24px 8px 0 0 #E52521,
+  32px 8px 0 0 #E52521,
+  40px 8px 0 0 #E52521,
+  48px 8px 0 0 #E52521,
+  56px 8px 0 0 #E52521,
+  64px 8px 0 0 #E52521,
+  72px 8px 0 0 #E52521,
+  24px 16px 0 0 #8B4513,
+  32px 16px 0 0 #8B4513,
+  40px 16px 0 0 #FAB271,
+  48px 16px 0 0 #8B4513,
+  56px 16px 0 0 #8B4513,
+  64px 16px 0 0 #8B4513,
+  72px 16px 0 0 #FAB271,
+  80px 16px 0 0 #FAB271,
+  16px 24px 0 0 #8B4513,
+  24px 24px 0 0 #4169E1,
+  32px 24px 0 0 #4169E1,
+  40px 24px 0 0 #8B4513,
+  48px 24px 0 0 #FAB271,
+  56px 24px 0 0 #FAB271,
+  64px 24px 0 0 #FAB271,
+  72px 24px 0 0 #8B4513,
+  80px 24px 0 0 #8B4513,
+  16px 32px 0 0 #8B4513,
+  24px 32px 0 0 #4169E1,
+  32px 32px 0 0 #FAB271,
+  40px 32px 0 0 #FAB271,
+  48px 32px 0 0 #FAB271,
+  56px 32px 0 0 #FAB271,
+  64px 32px 0 0 #FAB271,
+  72px 32px 0 0 #FAB271,
+  80px 32px 0 0 #FAB271,
+  24px 40px 0 0 #8B4513,
+  32px 40px 0 0 #8B4513,
+  40px 40px 0 0 #4169E1,
+  48px 40px 0 0 #4169E1,
+  56px 40px 0 0 #4169E1,
+  64px 40px 0 0 #8B4513,
+  72px 40px 0 0 #8B4513,
+  16px 48px 0 0 #4169E1,
+  24px 48px 0 0 #4169E1,
+  32px 48px 0 0 #4169E1,
+  40px 48px 0 0 #4169E1,
+  48px 48px 0 0 #4169E1,
+  56px 48px 0 0 #4169E1,
+  64px 48px 0 0 #4169E1,
+  72px 48px 0 0 #4169E1,
+  80px 48px 0 0 #4169E1,
+  8px 56px 0 0 #E52521,
+  16px 56px 0 0 #E52521,
+  24px 56px 0 0 #4169E1,
+  32px 56px 0 0 #4169E1,
+  40px 56px 0 0 #4169E1,
+  48px 56px 0 0 #4169E1,
+  56px 56px 0 0 #E52521,
+  64px 56px 0 0 #4169E1,
+  72px 56px 0 0 #4169E1,
+  80px 56px 0 0 #E52521,
+  0px 64px 0 0 #E52521,
+  8px 64px 0 0 #E52521,
+  16px 64px 0 0 #4169E1,
+  24px 64px 0 0 #4169E1,
+  32px 64px 0 0 #4169E1,
+  40px 64px 0 0 #4169E1,
+  48px 64px 0 0 #4169E1,
+  56px 64px 0 0 #4169E1,
+  64px 64px 0 0 #4169E1,
+  72px 64px 0 0 #4169E1,
+  80px 64px 0 0 #E52521,
+  88px 64px 0 0 #E52521,
+  96px 64px 0 0 #E52521,
+  0px 72px 0 0 #E52521,
+  8px 72px 0 0 #E52521,
+  16px 72px 0 0 #E52521,
+  32px 72px 0 0 #4169E1,
+  40px 72px 0 0 #4169E1,
+  48px 72px 0 0 #4169E1,
+  56px 72px 0 0 #4169E1,
+  64px 72px 0 0 #4169E1,
+  72px 72px 0 0 #E52521,
+  80px 72px 0 0 #E52521,
+  88px 72px 0 0 #E52521,
+  32px 80px 0 0 #4169E1,
+  40px 80px 0 0 #4169E1,
+  56px 80px 0 0 #4169E1,
+  64px 80px 0 0 #4169E1,
+  32px 88px 0 0 #8B4513,
+  40px 88px 0 0 #8B4513,
+  56px 88px 0 0 #8B4513,
+  64px 88px 0 0 #8B4513;
+
+$yoshi-shadow:
+  32px 0px 0 0 #48D000,
+  40px 0px 0 0 #48D000,
+  48px 0px 0 0 #48D000,
+  56px 0px 0 0 #48D000,
+  64px 0px 0 0 #48D000,
+  24px 8px 0 0 #48D000,
+  32px 8px 0 0 #48D000,
+  40px 8px 0 0 #48D000,
+  48px 8px 0 0 #48D000,
+  56px 8px 0 0 #48D000,
+  64px 8px 0 0 #48D000,
+  72px 8px 0 0 #48D000,
+  80px 8px 0 0 #48D000,
+  88px 8px 0 0 #48D000,
+  24px 16px 0 0 #48D000,
+  32px 16px 0 0 #FFFFFF,
+  40px 16px 0 0 #FFFFFF,
+  48px 16px 0 0 #48D000,
+  56px 16px 0 0 #48D000,
+  64px 16px 0 0 #FFFFFF,
+  72px 16px 0 0 #48D000,
+  80px 16px 0 0 #48D000,
+  88px 16px 0 0 #48D000,
+  96px 16px 0 0 #48D000,
+  16px 24px 0 0 #48D000,
+  24px 24px 0 0 #FFFFFF,
+  32px 24px 0 0 #FFFFFF,
+  40px 24px 0 0 #FFFFFF,
+  48px 24px 0 0 #48D000,
+  56px 24px 0 0 #48D000,
+  64px 24px 0 0 #FFFFFF,
+  72px 24px 0 0 #FFFFFF,
+  80px 24px 0 0 #48D000,
+  88px 24px 0 0 #48D000,
+  96px 24px 0 0 #48D000,
+  16px 32px 0 0 #48D000,
+  24px 32px 0 0 #48D000,
+  32px 32px 0 0 #48D000,
+  40px 32px 0 0 #48D000,
+  48px 32px 0 0 #48D000,
+  56px 32px 0 0 #48D000,
+  64px 32px 0 0 #48D000,
+  72px 32px 0 0 #48D000,
+  80px 32px 0 0 #48D000,
+  88px 32px 0 0 #48D000,
+  96px 32px 0 0 #48D000,
+  16px 40px 0 0 #48D000,
+  24px 40px 0 0 #48D000,
+  32px 40px 0 0 #FFFFFF,
+  40px 40px 0 0 #48D000,
+  48px 40px 0 0 #48D000,
+  56px 40px 0 0 #48D000,
+  64px 40px 0 0 #48D000,
+  72px 40px 0 0 #48D000,
+  80px 40px 0 0 #48D000,
+  88px 40px 0 0 #48D000,
+  96px 40px 0 0 #48D000,
+  24px 48px 0 0 #48D000,
+  32px 48px 0 0 #E05020,
+  40px 48px 0 0 #E05020,
+  48px 48px 0 0 #E05020,
+  56px 48px 0 0 #E05020,
+  64px 48px 0 0 #E05020,
+  72px 48px 0 0 #48D000,
+  80px 48px 0 0 #48D000,
+  88px 48px 0 0 #48D000,
+  32px 56px 0 0 #E05020,
+  40px 56px 0 0 #E05020,
+  48px 56px 0 0 #E05020,
+  56px 56px 0 0 #E05020,
+  64px 56px 0 0 #E05020,
+  24px 64px 0 0 #48D000,
+  32px 64px 0 0 #48D000,
+  40px 64px 0 0 #48D000,
+  48px 64px 0 0 #48D000,
+  56px 64px 0 0 #48D000,
+  64px 64px 0 0 #48D000,
+  72px 64px 0 0 #48D000,
+  8px 72px 0 0 #48D000,
+  16px 72px 0 0 #E05020,
+  24px 72px 0 0 #48D000,
+  32px 72px 0 0 #48D000,
+  40px 72px 0 0 #48D000,
+  48px 72px 0 0 #48D000,
+  56px 72px 0 0 #48D000,
+  64px 72px 0 0 #48D000,
+  72px 72px 0 0 #48D000,
+  80px 72px 0 0 #E05020,
+  8px 80px 0 0 #48D000,
+  16px 80px 0 0 #E05020,
+  24px 80px 0 0 #E05020,
+  32px 80px 0 0 #48D000,
+  40px 80px 0 0 #48D000,
+  48px 80px 0 0 #48D000,
+  56px 80px 0 0 #48D000,
+  64px 80px 0 0 #48D000,
+  72px 80px 0 0 #E05020,
+  80px 80px 0 0 #E05020,
+  16px 88px 0 0 #E05020,
+  24px 88px 0 0 #E05020,
+  32px 88px 0 0 #E05020,
+  64px 88px 0 0 #E05020,
+  72px 88px 0 0 #E05020,
+  80px 88px 0 0 #E05020,
+  16px 96px 0 0 #E05020,
+  24px 96px 0 0 #E05020,
+  32px 96px 0 0 #E05020,
+  64px 96px 0 0 #E05020,
+  72px 96px 0 0 #E05020,
+  80px 96px 0 0 #E05020;
+
+$coin-shadow:
+  8px 0px 0 0 #FFD700,
+  16px 0px 0 0 #FFD700,
+  24px 0px 0 0 #FFD700,
+  0px 8px 0 0 #FFD700,
+  8px 8px 0 0 #FFD700,
+  16px 8px 0 0 #FFD700,
+  24px 8px 0 0 #FFD700,
+  32px 8px 0 0 #FFD700,
+  0px 16px 0 0 #FFD700,
+  8px 16px 0 0 #FFD700,
+  16px 16px 0 0 #FFD700,
+  24px 16px 0 0 #FFD700,
+  32px 16px 0 0 #FFD700,
+  0px 24px 0 0 #FFD700,
+  8px 24px 0 0 #FFD700,
+  16px 24px 0 0 #FFD700,
+  24px 24px 0 0 #FFD700,
+  32px 24px 0 0 #FFD700,
+  8px 32px 0 0 #FFD700,
+  16px 32px 0 0 #FFD700,
+  24px 32px 0 0 #FFD700;
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  margin-top: 0;
+  --hero-grass-line: calc(100% - (64px + var(--hero-scene-lift) + var(--hero-focus-lift)));
+  --mushroom-lane-top: calc(var(--hero-grass-line) - 24px);
+}
+
+.hero__sky {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-sky);
+  background: linear-gradient(to bottom, #4060D8 0%, #6898F8 50%, #92D0F8 85%, #C8E8F8 100%);
+}
+
+.hero__stars {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-stars);
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--c-yellow);
+  box-shadow: 0 0 4px var(--c-yellow);
+  animation: blink-star 2s infinite;
+}
+
+.hero__stars .star:nth-child(4n) {
+  width: 6px;
+  height: 6px;
+}
+
+@for $i from 1 through 40 {
+  .hero__stars .star:nth-child(#{$i}) {
+    left: (($i * 13) % 100) * 1%;
+    top: (($i * 7) % 60) * 1%;
+    animation-delay: #{($i % 7) * 0.35}s;
+    animation-duration: #{1.5 + ($i % 5) * 0.35}s;
+  }
+}
+
+.hero__clouds {
+  position: absolute;
+  top: calc(8% + var(--hero-cloud-drop));
+  z-index: var(--z-clouds);
+  width: 200%;
+  height: 120px;
+  pointer-events: none;
+  transition: transform 0.35s linear;
+  will-change: transform;
+}
+
+.cloud {
+  position: absolute;
+  height: 40px;
+  background: #fff;
+  border-radius: 0;
+  image-rendering: pixelated;
+  opacity: 0.92;
+}
+
+.cloud::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.cloud--1 {
+  left: 5%;
+  top: 10px;
+  width: 80px;
+  box-shadow: 0 -16px 0 #fff, 24px -24px 0 #fff, 48px -16px 0 #fff, 8px 0 0 #fff, 80px 0 0 #fff;
+  animation: cloud-drift 18s linear infinite;
+}
+
+.cloud--2 {
+  left: 25%;
+  top: 0;
+  width: 120px;
+  box-shadow: 0 -16px 0 #fff, 36px -24px 0 #fff, 72px -16px 0 #fff, 12px 0 0 #fff, 120px 0 0 #fff;
+  animation: cloud-drift 22s linear infinite;
+  animation-delay: -3s;
+}
+
+.cloud--3 {
+  left: 50%;
+  top: 15px;
+  width: 100px;
+  box-shadow: 0 -16px 0 #fff, 30px -24px 0 #fff, 60px -16px 0 #fff, 10px 0 0 #fff, 100px 0 0 #fff;
+  animation: cloud-drift 26s linear infinite;
+  animation-delay: -6s;
+}
+
+.cloud--4 {
+  left: 70%;
+  top: 5px;
+  width: 90px;
+  box-shadow: 0 -16px 0 #fff, 27px -24px 0 #fff, 54px -16px 0 #fff, 9px 0 0 #fff, 90px 0 0 #fff;
+  animation: cloud-drift 30s linear infinite;
+  animation-delay: -9s;
+}
+
+.cloud--5 {
+  left: 88%;
+  top: 20px;
+  width: 70px;
+  box-shadow: 0 -16px 0 #fff, 21px -24px 0 #fff, 42px -16px 0 #fff, 7px 0 0 #fff, 70px 0 0 #fff;
+  animation: cloud-drift 34s linear infinite;
+  animation-delay: -12s;
+}
+
+.hero__hills {
+  position: absolute;
+  bottom: calc(120px + var(--hero-scene-lift) + var(--hero-focus-lift));
+  z-index: var(--z-hills);
+  width: 100%;
+  height: 160px;
+  pointer-events: none;
+  transition: transform 0.35s linear;
+  will-change: transform;
+}
+
+.hero__hills svg {
+  width: 100%;
+  height: 160px;
+}
+
+.hero__pipes {
+  position: absolute;
+  bottom: calc(64px + var(--hero-scene-lift) + var(--hero-focus-lift));
+  z-index: var(--z-pipes);
+  width: 100%;
+  display: flex;
+  gap: 80px;
+  padding-left: 5%;
+  pointer-events: none;
+}
+
+.hero-pipe {
+  position: absolute;
+  bottom: 0;
+  width: 48px;
+  background: var(--c-pipe);
+  border: 3px solid var(--c-pipe-d);
+  border-top: 6px solid var(--c-pipe-d);
+}
+
+.hero-pipe--1 {
+  left: 8%;
+  height: 84px;
+}
+
+.hero-pipe--2 {
+  left: 25%;
+  height: 62px;
+}
+
+.hero-pipe--3 {
+  left: 55%;
+  height: 92px;
+}
+
+.hero-pipe--4 {
+  left: 75%;
+  height: 70px;
+}
+
+.hero-pipe--5 {
+  left: 88%;
+  height: 80px;
+}
+
+.hero-pipe__top {
+  position: absolute;
+  top: -16px;
+  left: -8px;
+  width: 64px;
+  height: 16px;
+  background: var(--c-green);
+  border: 3px solid var(--c-pipe-d);
+}
+
+.hero__ground {
+  position: absolute;
+  bottom: calc(var(--hero-scene-lift) + var(--hero-focus-lift));
+  z-index: var(--z-ground);
+  width: 100%;
+  height: 64px;
+  background: var(--c-ground);
+  background-image: repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.1) 32px,
+      transparent 32px,
+      transparent 64px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.1) 0px,
+      rgba(0, 0, 0, 0.1) 32px,
+      transparent 32px,
+      transparent 64px
+    );
+  border-top: 8px solid var(--c-ground-t);
+}
+
+.hero__chars {
+  position: absolute;
+  bottom: calc(64px + var(--hero-scene-lift) + var(--hero-focus-lift));
+  z-index: var(--z-chars);
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+}
+
+.pixel-mario,
+.pixel-yoshi {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  image-rendering: pixelated;
+  transform-origin: left bottom;
+}
+
+.pixel-mario {
+  bottom: 0;
+  box-shadow: $mario-shadow;
+  animation: mario-run 12s linear infinite;
+}
+
+.pixel-yoshi {
+  bottom: -4px;
+  box-shadow: $yoshi-shadow;
+  animation: yoshi-walk 20s linear infinite 8s;
+}
+
+.hero__coins {
+  position: absolute;
+  top: calc(20% - var(--hero-scene-lift));
+  z-index: var(--z-ui);
+  width: 100%;
+  pointer-events: none;
+}
+
+.coin-float {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  box-shadow: $coin-shadow;
+  animation: float-coin 3s ease-in-out infinite, coin-spin 1s linear infinite;
+}
+
+.coin-float--1 {
+  left: 12%;
+  top: 8%;
+  animation-duration: 2.1s, 0.9s;
+  animation-delay: 0s;
+}
+
+.coin-float--2 {
+  left: 24%;
+  top: 20%;
+  animation-duration: 2.8s, 1.1s;
+  animation-delay: 0.4s;
+}
+
+.coin-float--3 {
+  left: 36%;
+  top: 5%;
+  animation-duration: 3.2s, 0.95s;
+  animation-delay: 0.8s;
+}
+
+.coin-float--4 {
+  left: 49%;
+  top: 24%;
+  animation-duration: 2.4s, 1.2s;
+  animation-delay: 0.2s;
+}
+
+.coin-float--5 {
+  left: 61%;
+  top: 10%;
+  animation-duration: 3s, 0.85s;
+  animation-delay: 0.6s;
+}
+
+.coin-float--6 {
+  left: 73%;
+  top: 18%;
+  animation-duration: 2.6s, 1.05s;
+  animation-delay: 1s;
+}
+
+.coin-float--7 {
+  left: 84%;
+  top: 12%;
+  animation-duration: 3.4s, 0.9s;
+  animation-delay: 0.3s;
+}
+
+.coin-float--8 {
+  left: 90%;
+  top: 28%;
+  animation-duration: 2.2s, 1s;
+  animation-delay: 0.7s;
+}
+
+.hero__qblocks {
+  position: absolute;
+  inset: 0;
+  transform: translateY(calc(var(--hero-scene-lift) * -1));
+  z-index: 4;
+  pointer-events: none;
+}
+
+.q-block {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: var(--c-block);
+  border: 3px solid var(--c-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-px);
+  font-size: 12px;
+  color: var(--c-dark);
+  box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.3), inset 3px 3px 0 rgba(255, 255, 255, 0.3);
+  animation: bounce 1.5s ease-in-out infinite;
+  pointer-events: auto;
+}
+
+.q-block--1 {
+  left: 15%;
+  top: 45%;
+  animation-delay: 0s;
+}
+
+.q-block--2 {
+  left: 38%;
+  top: 40%;
+  animation-delay: 0.4s;
+}
+
+.q-block--3 {
+  left: 62%;
+  top: 42%;
+  animation-delay: 0.8s;
+}
+
+.q-block--4 {
+  left: 82%;
+  top: 38%;
+  animation-delay: 1.2s;
+}
+
+.q-block.is-hit {
+  background: var(--c-dark);
+  color: var(--c-yellow);
+}
+
+.mushroom-runner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  text-shadow: 1px 1px 0 var(--c-dark);
+  pointer-events: none;
+  z-index: 7;
+}
+
+.mushroom-runner--from-1 {
+  --mushroom-start-left: 15%;
+  --mushroom-start-top: 45%;
+}
+
+.mushroom-runner--from-2 {
+  --mushroom-start-left: 38%;
+  --mushroom-start-top: 40%;
+}
+
+.mushroom-runner--from-3 {
+  --mushroom-start-left: 62%;
+  --mushroom-start-top: 42%;
+}
+
+.mushroom-runner--from-4 {
+  --mushroom-start-left: 82%;
+  --mushroom-start-top: 38%;
+}
+
+.mushroom-runner--left {
+  animation: mushroom-run-left 3.1s linear forwards;
+}
+
+.mushroom-runner--right {
+  animation: mushroom-run-right 3.1s linear forwards;
+}
+
+@keyframes mushroom-run-left {
+  0% {
+    top: var(--mushroom-start-top);
+    left: var(--mushroom-start-left);
+    opacity: 1;
+    transform: translate(-50%, 4px) scale(0.15);
+  }
+
+  14% {
+    top: calc(var(--mushroom-start-top) - 4%);
+    left: var(--mushroom-start-left);
+    transform: translate(-50%, -8px) scale(1);
+  }
+
+  38% {
+    top: var(--mushroom-lane-top);
+    left: var(--mushroom-start-left);
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  100% {
+    top: var(--mushroom-lane-top);
+    left: -10%;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+@keyframes mushroom-run-right {
+  0% {
+    top: var(--mushroom-start-top);
+    left: var(--mushroom-start-left);
+    opacity: 1;
+    transform: translate(-50%, 4px) scale(0.15);
+  }
+
+  14% {
+    top: calc(var(--mushroom-start-top) - 4%);
+    left: var(--mushroom-start-left);
+    transform: translate(-50%, -8px) scale(1);
+  }
+
+  38% {
+    top: var(--mushroom-lane-top);
+    left: var(--mushroom-start-left);
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  100% {
+    top: var(--mushroom-lane-top);
+    left: 110%;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.hero__title {
+  position: absolute;
+  top: calc(50% - var(--hero-scene-lift) - var(--hero-focus-lift));
+  left: 50%;
+  transform: translate(-50%, -60%);
+  z-index: var(--z-ui);
+  pointer-events: none;
+  text-align: center;
+}
+
+.hero__title h1 {
+  font-family: var(--font-px);
+  font-size: clamp(16px, 5vw, 48px);
+  color: var(--c-yellow);
+  text-shadow:
+    3px 3px 0 var(--c-red),
+    6px 6px 0 var(--c-dark),
+    -2px -2px 0 var(--c-dark),
+    2px -2px 0 var(--c-dark),
+    -2px 2px 0 var(--c-dark);
+  line-height: 1.6;
+  letter-spacing: 2px;
+}
+
+.hero__title p {
+  font-family: var(--font-px);
+  font-size: clamp(6px, 1.5vw, 10px);
+  color: var(--c-white);
+  text-shadow: 1px 1px 0 var(--c-dark);
+  margin-top: 16px;
+  letter-spacing: 1px;
+}
+
+.hero__cta {
+  display: inline-block;
+  margin-top: 24px;
+  background: var(--c-green);
+  color: var(--c-white);
+  font-family: var(--font-px);
+  font-size: 9px;
+  padding: 14px 28px;
+  text-decoration: none;
+  border: 4px solid var(--c-dark);
+  box-shadow: 6px 6px 0 var(--c-dark);
+  pointer-events: auto;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.hero__cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--c-dark);
+}
+
+.hero__cta:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--c-dark);
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: calc(80px + var(--hero-scene-lift) + var(--hero-focus-lift));
+  left: 46%;
+  transform: translateX(-50%);
+  z-index: var(--z-ui);
+  font-family: var(--font-px);
+  font-size: 20px;
+  color: var(--c-yellow2);
+  text-shadow:
+    1px 0 0 var(--c-dark),
+    -1px 0 0 var(--c-dark),
+    0 1px 0 var(--c-dark),
+    0 -1px 0 var(--c-dark);
+  text-align: center;
+  animation: bounce 1.5s ease-in-out infinite;
+}
+
+.scroll-down::before {
+  content: "▼";
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.hero.hero--scroll-0 .hero__clouds {
+  transform: translateX(0);
+}
+
+.hero.hero--scroll-1 .hero__clouds {
+  transform: translateX(-40px);
+}
+
+.hero.hero--scroll-2 .hero__clouds {
+  transform: translateX(-90px);
+}
+
+.hero.hero--scroll-3 .hero__clouds {
+  transform: translateX(-150px);
+}
+
+.hero.hero--scroll-0 .hero__hills {
+  transform: translateY(0);
+}
+
+.hero.hero--scroll-1 .hero__hills {
+  transform: translateY(10px);
+}
+
+.hero.hero--scroll-2 .hero__hills {
+  transform: translateY(20px);
+}
+
+.hero.hero--scroll-3 .hero__hills {
+  transform: translateY(30px);
+}

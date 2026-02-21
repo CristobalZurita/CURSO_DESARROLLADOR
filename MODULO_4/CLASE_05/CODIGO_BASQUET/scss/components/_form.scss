@@ -1,0 +1,155 @@
+// =============================================================================
+// FORM DE REGISTRO
+// =============================================================================
+
+.registration-form {
+  @include board-panel;
+  @include teal-border-top;
+  position: relative;
+  padding: clamp($space-lg, 2vw, 32px) clamp($space-lg, 2.6vw, 48px);
+  overflow: hidden;
+
+  // Ribete lateral naranja
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, $color-orange, $color-salmon, $color-orange);
+  }
+}
+
+.form-title {
+  font-family: $font-display;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: $color-teal;
+  margin-bottom: $space-lg;
+  
+  span {
+    color: $color-orange;
+    font-size: 1.4rem;
+    display: block;
+    letter-spacing: 0.08em;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-md;
+  align-items: start;
+
+  @include respond-to('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp($space-md, 2vw, $space-lg);
+    row-gap: $space-md;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  min-width: 0;
+}
+
+.form-label {
+  font-family: $font-display;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: $color-steel;
+  line-height: 1.25;
+
+  // En grilla de 2 columnas iguala la altura visual de las etiquetas.
+  @include respond-to('md') {
+    min-height: 2.5em;
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+.form-input,
+.form-select {
+  background: rgba($color-bg, 0.8);
+  border: 1px solid $color-slate;
+  border-radius: $radius-sm;
+  color: $color-text-main;
+  font-family: $font-mono;
+  font-size: 1rem;
+  padding: $space-sm $space-md;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: $color-teal;
+    box-shadow: 0 0 0 3px rgba($color-teal, 0.2);
+  }
+
+  &::placeholder {
+    color: rgba($color-steel, 0.5);
+    font-size: 0.85rem;
+  }
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2342e3bd' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $space-md center;
+  padding-right: $space-xl;
+  cursor: pointer;
+
+  option {
+    background: $color-surface;
+    color: $color-text-main;
+  }
+}
+
+// Error state
+.form-input.is-invalid,
+.form-select.is-invalid {
+  border-color: $color-orange;
+  box-shadow: 0 0 0 3px rgba($color-orange, 0.2);
+}
+
+.form-error {
+  color: $color-orange;
+  font-family: $font-mono;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  min-height: 1em;
+}
+
+// Submit row
+.form-submit-row {
+  margin-top: $space-lg;
+  display: flex;
+  justify-content: center;
+}
+
+// Leyenda de categorías (bajo el formulario)
+.category-legend {
+  display: flex;
+  gap: $space-md;
+  flex-wrap: wrap;
+  margin-bottom: $space-sm;
+}
+
+.legend-item {
+  font-family: $font-mono;
+  font-size: 0.68rem;
+  color: $color-steel;
+}
+
+.legend-dot {
+  &--juvenil { color: $color-teal; }
+  &--adulto  { color: $color-salmon; }
+  &--min     { color: $color-slate; }
+}

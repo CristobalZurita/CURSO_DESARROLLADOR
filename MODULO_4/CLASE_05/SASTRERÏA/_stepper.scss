@@ -1,0 +1,275 @@
+// ================================================================
+// components/_stepper.scss
+// Formularios progresivos: cliente (buscar sastre) y postulante
+// ================================================================
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// ---- TABS DE FLUJO ----
+.flow-tabs {
+  @include m.flex(row, center, center, 0);
+  background: v.$c-sand-dark;
+  border-radius: v.$r-full;
+  padding: v.$sp-1;
+  margin-bottom: v.$sp-8;
+
+  &__btn {
+    @include m.btn-reset;
+    flex: 1;
+    padding: v.$sp-3 v.$sp-6;
+    border-radius: v.$r-full;
+    font-size: v.$fs-14; font-weight: 600;
+    color: v.$c-umber-soft;
+    transition: all v.$ease-base;
+    text-align: center;
+
+    &.active {
+      background: v.$c-white;
+      color: v.$c-indigo;
+      box-shadow: v.$shadow-sm;
+    }
+
+    span { display: block; font-size: v.$fs-11; font-weight: 400; opacity: 0.7; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+  }
+}
+
+// ---- CONTENEDOR STEPPER ----
+.stepper {
+  max-width: 680px; margin: 0 auto;
+
+  &__flow {
+    display: none;
+    &.active { display: block; animation: flow-in .4s v.$ease-out; }
+  }
+
+  @keyframes flow-in {
+    from { opacity: 0; transform: translateX(16px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  // ---- PROGRESO ----
+  &__progress {
+    margin-bottom: v.$sp-8;
+  }
+
+  &__bar-track {
+    height: 4px; background: v.$c-sand-dark;
+    border-radius: v.$r-full; overflow: hidden; margin-bottom: v.$sp-3;
+  }
+
+  &__bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, v.$c-indigo, v.$c-terra);
+    border-radius: v.$r-full;
+    transition: width v.$ease-slow;
+    width: 0%;
+  }
+
+  &__progress-row {
+    @include m.flex(row, center, space-between);
+    span { font-size: v.$fs-12; color: v.$c-umber-soft; font-family: v.$font-mono; }
+    strong { font-size: v.$fs-12; font-weight: 700; color: v.$c-terra; }
+  }
+
+  &__dots {
+    @include m.flex(row, center, flex-start, v.$sp-2);
+    flex-wrap: wrap; margin-top: v.$sp-3;
+
+    button {
+      @include m.btn-reset;
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 1.5px solid v.$c-linen;
+      font-size: 10px; font-weight: 700;
+      font-family: v.$font-mono;
+      color: v.$c-umber-soft;
+      transition: all v.$ease-base;
+      @include m.flex-center;
+
+      &.done   { background: v.$c-indigo; border-color: v.$c-indigo; color: #fff; }
+      &.active { border-color: v.$c-terra; color: v.$c-terra; box-shadow: 0 0 0 3px rgba(v.$c-terra, 0.15); }
+    }
+  }
+
+  // ---- PASO ----
+  &__step {
+    display: none;
+    &.active { display: block; animation: step-in .38s v.$ease-out; }
+  }
+
+  @keyframes step-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  &__step-head {
+    margin-bottom: v.$sp-6;
+    .step-num {
+      font-family: v.$font-mono; font-size: v.$fs-11;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: v.$c-terra; margin-bottom: v.$sp-2;
+    }
+    h3 {
+      font-family: v.$font-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: v.$c-indigo; margin-bottom: v.$sp-2;
+      font-weight: 600;
+    }
+    p { font-size: v.$fs-14; color: v.$c-umber-soft; max-width: 480px; }
+  }
+
+  // ---- CAMPO ----
+  &__field {
+    margin-bottom: v.$sp-5;
+
+    > label {
+      display: block; font-size: v.$fs-14; font-weight: 600;
+      color: v.$c-indigo; margin-bottom: v.$sp-2;
+      .req { color: v.$c-terra; }
+    }
+
+    small { display: block; font-size: v.$fs-12; color: v.$c-umber-soft; margin-top: v.$sp-1; }
+
+    &.error {
+      .stepper__input { border-color: v.$c-terra !important; box-shadow: 0 0 0 3px rgba(v.$c-terra, 0.12) !important; }
+      .err { display: block; }
+    }
+
+    .err { display: none; font-size: v.$fs-12; color: v.$c-terra; font-weight: 600; margin-top: v.$sp-2; }
+  }
+
+  &__row { display: grid; grid-template-columns: 1fr 1fr; gap: v.$sp-4; @media (max-width: v.$bp-sm) { grid-template-columns: 1fr; } }
+
+  // ---- INPUTS ----
+  &__input {
+    width: 100%; padding: v.$sp-3 v.$sp-4;
+    border: 1.5px solid v.$c-linen;
+    border-radius: v.$r-md;
+    background: v.$c-white;
+    font-family: v.$font-body; font-size: v.$fs-16;
+    color: v.$c-umber;
+    transition: border-color v.$ease-base, box-shadow v.$ease-base;
+    outline: none;
+
+    &::placeholder { color: v.$c-linen; }
+
+    &:focus {
+      border-color: v.$c-indigo;
+      box-shadow: 0 0 0 4px rgba(v.$c-indigo, 0.08);
+    }
+
+    &[type="range"] {
+      padding: 0; border: none; background: none; box-shadow: none;
+      height: 6px; appearance: none; cursor: pointer;
+      background: v.$c-sand-dark; border-radius: v.$r-full;
+      &::-webkit-slider-thumb {
+        appearance: none; width: 22px; height: 22px;
+        border-radius: 50%; background: v.$c-indigo;
+        box-shadow: 0 2px 8px rgba(v.$c-indigo, 0.35);
+        border: 2px solid v.$c-white;
+        cursor: pointer;
+      }
+      &:focus { box-shadow: none; border: none; }
+    }
+
+    &--select {
+      appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 6 5-6' stroke='%239C6E50' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+
+    &--textarea { resize: vertical; min-height: 110px; line-height: 1.65; }
+  }
+
+  // ---- OPCIONES VISUALES (radio/checkbox como cards) ----
+  &__opts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: v.$sp-3;
+  }
+
+  &__opt {
+    input { @include m.sr-only; }
+
+    label {
+      @include m.flex(column, center, center, v.$sp-2);
+      text-align: center;
+      padding: v.$sp-4 v.$sp-3;
+      border: 1.5px solid v.$c-linen;
+      border-radius: v.$r-lg;
+      cursor: pointer; background: v.$c-white;
+      transition: all v.$ease-base;
+      min-height: 90px;
+
+      &:hover { border-color: v.$c-indigo-soft; transform: translateY(-2px); box-shadow: v.$shadow-sm; }
+
+      .ico  { font-size: 1.6rem; }
+      .lbl  { font-size: v.$fs-13; font-weight: 700; color: v.$c-indigo; line-height: 1.2; }
+      .sub  { font-size: v.$fs-11; color: v.$c-umber-soft; }
+    }
+
+    input:checked + label {
+      border-color: v.$c-indigo;
+      background: rgba(v.$c-indigo, 0.04);
+      box-shadow: 0 0 0 1px v.$c-indigo, v.$shadow-sm;
+      .lbl { color: v.$c-indigo; }
+    }
+  }
+
+  // ---- RANGE ----
+  &__range {
+    &-display {
+      text-align: center; font-family: v.$font-serif;
+      font-size: v.$fs-40; font-weight: 600;
+      color: v.$c-indigo; margin-bottom: v.$sp-3;
+    }
+    &-labels { @include m.flex(row, center, space-between); font-size: v.$fs-12; color: v.$c-umber-soft; margin-top: v.$sp-2; }
+  }
+
+  // ---- NAVEGACIÓN ----
+  &__nav {
+    @include m.flex(row, center, space-between);
+    margin-top: v.$sp-8; padding-top: v.$sp-6;
+    border-top: 1px solid v.$c-sand-dark;
+    flex-wrap: wrap; gap: v.$sp-3;
+  }
+
+  // ---- RESULTADO FINAL ----
+  &__done {
+    display: none; text-align: center;
+    padding: v.$sp-12 v.$sp-8;
+    animation: step-in .5s v.$ease-out;
+
+    &.show { display: block; }
+
+    &-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: v.$c-indigo; @include m.flex-center;
+      margin: 0 auto v.$sp-6;
+      font-size: 2rem;
+      box-shadow: 0 12px 40px rgba(v.$c-indigo, 0.3);
+    }
+
+    h2 { font-family: v.$font-serif; font-size: v.$fs-32; color: v.$c-indigo; margin-bottom: v.$sp-3; }
+    p  { max-width: 400px; margin: 0 auto v.$sp-8; }
+  }
+
+  &__summary {
+    background: v.$c-sand;
+    border: 1px solid v.$c-linen;
+    border-radius: v.$r-lg;
+    padding: v.$sp-5; text-align: left;
+    margin-bottom: v.$sp-6;
+
+    h4 { font-family: v.$font-mono; font-size: v.$fs-11; letter-spacing: 0.14em; text-transform: uppercase; color: v.$c-umber-soft; margin-bottom: v.$sp-4; }
+
+    &-row {
+      @include m.flex(row, flex-start, space-between);
+      padding: v.$sp-3 0; border-bottom: 1px solid v.$c-sand-dark;
+      gap: v.$sp-4;
+      &:last-child { border-bottom: none; }
+      .k { font-size: v.$fs-12; color: v.$c-umber-soft; font-weight: 500; min-width: 120px; font-family: v.$font-mono; letter-spacing: 0.04em; }
+      .val { font-size: v.$fs-14; font-weight: 700; color: v.$c-indigo; text-align: right; }
+    }
+  }
+}

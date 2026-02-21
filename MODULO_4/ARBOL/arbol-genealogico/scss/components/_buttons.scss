@@ -1,0 +1,106 @@
+// ============================================
+// COMPONENTS / _buttons.scss
+// ============================================
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  border-radius: $radius-md;
+  font-family: $font-body;
+  font-size: $font-size-md;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all $transition-base;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    opacity: 0;
+    transition: opacity $transition-fast;
+  }
+
+  &:hover::after { opacity: 1; }
+  &:active { transform: scale(0.98); }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover::after { opacity: 0; }
+  }
+
+  // Variantes
+  &--primary {
+    background: linear-gradient(135deg, $color-moss-light, $color-moss);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba($color-moss, 0.35);
+
+    &:hover {
+      background: linear-gradient(135deg, lighten($color-moss-light, 5%), lighten($color-moss, 5%));
+      box-shadow: 0 6px 24px rgba($color-moss, 0.45);
+      transform: translateY(-2px);
+    }
+  }
+
+  &--secondary {
+    background: $color-cream-dark;
+    color: $color-bark;
+    border: 1px solid $color-border;
+
+    &:hover {
+      background: darken($color-cream-dark, 5%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-bark-light;
+    border: 1px solid $color-border;
+
+    &:hover {
+      background: rgba($color-bark, 0.08);
+      color: $color-bark;
+    }
+  }
+
+  &--accent {
+    background: linear-gradient(135deg, lighten($color-accent, 10%), $color-accent);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba($color-accent, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba($color-accent, 0.4);
+    }
+  }
+
+  &--add {
+    background: linear-gradient(135deg, $color-leaf-bright, $color-leaf);
+    color: $color-bark;
+    font-size: $font-size-sm;
+    padding: $space-2 $space-3;
+    border-radius: $radius-sm;
+    box-shadow: $shadow-sm;
+    font-weight: 600;
+
+    &:hover {
+      transform: scale(1.08);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  // Tamaños
+  &--sm  { padding: $space-2 $space-4; font-size: $font-size-sm; }
+  &--lg  { padding: $space-4 $space-8; font-size: $font-size-lg; }
+  &--full { width: 100%; }
+}

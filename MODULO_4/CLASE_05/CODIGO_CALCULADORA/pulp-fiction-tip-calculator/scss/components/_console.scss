@@ -1,0 +1,99 @@
+// ============================================================
+// components/_console.scss
+// Área de output de consola y resultados
+// ============================================================
+
+// ── Panel de resultados
+.results-section {
+  .results-label {
+    font-family: $font-mono;
+    font-size: .62rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba($c-yellow, .6);
+    margin-bottom: $sp-4;
+  }
+}
+
+.result-row {
+  @include flex-between;
+  padding: $sp-2 0;
+  border-bottom: 1px solid rgba($c-border, .6);
+
+  &:last-of-type { border-bottom: none; }
+
+  &__label {
+    font-size: .85rem;
+    color: rgba($c-cream, .6);
+    font-family: $font-body;
+    font-weight: 300;
+  }
+
+  &__value {
+    font-family: $font-mono;
+    font-size: 1rem;
+    color: $c-cream;
+    animation: countPop .35s ease both;
+  }
+}
+
+// ── Fila TOTAL destacada
+.result-total {
+  @include flex-between;
+  margin-top: $sp-4;
+  padding: $sp-4 $sp-5;
+  background: rgba($c-yellow, .06);
+  border: 1px solid rgba($c-yellow, .25);
+  border-radius: $radius-sm;
+  animation: pulseYellow 3s ease-in-out infinite;
+
+  &__label {
+    font-family: $font-display;
+    font-size: 1rem;
+    letter-spacing: .05em;
+    color: $c-cream;
+  }
+
+  &__value {
+    font-family: $font-mono;
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, $c-yellow, $c-yellow-light, $c-orange, $c-yellow);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerYellow 2s linear infinite, countPop .4s .1s ease both;
+  }
+}
+
+// ── Terminal visual
+.console-wrap {
+  .console-tag {
+    font-family: $font-mono;
+    font-size: .6rem;
+    letter-spacing: .2em;
+    color: $c-orange;
+    margin-bottom: $sp-2;
+
+    &::before { content: '❯ '; opacity: .5; }
+  }
+}
+
+.console-out {
+  background: #060504;
+  border: 1px solid #1a160f;
+  border-radius: $radius-sm;
+  padding: $sp-4;
+  font-family: $font-mono;
+  font-size: .8rem;
+  line-height: 2;
+}
+
+.console-line {
+  opacity: 0;
+  animation: fadeUp .3s ease forwards;
+
+  .ck  { color: $c-orange; }   // key
+  .cs  { color: #333; }         // separator
+  .cv  { color: #d4edda; }      // value
+}

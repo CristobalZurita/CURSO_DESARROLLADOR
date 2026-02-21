@@ -1,0 +1,34 @@
+// ============================================
+// MAIN.SCSS — Punto de entrada Sass 7-1
+// ============================================
+
+// 1. ABSTRACTS — Variables, mixins, funciones
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. VENDORS — Librerías externas (normalize, etc.)
+@import 'vendors/normalize';
+
+// 3. BASE — Reset, tipografía, animaciones globales
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/animations';
+
+// 4. LAYOUT — Estructura general, pantallas, header
+@import 'layout/screens';
+@import 'layout/header';
+
+// 5. COMPONENTS — Botones, formularios, nodos, modal, toast
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/tree-nodes';
+@import 'components/modal';
+@import 'components/toast';
+
+// 6. PAGES — Estilos específicos por pantalla
+@import 'pages/welcome';
+@import 'pages/tree';
+
+// 7. THEMES — Tema orgánico / naturaleza
+@import 'themes/organic';

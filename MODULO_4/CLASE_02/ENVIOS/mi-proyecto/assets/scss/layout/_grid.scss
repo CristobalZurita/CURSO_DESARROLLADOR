@@ -1,0 +1,24 @@
+/* layout/_grid.scss */
+@media (max-width: 1024px) {
+  .header__nav {
+    display: none;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__title h1 {
+    font-size: 18px;
+  }
+
+  .section {
+    padding: var(--sp-lg) var(--sp-md);
+  }
+}

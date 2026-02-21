@@ -1,0 +1,198 @@
+// ============================================
+// PAGES / _welcome.scss
+// Pantalla de bienvenida + calculador
+// ============================================
+
+#screen-welcome {
+  position: relative;
+  @include flex-center;
+  min-height: 100vh;
+  background: linear-gradient(
+    160deg,
+    $color-parchment 0%,
+    lighten($color-cream-dark, 8%) 40%,
+    lighten($color-leaf-bright, 18%) 100%
+  );
+  overflow: hidden;
+}
+
+.welcome__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+// Hojas decorativas flotantes
+.welcome__leaves {
+  position: absolute;
+  inset: 0;
+
+  &::before,
+  &::after {
+    content: '🍃';
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.15;
+    animation: bgLeafFall 12s linear infinite;
+  }
+
+  &::before {
+    left: 15%;
+    animation-delay: -4s;
+    font-size: 3rem;
+  }
+
+  &::after {
+    left: 75%;
+    animation-delay: -8s;
+    font-size: 2rem;
+  }
+}
+
+// Raíces decorativas (SVG fondo)
+.welcome__roots {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cpath d='M0,200 Q150,120 300,180 T600,150 T900,170 T1200,140 L1200,200Z' fill='rgba(61,43,31,0.06)'/%3E%3Cpath d='M0,200 Q200,140 400,190 T800,160 T1200,180 L1200,200Z' fill='rgba(74,103,65,0.05)'/%3E%3C/svg%3E") center bottom / cover no-repeat;
+}
+
+.welcome__content {
+  position: relative;
+  z-index: 1;
+  width: min(560px, calc(100vw - #{$space-8}));
+  @include flex(column, flex-start, stretch, $space-8);
+  padding: $space-8 0;
+}
+
+.welcome__brand {
+  text-align: center;
+  @include fade-in-up(0.1s);
+
+  .welcome__icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: $space-4;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .welcome__title {
+    font-size: $font-size-4xl;
+    font-style: italic;
+    color: $color-primary-dark;
+    line-height: 1;
+    margin-bottom: $space-2;
+    text-shadow: 0 2px 8px rgba($color-bark, 0.1);
+  }
+
+  .welcome__subtitle {
+    color: $color-text-muted;
+    font-size: $font-size-lg;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+}
+
+// Card del calculador
+.calculator-card {
+  @include organic-card;
+  overflow: hidden;
+  @include fade-in-up(0.3s);
+
+  &__header {
+    background: linear-gradient(135deg, $color-bark, $color-bark-light);
+    padding: $space-6 $space-8;
+    color: $color-cream;
+    text-align: center;
+
+    h2 {
+      color: $color-cream;
+      font-size: $font-size-2xl;
+      margin-bottom: $space-2;
+    }
+
+    p {
+      color: rgba($color-cream, 0.75);
+      font-style: italic;
+      margin-bottom: 0;
+    }
+  }
+
+  &__badge {
+    display: inline-block;
+    background: rgba($color-accent, 0.3);
+    color: $color-accent;
+    border: 1px solid rgba($color-accent, 0.4);
+    border-radius: $radius-full;
+    padding: $space-1 $space-3;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: $space-3;
+  }
+
+  &__body {
+    padding: $space-8;
+    @include flex(column, flex-start, stretch, $space-5);
+  }
+}
+
+// Resultado del calculador
+.calculator-result {
+  border-top: 1px solid $color-border;
+  padding: $space-6 $space-8;
+  background: rgba($color-cream, 0.5);
+  animation: fadeInUp 0.5s ease;
+
+  &[hidden] { display: none; }
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-4;
+  margin-bottom: $space-4;
+
+  @media (max-width: #{$bp-sm}) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.result-item {
+  text-align: center;
+  padding: $space-3;
+  background: rgba($color-parchment, 0.8);
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+}
+
+.result-label {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-muted;
+  margin-bottom: $space-1;
+}
+
+.result-value {
+  display: block;
+  font-family: $font-display;
+  font-size: $font-size-lg;
+  font-weight: 700;
+  color: $color-moss;
+}
+
+.result-message {
+  font-size: $font-size-sm;
+  font-style: italic;
+  color: $color-text-muted;
+  text-align: center;
+  margin-bottom: 0;
+  line-height: 1.5;
+}

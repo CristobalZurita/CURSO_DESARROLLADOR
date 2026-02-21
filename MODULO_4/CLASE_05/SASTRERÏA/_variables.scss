@@ -1,0 +1,102 @@
+// ================================================================
+// abstracts/_variables.scss
+// Hilo & Oficio — Variables globales
+// Paleta: terracota, índigo, arena, mostaza, verde salvia
+// ================================================================
+
+// --- Paleta cromática textil ---
+$c-sand:        #F2EBE0;   // arena — fondo principal
+$c-sand-light:  #FAF7F3;   // arena clara
+$c-sand-dark:   #E0D5C5;   // arena oscura
+$c-indigo:      #2D3A6B;   // índigo — color dominante
+$c-indigo-mid:  #3E4F8C;   // índigo medio
+$c-indigo-soft: #8C9AC5;   // índigo suave
+$c-terra:       #C45C3A;   // terracota — acento primario
+$c-terra-dark:  #A04428;   // terracota oscuro
+$c-terra-soft:  #E8A98E;   // terracota suave
+$c-mustard:     #D4922A;   // mostaza — acento secundario
+$c-mustard-dark:#A96D12;   // mostaza oscuro
+$c-mustard-soft:#F0CC85;   // mostaza suave
+$c-sage:        #5E8C6A;   // salvia — acento terciario
+$c-sage-soft:   #A8C9AE;   // salvia suave
+$c-blush:       #E8B4A0;   // rubor — guía de piel
+$c-umber:       #6B4226;   // umber — texto principal
+$c-umber-soft:  #9C6E50;   // umber suave — texto secundario
+$c-linen:       #D9CEBC;   // lino — bordes y divisores
+$c-white:       #FFFDF9;   // blanco cálido
+
+// --- Tipografías ---
+$font-serif:  'Cormorant Garamond', 'Georgia', serif;
+$font-body:   'Jost', 'Helvetica Neue', sans-serif;
+$font-mono:   'Courier Prime', 'Courier New', monospace;
+
+// --- Escala tipográfica ---
+$fs-10: 0.625rem;
+$fs-11: 0.6875rem;
+$fs-12: 0.75rem;
+$fs-13: 0.8125rem;
+$fs-14: 0.875rem;
+$fs-16: 1rem;
+$fs-18: 1.125rem;
+$fs-20: 1.25rem;
+$fs-24: 1.5rem;
+$fs-28: 1.75rem;
+$fs-32: 2rem;
+$fs-40: 2.5rem;
+$fs-48: 3rem;
+$fs-60: 3.75rem;
+$fs-72: 4.5rem;
+
+// --- Espaciado base 4px ---
+$sp-1:  0.25rem;   // 4px
+$sp-2:  0.5rem;    // 8px
+$sp-3:  0.75rem;   // 12px
+$sp-4:  1rem;      // 16px
+$sp-5:  1.25rem;   // 20px
+$sp-6:  1.5rem;    // 24px
+$sp-8:  2rem;      // 32px
+$sp-10: 2.5rem;    // 40px
+$sp-12: 3rem;      // 48px
+$sp-16: 4rem;      // 64px
+$sp-20: 5rem;      // 80px
+$sp-24: 6rem;      // 96px
+
+// --- Bordes ---
+$r-xs:   3px;
+$r-sm:   6px;
+$r-md:   12px;
+$r-lg:   20px;
+$r-xl:   32px;
+$r-2xl:  48px;
+$r-full: 9999px;
+
+// --- Sombras ---
+$shadow-xs: 0 1px 3px rgba($c-umber, 0.08);
+$shadow-sm: 0 2px 10px rgba($c-umber, 0.10);
+$shadow-md: 0 6px 28px rgba($c-umber, 0.12);
+$shadow-lg: 0 16px 56px rgba($c-umber, 0.14);
+$shadow-xl: 0 32px 80px rgba($c-umber, 0.18);
+
+// --- Transiciones ---
+$ease-base:   0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out:    0.35s cubic-bezier(0.0, 0, 0.2, 1);
+$ease-spring: 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+$ease-slow:   0.6s  cubic-bezier(0.4, 0, 0.2, 1);
+
+// --- Breakpoints ---
+$bp-xs:  480px;
+$bp-sm:  640px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;
+$bp-2xl: 1440px;
+
+// --- Z-index ---
+$z-bg:      -1;
+$z-base:     0;
+$z-up:       10;
+$z-drop:     100;
+$z-fixed:    200;
+$z-overlay:  300;
+$z-modal:    400;
+$z-toast:    500;

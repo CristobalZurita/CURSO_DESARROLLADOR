@@ -1,0 +1,55 @@
+// ============================================
+// LAYOUT / _header.scss
+// ============================================
+
+.tree-header {
+  @include flex(row, space-between, center);
+  padding: $space-4 $space-8;
+  background: rgba($color-parchment, 0.92);
+  border-bottom: 1px solid $color-border;
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: $shadow-sm;
+
+  &__left {
+    @include flex(row, flex-start, center, $space-3);
+  }
+
+  &__icon {
+    font-size: $font-size-2xl;
+    animation: leafSway 4s ease-in-out infinite;
+    display: block;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-family: $font-display;
+    font-style: italic;
+    color: $color-primary-dark;
+    margin-bottom: 0;
+  }
+
+  &__user {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    margin-bottom: 0;
+    strong { color: $color-moss; }
+  }
+
+  &__right {
+    @include flex(row, flex-end, center, $space-4);
+  }
+
+  &__info {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    font-style: italic;
+  }
+
+  @media (max-width: #{$bp-md}) {
+    padding: $space-3 $space-4;
+    &__info { display: none; }
+  }
+}

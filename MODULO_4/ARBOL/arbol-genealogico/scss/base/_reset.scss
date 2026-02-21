@@ -1,0 +1,59 @@
+// ============================================
+// BASE / _reset.scss
+// ============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font-body;
+  font-size: $font-size-md;
+  color: $color-text;
+  background-color: $color-bg;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-display;
+  line-height: 1.2;
+  color: $color-primary-dark;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: color $transition-fast;
+  &:hover { color: $color-accent; }
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input, textarea, select {
+  font-family: $font-body;
+  font-size: $font-size-md;
+}
+
+ul { list-style: none; }
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}

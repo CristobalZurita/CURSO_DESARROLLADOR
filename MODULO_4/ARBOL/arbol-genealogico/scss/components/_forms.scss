@@ -1,0 +1,66 @@
+// ============================================
+// COMPONENTS / _forms.scss
+// ============================================
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  flex: 1;
+
+  label {
+    font-size: $font-size-sm;
+    font-weight: 600;
+    color: $color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: $font-body;
+  }
+
+  input, select, textarea {
+    padding: $space-3 $space-4;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-sm;
+    background: rgba($color-cream, 0.8);
+    color: $color-text;
+    font-size: $font-size-md;
+    font-family: $font-body;
+    transition: border-color $transition-fast, box-shadow $transition-fast, background $transition-fast;
+    outline: none;
+
+    &::placeholder { color: rgba($color-text-muted, 0.5); }
+
+    &:focus {
+      border-color: $color-moss;
+      background: rgba($color-parchment, 0.95);
+      box-shadow: 0 0 0 3px rgba($color-moss, 0.12);
+    }
+
+    &.input--error {
+      border-color: #C0392B;
+      background: rgba(#C0392B, 0.04);
+    }
+
+    &.input--readonly {
+      background: rgba($color-cream-dark, 0.5);
+      color: $color-text-muted;
+      cursor: default;
+    }
+  }
+
+  .field-error {
+    font-size: $font-size-sm;
+    color: #C0392B;
+    display: none;
+    &.visible { display: block; }
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: $space-4;
+
+  @media (max-width: #{$bp-sm}) {
+    flex-direction: column;
+  }
+}

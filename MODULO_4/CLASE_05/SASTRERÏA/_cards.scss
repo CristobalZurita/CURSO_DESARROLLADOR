@@ -1,0 +1,220 @@
+// ================================================================
+// components/_cards.scss
+// Sastre cards, fabric cards, skin guide cards
+// ================================================================
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// ----- SASTRE CARD -----
+.sastre-card {
+  background: v.$c-white;
+  border-radius: v.$r-xl;
+  border: 1px solid v.$c-linen;
+  box-shadow: v.$shadow-sm;
+  overflow: hidden;
+  transition: transform v.$ease-base, box-shadow v.$ease-base;
+  display: flex; flex-direction: column;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: v.$shadow-xl;
+    .sastre-card__img { transform: scale(1.05); }
+  }
+
+  &__cover {
+    height: 190px; position: relative; overflow: hidden;
+  }
+
+  &__img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform v.$ease-slow;
+  }
+
+  &__badge {
+    position: absolute; top: v.$sp-3; right: v.$sp-3;
+    @include m.pill(v.$c-mustard, v.$c-indigo);
+  }
+
+  &__verified {
+    position: absolute; top: v.$sp-3; left: v.$sp-3;
+    @include m.pill(rgba(v.$c-sage, 0.9), #fff);
+  }
+
+  &__avatar {
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    border: 3px solid v.$c-white;
+    margin-top: -31px;
+    margin-left: v.$sp-5;
+    position: relative; z-index: 1;
+    background: linear-gradient(135deg, v.$c-terra-soft, v.$c-mustard-soft);
+    @include m.flex-center;
+    font-family: v.$font-serif; font-size: v.$fs-24; color: v.$c-indigo; font-weight: 600;
+    overflow: hidden;
+  }
+
+  &__body { padding: v.$sp-4 v.$sp-5 v.$sp-5; flex: 1; }
+
+  &__name {
+    font-family: v.$font-serif; font-size: v.$fs-20; font-weight: 600;
+    color: v.$c-indigo; margin-bottom: v.$sp-1;
+  }
+
+  &__role {
+    font-size: v.$fs-12; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: v.$c-terra; margin-bottom: v.$sp-4;
+  }
+
+  &__tags {
+    @include m.flex(row, center, flex-start, v.$sp-2);
+    flex-wrap: wrap; margin-bottom: v.$sp-4;
+  }
+
+  &__tag {
+    @include m.pill(rgba(v.$c-indigo, 0.06), v.$c-indigo-mid);
+    font-size: v.$fs-11;
+  }
+
+  &__rating {
+    @include m.flex(row, center, flex-start, v.$sp-2);
+    margin-bottom: v.$sp-4;
+
+    .stars { color: v.$c-mustard; font-size: v.$fs-14; letter-spacing: 1px; }
+    .score { font-size: v.$fs-13; font-weight: 700; color: v.$c-umber; }
+    .count { font-size: v.$fs-12; color: v.$c-umber-soft; }
+  }
+
+  &__meta {
+    @include m.flex(row, center, space-between);
+    padding-top: v.$sp-4; border-top: 1px solid v.$c-sand-dark;
+    &-item {
+      text-align: center;
+      strong { display: block; font-family: v.$font-serif; font-size: v.$fs-20; font-weight: 600; color: v.$c-indigo; line-height: 1; }
+      span   { font-size: v.$fs-11; color: v.$c-umber-soft; text-transform: uppercase; letter-spacing: 0.08em; }
+    }
+    &-sep { width: 1px; height: 30px; background: v.$c-linen; }
+  }
+}
+
+// ----- FABRIC CARD -----
+.fabric-card {
+  border-radius: v.$r-lg; border: 1px solid v.$c-linen;
+  background: v.$c-white; box-shadow: v.$shadow-xs;
+  overflow: hidden; cursor: pointer;
+  transition: transform v.$ease-base, box-shadow v.$ease-base, opacity v.$ease-base;
+
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: v.$shadow-lg;
+    .fabric-card__img { transform: scale(1.08); }
+  }
+
+  &__img-wrap { height: 200px; overflow: hidden; position: relative; }
+  &__img { width: 100%; height: 100%; object-fit: cover; transition: transform v.$ease-slow; }
+
+  &__swatch {
+    position: absolute; bottom: v.$sp-3; left: v.$sp-3;
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.9);
+    box-shadow: v.$shadow-sm;
+  }
+
+  &__stock {
+    position: absolute; top: v.$sp-3; right: v.$sp-3;
+    @include m.pill(rgba(v.$c-sage, 0.92), #fff);
+    font-size: v.$fs-10;
+  }
+
+  &__body { padding: v.$sp-3 v.$sp-4 v.$sp-4; }
+  &__name { font-family: v.$font-serif; font-size: v.$fs-16; font-weight: 600; color: v.$c-indigo; margin-bottom: 2px; }
+  &__type { font-size: v.$fs-12; color: v.$c-umber-soft; text-transform: uppercase; letter-spacing: 0.08em; }
+  &__price {
+    @include m.flex(row, center, space-between); margin-top: v.$sp-3;
+    strong { font-size: v.$fs-16; font-weight: 700; color: v.$c-terra; }
+    span   { font-size: v.$fs-12; color: v.$c-umber-soft; }
+  }
+}
+
+// ----- SKIN CARD -----
+.skin-card {
+  border-radius: v.$r-xl; background: v.$c-white;
+  border: 1px solid v.$c-linen; box-shadow: v.$shadow-sm;
+  overflow: hidden;
+  transition: transform v.$ease-base, box-shadow v.$ease-base;
+
+  &:hover { transform: translateY(-4px); box-shadow: v.$shadow-lg; }
+
+  &__hero {
+    height: 100px; position: relative; overflow: hidden;
+    &-pattern { width: 100%; height: 100%; }
+  }
+
+  &__tone-dot {
+    position: absolute; bottom: -20px; left: v.$sp-6;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 3px solid v.$c-white;
+    box-shadow: v.$shadow-sm;
+    z-index: 2;
+  }
+
+  &__body { padding: v.$sp-8 v.$sp-5 v.$sp-5; }
+
+  &__title {
+    font-family: v.$font-serif; font-size: v.$fs-20; font-weight: 600;
+    color: v.$c-indigo; margin-bottom: v.$sp-1;
+  }
+
+  &__desc { font-size: v.$fs-13; color: v.$c-umber-soft; line-height: 1.55; margin-bottom: v.$sp-5; }
+
+  &__label {
+    font-family: v.$font-mono; font-size: v.$fs-11;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: v.$c-umber-soft; margin-bottom: v.$sp-3;
+    &--avoid { color: rgba(v.$c-terra, 0.8); margin-top: v.$sp-5; }
+  }
+
+  &__palette { @include m.flex(row, flex-end, flex-start, v.$sp-2); flex-wrap: wrap; }
+
+  &__color {
+    @include m.flex(column, center, center, v.$sp-1);
+    cursor: default;
+    &-dot {
+      width: 34px; height: 34px; border-radius: v.$r-sm;
+      box-shadow: v.$shadow-xs;
+      transition: transform v.$ease-base;
+      &:hover { transform: scale(1.15) translateY(-2px); }
+    }
+    &-name { font-size: 9px; color: v.$c-umber-soft; text-align: center; max-width: 34px; line-height: 1.2; }
+  }
+}
+
+// ----- HOW-STEP CARD -----
+.how-card {
+  text-align: center; padding: v.$sp-8 v.$sp-6;
+  border-radius: v.$r-xl; background: v.$c-white;
+  border: 1px solid v.$c-linen; box-shadow: v.$shadow-xs;
+  transition: transform v.$ease-base, box-shadow v.$ease-base;
+  &:hover { transform: translateY(-4px); box-shadow: v.$shadow-md; }
+
+  &__num {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: v.$c-indigo; color: #fff;
+    @include m.flex-center;
+    font-family: v.$font-serif; font-size: v.$fs-20; font-weight: 600;
+    margin: 0 auto v.$sp-4;
+    box-shadow: 0 8px 24px rgba(v.$c-indigo, 0.3);
+  }
+
+  &__icon { font-size: 2rem; margin-bottom: v.$sp-3; }
+  h3 { font-family: v.$font-serif; font-size: v.$fs-20; color: v.$c-indigo; margin-bottom: v.$sp-2; }
+  p  { font-size: v.$fs-14; color: v.$c-umber-soft; max-width: 220px; margin: 0 auto; line-height: 1.65; }
+}
+
+// ----- BADGE genérico -----
+.badge {
+  @include m.pill(rgba(v.$c-indigo, 0.07), v.$c-indigo-mid);
+  &--terra   { @include m.pill(rgba(v.$c-terra, 0.1), v.$c-terra-dark); }
+  &--mustard { @include m.pill(rgba(v.$c-mustard, 0.14), v.$c-mustard-dark); }
+  &--sage    { @include m.pill(rgba(v.$c-sage, 0.14), darken(v.$c-sage, 10%)); }
+}

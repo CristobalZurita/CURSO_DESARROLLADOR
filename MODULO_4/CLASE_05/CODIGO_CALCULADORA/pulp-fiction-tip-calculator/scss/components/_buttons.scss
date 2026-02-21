@@ -1,0 +1,90 @@
+// ============================================================
+// components/_buttons.scss
+// Botones de la UI
+// ============================================================
+
+// ── Botón primario: "CALCULAR"
+.btn-primary {
+  @extend %btn-reset;
+  @include focus-ring($c-yellow);
+  width: 100%;
+  padding: $sp-4 $sp-8;
+  background: $c-yellow;
+  color: $c-black;
+  font-family: $font-display;
+  font-size: 1.05rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all $t-normal;
+animation: fadeUp .6s cubic-bezier(.4,0,.2,1) .6s both;
+
+  // Brillo animado
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba($c-white,.25), transparent);
+    transform: translateX(-100%);
+    transition: transform .5s ease;
+  }
+
+  &:hover {
+    background: $c-yellow-light;
+    box-shadow: $shadow-yellow-strong;
+    transform: translateY(-2px);
+
+    &::before { transform: translateX(100%); }
+  }
+
+  &:active {
+    transform: translateY(0);
+    background: $c-yellow-dark;
+  }
+}
+
+// ── Botones preset de propina
+.tip-btn {
+  @extend %btn-reset;
+  @include focus-ring($c-yellow);
+  padding: $sp-2 $sp-3;
+  background: $c-bg;
+  border: 1px solid $c-border;
+  border-radius: $radius-sm;
+  font-family: $font-mono;
+  font-size: .85rem;
+  color: rgba($c-cream, .6);
+  cursor: pointer;
+  transition: all $t-fast;
+  text-align: center;
+
+  &:hover {
+    border-color: rgba($c-yellow, .5);
+    color: $c-yellow;
+    background: rgba($c-yellow, .05);
+  }
+
+  &.is-active {
+    background: rgba($c-yellow, .15);
+    border-color: $c-yellow;
+    color: $c-yellow;
+    box-shadow: 0 0 10px rgba($c-yellow, .2);
+  }
+}
+
+// ── Botón reset / secundario
+.btn-reset {
+  @extend %btn-reset;
+  @include focus-ring;
+  font-family: $font-mono;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: $c-text-muted;
+  transition: color $t-fast;
+
+  &:hover { color: $c-yellow; text-decoration: underline; text-underline-offset: 3px; }
+}

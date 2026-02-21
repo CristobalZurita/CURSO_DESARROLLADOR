@@ -1,0 +1,99 @@
+/* components/_buttons.scss */
+.btn-add {
+  background: var(--c-green);
+  color: var(--c-white);
+  border: 3px solid var(--c-dark);
+  padding: 10px 16px;
+  font-family: var(--font-px);
+  font-size: 7px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--c-dark);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-add:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--c-dark);
+  background: #00c000;
+}
+
+.btn-add:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--c-dark);
+}
+
+.btn-add.added {
+  background: var(--c-yellow);
+  color: var(--c-dark);
+}
+
+.btn-checkout {
+  width: 100%;
+  background: var(--c-red);
+  color: var(--c-white);
+  border: 4px solid var(--c-dark);
+  padding: 16px;
+  font-family: var(--font-px);
+  font-size: 9px;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 var(--c-dark);
+  transition: transform 0.1s, box-shadow 0.1s;
+  letter-spacing: 1px;
+}
+
+.btn-checkout:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--c-dark);
+}
+
+.btn-checkout:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--c-dark);
+}
+
+.back-to-top {
+  position: fixed;
+  right: clamp(12px, 2vw, 24px);
+  bottom: clamp(12px, 2vw, 24px);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-px);
+  font-size: 20px;
+  line-height: 1;
+  color: var(--c-dark);
+  background: var(--c-yellow);
+  border: 4px solid var(--c-dark);
+  box-shadow: 6px 6px 0 var(--c-dark);
+  cursor: pointer;
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition: transform 0.2s, opacity 0.2s, box-shadow 0.1s;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--c-dark);
+}
+
+.back-to-top:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--c-dark);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--c-white);
+  outline-offset: 2px;
+}

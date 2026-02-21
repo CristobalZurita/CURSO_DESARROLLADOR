@@ -1,0 +1,109 @@
+// ============================================================
+// abstracts/_mixins.scss
+// Mixins reutilizables – equivalente a funciones JS
+// ============================================================
+
+// ── Flexbox helpers
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Responsive (mobile-first)
+@mixin respond-to($bp) {
+  @if      $bp == sm { @media (min-width: #{$bp-sm}) { @content; } }
+  @else if $bp == md { @media (min-width: #{$bp-md}) { @content; } }
+  @else if $bp == lg { @media (min-width: #{$bp-lg}) { @content; } }
+  @else if $bp == xl { @media (min-width: #{$bp-xl}) { @content; } }
+}
+
+// ── Borde amarillo brillante
+@mixin yellow-border($w: 2px) {
+  border: $w solid $c-yellow;
+  box-shadow: 0 0 0 1px rgba($c-yellow, .3),
+              inset 0 0 0 1px rgba($c-yellow, .1);
+}
+
+// ── Borde con degradado (pseudo-elemento)
+@mixin gradient-border($from: $c-yellow, $to: $c-orange, $w: 2px) {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -$w;
+    background: linear-gradient(135deg, $from, $to);
+    border-radius: inherit;
+    z-index: -1;
+  }
+}
+
+// ── Foco accesible
+@mixin focus-ring($color: $c-yellow) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 3px;
+  }
+}
+
+// ── Truncar texto
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ── Texto con sombra amarilla (efecto neón suave)
+@mixin text-glow($color: $c-yellow) {
+  text-shadow:
+    0 0  8px rgba($color, .6),
+    0 0 20px rgba($color, .3),
+    0 0 40px rgba($color, .15);
+}
+
+// ── Línea decorativa lateral
+@mixin side-bar($color: $c-yellow, $w: 3px) {
+  border-left: $w solid $color;
+  padding-left: $sp-4;
+}
+
+// ── Overlay semitransparente
+@mixin overlay($color: $c-black, $opacity: .7) {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba($color, $opacity);
+    pointer-events: none;
+  }
+}
+
+// ── Entrada stagger animada
+@mixin stagger-in($delay: 0s, $duration: .5s) {
+  animation: fadeUp $duration cubic-bezier(.4,0,.2,1) $delay both;
+}
+
+// ── Scrollbar personalizada
+@mixin custom-scrollbar($track: $c-surface, $thumb: $c-yellow-dark) {
+  scrollbar-width: thin;
+  scrollbar-color: $thumb $track;
+  &::-webkit-scrollbar       { width: 5px; }
+  &::-webkit-scrollbar-track { background: $track; }
+  &::-webkit-scrollbar-thumb { background: $thumb; border-radius: 3px; }
+}
+
+// ── Aspect ratio
+@mixin aspect($w, $h) {
+  aspect-ratio: #{$w} / #{$h};
+}

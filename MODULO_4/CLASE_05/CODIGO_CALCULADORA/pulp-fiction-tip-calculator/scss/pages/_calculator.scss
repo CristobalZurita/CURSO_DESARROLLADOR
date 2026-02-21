@@ -1,0 +1,68 @@
+// ============================================================
+// pages/_calculator.scss
+// Estilos específicos de la vista calculadora
+// ============================================================
+
+// Rayas verticales decorativas de fondo (paleta Cinetone)
+.bg-stripes {
+  position: fixed;
+  top: 0; bottom: 0;
+  display: flex;
+  width: 100%;
+  z-index: $z-bg;
+  pointer-events: none;
+  opacity: .04;
+
+  &__bar {
+    flex: 1;
+
+    &:nth-child(1) { background: $c-black; }
+    &:nth-child(2) { background: $c-orange; }
+    &:nth-child(3) { background: $c-yellow; }
+    &:nth-child(4) { background: $c-red; }
+    &:nth-child(5) { background: $c-navy; }
+  }
+}
+
+// Marca de película en esquinas
+.film-mark {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  z-index: $z-overlay;
+  pointer-events: none;
+  border-color: rgba($c-yellow, .25);
+  border-style: solid;
+  border-width: 0;
+
+  &--tl { top: $sp-4; left: $sp-4;
+    border-top-width: 2px; border-left-width: 2px; }
+  &--tr { top: $sp-4; right: $sp-4;
+    border-top-width: 2px; border-right-width: 2px; }
+  &--bl { bottom: $sp-4; left: $sp-4;
+    border-bottom-width: 2px; border-left-width: 2px; }
+  &--br { bottom: $sp-4; right: $sp-4;
+    border-bottom-width: 2px; border-right-width: 2px; }
+}
+
+// Tooltip de quote de la película
+.movie-quote {
+  display: none;
+  position: fixed;
+  bottom: $sp-16;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: $font-display;
+  font-size: .82rem;
+  letter-spacing: .05em;
+  text-align: center;
+  color: rgba($c-cream, .3);
+  white-space: nowrap;
+  z-index: $z-base;
+  pointer-events: none;
+
+  @include respond-to(md) { display: block; }
+
+  &::before { content: '" '; }
+  &::after  { content: ' "'; }
+}

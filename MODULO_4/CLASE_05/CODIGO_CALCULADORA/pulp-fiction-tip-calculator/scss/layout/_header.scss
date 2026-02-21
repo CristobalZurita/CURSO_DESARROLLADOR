@@ -1,0 +1,55 @@
+// ============================================================
+// layout/_header.scss
+// Cabecera de la página
+// ============================================================
+
+.site-header {
+  grid-area: header;
+  @include flex-center;
+  flex-direction: column;
+  padding: $sp-6 $sp-4 $sp-4;
+  position: relative;
+  z-index: $z-card;
+
+  // Línea superior dorada
+  &::before {
+    @extend %divider;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+  }
+
+  .header__eyebrow {
+    font-family: $font-mono;
+    font-size: .62rem;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: $c-yellow;
+    animation: fadeIn .5s ease .1s both;
+    animation: flicker 4s ease 2s both;
+  }
+
+  .header__title {
+    font-family: $font-display;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    text-align: center;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: $c-cream;
+    margin-top: $sp-1;
+    animation: fadeUp .6s ease .2s both;
+    @include text-glow($c-yellow);
+
+    span {
+      color: $c-yellow;
+    }
+  }
+
+  .header__sub {
+    font-size: .72rem;
+    color: $c-text-muted;
+    font-family: $font-mono;
+    letter-spacing: .1em;
+    margin-top: $sp-2;
+    animation: fadeIn .5s ease .4s both;
+  }
+}

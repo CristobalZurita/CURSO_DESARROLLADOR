@@ -1,0 +1,34 @@
+// ============================================
+// COMPONENTS / _toast.scss
+// ============================================
+
+.toast {
+  position: fixed;
+  bottom: $space-6;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $color-bark;
+  color: $color-cream;
+  padding: $space-3 $space-6;
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-family: $font-body;
+  box-shadow: $shadow-lg;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.toast--show {
+    animation: toastIn 0.3s ease forwards;
+    opacity: 1;
+  }
+
+  &.toast--hide {
+    animation: toastOut 0.3s ease forwards;
+  }
+
+  &.toast--success { background: $color-moss; }
+  &.toast--error   { background: #C0392B; }
+  &.toast--info    { background: $color-bark-light; }
+}

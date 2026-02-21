@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raíces — Mi Árbol Genealógico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+  <!-- PANTALLA 1: BIENVENIDA / CALCULADOR -->
+  <section id="screen-welcome" class="screen screen--active">
+    <div class="welcome__bg">
+      <div class="welcome__leaves"></div>
+      <div class="welcome__roots"></div>
+    </div>
+    <div class="welcome__content">
+      <div class="welcome__brand">
+        <span class="welcome__icon">🌳</span>
+        <h1 class="welcome__title">Raíces</h1>
+        <p class="welcome__subtitle">Tu historia familiar, viva y creciendo</p>
+      </div>
+
+      <!-- CALCULADOR PERSONAL (reto integrado) -->
+      <div class="calculator-card" id="calculator-section">
+        <div class="calculator-card__header">
+          <span class="calculator-card__badge">Reto: El Calculador Personal</span>
+          <h2>Cuéntame sobre ti</h2>
+          <p>Necesito conocerte antes de construir tu árbol</p>
+        </div>
+
+        <div class="calculator-card__body">
+          <div class="form-group">
+            <label for="input-nombre">¿Cómo te llamas?</label>
+            <input type="text" id="input-nombre" placeholder="Tu nombre completo" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="input-edad">Tu edad</label>
+              <input type="number" id="input-edad" placeholder="ej: 28" min="1" max="120" />
+            </div>
+            <div class="form-group">
+              <label for="input-anio">Año actual</label>
+              <input type="number" id="input-anio" value="2025" min="2000" max="2100" />
+            </div>
+          </div>
+
+          <button class="btn btn--primary btn--full" id="btn-calcular">
+            <span>Calcular y Crear mi Árbol</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- Resultado calculador -->
+        <div class="calculator-result" id="calc-result" hidden>
+          <div class="result-grid">
+            <div class="result-item">
+              <span class="result-label">Año de nacimiento</span>
+              <span class="result-value" id="res-anio-nac">—</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">¿Mayor de edad?</span>
+              <span class="result-value" id="res-mayor">—</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">¿Joven adulto?</span>
+              <span class="result-value" id="res-joven">—</span>
+            </div>
+          </div>
+          <p class="result-message" id="res-mensaje"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA 2: ÁRBOL GENEALÓGICO -->
+  <section id="screen-tree" class="screen">
+    <header class="tree-header">
+      <div class="tree-header__left">
+        <span class="tree-header__icon">🌳</span>
+        <div>
+          <h1 class="tree-header__title">Raíces</h1>
+          <p class="tree-header__user">Árbol de <strong id="header-nombre"></strong></p>
+        </div>
+      </div>
+      <div class="tree-header__right">
+        <span class="tree-header__info" id="header-info"></span>
+        <button class="btn btn--ghost btn--sm" id="btn-reset">← Salir</button>
+      </div>
+    </header>
+
+    <div class="tree-workspace">
+      <!-- Leyenda de generaciones -->
+      <aside class="tree-legend">
+        <h3>Generaciones</h3>
+        <ul>
+          <li><span class="gen-dot gen--bisabuelos"></span> Bisabuelos</li>
+          <li><span class="gen-dot gen--abuelos"></span> Abuelos</li>
+          <li><span class="gen-dot gen--padres"></span> Padres</li>
+          <li><span class="gen-dot gen--yo"></span> Tú</li>
+          <li><span class="gen-dot gen--hijos"></span> Hijos</li>
+          <li><span class="gen-dot gen--nietos"></span> Nietos</li>
+          <li><span class="gen-dot gen--bisnietos"></span> Bisnietos</li>
+        </ul>
+        <div class="tree-stats">
+          <p>Total parientes: <strong id="stat-total">0</strong></p>
+        </div>
+      </aside>
+
+      <!-- Canvas del árbol -->
+      <main class="tree-canvas" id="tree-canvas">
+        <div class="tree-container" id="tree-container">
+          <!-- Los nodos se generan con JS -->
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal: Añadir pariente -->
+    <div class="modal-overlay" id="modal-overlay" hidden>
+      <div class="modal" id="modal-add">
+        <button class="modal__close" id="modal-close">✕</button>
+        <div class="modal__header">
+          <span class="modal__icon" id="modal-icon">👤</span>
+          <h3 id="modal-title">Añadir pariente</h3>
+          <p id="modal-desc" class="modal__desc"></p>
+        </div>
+        <div class="modal__body">
+          <div class="form-group">
+            <label for="m-nombre">Nombre</label>
+            <input type="text" id="m-nombre" placeholder="Nombre completo" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="m-edad">Edad</label>
+              <input type="number" id="m-edad" placeholder="años" min="0" max="120" />
+            </div>
+            <div class="form-group">
+              <label>Relación</label>
+              <input type="text" id="m-relacion" readonly class="input--readonly" />
+            </div>
+          </div>
+
+          <!-- Validación calculador integrada -->
+          <div class="calc-validation" id="calc-validation"></div>
+
+          <button class="btn btn--primary btn--full" id="btn-confirmar-pariente">
+            Añadir al árbol 🌿
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+  </section>
+
+  <script src="js/calculator.js" defer></script>
+  <script src="js/tree.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

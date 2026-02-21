@@ -1,0 +1,186 @@
+// ============================================
+// COMPONENTS / _tree-nodes.scss
+// Nodos del árbol genealógico
+// ============================================
+
+// Nodo base
+.tree-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Línea vertical que conecta hacia arriba
+  &::before {
+    @include connector-line;
+    width: 2px;
+    height: 30px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: top center;
+    animation: growLine 0.4s ease both;
+  }
+
+  &.node--root::before { display: none; }
+}
+
+// Card del nodo
+.node-card {
+  min-width: 120px;
+  max-width: 150px;
+  padding: $space-3 $space-4;
+  border-radius: $radius-md;
+  text-align: center;
+  cursor: default;
+  position: relative;
+  animation: sprout $transition-slow both;
+  user-select: none;
+
+  &__name {
+    font-family: $font-display;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    @include truncate(2);
+    line-height: 1.2;
+    margin-bottom: $space-1;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  &__age {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  &__relation {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.7);
+    display: block;
+    margin-bottom: $space-2;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    margin-top: $space-2;
+  }
+
+  &__add-btn {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all $transition-fast;
+    font-family: $font-body;
+
+    &:hover {
+      background: rgba(255,255,255,0.4);
+      transform: scale(1.05);
+    }
+  }
+
+  // Por generación
+  &--bisabuelo  { @include tree-node-base($gen-bisabuelos); }
+  &--abuelo     { @include tree-node-base($gen-abuelos); }
+  &--padre      { @include tree-node-base($gen-padres); }
+  &--yo         {
+    @include tree-node-base($gen-yo);
+    animation: sprout $transition-slow both, pulse-glow 3s ease-in-out 1s infinite;
+    min-width: 140px;
+    padding: $space-4 $space-5;
+
+    .node-card__name { font-size: 0.95rem; }
+  }
+  &--hijo       { @include tree-node-base($gen-hijos);      .node-card__name { color: $color-bark; text-shadow: none; } .node-card__age { color: rgba($color-bark, 0.7); } .node-card__relation { color: rgba($color-bark, 0.5); } }
+  &--nieto      { @include tree-node-base($gen-nietos);     .node-card__name { color: $color-bark; text-shadow: none; } .node-card__age { color: rgba($color-bark, 0.7); } .node-card__relation { color: rgba($color-bark, 0.5); } }
+  &--bisnieto   { @include tree-node-base($gen-bisnietos);  .node-card__name { color: $color-bark; text-shadow: none; } .node-card__age { color: rgba($color-bark, 0.7); } .node-card__relation { color: rgba($color-bark, 0.5); } }
+
+  // Placeholder (botón añadir vacío)
+  &--placeholder {
+    min-width: 100px;
+    max-width: 120px;
+    padding: $space-3;
+    border: 2px dashed rgba($color-earth, 0.4);
+    border-radius: $radius-md;
+    background: rgba($color-cream, 0.5);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-1;
+    transition: all $transition-base;
+    animation: fadeIn 0.4s ease both;
+
+    &:hover {
+      border-color: $color-moss;
+      background: rgba($color-moss, 0.08);
+      transform: scale(1.05);
+
+      .placeholder__icon { transform: scale(1.2); }
+    }
+
+    .placeholder__icon {
+      font-size: 1.5rem;
+      transition: transform $transition-base;
+      display: block;
+    }
+
+    .placeholder__label {
+      font-size: 0.65rem;
+      color: $color-text-muted;
+      text-align: center;
+      line-height: 1.3;
+      font-family: $font-body;
+    }
+  }
+}
+
+// Conectores horizontales entre hermanos
+.siblings-connector {
+  width: 100%;
+  height: 2px;
+  background: rgba($color-earth, 0.35);
+  position: absolute;
+  top: -30px;
+  left: 0;
+  transform-origin: left center;
+  animation: growLineH 0.4s ease both;
+}
+
+// Grupo de nodos al mismo nivel
+.node-group {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  position: relative;
+  justify-content: center;
+}
+
+// Fila de generación
+.gen-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+
+  &__label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba($color-text-muted, 0.6);
+    margin-bottom: $space-2;
+    font-family: $font-body;
+  }
+}

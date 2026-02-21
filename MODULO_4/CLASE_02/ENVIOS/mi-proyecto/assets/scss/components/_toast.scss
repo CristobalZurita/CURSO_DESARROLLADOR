@@ -1,0 +1,44 @@
+/* components/_toast.scss */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--c-green);
+  color: var(--c-white);
+  font-family: var(--font-px);
+  font-size: 8px;
+  padding: 12px 24px;
+  border: 3px solid var(--c-dark);
+  box-shadow: 6px 6px 0 var(--c-dark);
+  z-index: 9999;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.coin-pop {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  font-family: var(--font-px);
+  font-size: 10px;
+  color: var(--c-yellow);
+  text-shadow: 1px 1px 0 var(--c-dark);
+  pointer-events: none;
+  z-index: 9999;
+  animation: coin-popup 0.8s ease forwards;
+}
+
+.coin-pop--block {
+  transform: translate(-50%, -12px);
+}
+
+.coin-pop--product {
+  top: 10px;
+  transform: translateX(-50%);
+}

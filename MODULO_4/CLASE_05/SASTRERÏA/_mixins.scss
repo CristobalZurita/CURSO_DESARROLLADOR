@@ -1,0 +1,134 @@
+// ================================================================
+// abstracts/_mixins.scss
+// Hilo & Oficio — Mixins reutilizables
+// ================================================================
+@use 'variables' as v;
+
+// --- Responsive ---
+@mixin mq($bp) {
+  @if      $bp == xs  { @media (min-width: v.$bp-xs)  { @content; } }
+  @else if $bp == sm  { @media (min-width: v.$bp-sm)  { @content; } }
+  @else if $bp == md  { @media (min-width: v.$bp-md)  { @content; } }
+  @else if $bp == lg  { @media (min-width: v.$bp-lg)  { @content; } }
+  @else if $bp == xl  { @media (min-width: v.$bp-xl)  { @content; } }
+  @else if $bp == 2xl { @media (min-width: v.$bp-2xl) { @content; } }
+}
+
+// --- Flex ---
+@mixin flex($dir: row, $align: center, $justify: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: $align;
+  justify-content: $justify;
+  @if $gap != 0 { gap: $gap; }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// --- Grid ---
+@mixin grid($cols, $gap: v.$sp-6) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+}
+
+// --- Visually hidden ---
+@mixin sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// --- Fabric woven texture ---
+@mixin woven-bg($color-a, $color-b, $size: 6px) {
+  background-color: $color-a;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px, transparent #{$size - 1px},
+      rgba($color-b, 0.035) #{$size - 1px}, rgba($color-b, 0.035) #{$size}
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px, transparent #{$size * 2 - 1px},
+      rgba($color-b, 0.02) #{$size * 2 - 1px}, rgba($color-b, 0.02) #{$size * 2}
+    );
+}
+
+// --- Card base ---
+@mixin card($bg: #fff, $pad: v.$sp-6, $r: v.$r-lg) {
+  background: $bg;
+  border-radius: $r;
+  padding: $pad;
+  border: 1px solid v.$c-linen;
+  box-shadow: v.$shadow-md;
+}
+
+// --- Button reset ---
+@mixin btn-reset {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: v.$font-body;
+  outline: none;
+}
+
+// --- Gradient text ---
+@mixin gradient-text($from, $to, $dir: 135deg) {
+  background: linear-gradient($dir, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// --- Hover lift ---
+@mixin hover-lift($y: -4px, $shadow: v.$shadow-lg) {
+  transition: transform v.$ease-base, box-shadow v.$ease-base;
+  &:hover {
+    transform: translateY($y);
+    box-shadow: $shadow;
+  }
+}
+
+// --- Focus ring ---
+@mixin focus-ring($color: v.$c-terra) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 3px;
+    border-radius: v.$r-sm;
+  }
+}
+
+// --- Section padding ---
+@mixin section-spacing {
+  padding-top: v.$sp-24;
+  padding-bottom: v.$sp-24;
+  @media (max-width: v.$bp-md) {
+    padding-top: v.$sp-16;
+    padding-bottom: v.$sp-16;
+  }
+}
+
+// --- Pill / Tag ---
+@mixin pill($bg, $color) {
+  display: inline-flex;
+  align-items: center;
+  background: $bg;
+  color: $color;
+  font-size: v.$fs-11;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: v.$sp-1 v.$sp-3;
+  border-radius: v.$r-full;
+  line-height: 1.4;
+}

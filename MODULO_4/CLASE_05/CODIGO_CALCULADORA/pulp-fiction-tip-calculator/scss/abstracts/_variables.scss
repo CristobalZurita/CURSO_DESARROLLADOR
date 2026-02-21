@@ -1,0 +1,72 @@
+// ============================================================
+// abstracts/_variables.scss
+// Design Tokens – Paleta CINETONE · Pulp Fiction (1994)
+// ============================================================
+
+// ── Paleta principal (extraída del póster CINETONE)
+$c-black:   #0a0a0a;
+$c-orange:  #c8622a;
+$c-yellow:  #f5d000;
+$c-red:     #8b1a1a;
+$c-navy:    #2b2d5e;
+$c-cream:   #f0ead8;
+$c-white:   #ffffff;
+
+// ── Tonos derivados
+$c-yellow-dark:  #c4a800;
+$c-yellow-light: #ffe033;
+$c-orange-dark:  #9e4d1f;
+$c-red-light:    #b52222;
+$c-navy-light:   #3c3f7a;
+$c-bg:           #111009;       // fondo casi negro cálido
+$c-surface:      #1a1810;       // superficie de card
+$c-border:       #2a2618;
+$c-text-muted:   #6b6250;
+
+// ── Tipografía
+$font-display: 'Special Elite', 'Courier New', monospace;
+$font-body:    'Oswald', 'Impact', sans-serif;
+$font-mono:    'Share Tech Mono', 'Courier New', monospace;
+
+// ── Escala de espaciado (8pt grid)
+$sp-1:  0.25rem;   //  4px
+$sp-2:  0.5rem;    //  8px
+$sp-3:  0.75rem;   // 12px
+$sp-4:  1rem;      // 16px
+$sp-5:  1.25rem;   // 20px
+$sp-6:  1.5rem;    // 24px
+$sp-8:  2rem;      // 32px
+$sp-10: 2.5rem;    // 40px
+$sp-12: 3rem;      // 48px
+$sp-16: 4rem;      // 64px
+
+// ── Breakpoints
+$bp-sm:  480px;
+$bp-md:  768px;
+$bp-lg:  1100px;
+$bp-xl:  1400px;
+
+// ── Bordes y radios
+$radius-sm:  3px;
+$radius-md:  6px;
+$radius-lg:  12px;
+$border-w:   2px;
+
+// ── Sombras
+$shadow-sm:   0 2px 8px  rgba(0,0,0,.5);
+$shadow-md:   0 6px 24px rgba(0,0,0,.65);
+$shadow-lg:   0 12px 48px rgba(0,0,0,.8);
+$shadow-yellow: 0 0 20px rgba(245,208,0,.25);
+$shadow-yellow-strong: 0 0 40px rgba(245,208,0,.45);
+
+// ── Transiciones
+$t-fast:   150ms ease;
+$t-normal: 280ms cubic-bezier(.4,0,.2,1);
+$t-slow:   500ms cubic-bezier(.4,0,.2,1);
+
+// ── Z-index scale
+$z-bg:       -1;
+$z-base:      1;
+$z-card:     10;
+$z-overlay:  50;
+$z-chars:     5;

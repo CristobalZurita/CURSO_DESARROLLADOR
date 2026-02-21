@@ -1,0 +1,73 @@
+// =============================================================================
+// BUTTONS
+// =============================================================================
+
+.btn {
+  @include btn-base;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.05);
+    opacity: 0;
+    transition: opacity $transition-fast;
+  }
+  &:hover::before { opacity: 1; }
+}
+
+// Primary - naranja (acción principal: registrar)
+.btn--primary {
+  background: $color-orange;
+  color: #fff;
+  border: 2px solid darken($color-orange, 10%);
+  box-shadow: 0 0 12px rgba($color-orange, 0.4);
+
+  &:hover {
+    background: lighten($color-orange, 8%);
+    box-shadow: 0 0 20px rgba($color-orange, 0.7);
+  }
+}
+
+// Secondary - navy con borde teal (armar equipos)
+.btn--secondary {
+  background: $color-navy;
+  color: $color-teal;
+  border: 2px solid $color-teal;
+  box-shadow: 0 0 10px rgba($color-teal, 0.2);
+
+  &:hover {
+    background: lighten($color-navy, 8%);
+    box-shadow: 0 0 20px rgba($color-teal, 0.5);
+  }
+}
+
+// Ghost - limpiar lista
+.btn--ghost {
+  background: transparent;
+  color: $color-salmon;
+  border: 2px solid $color-salmon;
+
+  &:hover {
+    background: rgba($color-salmon, 0.12);
+    box-shadow: 0 0 14px rgba($color-salmon, 0.3);
+  }
+}
+
+// Disabled
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// Group de botones
+.btn-group {
+  display: flex;
+  gap: $space-md;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: $space-lg;
+}

@@ -1,0 +1,29 @@
+// ================================================================
+// abstracts/_functions.scss
+// Hilo & Oficio — Funciones SASS
+// ================================================================
+
+// px → rem (base 16)
+@function rem($px) {
+  @return #{$px / 16}rem;
+}
+
+// Fluid type: clamp(min, preferred, max)
+@function fluid($min, $ideal-vw, $max) {
+  @return clamp(#{$min}, #{$ideal-vw}, #{$max});
+}
+
+// Color con opacidad
+@function alpha($color, $a) {
+  @return rgba($color, $a);
+}
+
+// Shade: mezclar con negro
+@function shade($color, $pct) {
+  @return mix(#000, $color, $pct);
+}
+
+// Tint: mezclar con blanco
+@function tint($color, $pct) {
+  @return mix(#fff, $color, $pct);
+}

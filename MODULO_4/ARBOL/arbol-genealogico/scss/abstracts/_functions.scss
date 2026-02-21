@@ -1,0 +1,18 @@
+// ============================================
+// ABSTRACTS / _functions.scss
+// ============================================
+
+// Convertir px a rem
+@function rem($px) {
+  @return #{$px / 16}rem;
+}
+
+// Opacidad de color
+@function alpha($color, $opacity) {
+  @return rgba($color, $opacity);
+}
+
+// Espaciado basado en múltiplo
+@function spacing($multiplier) {
+  @return #{$multiplier * 0.25}rem;
+}

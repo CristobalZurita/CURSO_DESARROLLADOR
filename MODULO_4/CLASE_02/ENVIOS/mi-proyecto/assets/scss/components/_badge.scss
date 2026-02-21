@@ -1,0 +1,22 @@
+/* components/_badge.scss */
+.cart-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--c-red);
+  color: var(--c-white);
+  font-family: var(--font-px);
+  font-size: 7px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--c-dark);
+  transition: transform 0.3s;
+}
+
+.cart-badge.pulse {
+  animation: add-to-cart-pulse 0.3s ease;
+}

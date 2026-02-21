@@ -1,0 +1,196 @@
+// ============================================
+// PAGES / _tree.scss
+// Pantalla del árbol genealógico
+// ============================================
+
+#screen-tree {
+  @include flex(column, flex-start, stretch);
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    $color-parchment 0%,
+    lighten($color-leaf-bright, 20%) 100%
+  );
+}
+
+.tree-workspace {
+  @include flex(row, flex-start, flex-start);
+  flex: 1;
+  overflow: hidden;
+}
+
+// Leyenda lateral
+.tree-legend {
+  width: 180px;
+  min-width: 180px;
+  padding: $space-6 $space-4;
+  background: rgba($color-parchment, 0.85);
+  border-right: 1px solid $color-border;
+  backdrop-filter: blur(6px);
+  height: calc(100vh - 73px);
+  position: sticky;
+  top: 73px;
+  overflow-y: auto;
+
+  h3 {
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-text-muted;
+    margin-bottom: $space-4;
+  }
+
+  ul {
+    @include flex(column, flex-start, flex-start, $space-3);
+    margin-bottom: $space-6;
+  }
+
+  li {
+    @include flex(row, flex-start, center, $space-2);
+    font-size: $font-size-sm;
+    color: $color-text;
+  }
+
+  @media (max-width: #{$bp-md}) {
+    display: none;
+  }
+}
+
+.gen-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+
+  &.gen--bisabuelos { background: $gen-bisabuelos; }
+  &.gen--abuelos    { background: $gen-abuelos; }
+  &.gen--padres     { background: $gen-padres; }
+  &.gen--yo         { background: $gen-yo; }
+  &.gen--hijos      { background: $gen-hijos; }
+  &.gen--nietos     { background: $gen-nietos; }
+  &.gen--bisnietos  { background: $gen-bisnietos; }
+}
+
+.tree-stats {
+  padding-top: $space-4;
+  border-top: 1px solid $color-border;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  strong { color: $color-moss; }
+}
+
+// Canvas del árbol
+.tree-canvas {
+  flex: 1;
+  overflow: auto;
+  padding: $space-10;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+
+  // Fondo sutil de textura orgánica
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba($color-leaf, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba($color-earth, 0.05) 0%, transparent 60%);
+}
+
+// Contenedor principal del árbol
+.tree-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  min-width: max-content;
+  padding-bottom: $space-10;
+}
+
+// Niveles del árbol (filas de generación)
+.tree-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+// Área de ascendentes (padres, abuelos, bisabuelos)
+.tree-ancestors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+// Área de descendentes (hijos, nietos, bisnietos)
+.tree-descendants {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+// Columna del nodo raíz
+.tree-root-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 16px 0;
+}
+
+// Conector vertical entre nodo y grupo
+.v-connector {
+  width: 2px;
+  background: rgba($color-earth, 0.4);
+  animation: growLine 0.3s ease;
+
+  &--up   { height: 30px; transform-origin: bottom; }
+  &--down { height: 30px; transform-origin: top; }
+}
+
+// Conector horizontal (para grupos de hermanos/parejas)
+.h-connector {
+  height: 2px;
+  background: rgba($color-earth, 0.4);
+  animation: growLineH 0.4s ease;
+  align-self: flex-start;
+}
+
+// Nodo de pareja (al lado)
+.couple-section {
+  @include flex(row, center, flex-start, $space-6);
+  position: relative;
+
+  &__connector {
+    width: 40px;
+    height: 2px;
+    background: rgba($color-accent, 0.5);
+    border-top: 2px dashed rgba($color-accent, 0.5);
+    align-self: center;
+    margin-top: -20px;
+  }
+}
+
+// Wrapper que agrupa nodo + sus descendientes
+.subtree {
+  @include flex(column, flex-start, center, 0);
+  position: relative;
+}
+
+// Fila de nodos hermanos
+.siblings-row {
+  @include flex(row, center, flex-start, 24px);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    width: 1px;
+    height: 16px;
+    background: rgba($color-earth, 0.4);
+    transform: translateX(-50%);
+    animation: growLine 0.3s ease;
+  }
+}

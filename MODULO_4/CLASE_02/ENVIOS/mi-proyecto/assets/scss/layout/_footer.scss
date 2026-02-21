@@ -1,0 +1,64 @@
+/* layout/_footer.scss */
+.footer {
+  background: #080818;
+  border-top: 4px solid var(--c-dark);
+  padding: var(--sp-xl) var(--sp-lg) var(--sp-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--c-red), var(--c-yellow), var(--c-green), var(--c-cyan), var(--c-red));
+  background-size: 200%;
+  animation: shimmer 3s linear infinite;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sp-xl);
+  margin-bottom: var(--sp-xl);
+}
+
+.footer__col h4 {
+  font-family: var(--font-px);
+  font-size: 22px;
+  color: var(--c-yellow);
+  margin-bottom: var(--sp-md);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.footer__col a,
+.footer__col p {
+  display: block;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 15px;
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.9s;
+}
+
+.footer__col a:hover {
+  color: var(--c-yellow);
+}
+
+.footer__bottom {
+  text-align: center;
+  border-top: 2px solid rgba(255, 255, 255, 0.05);
+  padding-top: var(--sp-lg);
+  font-family: var(--font-px);
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.2);
+  line-height: 2.5;
+}
+
+.footer__emoji {
+  font-size: 28px;
+  margin-bottom: 12px;
+}

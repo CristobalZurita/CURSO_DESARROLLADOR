@@ -1,0 +1,26 @@
+// main.scss – usando @import (compatible con el ejercicio)
+
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+@import 'abstracts/placeholders';
+
+@import 'vendors/fonts';
+
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/animations';
+
+@import 'layout/wrapper';
+@import 'layout/header';
+@import 'layout/footer';
+
+@import 'components/card';
+@import 'components/buttons';
+@import 'components/inputs';
+@import 'components/console';
+@import 'components/characters';
+
+@import 'pages/calculator';
+
+@import 'themes/dark';

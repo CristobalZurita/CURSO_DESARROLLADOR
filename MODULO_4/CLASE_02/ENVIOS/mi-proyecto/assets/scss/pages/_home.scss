@@ -1,0 +1,75 @@
+/* pages/_home.scss */
+.section {
+  padding: var(--sp-xl) var(--sp-lg);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+#envios {
+  scroll-margin-top: calc(var(--sp-xl) * -1);
+}
+
+.section__header {
+  text-align: center;
+  margin-bottom: var(--sp-xl);
+}
+
+.section__title {
+  font-family: var(--font-px);
+  font-size: clamp(12px, 2.5vw, 22px);
+  color: var(--c-yellow);
+  text-shadow: 2px 2px 0 var(--c-red), 4px 4px 0 rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--c-dark);
+  border: 10px solid var(--c-yellow);
+  position: relative;
+}
+
+.section__title::before,
+.section__title::after {
+  content: "★";
+  color: var(--c-yellow);
+  margin: 0 12px;
+}
+
+.decorative-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.deco-star {
+  position: absolute;
+  width: 2px;
+  height: 5px;
+  background: #fff;
+  opacity: 0.5;
+  animation: blink-star 3s infinite;
+}
+
+@for $i from 1 through 80 {
+  .deco-star:nth-child(#{$i}) {
+    left: (($i * 19) % 100) * 1%;
+    top: (($i * 11) % 100) * 1%;
+    animation-delay: #{($i % 8) * 0.6}s;
+    animation-duration: #{2 + ($i % 5) * 0.8}s;
+    opacity: #{0.2 + ($i % 5) * 0.1};
+  }
+}
+
+.about-section {
+  text-align: center;
+  padding-bottom: 80px;
+}
+
+.about-copy {
+  font-family: var(--font-px);
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 2.5;
+  max-width: 1000px;
+  margin: 0 auto;
+}

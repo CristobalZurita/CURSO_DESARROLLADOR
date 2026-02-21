@@ -1,0 +1,87 @@
+// =====================================================
+// abstracts/_variables.scss
+// Design tokens — Mario NES & SNES color system
+// =====================================================
+
+// ---- Brand Palette (from Mario color palette) ----
+$color-red:         #E52521;
+$color-green:       #00A000;
+$color-green-dark:  #007050;
+$color-yellow:      #FFD700;
+$color-yellow2:     #f5bc01;
+$color-cyan:        #00B4D8;
+$color-sky:         #6898F8;
+$color-sky-light:   #92C2F0;
+$color-ground:      #C87028;
+$color-ground-top:  #50C000;
+$color-block:       #E09000;
+$color-brown:       #743A00;
+$color-white:       #FFFFFF;
+$color-dark:        #181830;
+$color-dark-2:      #0e0e28;
+$color-pipe:        #007800;
+$color-pipe-dark:   #004800;
+
+// ---- Semantic Colors ----
+$color-primary:     $color-red;
+$color-secondary:   $color-green;
+$color-accent:      $color-yellow;
+$color-accent:      $color-yellow2;
+$color-info:        $color-cyan;
+$color-bg:          $color-dark;
+$color-surface:     #1e2040;
+
+// ---- Typography ----
+$font-pixel:  'Press Start 2P', cursive;
+$font-ui:     'Nunito', sans-serif;
+
+$font-size-xs:  6px;
+$font-size-sm:  8px;
+$font-size-md: 10px;
+$font-size-lg: 14px;
+$font-size-xl: 22px;
+
+// ---- Spacing (8px base grid — pixel unit) ----
+$px:        8px;   // 1 pixel unit
+$sp-xs:     $px * 0.5;   //  4px
+$sp-sm:     $px;          //  8px
+$sp-md:     $px * 2;      // 16px
+$sp-lg:     $px * 4;      // 32px
+$sp-xl:     $px * 8;      // 64px
+$sp-xxl:    $px * 12;     // 96px
+
+// ---- Z-Index layers (parallax system) ----
+$z-sky:       0;
+$z-stars:     1;
+$z-clouds:    2;
+$z-hills:     3;
+$z-pipes:     4;
+$z-ground:    5;
+$z-chars:     6;
+$z-ui:       10;
+$z-header:  100;
+$z-overlay: 190;
+$z-cart:    200;
+
+// ---- Breakpoints ----
+$bp-mobile:  480px;
+$bp-tablet:  768px;
+$bp-laptop:  1024px;
+$bp-desktop: 1400px;
+
+// ---- Borders ----
+$border-pixel:  3px solid $color-dark;
+$border-gold:   3px solid $color-yellow;
+
+// ---- Shadows (pixel-style) ----
+$shadow-sm:  4px 4px 0 $color-dark;
+$shadow-md:  6px 6px 0 $color-dark;
+$shadow-lg:  8px 8px 0 $color-dark;
+
+// ---- Transitions ----
+$transition-fast:   0.1s ease;
+$transition-normal: 0.2s ease;
+$transition-slow:   0.35s cubic-bezier(.25,.8,.25,1);
+
+// ---- Pixel size for box-shadow characters ----
+$pixel-unit: 8px; // Size of each "pixel" in CSS pixel art

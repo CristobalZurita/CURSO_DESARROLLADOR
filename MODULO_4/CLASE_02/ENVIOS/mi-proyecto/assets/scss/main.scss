@@ -1,0 +1,39 @@
+// =====================================================
+// main.scss — MarioShop Entry Point
+// SASS 7-1 Architecture
+// =====================================================
+
+// 1. Vendors
+@use 'vendors/normalize';
+
+// 2. Abstracts
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins'    as *;
+@use 'abstracts/functions' as *;
+
+// 3. Base
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/animations';
+
+// 4. Layout
+@use 'layout/header';
+@use 'layout/hero';
+@use 'layout/grid';
+@use 'layout/footer';
+
+// 5. Components
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/cart';
+@use 'components/badge';
+@use 'components/toast';
+
+// 6. Pages
+@use 'pages/home';
+@use 'pages/shipping';
+@use 'pages/contact';
+
+// 7. Themes
+@use 'themes/nes';
+@use 'themes/snes';

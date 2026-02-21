@@ -1,0 +1,25 @@
+// ============================================================
+// themes/_dark.scss
+// Overrides de tema oscuro (el único tema activo en este proyecto)
+// Estructura preparada para agregar _light.scss en el futuro
+// ============================================================
+
+// Todos los tokens ya son oscuros por defecto (definidos en _variables).
+// Este archivo existe para alojar overrides puntuales si el sistema
+// de temas se expande con media queries de preferencia del sistema.
+
+@media (prefers-color-scheme: dark) {
+  // El diseño ya es dark-first, no se necesitan cambios.
+  // Placeholder para futuras adaptaciones.
+}
+
+// Reducir movimiento para accesibilidad
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

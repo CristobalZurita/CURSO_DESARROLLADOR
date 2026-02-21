@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hilo & Oficio — Plataforma Textil Nacional · Chile</title>
+  <meta name="description" content="Conectamos clientes con los mejores sastres artesanales de Chile. Encuentra tu tela ideal y trabaja con un experto en tu región."/>
+
+  <!-- Google Fonts: Cormorant Garamond + Jost + Courier Prime -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <!-- Bootstrap 5 (vendor) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!--
+    CSS compilado desde: scss/main.scss
+    Arquitectura SASS 7-1:
+      abstracts/ _variables _mixins _functions
+      base/       _reset _typography
+      layout/     _navbar _hero _footer
+      components/ _buttons _cards _stepper
+      pages/      _home
+  -->
+  <style>
+    /* ── Variables (abstracts/_variables.scss) ── */
+    :root {
+      --sand:        #F2EBE0; --sand-l: #FAF7F3; --sand-d: #E0D5C5;
+      --indigo:      #2D3A6B; --indigo-m: #3E4F8C; --indigo-s: #8C9AC5;
+      --terra:       #C45C3A; --terra-d: #A04428; --terra-s: #E8A98E;
+      --mustard:     #D4922A; --mustard-d: #A96D12; --mustard-s: #F0CC85;
+      --sage:        #5E8C6A; --sage-s: #A8C9AE;
+      --umber:       #6B4226; --umber-s: #9C6E50;
+      --linen:       #D9CEBC;
+      --white:       #FFFDF9;
+      --f-serif: 'Cormorant Garamond', Georgia, serif;
+      --f-body:  'Jost', 'Helvetica Neue', sans-serif;
+      --f-mono:  'Courier Prime', monospace;
+      --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 32px; --r-2xl: 48px; --r-pill: 9999px;
+      --sh-xs: 0 1px 3px rgba(107,66,38,.08);
+      --sh-sm: 0 2px 10px rgba(107,66,38,.10);
+      --sh-md: 0 6px 28px rgba(107,66,38,.12);
+      --sh-lg: 0 16px 56px rgba(107,66,38,.14);
+      --sh-xl: 0 32px 80px rgba(107,66,38,.18);
+      --ease: .25s cubic-bezier(.4,0,.2,1);
+      --ease-spring: .45s cubic-bezier(.34,1.56,.64,1);
+    }
+    /* ── Reset (base/_reset.scss) ── */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:var(--f-body);background:var(--sand);color:var(--umber);-webkit-font-smoothing:antialiased;line-height:1.6}
+    img,svg{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    ul{list-style:none;padding:0;margin:0}
+    button{cursor:pointer;border:none;background:none;font:inherit;outline:none}
+    input,select,textarea{font:inherit}
+    fieldset{border:none;padding:0;margin:0}
+
+    /* ── Typography (base/_typography.scss) ── */
+    h1,h2,h3,h4{font-family:var(--f-serif);line-height:1.1;color:var(--indigo)}
+    h1{font-size:clamp(2.8rem,6vw,4.8rem);font-weight:600;letter-spacing:-.025em}
+    h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:600;letter-spacing:-.02em}
+    h3{font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:600}
+    h4{font-size:1.25rem;font-weight:600}
+    p{line-height:1.75;color:var(--umber-s)}
+    .eyebrow{font-family:var(--f-mono);font-size:.69rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+
+    /* ── Navbar (layout/_navbar.scss) ── */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 0;transition:background var(--ease),box-shadow var(--ease),padding var(--ease)}
+    .nav--scrolled{background:rgba(250,247,243,.96);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--linen),var(--sh-sm);padding:.6rem 0}
+    .nav__wrap{max-width:1320px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .nav__logo{display:flex;align-items:center;gap:.75rem}
+    .nav__logo-mark{width:40px;height:40px;border-radius:10px;background:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;color:var(--mustard)}
+    .nav__logo-text strong{display:block;font-family:var(--f-serif);font-size:1.25rem;font-weight:600;color:var(--indigo);line-height:1}
+    .nav__logo-text small{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--umber-s)}
+    .nav__links{display:flex;align-items:center;gap:2rem;flex:1;justify-content:center}
+    @media(max-width:1024px){.nav__links{display:none}}
+    .nav__link{font-size:.88rem;font-weight:500;color:var(--umber-s);position:relative;transition:color var(--ease);white-space:nowrap}
+    .nav__link::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--terra);transform:scaleX(0);transform-origin:right;transition:transform var(--ease)}
+    .nav__link:hover{color:var(--indigo)}
+    .nav__link:hover::after{transform:scaleX(1);transform-origin:left}
+    .nav__actions{display:flex;align-items:center;gap:.75rem}
+    .nav__btn{font-size:.85rem;font-weight:600;padding:.5rem 1.25rem;border-radius:var(--r-pill);transition:all var(--ease);letter-spacing:.01em}
+    .nav__btn--ghost{color:var(--indigo)}
+    .nav__btn--ghost:hover{background:rgba(45,58,107,.06)}
+    .nav__btn--fill{background:var(--terra);color:#fff;box-shadow:0 4px 14px rgba(196,92,58,.32)}
+    .nav__btn--fill:hover{background:var(--terra-d);transform:translateY(-1px);box-shadow:0 6px 20px rgba(196,92,58,.42);color:#fff}
+    .nav__burger{display:none;flex-direction:column;gap:5px;width:38px;height:38px;align-items:center;justify-content:center}
+    @media(max-width:1024px){.nav__burger{display:flex}}
+    .nav__burger span{display:block;width:20px;height:1.5px;background:var(--indigo);border-radius:999px;transition:all var(--ease)}
+    .nav__burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .nav__burger.open span:nth-child(2){opacity:0}
+    .nav__burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    .nav__drawer{position:fixed;inset:0;background:var(--sand-l);z-index:300;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity var(--ease)}
+    .nav__drawer.open{opacity:1;pointer-events:all}
+    .nav__drawer a{font-family:var(--f-serif);font-size:2.6rem;color:var(--indigo);font-weight:600;transition:color var(--ease)}
+    .nav__drawer a:hover{color:var(--terra)}
+    .nav__drawer-close{position:absolute;top:1.5rem;right:2rem;font-size:1.4rem;color:var(--umber-s);transition:color var(--ease)}
+    .nav__drawer-close:hover{color:var(--terra)}
+
+    /* ── Hero (layout/_hero.scss) ── */
+    .hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;padding-top:90px;
+      background-color:var(--sand);
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 4px,rgba(107,66,38,.03) 4px,rgba(107,66,38,.03) 5px),
+        repeating-linear-gradient(90deg,transparent,transparent 9px,rgba(107,66,38,.018) 9px,rgba(107,66,38,.018) 10px)}
+    .hero__split{position:absolute;right:-5%;top:0;bottom:0;width:48%;background:var(--indigo);clip-path:polygon(14% 0%,100% 0%,100% 100%,0% 100%);z-index:0}
+    @media(max-width:1024px){.hero__split{display:none}}
+    .hero__container{max-width:1320px;width:100%;margin:0 auto;padding:5rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
+    @media(max-width:1024px){.hero__container{grid-template-columns:1fr;text-align:center;padding:4rem 1.5rem}}
+    .hero__eyebrow-row{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+    @media(max-width:1024px){.hero__eyebrow-row{justify-content:center}}
+    .hero__dot{width:6px;height:6px;border-radius:50%;background:var(--terra);animation:blink 2.4s ease-in-out infinite;flex-shrink:0}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+    .hero__title{font-family:var(--f-serif);font-size:clamp(3rem,6vw,5rem);font-weight:600;color:var(--indigo);line-height:1.05;letter-spacing:-.025em;margin-bottom:1.5rem}
+    .hero__title em{font-style:italic;color:var(--terra)}
+    .hero__desc{font-size:1.1rem;line-height:1.78;color:var(--umber-s);max-width:460px;margin-bottom:2rem}
+    @media(max-width:1024px){.hero__desc{margin:0 auto 2rem}}
+    .hero__ctas{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+    @media(max-width:1024px){.hero__ctas{justify-content:center}}
+    .hero__kpis{display:flex;align-items:center;gap:2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--linen)}
+    @media(max-width:1024px){.hero__kpis{justify-content:center}}
+    .hero__kpi strong{display:block;font-family:var(--f-serif);font-size:2.4rem;font-weight:600;color:var(--indigo);line-height:1}
+    .hero__kpi span{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--umber-s);display:block;margin-top:.2rem}
+    .hero__kpi-sep{width:1px;height:44px;background:var(--linen);flex-shrink:0}
+    .hero__visual{position:relative;height:540px;display:flex;align-items:center;justify-content:center}
+    @media(max-width:1024px){.hero__visual{height:280px;margin-top:2rem}}
+    .hero__swatch{position:absolute;border-radius:var(--r-xl);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.32)}
+    .hero__swatch--a{width:255px;height:335px;z-index:3;animation:flt-a 7s ease-in-out infinite}
+    .hero__swatch--b{width:182px;height:245px;left:5px;top:30px;z-index:2;transform:rotate(-9deg);animation:flt-b 8.5s ease-in-out infinite .8s}
+    .hero__swatch--c{width:158px;height:208px;right:15px;bottom:30px;z-index:2;transform:rotate(7deg);animation:flt-c 9s ease-in-out infinite 1.5s}
+    @media(max-width:1024px){
+      .hero__swatch--a{width:155px;height:205px}
+      .hero__swatch--b{width:110px;height:148px;left:20px}
+      .hero__swatch--c{width:98px;height:130px;right:20px}}
+    @keyframes flt-a{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    @keyframes flt-b{0%,100%{transform:rotate(-9deg) translateY(0)}50%{transform:rotate(-9deg) translateY(-9px)}}
+    @keyframes flt-c{0%,100%{transform:rotate(7deg) translateY(0)}50%{transform:rotate(7deg) translateY(-11px)}}
+    .swatch-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(45,58,107,.7));padding:2rem 1rem 1rem}
+    .swatch-label strong{display:block;font-family:var(--f-serif);font-size:.95rem;color:#fff}
+    .swatch-label span{font-size:.62rem;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.12em}
+
+    /* ── Buttons (components/_buttons.scss) ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--f-body);font-weight:600;font-size:.875rem;letter-spacing:.02em;padding:.7rem 1.6rem;border-radius:var(--r-pill);border:none;cursor:pointer;transition:all var(--ease);white-space:nowrap;position:relative;overflow:hidden;text-decoration:none}
+    .btn:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+    .btn--terra{background:var(--terra);color:#fff;box-shadow:0 4px 16px rgba(196,92,58,.32)}
+    .btn--terra:hover{background:var(--terra-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,92,58,.42);color:#fff}
+    .btn--indigo{background:var(--indigo);color:#fff;box-shadow:0 4px 16px rgba(45,58,107,.28)}
+    .btn--indigo:hover{background:var(--indigo-m);transform:translateY(-2px);color:#fff}
+    .btn--mustard{background:var(--mustard);color:var(--indigo)}
+    .btn--mustard:hover{background:var(--mustard-d);color:#fff;transform:translateY(-2px)}
+    .btn--outline{background:transparent;color:var(--indigo);border:1.5px solid var(--linen)}
+    .btn--outline:hover{border-color:var(--indigo);background:rgba(45,58,107,.04);transform:translateY(-1px);color:var(--indigo)}
+    .btn--outline-lt{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+    .btn--outline-lt:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.1);color:#fff}
+    .btn--ghost{background:rgba(196,92,58,.08);color:var(--terra)}
+    .btn--ghost:hover{background:rgba(196,92,58,.15)}
+    .btn--sm{padding:.4rem 1rem;font-size:.78rem}
+    .btn--lg{padding:.9rem 2.2rem;font-size:1rem}
+    .btn--full{width:100%}
+    .btn:disabled{opacity:.4;pointer-events:none}
+    .btn--loading{pointer-events:none;color:transparent!important}
+    .btn--loading::before{content:'';position:absolute;width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── Layout helpers ── */
+    .wrap{max-width:1320px;margin:0 auto;padding-left:2rem;padding-right:2rem}
+    @media(max-width:640px){.wrap{padding-left:1.25rem;padding-right:1.25rem}}
+    .sec{padding:6rem 0}
+    @media(max-width:768px){.sec{padding:4rem 0}}
+    .sec--light{background:var(--sand-l)}
+    .sec--dark{background:var(--indigo)}
+    .sec--dark h2,.sec--dark h3{color:#fff}
+    .sec--dark p{color:rgba(255,255,255,.6)}
+    .sec--dark .eyebrow{color:var(--terra-s)}
+    .sec-head{margin-bottom:3.5rem}
+    .sec-head--center{text-align:center}
+    .sec-head--center p{margin:0 auto}
+    .sec-head .eyebrow{display:block;margin-bottom:.75rem}
+    .sec-head h2{margin-bottom:1rem}
+    .sec-head p{max-width:520px;font-size:1.1rem}
+
+    /* ── Cards (components/_cards.scss) ── */
+
+    /* Sastre card */
+    .sastre-card{background:var(--white);border-radius:var(--r-xl);border:1px solid var(--linen);box-shadow:var(--sh-sm);overflow:hidden;transition:transform var(--ease),box-shadow var(--ease);display:flex;flex-direction:column;height:100%}
+    .sastre-card:hover{transform:translateY(-6px);box-shadow:var(--sh-xl)}
+    .sastre-card:hover .sc-img{transform:scale(1.05)}
+    .sc-cover{height:190px;position:relative;overflow:hidden}
+    .sc-img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .sc-badge{position:absolute;top:.75rem;right:.75rem;background:var(--mustard);color:var(--indigo);font-size:.6rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;text-transform:uppercase;letter-spacing:.08em}
+    .sc-verified{position:absolute;top:.75rem;left:.75rem;background:rgba(94,140,106,.92);color:#fff;font-size:.6rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;text-transform:uppercase;letter-spacing:.08em}
+    .sc-avatar{width:60px;height:60px;border-radius:50%;border:3px solid var(--white);margin-top:-30px;margin-left:1.25rem;position:relative;z-index:1;background:linear-gradient(135deg,var(--terra-s),var(--mustard-s));display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-size:1.5rem;color:var(--indigo);font-weight:600;overflow:hidden;flex-shrink:0}
+    .sc-body{padding:.75rem 1.25rem 1.25rem;flex:1}
+    .sc-name{font-family:var(--f-serif);font-size:1.2rem;font-weight:600;color:var(--indigo);margin-bottom:.15rem}
+    .sc-role{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--terra);margin-bottom:1rem}
+    .sc-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.8rem}
+    .sc-tag{background:rgba(45,58,107,.06);color:var(--indigo-m);font-size:.65rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+    .sc-stars{color:var(--mustard);font-size:.85rem;letter-spacing:1px}
+    .sc-meta{display:flex;align-items:center;justify-content:space-between;padding-top:.8rem;border-top:1px solid var(--sand-d)}
+    .sc-meta-item{text-align:center}
+    .sc-meta-item strong{display:block;font-family:var(--f-serif);font-size:1.2rem;font-weight:600;color:var(--indigo);line-height:1}
+    .sc-meta-item span{font-size:.62rem;color:var(--umber-s);text-transform:uppercase;letter-spacing:.08em}
+    .sc-sep{width:1px;height:28px;background:var(--linen)}
+
+    /* Fabric card */
+    .fabric-card{border-radius:var(--r-lg);border:1px solid var(--linen);background:var(--white);box-shadow:var(--sh-xs);overflow:hidden;cursor:pointer;transition:transform var(--ease),box-shadow var(--ease),opacity .3s}
+    .fabric-card:hover{transform:translateY(-4px) scale(1.01);box-shadow:var(--sh-lg)}
+    .fabric-card:hover .fc-img{transform:scale(1.08)}
+    .fc-wrap{height:200px;overflow:hidden;position:relative}
+    .fc-img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .fc-dot{position:absolute;bottom:.75rem;left:.75rem;width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.9);box-shadow:var(--sh-xs)}
+    .fc-stock{position:absolute;top:.75rem;right:.75rem;background:rgba(94,140,106,.92);color:#fff;font-size:.6rem;font-weight:700;padding:.2rem .55rem;border-radius:999px;text-transform:uppercase;letter-spacing:.07em}
+    .fc-body{padding:.75rem 1rem .9rem}
+    .fc-name{font-family:var(--f-serif);font-size:1rem;font-weight:600;color:var(--indigo)}
+    .fc-type{font-size:.68rem;color:var(--umber-s);text-transform:uppercase;letter-spacing:.08em}
+    .fc-price{display:flex;align-items:center;justify-content:space-between;margin-top:.5rem}
+    .fc-price strong{font-size:1rem;font-weight:700;color:var(--terra)}
+    .fc-price span{font-size:.72rem;color:var(--umber-s)}
+
+    /* Skin card */
+    .skin-card{border-radius:var(--r-xl);background:var(--white);border:1px solid var(--linen);box-shadow:var(--sh-sm);overflow:hidden;transition:transform var(--ease),box-shadow var(--ease)}
+    .skin-card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
+    .skin-card__hero{height:90px;position:relative;overflow:hidden}
+    .skin-card__hero svg{width:100%;height:100%}
+    .skin-dot{position:absolute;bottom:-18px;left:1.5rem;width:38px;height:38px;border-radius:50%;border:3px solid var(--white);box-shadow:var(--sh-sm);z-index:2}
+    .skin-body{padding:1.6rem 1.5rem 1.5rem}
+    .skin-title{font-family:var(--f-serif);font-size:1.25rem;font-weight:600;color:var(--indigo);margin-bottom:.25rem}
+    .skin-desc{font-size:.82rem;color:var(--umber-s);line-height:1.6;margin-bottom:1.2rem}
+    .skin-label{font-family:var(--f-mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--umber-s);margin-bottom:.7rem;display:block}
+    .skin-label--avoid{color:rgba(196,92,58,.8);margin-top:1.2rem}
+    .skin-palette{display:flex;flex-wrap:wrap;gap:.5rem}
+    .skin-color{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+    .skin-color__dot{width:32px;height:32px;border-radius:6px;box-shadow:var(--sh-xs);transition:transform var(--ease);cursor:default}
+    .skin-color__dot:hover{transform:scale(1.15) translateY(-2px)}
+    .skin-color__name{font-size:8px;text-align:center;color:var(--umber-s);max-width:32px;line-height:1.2}
+
+    /* How card */
+    .how-card{text-align:center;padding:2.5rem 1.5rem;border-radius:var(--r-xl);background:var(--white);border:1px solid var(--linen);box-shadow:var(--sh-xs);transition:transform var(--ease),box-shadow var(--ease)}
+    .how-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
+    .how-num{width:46px;height:46px;border-radius:50%;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--f-serif);font-size:1.25rem;font-weight:600;margin:0 auto 1rem;box-shadow:0 8px 24px rgba(45,58,107,.28)}
+    .how-icon{font-size:1.8rem;margin-bottom:.75rem}
+    .how-card h3{font-family:var(--f-serif);font-size:1.2rem;color:var(--indigo);margin-bottom:.5rem}
+    .how-card p{font-size:.85rem;color:var(--umber-s);max-width:200px;margin:0 auto;line-height:1.65}
+
+    /* ── Stepper (components/_stepper.scss) ── */
+    .flow-tabs{display:flex;background:var(--sand-d);border-radius:999px;padding:.25rem;margin-bottom:2.5rem}
+    .flow-tabs__btn{flex:1;padding:.75rem 1.5rem;border-radius:999px;font-size:.875rem;font-weight:600;color:var(--umber-s);transition:all var(--ease);text-align:center;cursor:pointer;border:none;background:none;font-family:var(--f-body)}
+    .flow-tabs__btn small{display:block;font-size:.65rem;font-weight:400;opacity:.7;text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+    .flow-tabs__btn.active{background:var(--white);color:var(--indigo);box-shadow:var(--sh-sm)}
+    .stepper__flow{display:none}
+    .stepper__flow.active{display:block;animation:flow-in .4s ease}
+    @keyframes flow-in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+    .stepper__progress{margin-bottom:2rem}
+    .bar-track{height:4px;background:var(--sand-d);border-radius:999px;overflow:hidden;margin-bottom:.75rem}
+    .bar-fill{height:100%;background:linear-gradient(90deg,var(--indigo),var(--terra));border-radius:999px;transition:width .6s ease;width:0%}
+    .prog-row{display:flex;align-items:center;justify-content:space-between}
+    .prog-row span{font-size:.72rem;color:var(--umber-s);font-family:var(--f-mono)}
+    .prog-row strong{font-size:.72rem;color:var(--terra);font-weight:700}
+    .stepper__dots{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+    .stepper__dots button{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--linen);font-size:.65rem;font-weight:700;font-family:var(--f-mono);color:var(--umber-s);transition:all var(--ease);display:flex;align-items:center;justify-content:center;cursor:default;background:none}
+    .stepper__dots button.done{background:var(--indigo);border-color:var(--indigo);color:#fff}
+    .stepper__dots button.active{border-color:var(--terra);color:var(--terra);box-shadow:0 0 0 3px rgba(196,92,58,.15)}
+    .step{display:none}
+    .step.active{display:block;animation:step-in .38s ease}
+    @keyframes step-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .step-head{margin-bottom:1.75rem}
+    .step-num{font-family:var(--f-mono);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:.5rem}
+    .step-head h3{font-family:var(--f-serif);font-size:clamp(1.4rem,3vw,1.9rem);color:var(--indigo);margin-bottom:.4rem;font-weight:600}
+    .step-head p{font-size:.875rem;color:var(--umber-s);max-width:480px}
+    .sf{margin-bottom:1.3rem}
+    .sf>label{display:block;font-size:.875rem;font-weight:600;color:var(--indigo);margin-bottom:.5rem}
+    .sf>label .req{color:var(--terra)}
+    .sf small{display:block;font-size:.75rem;color:var(--umber-s);margin-top:.25rem}
+    .sf.error .si{border-color:var(--terra)!important;box-shadow:0 0 0 3px rgba(196,92,58,.12)!important}
+    .sf .err{display:none;font-size:.75rem;color:var(--terra);font-weight:600;margin-top:.4rem}
+    .sf.error .err{display:block}
+    .srow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:640px){.srow{grid-template-columns:1fr}}
+    .si{width:100%;padding:.72rem 1rem;border:1.5px solid var(--linen);border-radius:var(--r-md);background:var(--white);font-family:var(--f-body);font-size:1rem;color:var(--umber);transition:border-color .2s,box-shadow .2s;outline:none}
+    .si::placeholder{color:var(--linen)}
+    .si:focus{border-color:var(--indigo);box-shadow:0 0 0 4px rgba(45,58,107,.08)}
+    .si[type=range]{padding:0;border:none;background:none;box-shadow:none;height:6px;appearance:none;background:var(--sand-d);border-radius:999px}
+    .si[type=range]::-webkit-slider-thumb{appearance:none;width:22px;height:22px;border-radius:50%;background:var(--indigo);box-shadow:0 2px 8px rgba(45,58,107,.35);border:2px solid var(--white);cursor:pointer}
+    .si[type=range]:focus{box-shadow:none;border:none}
+    .si--select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 6 5-6' stroke='%239C6E50' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+    .si--ta{resize:vertical;min-height:110px;line-height:1.65}
+    .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:.75rem}
+    .opt input{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    .opt label{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.4rem;padding:.9rem .6rem;border:1.5px solid var(--linen);border-radius:var(--r-lg);cursor:pointer;background:var(--white);transition:all var(--ease);min-height:85px}
+    .opt label:hover{border-color:var(--indigo-s);transform:translateY(-2px);box-shadow:var(--sh-sm)}
+    .opt input:checked+label{border-color:var(--indigo);background:rgba(45,58,107,.04);box-shadow:0 0 0 1px var(--indigo),var(--sh-sm)}
+    .opt input:checked+label .lbl{color:var(--indigo)}
+    .ico{font-size:1.5rem}
+    .lbl{font-size:.8rem;font-weight:700;color:var(--indigo);line-height:1.2}
+    .sub{font-size:.65rem;color:var(--umber-s)}
+    .range-disp{text-align:center;font-family:var(--f-serif);font-size:2.4rem;font-weight:600;color:var(--indigo);margin-bottom:.75rem}
+    .range-lbl{display:flex;justify-content:space-between;font-size:.72rem;color:var(--umber-s);margin-top:.4rem}
+    .step-nav{display:flex;align-items:center;justify-content:space-between;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--sand-d);flex-wrap:wrap;gap:.75rem}
+    .sdone{display:none;text-align:center;padding:3rem 1rem;animation:step-in .5s ease}
+    .sdone.show{display:block}
+    .sdone-icon{width:76px;height:76px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.9rem;box-shadow:0 12px 40px rgba(45,58,107,.3)}
+    .sdone h2{font-family:var(--f-serif);font-size:2rem;color:var(--indigo);margin-bottom:.75rem}
+    .sdone>p{max-width:400px;margin:0 auto 2rem}
+    .s-summary{background:var(--sand);border:1px solid var(--linen);border-radius:var(--r-lg);padding:1.25rem;text-align:left;margin-bottom:1.5rem}
+    .s-summary h4{font-family:var(--f-mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--umber-s);margin-bottom:1rem}
+    .stepper__summary-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--sand-d);gap:1rem}
+    .stepper__summary-row:last-child{border-bottom:none}
+    .stepper__summary-row .k{font-size:.72rem;color:var(--umber-s);font-family:var(--f-mono);min-width:110px;letter-spacing:.04em}
+    .stepper__summary-row .val{font-size:.82rem;font-weight:700;color:var(--indigo);text-align:right}
+    .group-err{color:var(--terra);font-size:.75rem;font-weight:600;margin-top:.5rem}
+
+    /* ── Sections (pages/_home.scss) ── */
+    /* How */
+    .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+    @media(max-width:1024px){.how-grid{grid-template-columns:1fr 1fr;gap:1.5rem}}
+    @media(max-width:640px){.how-grid{grid-template-columns:1fr}}
+    /* Catalog */
+    .cat-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+    .cf-btn{font-size:.78rem;font-weight:600;padding:.4rem 1rem;border-radius:999px;border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:none;cursor:pointer;transition:all var(--ease)}
+    .cf-btn.active,.cf-btn:hover{background:var(--terra);border-color:var(--terra);color:#fff}
+    .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    @media(max-width:1024px){.cat-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.cat-grid{grid-template-columns:1fr}}
+    /* Skin */
+    .skin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    @media(max-width:1024px){.skin-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.skin-grid{grid-template-columns:1fr}}
+    .skin-cta-box{margin-top:3rem;background:var(--indigo);border-radius:var(--r-2xl);padding:4rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .skin-cta-box::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0,rgba(255,255,255,.025) 1px,transparent 1px,transparent 10px)}
+    .skin-cta-box h3{font-family:var(--f-serif);font-size:1.75rem;color:#fff;margin-bottom:.75rem;position:relative;z-index:1}
+    .skin-cta-box p{color:rgba(255,255,255,.65);margin:0 auto 1.75rem;max-width:400px;position:relative;z-index:1}
+    .skin-cta-box .cta-actions{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;position:relative;z-index:1}
+    /* Sastres grid */
+    .sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    @media(max-width:1024px){.sc-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.sc-grid{grid-template-columns:1fr}}
+    /* Form section */
+    .form-bg{background-color:var(--sand);background-image:repeating-linear-gradient(0deg,transparent,transparent 4px,rgba(107,66,38,.028) 4px,rgba(107,66,38,.028) 5px),repeating-linear-gradient(90deg,transparent,transparent 9px,rgba(107,66,38,.016) 9px,rgba(107,66,38,.016) 10px)}
+    .form-inner{background:var(--white);border-radius:var(--r-2xl);border:1px solid var(--linen);box-shadow:var(--sh-xl);padding:3.5rem;max-width:760px;margin:0 auto;position:relative;overflow:hidden}
+    @media(max-width:640px){.form-inner{padding:2rem 1.25rem}}
+    .form-inner::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:rgba(196,92,58,.04);pointer-events:none}
+    /* Banner */
+    .banner-box{background:var(--terra);border-radius:var(--r-2xl);padding:5rem 2rem;text-align:center;position:relative;overflow:hidden}
+    .banner-box::before{content:'';position:absolute;top:-50px;left:-50px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.07)}
+    .banner-box::after{content:'';position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(0,0,0,.09)}
+    .banner-box h2{font-family:var(--f-serif);font-size:clamp(2rem,4.5vw,3rem);color:#fff;margin-bottom:1rem;position:relative;z-index:1}
+    .banner-box p{color:rgba(255,255,255,.82);font-size:1.1rem;max-width:440px;margin:0 auto 2rem;position:relative;z-index:1}
+    .banner-actions{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;position:relative;z-index:1}
+    /* Footer */
+    .footer{background:var(--indigo);color:rgba(255,255,255,.65);padding:5rem 0 2rem}
+    .footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.1)}
+    @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+    @media(max-width:640px){.footer-grid{grid-template-columns:1fr}}
+    .footer-name{font-family:var(--f-serif);font-size:1.75rem;font-weight:600;color:#fff;display:block;margin-bottom:.75rem}
+    .footer-brand p{font-size:.85rem;line-height:1.7;color:rgba(255,255,255,.5);max-width:250px;margin-bottom:1.25rem}
+    .f-badge{background:rgba(212,146,42,.18);color:var(--mustard-s);font-size:.62rem;font-weight:700;padding:.2rem .55rem;border-radius:999px;text-transform:uppercase;letter-spacing:.08em;display:inline-block;margin:.1rem}
+    .footer-col h5{font-family:var(--f-mono);font-size:.65rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:1.25rem}
+    .footer-col ul{display:flex;flex-direction:column;gap:.75rem}
+    .footer-col a{font-size:.85rem;color:rgba(255,255,255,.6);transition:color var(--ease)}
+    .footer-col a:hover{color:var(--mustard-s)}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding-top:2rem;font-size:.78rem;color:rgba(255,255,255,.3)}
+    .f-socials{display:flex;gap:.75rem}
+    .f-socials a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:rgba(255,255,255,.5);transition:all var(--ease)}
+    .f-socials a:hover{background:var(--terra);color:#fff;transform:translateY(-2px)}
+    /* Animations */
+    .fade-up{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+    .fade-up.in{opacity:1;transform:translateY(0)}
+    .delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}.delay-4{transition-delay:.32s}
+    /* Toast */
+    .toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:500;background:var(--indigo);color:#fff;padding:.75rem 1.25rem;border-radius:var(--r-lg);box-shadow:var(--sh-xl);font-size:.875rem;font-weight:500;display:flex;align-items:center;gap:.75rem;transform:translateY(80px);opacity:0;transition:all var(--ease-spring);max-width:320px}
+    .toast.show{transform:translateY(0);opacity:1}
+    .toast__ico{font-size:1rem}
+    .toast--ok{border-left:3px solid var(--sage)}
+    .toast--err{border-left:3px solid var(--terra)}
+    .toast--inf{border-left:3px solid var(--mustard)}
+    /* Scroll top */
+    .scroll-top{position:fixed;bottom:1.5rem;left:1.5rem;width:40px;height:40px;border-radius:50%;background:var(--indigo);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:var(--sh-md);opacity:0;transform:translateY(8px);transition:all var(--ease);z-index:200}
+    .scroll-top.on{opacity:1;transform:translateY(0)}
+    .scroll-top:hover{background:var(--terra);transform:translateY(-2px)}
+    /* Divider */
+    .divider{display:flex;align-items:center;gap:1rem;font-family:var(--f-mono);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--umber-s);margin:1.5rem 0}
+    .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--sand-d)}
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVBAR
+     scss/layout/_navbar.scss
+══════════════════════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav__wrap">
+    <a href="#" class="nav__logo">
+      <div class="nav__logo-mark">✦</div>
+      <div class="nav__logo-text">
+        <strong>Hilo &amp; Oficio</strong>
+        <small>Plataforma Textil · Chile</small>
+      </div>
+    </a>
+
+    <div class="nav__links">
+      <a href="#como-funciona" class="nav__link">Cómo funciona</a>
+      <a href="#catalogo"      class="nav__link">Telas</a>
+      <a href="#guia-color"    class="nav__link">Guía de color</a>
+      <a href="#sastres"       class="nav__link">Sastres</a>
+      <a href="#formularios"   class="nav__link">Conectarse</a>
+    </div>
+
+    <div class="nav__actions">
+      <a href="#formularios" class="nav__btn nav__btn--ghost d-none d-md-block">Buscar sastre</a>
+      <a href="#formularios" class="nav__btn nav__btn--fill">Postular →</a>
+    </div>
+
+    <button class="nav__burger" id="burger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Drawer móvil -->
+  <div class="nav__drawer" id="drawer">
+    <button class="nav__drawer-close" id="drawer-close">✕</button>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#catalogo">Telas</a>
+    <a href="#guia-color">Guía de color</a>
+    <a href="#sastres">Sastres</a>
+    <a href="#formularios" style="color:var(--terra)">Conectarse →</a>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+     scss/layout/_hero.scss
+══════════════════════════════════════════════════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero__split"></div>
+
+  <div class="hero__container">
+    <div class="hero__content">
+      <div class="hero__eyebrow-row">
+        <div class="hero__dot"></div>
+        <span class="eyebrow">Plataforma textil · Chile</span>
+      </div>
+
+      <h1 class="hero__title">
+        Donde el hilo<br>se convierte<br>en <em>arte propio</em>
+      </h1>
+
+      <p class="hero__desc">
+        Conectamos a quienes buscan ropa hecha a medida con los mejores
+        sastres artesanales del país. Desde tu tono de piel hasta la tela perfecta.
+      </p>
+
+      <div class="hero__ctas">
+        <a href="#guia-color"   class="btn btn--terra btn--lg">Descubrir mi paleta</a>
+        <a href="#formularios"  class="btn btn--outline btn--lg">Soy sastre →</a>
+      </div>
+
+      <div class="hero__kpis">
+        <div class="hero__kpi">
+          <strong>340+</strong><span>Sastres activos</span>
+        </div>
+        <div class="hero__kpi-sep"></div>
+        <div class="hero__kpi">
+          <strong>16</strong><span>Regiones</span>
+        </div>
+        <div class="hero__kpi-sep"></div>
+        <div class="hero__kpi">
+          <strong>5.200</strong><span>Proyectos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Telas flotantes con SVG patterns -->
+    <div class="hero__visual">
+      <!-- Lino natural -->
+      <div class="hero__swatch hero__swatch--a">
+        <svg viewBox="0 0 255 335" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+          <defs>
+            <pattern id="lino" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
+              <rect width="8" height="8" fill="#D4B896"/>
+              <line x1="0" y1="0" x2="0" y2="8" stroke="#BF9B6E" stroke-width=".9" opacity=".55"/>
+              <line x1="4" y1="0" x2="4" y2="8" stroke="#E0C4A4" stroke-width=".5" opacity=".35"/>
+              <line x1="0" y1="0" x2="8" y2="0" stroke="#C2976A" stroke-width=".7" opacity=".5"/>
+              <line x1="0" y1="4" x2="8" y2="4" stroke="#D8B88A" stroke-width=".4" opacity=".38"/>
+            </pattern>
+          </defs>
+          <rect width="255" height="335" fill="url(#lino)"/>
+          <rect width="255" height="335" fill="url(#lino)" transform="rotate(90 127 167)" opacity=".35"/>
+        </svg>
+        <div class="swatch-label">
+          <strong>Lino Natural</strong><span>Colección 2025</span>
+        </div>
+      </div>
+
+      <!-- Índigo -->
+      <div class="hero__swatch hero__swatch--b">
+        <svg viewBox="0 0 182 245" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+          <defs>
+            <pattern id="seda" x="0" y="0" width="7" height="7" patternUnits="userSpaceOnUse">
+              <rect width="7" height="7" fill="#2D3A6B"/>
+              <line x1="0" y1="0" x2="7" y2="7" stroke="#4A5A9C" stroke-width=".6" opacity=".55"/>
+              <line x1="7" y1="0" x2="0" y2="7" stroke="#1B2648" stroke-width=".4" opacity=".45"/>
+            </pattern>
+          </defs>
+          <rect width="182" height="245" fill="url(#seda)"/>
+          <rect width="182" height="245" fill="rgba(255,255,255,.04)"/>
+        </svg>
+        <div class="swatch-label">
+          <strong>Seda Índigo</strong><span>Premium</span>
+        </div>
+      </div>
+
+      <!-- Terracota -->
+      <div class="hero__swatch hero__swatch--c">
+        <svg viewBox="0 0 158 208" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+          <defs>
+            <pattern id="terra-p" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <rect width="10" height="10" fill="#C45C3A"/>
+              <rect x="0" y="0" width="5" height="5" fill="#D06B47" opacity=".4"/>
+              <rect x="5" y="5" width="5" height="5" fill="#A04428" opacity=".32"/>
+            </pattern>
+          </defs>
+          <rect width="158" height="208" fill="url(#terra-p)"/>
+        </svg>
+        <div class="swatch-label">
+          <strong>Popelín Terra</strong><span>Temporada</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CÓMO FUNCIONA
+     scss/pages/_home.scss → .sec-how
+══════════════════════════════════════════════════════════ -->
+<section class="sec sec--light" id="como-funciona">
+  <div class="wrap">
+    <div class="sec-head sec-head--center fade-up">
+      <span class="eyebrow">La plataforma</span>
+      <h2>¿Cómo funciona?</h2>
+      <p>En cuatro pasos conectamos tu proyecto de ropa con el sastre perfecto, o te integramos a nuestra red.</p>
+    </div>
+
+    <div class="how-grid">
+      <div class="how-card fade-up delay-1">
+        <div class="how-num">1</div>
+        <div class="how-icon">🎨</div>
+        <h3>Descubre tu paleta</h3>
+        <p>Nuestra guía de color según tu tono de piel te indica los tejidos que mejor te quedan.</p>
+      </div>
+      <div class="how-card fade-up delay-2">
+        <div class="how-num">2</div>
+        <div class="how-icon">🧶</div>
+        <h3>Elige la tela</h3>
+        <p>Navega nuestro catálogo con más de 80 materiales y filtra por tipo, color y precio.</p>
+      </div>
+      <div class="how-card fade-up delay-3">
+        <div class="how-num">3</div>
+        <div class="how-icon">🤝</div>
+        <h3>Conecta con un sastre</h3>
+        <p>Te emparejamos con el artesano más adecuado según tu región y tipo de proyecto.</p>
+      </div>
+      <div class="how-card fade-up delay-4">
+        <div class="how-num">4</div>
+        <div class="how-icon">✨</div>
+        <h3>Recibe tu prenda</h3>
+        <p>Tu sastre trabaja con la tela elegida y entrega según las medidas y diseño acordados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     GUÍA DE COLOR SEGÚN TONO DE PIEL
+     scss/components/_cards.scss → .skin-card
+══════════════════════════════════════════════════════════ -->
+<section class="sec" id="guia-color">
+  <div class="wrap">
+    <div class="sec-head sec-head--center fade-up">
+      <span class="eyebrow">Guía de color</span>
+      <h2>Telas según tu<br>tono de piel</h2>
+      <p>Cada piel tiene una paleta que la realza. Encuentra los tejidos y colores que van contigo.</p>
+    </div>
+
+    <div class="skin-grid">
+
+      <!-- Piel Clara -->
+      <div class="skin-card fade-up delay-1">
+        <div class="skin-card__hero">
+          <svg viewBox="0 0 400 90" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="sc-p1" width="12" height="12" patternUnits="userSpaceOnUse">
+                <rect width="12" height="12" fill="#E8D9C5"/>
+                <circle cx="6" cy="6" r="2" fill="#C4AD8E" opacity=".3"/>
+              </pattern>
+            </defs>
+            <rect width="400" height="90" fill="url(#sc-p1)"/>
+          </svg>
+          <div class="skin-dot" style="background:linear-gradient(135deg,#FFE4C4,#FDDAB9)"></div>
+        </div>
+        <div class="skin-body">
+          <div class="skin-title">Piel Clara</div>
+          <p class="skin-desc">Tonos marfil, crema y alabastro. Piel que se sonroja con facilidad.</p>
+          <span class="skin-label">✅ Colores recomendados</span>
+          <div class="skin-palette">
+            <div class="skin-color"><div class="skin-color__dot" style="background:#2D3A6B"></div><span class="skin-color__name">Índigo</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#2E86AB"></div><span class="skin-color__name">Azul mar</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#D4B896"></div><span class="skin-color__name">Lino</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#5E8C6A"></div><span class="skin-color__name">Salvia</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#D4A5A5"></div><span class="skin-color__name">Rosa palo</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#8C7B6B"></div><span class="skin-color__name">Taupe</span></div>
+          </div>
+          <span class="skin-label skin-label--avoid">❌ Evitar</span>
+          <div class="skin-palette">
+            <div class="skin-color"><div class="skin-color__dot" style="background:#F5F0E8;border:1px solid #ddd"></div><span class="skin-color__name">Blanco hueso</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#E8E0CC;border:1px solid #ddd"></div><span class="skin-color__name">Beige pálido</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Piel Oliva / Media -->
+      <div class="skin-card fade-up delay-2">
+        <div class="skin-card__hero">
+          <svg viewBox="0 0 400 90" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="sc-p2" width="10" height="10" patternUnits="userSpaceOnUse">
+                <rect width="10" height="10" fill="#C8954A"/>
+                <line x1="0" y1="0" x2="10" y2="10" stroke="#A67830" stroke-width=".6" opacity=".4"/>
+                <line x1="10" y1="0" x2="0" y2="10" stroke="#DEB060" stroke-width=".4" opacity=".35"/>
+              </pattern>
+            </defs>
+            <rect width="400" height="90" fill="url(#sc-p2)"/>
+          </svg>
+          <div class="skin-dot" style="background:linear-gradient(135deg,#C68642,#A0785A)"></div>
+        </div>
+        <div class="skin-body">
+          <div class="skin-title">Piel Oliva / Media</div>
+          <p class="skin-desc">Tonos dorados, trigo y miel. Bronceado natural todo el año.</p>
+          <span class="skin-label">✅ Colores recomendados</span>
+          <div class="skin-palette">
+            <div class="skin-color"><div class="skin-color__dot" style="background:#D4922A"></div><span class="skin-color__name">Mostaza</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#C45C3A"></div><span class="skin-color__name">Terracota</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#1E2A45"></div><span class="skin-color__name">Navy</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#C8553D"></div><span class="skin-color__name">Tomate</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#4A7C59"></div><span class="skin-color__name">Oliva</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#E8A87C"></div><span class="skin-color__name">Mandarina</span></div>
+          </div>
+          <span class="skin-label skin-label--avoid">❌ Evitar</span>
+          <div class="skin-palette">
+            <div class="skin-color"><div class="skin-color__dot" style="background:#8B7355"></div><span class="skin-color__name">Café apagado</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#9B8E7A"></div><span class="skin-color__name">Arena gris</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Piel Morena / Oscura -->
+      <div class="skin-card fade-up delay-3">
+        <div class="skin-card__hero">
+          <svg viewBox="0 0 400 90" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="sc-p3" width="8" height="8" patternUnits="userSpaceOnUse">
+                <rect width="8" height="8" fill="#5C3317"/>
+                <rect x="0" y="0" width="4" height="4" fill="#6E3D1E" opacity=".5"/>
+                <rect x="4" y="4" width="4" height="4" fill="#3B1F0D" opacity=".4"/>
+              </pattern>
+            </defs>
+            <rect width="400" height="90" fill="url(#sc-p3)"/>
+          </svg>
+          <div class="skin-dot" style="background:linear-gradient(135deg,#5C3317,#3B1F0D)"></div>
+        </div>
+        <div class="skin-body">
+          <div class="skin-title">Piel Morena / Oscura</div>
+          <p class="skin-desc">Tonos café, ébano y caoba. Piel con calidez y profundidad natural.</p>
+          <span class="skin-label">✅ Colores recomendados</span>
+          <div class="skin-palette">
+            <div class="skin-color"><div class="skin-color__dot" style="background:#FF6B9D"></div><span class="skin-color__name">Rosa hot</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#FFFFFF;border:1px solid #ddd"></div><span class="skin-color__name">Blanco</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#FFD700"></div><span class="skin-color__name">Dorado</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#00CED1"></div><span class="skin-color__name">Turquesa</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#FF4500"></div><span class="skin-color__name">Naranja</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#9B59B6"></div><span class="skin-color__name">Púrpura</span></div>
+          </div>
+          <span class="skin-label skin-label--avoid">❌ Evitar</span>
+          <div class="skin-palette">
+            <div class="skin-color"><div class="skin-color__dot" style="background:#808080"></div><span class="skin-color__name">Gris neutro</span></div>
+            <div class="skin-color"><div class="skin-color__dot" style="background:#8B7355"></div><span class="skin-color__name">Café medio</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.skin-grid -->
+
+    <div class="skin-cta-box fade-up">
+      <h3>¿Quieres asesoría personalizada?</h3>
+      <p>Conecta directamente con un sastre especialista en colorimetría textil.</p>
+      <div class="cta-actions">
+        <a href="#formularios" class="btn btn--mustard btn--lg">Buscar mi sastre ideal</a>
+        <a href="#formularios" class="btn btn--outline-lt">Ver sastres disponibles</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CATÁLOGO DE TELAS
+     scss/pages/_home.scss → .sec-catalog
+══════════════════════════════════════════════════════════ -->
+<section class="sec sec--dark" id="catalogo">
+  <div class="wrap">
+    <div class="sec-head sec-head--center fade-up">
+      <span class="eyebrow">Materiales</span>
+      <h2>Catálogo de telas</h2>
+      <p>80+ materiales disponibles en nuestras sucursales de norte a sur.</p>
+    </div>
+
+    <div class="cat-filters fade-up">
+      <button class="cf-btn active" data-filter="all">Todos</button>
+      <button class="cf-btn" data-filter="natural">Naturales</button>
+      <button class="cf-btn" data-filter="sintetico">Sintéticos</button>
+      <button class="cf-btn" data-filter="mezcla">Mezclas</button>
+      <button class="cf-btn" data-filter="premium">Premium</button>
+    </div>
+
+    <div class="cat-grid">
+      <!-- Lino -->
+      <div class="fabric-card fade-up delay-1" data-type="natural">
+        <div class="fc-wrap">
+          <svg class="fc-img" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="fc-lino" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#D4B896"/><line x1="0" y1="0" x2="0" y2="8" stroke="#BF9B6E" stroke-width=".8" opacity=".55"/><line x1="0" y1="0" x2="8" y2="0" stroke="#C9A97E" stroke-width=".6" opacity=".5"/></pattern></defs>
+            <rect width="300" height="200" fill="url(#fc-lino)"/><rect width="300" height="200" fill="url(#fc-lino)" transform="rotate(90 150 100)" opacity=".45"/>
+          </svg>
+          <div class="fc-dot" style="background:#D4B896"></div>
+          <div class="fc-stock">En stock</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Lino Premium</div>
+          <div class="fc-type">Natural · 100% Lino belga</div>
+          <div class="fc-price"><strong>$4.200</strong><span>/ metro</span></div>
+        </div>
+      </div>
+
+      <!-- Seda -->
+      <div class="fabric-card fade-up delay-2" data-type="premium">
+        <div class="fc-wrap">
+          <svg class="fc-img" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="fc-seda" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#2D3A6B"/><line x1="0" y1="0" x2="6" y2="6" stroke="#4A5A9C" stroke-width=".5" opacity=".6"/><line x1="6" y1="0" x2="0" y2="6" stroke="#1B2648" stroke-width=".4" opacity=".5"/></pattern></defs>
+            <rect width="300" height="200" fill="url(#fc-seda)"/>
+          </svg>
+          <div class="fc-dot" style="background:#2D3A6B"></div>
+          <div class="fc-stock">Premium</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Seda Natural</div>
+          <div class="fc-type">Premium · 100% Seda</div>
+          <div class="fc-price"><strong>$12.800</strong><span>/ metro</span></div>
+        </div>
+      </div>
+
+      <!-- Algodón -->
+      <div class="fabric-card fade-up delay-3" data-type="natural">
+        <div class="fc-wrap">
+          <svg class="fc-img" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="fc-alg" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#C45C3A"/><rect x="0" y="0" width="5" height="5" fill="#D06B47" opacity=".4"/><rect x="5" y="5" width="5" height="5" fill="#A04428" opacity=".32"/></pattern></defs>
+            <rect width="300" height="200" fill="url(#fc-alg)"/>
+          </svg>
+          <div class="fc-dot" style="background:#C45C3A"></div>
+          <div class="fc-stock">En stock</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Algodón Popelín</div>
+          <div class="fc-type">Natural · 100% Algodón</div>
+          <div class="fc-price"><strong>$2.800</strong><span>/ metro</span></div>
+        </div>
+      </div>
+
+      <!-- Gabardina -->
+      <div class="fabric-card fade-up delay-4" data-type="mezcla">
+        <div class="fc-wrap">
+          <svg class="fc-img" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="fc-gab" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#1E2A45"/><line x1="0" y1="6" x2="12" y2="6" stroke="#3A4D6B" stroke-width=".9" opacity=".55"/><line x1="6" y1="0" x2="6" y2="12" stroke="#2E3E5C" stroke-width=".6" opacity=".45"/></pattern></defs>
+            <rect width="300" height="200" fill="url(#fc-gab)"/>
+          </svg>
+          <div class="fc-dot" style="background:#1E2A45"></div>
+          <div class="fc-stock">En stock</div>
+        </div>
+        <div class="fc-body">
+          <div class="fc-name">Gabardina Navy</div>
+          <div class="fc-type">Mezcla · Poliéster-Viscosa</div>
+          <div class="fc-price"><strong>$3.500</strong><span>/ metro</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SASTRES DESTACADOS
+     scss/components/_cards.scss → .sastre-card
+══════════════════════════════════════════════════════════ -->
+<section class="sec" id="sastres">
+  <div class="wrap">
+    <div class="sec-head fade-up">
+      <span class="eyebrow">Red de expertos</span>
+      <h2>Sastres destacados</h2>
+      <p>Algunos de los artesanos textiles más reconocidos de nuestra plataforma.</p>
+    </div>
+
+    <div class="sc-grid">
+      <!-- Sastre 1 -->
+      <div class="sastre-card fade-up delay-1">
+        <div class="sc-cover">
+          <svg class="sc-img" viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="s1p" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="18" height="18" fill="#2D3A6B"/><circle cx="9" cy="9" r="2.5" fill="#4A5A9C" opacity=".3"/></pattern></defs>
+            <rect width="400" height="190" fill="url(#s1p)"/>
+          </svg>
+          <div class="sc-badge">⭐ Top Sastre</div>
+          <div class="sc-verified">✔ Verificado</div>
+        </div>
+        <div class="sc-avatar">M</div>
+        <div class="sc-body">
+          <div class="sc-name">María González</div>
+          <div class="sc-role">Alta Costura · Santiago</div>
+          <div class="sc-tags">
+            <span class="sc-tag">Vestidos</span>
+            <span class="sc-tag">Formal</span>
+            <span class="sc-tag">Novia</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
+            <span class="sc-stars">★★★★★</span>
+            <span style="font-size:.78rem;font-weight:700;color:var(--umber)">5.0</span>
+            <span style="font-size:.72rem;color:var(--umber-s)">(142 reseñas)</span>
+          </div>
+          <div class="sc-meta">
+            <div class="sc-meta-item"><strong>8</strong><span>Años exp.</span></div>
+            <div class="sc-sep"></div>
+            <div class="sc-meta-item"><strong>230</strong><span>Proyectos</span></div>
+            <div class="sc-sep"></div>
+            <div class="sc-meta-item"><strong>$35k</strong><span>Desde/prenda</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sastre 2 -->
+      <div class="sastre-card fade-up delay-2">
+        <div class="sc-cover">
+          <svg class="sc-img" viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="s2p" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#C45C3A"/><rect x="0" y="0" width="7" height="7" fill="#D06B47" opacity=".4"/><rect x="7" y="7" width="7" height="7" fill="#A04428" opacity=".3"/></pattern></defs>
+            <rect width="400" height="190" fill="url(#s2p)"/>
+          </svg>
+          <div class="sc-badge">🏆 Favorito</div>
+          <div class="sc-verified">✔ Verificado</div>
+        </div>
+        <div class="sc-avatar">C</div>
+        <div class="sc-body">
+          <div class="sc-name">Carlos Riquelme</div>
+          <div class="sc-role">Sastrería Clásica · Valparaíso</div>
+          <div class="sc-tags">
+            <span class="sc-tag">Trajes hombre</span>
+            <span class="sc-tag">Uniformes</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
+            <span class="sc-stars">★★★★★</span>
+            <span style="font-size:.78rem;font-weight:700;color:var(--umber)">4.9</span>
+            <span style="font-size:.72rem;color:var(--umber-s)">(89 reseñas)</span>
+          </div>
+          <div class="sc-meta">
+            <div class="sc-meta-item"><strong>15</strong><span>Años exp.</span></div>
+            <div class="sc-sep"></div>
+            <div class="sc-meta-item"><strong>180</strong><span>Proyectos</span></div>
+            <div class="sc-sep"></div>
+            <div class="sc-meta-item"><strong>$45k</strong><span>Desde/prenda</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sastre 3 -->
+      <div class="sastre-card fade-up delay-3">
+        <div class="sc-cover">
+          <svg class="sc-img" viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="s3p" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#5E8C6A"/><line x1="0" y1="8" x2="16" y2="8" stroke="#3A6B45" stroke-width=".7" opacity=".45"/><line x1="8" y1="0" x2="8" y2="16" stroke="#7DAE88" stroke-width=".5" opacity=".4"/></pattern></defs>
+            <rect width="400" height="190" fill="url(#s3p)"/>
+          </svg>
+          <div class="sc-badge">🌿 Eco-Textil</div>
+          <div class="sc-verified">✔ Verificado</div>
+        </div>
+        <div class="sc-avatar">A</div>
+        <div class="sc-body">
+          <div class="sc-name">Ana Fuentes</div>
+          <div class="sc-role">Moda Sostenible · Concepción</div>
+          <div class="sc-tags">
+            <span class="sc-tag">Eco-moda</span>
+            <span class="sc-tag">Infantil</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
+            <span class="sc-stars">★★★★☆</span>
+            <span style="font-size:.78rem;font-weight:700;color:var(--umber)">4.8</span>
+            <span style="font-size:.72rem;color:var(--umber-s)">(64 reseñas)</span>
+          </div>
+          <div class="sc-meta">
+            <div class="sc-meta-item"><strong>5</strong><span>Años exp.</span></div>
+            <div class="sc-sep"></div>
+            <div class="sc-meta-item"><strong>95</strong><span>Proyectos</span></div>
+            <div class="sc-sep"></div>
+            <div class="sc-meta-item"><strong>$22k</strong><span>Desde/prenda</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5 fade-up">
+      <a href="#formularios" class="btn btn--outline btn--lg">Ver todos los sastres →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FORMULARIOS DUALES
+     scss/components/_stepper.scss
+══════════════════════════════════════════════════════════ -->
+<section class="sec form-bg" id="formularios" style="padding:5rem 0">
+  <div class="wrap">
+    <div class="sec-head sec-head--center fade-up" style="margin-bottom:2.5rem">
+      <span class="eyebrow">Conectarse</span>
+      <h2>¿Qué buscas hacer?</h2>
+      <p>Dos flujos separados: si buscas un sastre o si quieres trabajar con nosotros.</p>
+    </div>
+
+    <div class="form-inner fade-up" id="form-section">
+
+      <!-- TABS -->
+      <div class="flow-tabs">
+        <button class="flow-tabs__btn active" data-flow="client">
+          Buscar un sastre
+          <small>Soy cliente</small>
+        </button>
+        <button class="flow-tabs__btn" data-flow="worker">
+          Trabajar en la tienda
+          <small>Postular</small>
+        </button>
+      </div>
+
+      <!-- ════════════════════════════════════════════
+           FLUJO CLIENTE — 10 pasos
+      ════════════════════════════════════════════ -->
+      <div class="stepper__flow active" id="flow-client">
+
+        <!-- Progreso -->
+        <div class="stepper__progress">
+          <div class="bar-track"><div class="bar-fill"></div></div>
+          <div class="prog-row">
+            <span>Paso 1 de 10</span>
+            <strong>0% completado</strong>
+          </div>
+          <div class="stepper__dots">
+            <button class="active">1</button><button>2</button><button>3</button><button>4</button><button>5</button>
+            <button>6</button><button>7</button><button>8</button><button>9</button><button>10</button>
+          </div>
+        </div>
+
+        <div id="client-form-wrap">
+
+          <!-- Paso 1: Datos de contacto -->
+          <div class="step active" data-step="1">
+            <div class="step-head">
+              <div class="step-num">Paso 01 / 10 — Datos de contacto</div>
+              <h3>¿Quién eres?</h3>
+              <p>Necesitamos tus datos básicos para conectarte con el sastre más adecuado.</p>
+            </div>
+            <div class="srow">
+              <div class="sf"><label for="cl-nombre">Nombre <span class="req">*</span></label><input type="text" id="cl-nombre" class="si" placeholder="Ej: Carolina"/><span class="err"></span></div>
+              <div class="sf"><label for="cl-apellido">Apellido <span class="req">*</span></label><input type="text" id="cl-apellido" class="si" placeholder="Ej: Muñoz"/><span class="err"></span></div>
+            </div>
+            <div class="srow">
+              <div class="sf"><label for="cl-correo">Correo electrónico <span class="req">*</span></label><input type="email" id="cl-correo" class="si" placeholder="tu@correo.cl"/><span class="err"></span></div>
+              <div class="sf"><label for="cl-tel">Teléfono <span class="req">*</span></label><input type="tel" id="cl-tel" class="si" placeholder="+56 9 1234 5678"/><span class="err"></span></div>
+            </div>
+            <div class="step-nav"><span></span><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 2: Ubicación -->
+          <div class="step" data-step="2">
+            <div class="step-head">
+              <div class="step-num">Paso 02 / 10 — Ubicación</div>
+              <h3>¿Dónde estás?</h3>
+              <p>Te conectamos con sastres en tu región para facilitar las visitas y medidas.</p>
+            </div>
+            <div class="sf"><label for="cl-region">Región <span class="req">*</span></label>
+              <select id="cl-region" class="si si--select"><option value="">— Selecciona tu región —</option><option>Región Metropolitana de Santiago</option><option>Región de Valparaíso</option><option>Región del Biobío</option><option>Región de La Araucanía</option><option>Región de Los Lagos</option><option>Región de Antofagasta</option><option>Región de Coquimbo</option><option>Región del Maule</option><option>Región de Ñuble</option><option>Región de Los Ríos</option><option>Región de Arica y Parinacota</option><option>Región de Tarapacá</option><option>Región de Atacama</option><option>Región del Libertador G. B. O'Higgins</option><option>Región de Aysén</option><option>Región de Magallanes</option></select>
+              <span class="err"></span></div>
+            <div class="sf"><label for="cl-ciudad">Ciudad / Comuna <span class="req">*</span></label><input type="text" id="cl-ciudad" class="si" placeholder="Ej: Providencia"/><span class="err"></span></div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 3: Tipo de prenda -->
+          <div class="step" data-step="3">
+            <div class="step-head">
+              <div class="step-num">Paso 03 / 10 — Tipo de prenda</div>
+              <h3>¿Qué prenda buscas?</h3>
+              <p>Esto nos permite filtrar sastres con experiencia específica.</p>
+            </div>
+            <div class="opts" data-group="g-tipo">
+              <div class="opt"><input type="radio" name="cl-tipo" id="ct1" value="Vestido de novia"/><label for="ct1"><span class="ico">👰</span><span class="lbl">Vestido de novia</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tipo" id="ct2" value="Traje formal hombre"/><label for="ct2"><span class="ico">👔</span><span class="lbl">Traje formal</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tipo" id="ct3" value="Vestido de fiesta"/><label for="ct3"><span class="ico">👗</span><span class="lbl">Vestido fiesta</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tipo" id="ct4" value="Ropa casual"/><label for="ct4"><span class="ico">👕</span><span class="lbl">Ropa casual</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tipo" id="ct5" value="Uniforme laboral"/><label for="ct5"><span class="ico">🦺</span><span class="lbl">Uniforme</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tipo" id="ct6" value="Ropa infantil"/><label for="ct6"><span class="ico">🧸</span><span class="lbl">Infantil</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tipo" id="ct7" value="Abrigo / Chaqueta"/><label for="ct7"><span class="ico">🧥</span><span class="lbl">Abrigo</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tipo" id="ct8" value="Otro"/><label for="ct8"><span class="ico">✂️</span><span class="lbl">Otro</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 4: Ocasión -->
+          <div class="step" data-step="4">
+            <div class="step-head">
+              <div class="step-num">Paso 04 / 10 — Ocasión</div>
+              <h3>¿Para qué ocasión?</h3>
+              <p>El contexto nos ayuda a recomendar tejidos y acabados adecuados.</p>
+            </div>
+            <div class="opts" data-group="g-ocasion">
+              <div class="opt"><input type="radio" name="cl-ocasion" id="co1" value="Matrimonio / Boda"/><label for="co1"><span class="ico">💍</span><span class="lbl">Matrimonio</span></label></div>
+              <div class="opt"><input type="radio" name="cl-ocasion" id="co2" value="Evento corporativo"/><label for="co2"><span class="ico">🏢</span><span class="lbl">Corporativo</span></label></div>
+              <div class="opt"><input type="radio" name="cl-ocasion" id="co3" value="Fiesta o celebración"/><label for="co3"><span class="ico">🎉</span><span class="lbl">Fiesta</span></label></div>
+              <div class="opt"><input type="radio" name="cl-ocasion" id="co4" value="Uso diario"/><label for="co4"><span class="ico">🌞</span><span class="lbl">Uso diario</span></label></div>
+              <div class="opt"><input type="radio" name="cl-ocasion" id="co5" value="Trabajo / Oficina"/><label for="co5"><span class="ico">💼</span><span class="lbl">Trabajo</span></label></div>
+              <div class="opt"><input type="radio" name="cl-ocasion" id="co6" value="Otro"/><label for="co6"><span class="ico">🎭</span><span class="lbl">Otro</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 5: Telas preferidas -->
+          <div class="step" data-step="5">
+            <div class="step-head">
+              <div class="step-num">Paso 05 / 10 — Tejidos</div>
+              <h3>¿Qué telas te interesan?</h3>
+              <p>Puedes elegir más de una. Usaremos esto para filtrar el catálogo disponible.</p>
+            </div>
+            <div class="opts" data-group="g-tela" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr))">
+              <div class="opt"><input type="checkbox" name="cl-tela" id="ctl1" value="Lino"/><label for="ctl1"><span class="ico">🌾</span><span class="lbl">Lino</span></label></div>
+              <div class="opt"><input type="checkbox" name="cl-tela" id="ctl2" value="Seda"/><label for="ctl2"><span class="ico">🪞</span><span class="lbl">Seda</span></label></div>
+              <div class="opt"><input type="checkbox" name="cl-tela" id="ctl3" value="Algodón"/><label for="ctl3"><span class="ico">☁️</span><span class="lbl">Algodón</span></label></div>
+              <div class="opt"><input type="checkbox" name="cl-tela" id="ctl4" value="Lana"/><label for="ctl4"><span class="ico">🐑</span><span class="lbl">Lana</span></label></div>
+              <div class="opt"><input type="checkbox" name="cl-tela" id="ctl5" value="Satén"/><label for="ctl5"><span class="ico">✨</span><span class="lbl">Satén</span></label></div>
+              <div class="opt"><input type="checkbox" name="cl-tela" id="ctl6" value="Tul"/><label for="ctl6"><span class="ico">🌸</span><span class="lbl">Tul</span></label></div>
+              <div class="opt"><input type="checkbox" name="cl-tela" id="ctl7" value="Denim"/><label for="ctl7"><span class="ico">👖</span><span class="lbl">Denim</span></label></div>
+              <div class="opt"><input type="checkbox" name="cl-tela" id="ctl8" value="Organza"/><label for="ctl8"><span class="ico">🌬️</span><span class="lbl">Organza</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 6: Tono de piel -->
+          <div class="step" data-step="6">
+            <div class="step-head">
+              <div class="step-num">Paso 06 / 10 — Colorimetría</div>
+              <h3>¿Cuál es tu tono de piel?</h3>
+              <p>Usamos esto para recomendarte colores de tela que mejor realcen tu piel.</p>
+            </div>
+            <div class="opts" data-group="g-tono">
+              <div class="opt"><input type="radio" name="cl-tono" id="cto1" value="Piel clara"/><label for="cto1"><span class="ico">🌸</span><span class="lbl">Clara</span><span class="sub">Marfil, crema</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tono" id="cto2" value="Piel oliva / media"/><label for="cto2"><span class="ico">🌻</span><span class="lbl">Oliva / Media</span><span class="sub">Dorado, miel</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tono" id="cto3" value="Piel morena / oscura"/><label for="cto3"><span class="ico">🌑</span><span class="lbl">Morena / Oscura</span><span class="sub">Café, ébano</span></label></div>
+              <div class="opt"><input type="radio" name="cl-tono" id="cto4" value="Prefiero no especificar"/><label for="cto4"><span class="ico">🎨</span><span class="lbl">Sin preferencia</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 7: Presupuesto -->
+          <div class="step" data-step="7">
+            <div class="step-head">
+              <div class="step-num">Paso 07 / 10 — Presupuesto</div>
+              <h3>¿Cuánto puedes invertir?</h3>
+              <p>Esto nos permite mostrarte sastres dentro de tu rango de precio.</p>
+            </div>
+            <div class="sf">
+              <label>Presupuesto para la prenda completa (CLP)</label>
+              <div class="range-disp" id="cl-pres-display">$50.000</div>
+              <input type="range" id="cl-presupuesto" class="si" min="20000" max="1000000" step="5000" value="50000"/>
+              <div class="range-lbl"><span>$20.000</span><span>$1.000.000+</span></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 8: Plazo -->
+          <div class="step" data-step="8">
+            <div class="step-head">
+              <div class="step-num">Paso 08 / 10 — Plazo</div>
+              <h3>¿En cuánto tiempo la necesitas?</h3>
+              <p>El plazo afecta la disponibilidad de los sastres y el precio final.</p>
+            </div>
+            <div class="opts" data-group="g-plazo">
+              <div class="opt"><input type="radio" name="cl-plazo" id="cp1" value="Urgente: menos de 2 semanas"/><label for="cp1"><span class="ico">🚨</span><span class="lbl">Urgente</span><span class="sub">Menos de 2 semanas</span></label></div>
+              <div class="opt"><input type="radio" name="cl-plazo" id="cp2" value="Normal: 2 a 4 semanas"/><label for="cp2"><span class="ico">📅</span><span class="lbl">Normal</span><span class="sub">2 a 4 semanas</span></label></div>
+              <div class="opt"><input type="radio" name="cl-plazo" id="cp3" value="Sin apuro: 1 a 3 meses"/><label for="cp3"><span class="ico">🗓️</span><span class="lbl">Sin apuro</span><span class="sub">1 a 3 meses</span></label></div>
+              <div class="opt"><input type="radio" name="cl-plazo" id="cp4" value="Flexible"/><label for="cp4"><span class="ico">🤷</span><span class="lbl">Flexible</span><span class="sub">Sin fecha límite</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 9: Disponibilidad de visita -->
+          <div class="step" data-step="9">
+            <div class="step-head">
+              <div class="step-num">Paso 09 / 10 — Disponibilidad</div>
+              <h3>¿Cuándo puedes reunirte?</h3>
+              <p>El sastre necesitará tomarte medidas al menos una vez presencialmente.</p>
+            </div>
+            <div class="opts" data-group="g-disp">
+              <div class="opt"><input type="radio" name="cl-disponibilidad" id="cd1" value="Días de semana (mañana)"/><label for="cd1"><span class="ico">🌅</span><span class="lbl">Lunes-Viernes</span><span class="sub">Mañana</span></label></div>
+              <div class="opt"><input type="radio" name="cl-disponibilidad" id="cd2" value="Días de semana (tarde)"/><label for="cd2"><span class="ico">🌆</span><span class="lbl">Lunes-Viernes</span><span class="sub">Tarde / noche</span></label></div>
+              <div class="opt"><input type="radio" name="cl-disponibilidad" id="cd3" value="Fines de semana"/><label for="cd3"><span class="ico">🏖️</span><span class="lbl">Fin de semana</span><span class="sub">Sábado / Domingo</span></label></div>
+              <div class="opt"><input type="radio" name="cl-disponibilidad" id="cd4" value="Flexible"/><label for="cd4"><span class="ico">🕐</span><span class="lbl">Flexible</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 10: Descripción y referencia -->
+          <div class="step" data-step="10">
+            <div class="step-head">
+              <div class="step-num">Paso 10 / 10 — Descripción</div>
+              <h3>Cuéntanos más de tu proyecto</h3>
+              <p>Agrega detalles adicionales para que el sastre entienda bien tu visión.</p>
+            </div>
+            <div class="sf"><label for="cl-descripcion">Descripción del proyecto <span class="req">*</span></label><textarea id="cl-descripcion" class="si si--ta" placeholder="Describe la prenda: colores, estilo, detalles especiales... (mínimo 20 caracteres)"></textarea><span class="err"></span></div>
+            <div class="sf"><label for="cl-referencia">Link de referencia visual (opcional)</label><input type="url" id="cl-referencia" class="si" placeholder="https://pin.it/... o Instagram"/><small>Una imagen de Pinterest o Instagram nos ayuda mucho.</small></div>
+            <div class="divider">Revisa y envía</div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--terra btn--lg" data-submit>✅ Buscar mi sastre</button></div>
+          </div>
+
+        </div><!-- /#client-form-wrap -->
+
+        <!-- Resultado cliente -->
+        <div class="sdone" id="client-done">
+          <div class="sdone-icon">🤝</div>
+          <h2>¡Solicitud enviada!</h2>
+          <p>Analizaremos tu perfil y te contactaremos en 24-48 horas con hasta 3 sastres recomendados en tu zona.</p>
+          <div class="s-summary"><h4>Resumen de tu solicitud</h4><div id="client-summary"></div></div>
+          <a href="#" class="btn btn--terra btn--lg">Volver al inicio</a>
+        </div>
+      </div><!-- /#flow-client -->
+
+
+      <!-- ════════════════════════════════════════════
+           FLUJO POSTULANTE — 11 pasos
+      ════════════════════════════════════════════ -->
+      <div class="stepper__flow" id="flow-worker">
+
+        <!-- Progreso -->
+        <div class="stepper__progress">
+          <div class="bar-track"><div class="bar-fill"></div></div>
+          <div class="prog-row">
+            <span>Paso 1 de 11</span>
+            <strong>0% completado</strong>
+          </div>
+          <div class="stepper__dots">
+            <button class="active">1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>6</button>
+            <button>7</button><button>8</button><button>9</button><button>10</button><button>11</button>
+          </div>
+        </div>
+
+        <div id="worker-form-wrap">
+
+          <!-- Paso 1: Datos personales -->
+          <div class="step active" data-step="1">
+            <div class="step-head">
+              <div class="step-num">Paso 01 / 11 — Datos personales</div>
+              <h3>Empecemos con tu identidad</h3>
+              <p>Necesitamos tus datos básicos para registrar tu postulación formalmente.</p>
+            </div>
+            <div class="srow">
+              <div class="sf"><label for="wk-nombre">Nombre <span class="req">*</span></label><input type="text" id="wk-nombre" class="si" placeholder="Ej: Roberto"/><span class="err"></span></div>
+              <div class="sf"><label for="wk-apellido">Apellido <span class="req">*</span></label><input type="text" id="wk-apellido" class="si" placeholder="Ej: Paredes"/><span class="err"></span></div>
+            </div>
+            <div class="sf"><label for="wk-rut">RUT <span class="req">*</span></label><input type="text" id="wk-rut" class="si" placeholder="12.345.678-9"/><small>Con puntos y guión.</small><span class="err"></span></div>
+            <div class="srow">
+              <div class="sf"><label for="wk-correo">Correo <span class="req">*</span></label><input type="email" id="wk-correo" class="si" placeholder="tu@correo.cl"/><span class="err"></span></div>
+              <div class="sf"><label for="wk-tel">Teléfono <span class="req">*</span></label><input type="tel" id="wk-tel" class="si" placeholder="+56 9 ..."/><span class="err"></span></div>
+            </div>
+            <div class="step-nav"><span></span><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 2: Datos adicionales -->
+          <div class="step" data-step="2">
+            <div class="step-head">
+              <div class="step-num">Paso 02 / 11 — Datos adicionales</div>
+              <h3>Un poco más sobre ti</h3>
+              <p>Información complementaria que nos ayuda a procesar tu candidatura.</p>
+            </div>
+            <div class="srow">
+              <div class="sf"><label for="wk-fnac">Fecha de nacimiento <span class="req">*</span></label><input type="date" id="wk-fnac" class="si"/><span class="err"></span></div>
+              <div class="sf"><label for="wk-genero">Género <span class="req">*</span></label>
+                <select id="wk-genero" class="si si--select"><option value="">— Seleccionar —</option><option>Masculino</option><option>Femenino</option><option>No binario</option><option>Prefiero no indicar</option></select>
+                <span class="err"></span></div>
+            </div>
+            <div class="sf"><label for="wk-nac">Nacionalidad</label><input type="text" id="wk-nac" class="si" placeholder="Ej: Chilena"/></div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 3: Ubicación -->
+          <div class="step" data-step="3">
+            <div class="step-head">
+              <div class="step-num">Paso 03 / 11 — Ubicación</div>
+              <h3>¿Dónde vives actualmente?</h3>
+              <p>Asignamos postulantes a tiendas según disponibilidad regional.</p>
+            </div>
+            <div class="sf"><label for="wk-region">Región <span class="req">*</span></label>
+              <select id="wk-region" class="si si--select"><option value="">— Región —</option><option>Región Metropolitana de Santiago</option><option>Región de Valparaíso</option><option>Región del Biobío</option><option>Región de La Araucanía</option><option>Región de Los Lagos</option><option>Región de Antofagasta</option><option>Región de Coquimbo</option><option>Región del Maule</option><option>Región de Ñuble</option><option>Región de Los Ríos</option><option>Otra región</option></select>
+              <span class="err"></span></div>
+            <div class="srow">
+              <div class="sf"><label for="wk-ciudad">Ciudad <span class="req">*</span></label><input type="text" id="wk-ciudad" class="si" placeholder="Ej: Las Condes"/><span class="err"></span></div>
+              <div class="sf"><label for="wk-dir">Dirección (opcional)</label><input type="text" id="wk-dir" class="si" placeholder="Calle y número"/></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 4: Cargo -->
+          <div class="step" data-step="4">
+            <div class="step-head">
+              <div class="step-num">Paso 04 / 11 — Cargo</div>
+              <h3>¿A qué cargo postulas?</h3>
+              <p>Elige el rol que mejor describe tu perfil profesional.</p>
+            </div>
+            <div class="opts" data-group="g-wk-cargo">
+              <div class="opt"><input type="radio" name="wk-cargo" id="wc1" value="Sastre / Modista"/><label for="wc1"><span class="ico">✂️</span><span class="lbl">Sastre / Modista</span><span class="sub">Confección a medida</span></label></div>
+              <div class="opt"><input type="radio" name="wk-cargo" id="wc2" value="Vendedor/a Textil"/><label for="wc2"><span class="ico">🏪</span><span class="lbl">Vendedor/a</span><span class="sub">Atención en tienda</span></label></div>
+              <div class="opt"><input type="radio" name="wk-cargo" id="wc3" value="Diseñador/a de Moda"/><label for="wc3"><span class="ico">👗</span><span class="lbl">Diseñador/a</span><span class="sub">Patrones y colecciones</span></label></div>
+              <div class="opt"><input type="radio" name="wk-cargo" id="wc4" value="Bordador/a"/><label for="wc4"><span class="ico">🧶</span><span class="lbl">Bordador/a</span><span class="sub">Arte textil manual</span></label></div>
+              <div class="opt"><input type="radio" name="wk-cargo" id="wc5" value="Encargado/a de Bodega"/><label for="wc5"><span class="ico">📦</span><span class="lbl">Bodega</span><span class="sub">Gestión de inventario</span></label></div>
+              <div class="opt"><input type="radio" name="wk-cargo" id="wc6" value="Otro perfil"/><label for="wc6"><span class="ico">💼</span><span class="lbl">Otro perfil</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 5: Educación -->
+          <div class="step" data-step="5">
+            <div class="step-head">
+              <div class="step-num">Paso 05 / 11 — Formación</div>
+              <h3>¿Cuál es tu nivel educacional?</h3>
+              <p>Incluye cualquier formación formal o técnica en el área textil.</p>
+            </div>
+            <div class="opts" data-group="g-wk-edu">
+              <div class="opt"><input type="radio" name="wk-edu" id="we1" value="Enseñanza Media completa"/><label for="we1"><span class="ico">🎒</span><span class="lbl">Enseñanza Media</span></label></div>
+              <div class="opt"><input type="radio" name="wk-edu" id="we2" value="Técnico de nivel superior"/><label for="we2"><span class="ico">📋</span><span class="lbl">Técnico Superior</span></label></div>
+              <div class="opt"><input type="radio" name="wk-edu" id="we3" value="Universitario (en curso o egresado)"/><label for="we3"><span class="ico">🎓</span><span class="lbl">Universitario</span></label></div>
+              <div class="opt"><input type="radio" name="wk-edu" id="we4" value="Curso o taller especializado"/><label for="we4"><span class="ico">📚</span><span class="lbl">Curso / Taller</span></label></div>
+              <div class="opt"><input type="radio" name="wk-edu" id="we5" value="Autodidacta"/><label for="we5"><span class="ico">🔧</span><span class="lbl">Autodidacta</span></label></div>
+            </div>
+            <div class="sf" style="margin-top:1.25rem"><label for="wk-inst">Institución (opcional)</label><input type="text" id="wk-inst" class="si" placeholder="Ej: INACAP, Duoc UC, Universidad de Chile"/></div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 6: Experiencia -->
+          <div class="step" data-step="6">
+            <div class="step-head">
+              <div class="step-num">Paso 06 / 11 — Experiencia</div>
+              <h3>¿Cuántos años de experiencia tienes?</h3>
+              <p>Cuéntanos tu trayectoria en el rubro textil o en ventas de retail.</p>
+            </div>
+            <div class="opts" data-group="g-wk-exp">
+              <div class="opt"><input type="radio" name="wk-exp" id="wex1" value="Sin experiencia (postulante junior)"/><label for="wex1"><span class="ico">🌱</span><span class="lbl">Sin experiencia</span><span class="sub">Postulante junior</span></label></div>
+              <div class="opt"><input type="radio" name="wk-exp" id="wex2" value="Menos de 1 año"/><label for="wex2"><span class="ico">🌿</span><span class="lbl">Menos de 1 año</span></label></div>
+              <div class="opt"><input type="radio" name="wk-exp" id="wex3" value="1 a 3 años"/><label for="wex3"><span class="ico">📗</span><span class="lbl">1 – 3 años</span></label></div>
+              <div class="opt"><input type="radio" name="wk-exp" id="wex4" value="3 a 7 años"/><label for="wex4"><span class="ico">📘</span><span class="lbl">3 – 7 años</span></label></div>
+              <div class="opt"><input type="radio" name="wk-exp" id="wex5" value="Más de 7 años"/><label for="wex5"><span class="ico">🏆</span><span class="lbl">+7 años</span><span class="sub">Nivel experto</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 7: Especialidades -->
+          <div class="step" data-step="7">
+            <div class="step-head">
+              <div class="step-num">Paso 07 / 11 — Especialidades</div>
+              <h3>¿En qué te especializas?</h3>
+              <p>Selecciona todas las que apliquen. Esto nos ayuda a encontrar el match perfecto.</p>
+            </div>
+            <div class="opts" data-group="g-wk-esp" style="grid-template-columns:repeat(auto-fit,minmax(115px,1fr))">
+              <div class="opt"><input type="checkbox" name="wk-esp" id="wesp1" value="Ropa formal"/><label for="wesp1"><span class="ico">👔</span><span class="lbl">Formal</span></label></div>
+              <div class="opt"><input type="checkbox" name="wk-esp" id="wesp2" value="Moda casual"/><label for="wesp2"><span class="ico">👕</span><span class="lbl">Casual</span></label></div>
+              <div class="opt"><input type="checkbox" name="wk-esp" id="wesp3" value="Vestidos de novia"/><label for="wesp3"><span class="ico">👰</span><span class="lbl">Novia</span></label></div>
+              <div class="opt"><input type="checkbox" name="wk-esp" id="wesp4" value="Ropa infantil"/><label for="wesp4"><span class="ico">🧸</span><span class="lbl">Infantil</span></label></div>
+              <div class="opt"><input type="checkbox" name="wk-esp" id="wesp5" value="Uniformes"/><label for="wesp5"><span class="ico">🦺</span><span class="lbl">Uniformes</span></label></div>
+              <div class="opt"><input type="checkbox" name="wk-esp" id="wesp6" value="Textiles para el hogar"/><label for="wesp6"><span class="ico">🛋️</span><span class="lbl">Hogar</span></label></div>
+              <div class="opt"><input type="checkbox" name="wk-esp" id="wesp7" value="Moda sostenible"/><label for="wesp7"><span class="ico">🌿</span><span class="lbl">Eco-moda</span></label></div>
+              <div class="opt"><input type="checkbox" name="wk-esp" id="wesp8" value="Arte textil / Bordado"/><label for="wesp8"><span class="ico">🎨</span><span class="lbl">Arte textil</span></label></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 8: Disponibilidad y modalidad -->
+          <div class="step" data-step="8">
+            <div class="step-head">
+              <div class="step-num">Paso 08 / 11 — Disponibilidad</div>
+              <h3>¿Cómo te gustaría trabajar?</h3>
+              <p>Indica tu disponibilidad horaria y la modalidad que prefieres.</p>
+            </div>
+            <div class="sf"><label>Disponibilidad horaria <span class="req">*</span></label>
+              <div class="opts" data-group="g-wk-disp">
+                <div class="opt"><input type="radio" name="wk-disp" id="wd1" value="Jornada completa (45h/sem)"/><label for="wd1"><span class="ico">⏰</span><span class="lbl">Full time</span><span class="sub">45 hrs/semana</span></label></div>
+                <div class="opt"><input type="radio" name="wk-disp" id="wd2" value="Media jornada (25h/sem)"/><label for="wd2"><span class="ico">🕑</span><span class="lbl">Part time</span><span class="sub">25 hrs/semana</span></label></div>
+                <div class="opt"><input type="radio" name="wk-disp" id="wd3" value="Por proyecto (freelance)"/><label for="wd3"><span class="ico">🎯</span><span class="lbl">Freelance</span><span class="sub">Por proyecto</span></label></div>
+              </div>
+            </div>
+            <div class="sf" style="margin-top:1.25rem"><label>Modalidad preferida <span class="req">*</span></label>
+              <div class="opts" data-group="g-wk-modal">
+                <div class="opt"><input type="radio" name="wk-modal" id="wm1" value="Presencial en tienda"/><label for="wm1"><span class="ico">🏬</span><span class="lbl">Presencial</span><span class="sub">En tienda</span></label></div>
+                <div class="opt"><input type="radio" name="wk-modal" id="wm2" value="Trabajo desde casa"/><label for="wm2"><span class="ico">🏠</span><span class="lbl">Remoto</span><span class="sub">Desde casa</span></label></div>
+                <div class="opt"><input type="radio" name="wk-modal" id="wm3" value="Híbrido"/><label for="wm3"><span class="ico">🔄</span><span class="lbl">Híbrido</span></label></div>
+              </div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 9: Expectativa salarial -->
+          <div class="step" data-step="9">
+            <div class="step-head">
+              <div class="step-num">Paso 09 / 11 — Expectativa económica</div>
+              <h3>¿Cuánto esperas ganar?</h3>
+              <p>Esto nos ayuda a presentarte ofertas dentro de tu rango esperado.</p>
+            </div>
+            <div class="sf">
+              <label>Expectativa salarial mensual líquida (CLP)</label>
+              <div class="range-disp" id="wk-sal-display">$500.000</div>
+              <input type="range" id="wk-salario" class="si" min="300000" max="3500000" step="50000" value="500000"/>
+              <div class="range-lbl"><span>$300.000</span><span>$3.500.000+</span></div>
+            </div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 10: Motivación y portafolio -->
+          <div class="step" data-step="10">
+            <div class="step-head">
+              <div class="step-num">Paso 10 / 11 — Motivación</div>
+              <h3>¿Por qué Hilo &amp; Oficio?</h3>
+              <p>Cuéntanos tu historia, qué te apasiona del mundo textil y qué te motiva a unirte.</p>
+            </div>
+            <div class="sf"><label for="wk-motiv">Carta de motivación <span class="req">*</span></label><textarea id="wk-motiv" class="si si--ta" placeholder="Escribe aquí tu motivación personal, experiencias relevantes y por qué serías un gran aporte a nuestro equipo... (mínimo 40 caracteres)"></textarea><span class="err"></span></div>
+            <div class="sf"><label for="wk-link">Portafolio, LinkedIn o Instagram profesional (opcional)</label><input type="url" id="wk-link" class="si" placeholder="https://linkedin.com/in/tu-perfil o Instagram"/><small>Muéstranos tu trabajo. Aumenta significativamente tus posibilidades de ser seleccionado.</small></div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--indigo" data-next>Siguiente →</button></div>
+          </div>
+
+          <!-- Paso 11: Referencias -->
+          <div class="step" data-step="11">
+            <div class="step-head">
+              <div class="step-num">Paso 11 / 11 — Referencias</div>
+              <h3>¡Último paso!</h3>
+              <p>Añade referencias laborales o personas que puedan dar cuenta de tu trayectoria.</p>
+            </div>
+            <div class="sf"><label for="wk-ref">Referencias (nombre, empresa y teléfono)</label><textarea id="wk-ref" class="si si--ta" style="min-height:90px" placeholder="Ej: Juan Pérez — Telas El Águila — +56 9 8765 4321&#10;Ana López — Boutique Moderna — +56 9 1111 2222"></textarea><small>Opcional pero muy recomendado. Incluye al menos una referencia laboral.</small></div>
+            <div class="divider">Todo listo — envía tu postulación</div>
+            <div class="step-nav"><button class="btn btn--outline" data-prev>← Atrás</button><button class="btn btn--terra btn--lg" data-submit>🚀 Enviar postulación</button></div>
+          </div>
+
+        </div><!-- /#worker-form-wrap -->
+
+        <!-- Resultado postulante -->
+        <div class="sdone" id="worker-done">
+          <div class="sdone-icon">🎉</div>
+          <h2>¡Postulación enviada!</h2>
+          <p>Revisaremos tu perfil y te contactaremos en los próximos 3 a 5 días hábiles con los próximos pasos del proceso de selección.</p>
+          <div class="s-summary"><h4>Resumen de tu postulación</h4><div id="worker-summary"></div></div>
+          <a href="#" class="btn btn--indigo btn--lg">Volver al inicio</a>
+        </div>
+      </div><!-- /#flow-worker -->
+
+    </div><!-- /.form-inner -->
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     BANNER CTA
+══════════════════════════════════════════════════════════ -->
+<section class="sec" style="padding:3rem 0 5rem">
+  <div class="wrap">
+    <div class="banner-box fade-up">
+      <h2>¿Tienes talento textil?<br>Únete a la red.</h2>
+      <p>Más de 340 sastres ya forman parte de Hilo &amp; Oficio. Postula hoy y conecta con clientes de todo Chile.</p>
+      <div class="banner-actions">
+        <a href="#formularios" class="btn btn--mustard btn--lg">Postular ahora</a>
+        <a href="#guia-color"  class="btn btn--outline-lt btn--lg">Ver guía de color</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+     scss/layout/_footer.scss
+══════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-name">Hilo &amp; Oficio</span>
+        <p>La plataforma que conecta a clientes con los mejores artesanos textiles de Chile, desde Arica hasta Punta Arenas.</p>
+        <div>
+          <span class="f-badge">🧵 Textil</span>
+          <span class="f-badge">✂️ Sastrería</span>
+          <span class="f-badge">🌿 Sostenible</span>
+          <span class="f-badge">🇨🇱 Nacional</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Plataforma</h5>
+        <ul>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#catalogo">Catálogo de telas</a></li>
+          <li><a href="#guia-color">Guía de color</a></li>
+          <li><a href="#sastres">Red de sastres</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Conectarse</h5>
+        <ul>
+          <li><a href="#formularios">Buscar un sastre</a></li>
+          <li><a href="#formularios">Postular como sastre</a></li>
+          <li><a href="#formularios">Ser vendedor textil</a></li>
+          <li><a href="#formularios">Requisitos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Blog textil</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Hilo &amp; Oficio SpA — Todos los derechos reservados — Hecho con 🧵 en Chile</p>
+      <div class="f-socials">
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="TikTok">🎵</a>
+        <a href="#" aria-label="LinkedIn">💼</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button class="scroll-top" aria-label="Ir arriba">↑</button>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JS principal del proyecto (js/main.js) -->
+<script src="js/main.js"></script>
+</body>
+</html>

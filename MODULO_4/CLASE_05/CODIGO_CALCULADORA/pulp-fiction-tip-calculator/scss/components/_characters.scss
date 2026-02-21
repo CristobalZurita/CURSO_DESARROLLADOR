@@ -1,0 +1,94 @@
+// ============================================================
+// components/_characters.scss
+// Contenedores de los personajes SVG
+// ============================================================
+
+// Columna lateral de personaje
+.char-col {
+  display: none;
+  position: relative;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  z-index: $z-chars;
+
+  @include respond-to(md) {
+    display: flex;
+    min-height: 100%;
+  }
+}
+
+.char-col--left  {
+  animation: charEntryLeft .8s cubic-bezier(.4,0,.2,1) .5s both;
+  padding-bottom: $sp-6;
+}
+
+.char-col--right {
+  animation: charEntryRight .8s cubic-bezier(.4,0,.2,1) .5s both;
+  padding-bottom: $sp-6;
+}
+
+// Contenedor SVG
+.char-fig {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba($c-black, .8));
+
+    @include respond-to(lg) {
+      max-width: 280px;
+    }
+  }
+}
+
+// Nombre del personaje
+.char-name {
+  font-family: $font-display;
+  font-size: .75rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: $sp-3;
+  color: rgba($c-cream, .5);
+  animation: charBounce 3s ease-in-out infinite;
+}
+
+// Personaje móvil: banda superior (solo 3 iconos pequeños)
+.chars-mobile {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: $sp-4 $sp-4 0;
+  gap: $sp-4;
+
+  @include respond-to(md) {
+    display: none;
+  }
+
+  .char-mobile-fig {
+    flex: 1;
+    max-width: 100px;
+
+    svg {
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 8px 12px rgba($c-black, .9));
+    }
+  }
+}
+
+// Sombra de escenario bajo personajes
+.char-col::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(to top, $c-bg 10%, transparent);
+  pointer-events: none;
+}

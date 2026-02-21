@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pulp Fiction · Tip Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Oswald:wght@300;400;500;600;700&family=Share+Tech+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <!-- css/main.css → compilado de scss/main.scss (patrón 7-1) -->
+  <style>
+/* ── vendors/_fonts.scss ─────────────────────────────── */
+/* (cargado via <link> arriba) */
+
+/* ── abstracts/_variables.scss → Custom Properties ───── */
+:root {
+  --c-black:   #0a0a0a;
+  --c-orange:  #c8622a;
+  --c-yellow:  #f5d000;
+  --c-red:     #8b1a1a;
+  --c-navy:    #2b2d5e;
+  --c-cream:   #f0ead8;
+  --c-yellow-dark:  #c4a800;
+  --c-yellow-light: #ffe033;
+  --c-orange-dark:  #9e4d1f;
+  --c-bg:      #111009;
+  --c-surface: #1a1810;
+  --c-border:  #2a2618;
+  --c-muted:   #6b6250;
+  --font-d: 'Special Elite', 'Courier New', monospace;
+  --font-b: 'Oswald', 'Impact', sans-serif;
+  --font-m: 'Share Tech Mono', 'Courier New', monospace;
+  --t: 280ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ── base/_reset.scss ────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-b);background:var(--c-bg);color:var(--c-cream);min-height:100vh;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+button,input{font:inherit;color:inherit}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--c-bg)}
+::-webkit-scrollbar-thumb{background:var(--c-yellow-dark);border-radius:3px}
+
+/* ── base/_animations.scss ───────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-60px) scale(.9)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(60px) scale(.9)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes slideInUp{from{opacity:0;transform:translateY(50px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes shimmerY{0%{background-position:-300% center}100%{background-position:300% center}}
+@keyframes pulseY{0%,100%{box-shadow:0 0 10px rgba(245,208,0,.15)}50%{box-shadow:0 0 35px rgba(245,208,0,.5)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+@keyframes countPop{from{opacity:0;transform:scale(.85) translateY(6px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes flicker{0%,19%,21%,23%,25%,54%,56%,100%{opacity:1}20%,24%,55%{opacity:.35}}
+@keyframes charBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes sway{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(1deg)}}
+@keyframes breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.015)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ── base/_typography.scss ───────────────────────────── */
+h1,h2,h3{font-family:var(--font-d);line-height:1.15;font-weight:normal;letter-spacing:.03em}
+p{font-size:clamp(.88rem,1.5vw,1rem);line-height:1.65;color:rgba(240,234,216,.8)}
+.label-sm{font-family:var(--font-m);font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--c-yellow)}
+.label-md{font-family:var(--font-b);font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.5)}
+
+/* ── pages/_calculator.scss – Rayas Cinetone ─────────── */
+.bg-stripes{position:fixed;top:0;bottom:0;display:flex;width:100%;z-index:-1;pointer-events:none;opacity:.045}
+.bg-stripes span:nth-child(1){flex:1;background:var(--c-black)}
+.bg-stripes span:nth-child(2){flex:1;background:var(--c-orange)}
+.bg-stripes span:nth-child(3){flex:1;background:var(--c-yellow)}
+.bg-stripes span:nth-child(4){flex:1;background:var(--c-red)}
+.bg-stripes span:nth-child(5){flex:1;background:var(--c-navy)}
+
+/* Marcas de película */
+.film-mark{position:fixed;width:32px;height:32px;z-index:50;pointer-events:none;border-color:rgba(245,208,0,.2);border-style:solid;border-width:0}
+.film-mark.tl{top:16px;left:16px;border-top-width:2px;border-left-width:2px}
+.film-mark.tr{top:16px;right:16px;border-top-width:2px;border-right-width:2px}
+.film-mark.bl{bottom:16px;left:16px;border-bottom-width:2px;border-left-width:2px}
+.film-mark.br{bottom:16px;right:16px;border-bottom-width:2px;border-right-width:2px}
+
+/* Efecto scanline */
+.scanline{position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(245,208,0,.07),transparent);animation:scanline 7s linear infinite;z-index:50;pointer-events:none}
+
+/* Grain */
+.grain{position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");z-index:49;pointer-events:none;opacity:.45}
+
+/* ── layout/_wrapper.scss ────────────────────────────── */
+.app{position:relative;min-height:100vh;width:100%;display:flex;align-items:stretch}
+
+.stage{
+  display:grid;
+  grid-template-columns:1fr;
+  grid-template-rows:auto 1fr auto;
+  grid-template-areas:"header" "main" "footer";
+  width:100%;min-height:100vh
+}
+@media(min-width:768px){
+  .stage{
+    grid-template-columns:200px 1fr 200px;
+    grid-template-rows:auto 1fr;
+    grid-template-areas:"header header header" "char-l main char-r"
+  }
+}
+@media(min-width:1100px){.stage{grid-template-columns:270px 1fr 270px}}
+@media(min-width:1400px){.stage{grid-template-columns:320px 1fr 320px}}
+
+.stage__main{grid-area:main;display:flex;align-items:center;justify-content:center;padding:24px 16px;z-index:10}
+
+/* ── layout/_header.scss ─────────────────────────────── */
+.site-header{
+  grid-area:header;
+  display:flex;flex-direction:column;align-items:center;
+  padding:24px 16px 16px;
+  position:relative;z-index:10;
+  border-bottom:1px solid var(--c-border);
+}
+.site-header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c-navy),var(--c-red),var(--c-yellow),var(--c-orange),var(--c-black))}
+.site-header .eyebrow{font-family:var(--font-m);font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--c-yellow);animation:flicker 6s ease 3s both}
+.site-header h1{font-family:var(--font-d);font-size:clamp(1.3rem,4vw,2rem);text-align:center;letter-spacing:.1em;text-transform:uppercase;color:var(--c-cream);margin-top:4px;animation:fadeUp .6s ease .2s both;text-shadow:0 0 20px rgba(245,208,0,.3),0 0 50px rgba(245,208,0,.1)}
+.site-header h1 span{color:var(--c-yellow)}
+.site-header .sub{font-size:.68rem;color:var(--c-muted);font-family:var(--font-m);letter-spacing:.12em;margin-top:6px;animation:fadeIn .5s ease .5s both}
+
+/* ── layout/_footer.scss ─────────────────────────────── */
+.site-footer{grid-area:footer;text-align:center;padding:12px;font-family:var(--font-m);font-size:.6rem;letter-spacing:.12em;color:var(--c-muted);border-top:1px solid var(--c-border)}
+.site-footer em{color:var(--c-yellow);font-style:normal}
+
+/* ── components/_characters.scss ────────────────────── */
+.char-col{display:none;position:relative;align-items:flex-end;justify-content:center;overflow:hidden;z-index:5;padding-bottom:24px}
+@media(min-width:768px){.char-col{display:flex}}
+.char-col::after{content:'';position:absolute;bottom:0;left:0;right:0;height:100px;background:linear-gradient(to top,var(--c-bg) 10%,transparent);pointer-events:none;z-index:2}
+.char-col--l{grid-area:char-l;animation:slideInLeft .9s cubic-bezier(.4,0,.2,1) .5s both}
+.char-col--r{grid-area:char-r;animation:slideInRight .9s cubic-bezier(.4,0,.2,1) .5s both}
+.char-fig{display:flex;flex-direction:column;align-items:center;position:relative;z-index:3}
+.char-fig svg{width:100%;max-width:230px;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.9))}
+@media(min-width:1100px){.char-fig svg{max-width:270px}}
+.char-name{font-family:var(--font-d);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;text-align:center;margin-top:10px;color:rgba(240,234,216,.35);animation:charBounce 4s ease-in-out infinite}
+
+/* Personajes móvil */
+.chars-mobile{display:flex;justify-content:space-around;align-items:flex-end;padding:16px 16px 0;gap:8px}
+@media(min-width:768px){.chars-mobile{display:none}}
+.chars-mobile .cf{flex:1;max-width:90px}
+.chars-mobile svg{width:100%;height:auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,.9))}
+
+/* ── components/_card.scss ───────────────────────────── */
+.calc-card{
+  width:100%;max-width:460px;
+  background:var(--c-surface);
+  border:2px solid var(--c-border);
+  border-radius:6px;
+  position:relative;overflow:hidden;
+  box-shadow:0 12px 50px rgba(0,0,0,.8);
+  animation:slideInUp .7s cubic-bezier(.4,0,.2,1) .3s both;
+}
+.calc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--c-yellow),var(--c-orange),var(--c-red))}
+
+.card-head{padding:24px 32px 20px;border-bottom:1px solid var(--c-border)}
+.card-head .c-label{font-family:var(--font-m);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--c-yellow)}
+.card-head h2{font-family:var(--font-d);font-size:clamp(1.2rem,2.5vw,1.55rem);color:var(--c-cream);margin-top:6px;line-height:1.2}
+.card-head h2 em{color:var(--c-yellow);font-style:normal}
+
+.card-body{padding:24px 32px}
+
+.card-results{
+  display:none;padding:20px 32px 24px;
+  background:rgba(245,208,0,.025);
+  border-top:1px solid var(--c-border);
+}
+.card-results.is-visible{display:block;animation:fadeUp .4s ease both}
+
+.card-console{display:none;padding:16px 32px 24px;background:var(--c-bg);border-top:1px solid var(--c-border)}
+.card-console.is-visible{display:block;animation:fadeUp .4s ease both}
+
+.card-foot{padding:10px 32px;background:rgba(0,0,0,.4);border-top:1px solid var(--c-border);display:flex;align-items:center;justify-content:space-between}
+
+/* ── components/_inputs.scss ─────────────────────────── */
+.input-group{margin-bottom:20px}
+.input-group__label{display:block;font-family:var(--font-b);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.5);margin-bottom:8px;transition:color .15s ease}
+.input-group:focus-within .input-group__label{color:var(--c-yellow)}
+
+.input-wrap{position:relative;background:var(--c-bg);border:2px solid var(--c-border);border-radius:3px;transition:border-color .15s,box-shadow .15s}
+.input-wrap:focus-within{border-color:var(--c-yellow);box-shadow:0 0 0 3px rgba(245,208,0,.1)}
+.input-wrap.is-error{border-color:#b52222;animation:shake .35s ease}
+
+.input-prefix{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-family:var(--font-m);font-size:1rem;color:var(--c-muted);pointer-events:none;transition:color .15s}
+.input-wrap:focus-within .input-prefix{color:var(--c-yellow)}
+
+.input-field{width:100%;padding:14px 16px 14px 36px;background:transparent;border:none;outline:none;font-family:var(--font-m);font-size:1.1rem;font-weight:500;letter-spacing:.04em;color:var(--c-cream)}
+.input-field::placeholder{color:var(--c-muted);font-weight:400}
+.input-field::-webkit-outer-spin-button,.input-field::-webkit-inner-spin-button{-webkit-appearance:none}
+.input-field[type=number]{-moz-appearance:textfield}
+
+.tip-presets{margin-bottom:20px}
+.tip-presets__label{display:block;font-family:var(--font-b);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.5);margin-bottom:8px}
+.tip-presets__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+
+.form-divider{height:1px;background:linear-gradient(90deg,transparent,var(--c-border),transparent);margin:20px 0}
+
+/* ── components/_buttons.scss ───────────────────────── */
+.tip-btn{background:var(--c-bg);border:1px solid var(--c-border);border-radius:3px;padding:8px 4px;font-family:var(--font-m);font-size:.82rem;color:rgba(240,234,216,.55);cursor:pointer;transition:all .15s;text-align:center}
+.tip-btn:hover{border-color:rgba(245,208,0,.4);color:var(--c-yellow);background:rgba(245,208,0,.04)}
+.tip-btn.is-active{background:rgba(245,208,0,.12);border-color:var(--c-yellow);color:var(--c-yellow);box-shadow:0 0 10px rgba(245,208,0,.18)}
+.tip-btn:focus-visible{outline:2px solid var(--c-yellow);outline-offset:2px}
+
+.btn-primary{
+  width:100%;padding:15px;
+  background:var(--c-yellow);color:var(--c-black);
+  font-family:var(--font-d);font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase;
+  border:none;border-radius:3px;cursor:pointer;
+  position:relative;overflow:hidden;
+  transition:all var(--t);
+  box-shadow:0 4px 20px rgba(245,208,0,.25);
+}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transform:translateX(-100%);transition:transform .5s ease}
+.btn-primary:hover{background:var(--c-yellow-light);box-shadow:0 0 40px rgba(245,208,0,.5);transform:translateY(-2px)}
+.btn-primary:hover::before{transform:translateX(100%)}
+.btn-primary:active{transform:translateY(0);background:var(--c-yellow-dark)}
+.btn-primary:focus-visible{outline:2px solid var(--c-yellow);outline-offset:3px}
+
+.btn-ghost{background:none;border:none;cursor:pointer;font-family:var(--font-m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c-muted);transition:color .15s;padding:0}
+.btn-ghost:hover{color:var(--c-yellow);text-decoration:underline;text-underline-offset:3px}
+
+/* ── components/_console.scss ───────────────────────── */
+.results-label{font-family:var(--font-m);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,208,0,.5);margin-bottom:14px}
+
+.result-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(42,38,24,.7)}
+.result-row:last-of-type{border-bottom:none}
+.result-row .r-label{font-size:.85rem;color:rgba(240,234,216,.55);font-weight:300}
+.result-row .r-value{font-family:var(--font-m);font-size:1rem;color:var(--c-cream);animation:countPop .35s ease both}
+
+.result-total{display:flex;align-items:center;justify-content:space-between;margin-top:14px;padding:14px 18px;background:rgba(245,208,0,.05);border:1px solid rgba(245,208,0,.22);border-radius:3px;animation:pulseY 3s ease-in-out infinite}
+.result-total .r-label-total{font-family:var(--font-d);font-size:1rem;letter-spacing:.05em}
+.result-total .r-value-total{font-family:var(--font-m);font-size:1.45rem;background:linear-gradient(90deg,var(--c-yellow),var(--c-yellow-light),var(--c-orange),var(--c-yellow));background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmerY 2s linear infinite,countPop .4s .1s ease both}
+
+.console-tag{font-family:var(--font-m);font-size:.58rem;letter-spacing:.2em;color:var(--c-orange);margin-bottom:8px}
+.console-tag::before{content:'❯ ';opacity:.45}
+.console-out{background:#060504;border:1px solid #1a160f;border-radius:3px;padding:14px;font-family:var(--font-m);font-size:.8rem;line-height:2}
+.console-line{opacity:0;animation:fadeUp .3s ease forwards}
+.ck{color:var(--c-orange)} .cs{color:#2a2620} .cv{color:#d4edda}
+
+/* ── Footer note ─────────────────────────────────────── */
+.foot-note{font-family:var(--font-m);font-size:.68rem;color:var(--c-muted)}
+  </style>
+</head>
+<body>
+
+<!-- Capas de ambiente -->
+<div class="bg-stripes" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+<div class="grain" aria-hidden="true"></div>
+<div class="scanline" aria-hidden="true"></div>
+<div class="film-mark tl" aria-hidden="true"></div>
+<div class="film-mark tr" aria-hidden="true"></div>
+<div class="film-mark bl" aria-hidden="true"></div>
+<div class="film-mark br" aria-hidden="true"></div>
+
+<div class="app">
+<div class="stage">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <span class="eyebrow">Miramax · 1994 · Calculadora de propinas</span>
+    <h1>Pulp <span>Fiction</span></h1>
+    <span class="sub">— tip calculator —</span>
+  </header>
+
+  <!-- PERSONAJES MÓVIL (pequeños, decorativos) -->
+  <div class="chars-mobile" aria-hidden="true">
+    <!-- Uma Thurman mini -->
+    <div class="cf">
+      <svg viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Uma – silueta pop-art miniatura -->
+        <ellipse cx="60" cy="28" rx="18" ry="20" fill="#f0ead8"/>
+        <!-- bob haircut -->
+        <path d="M42 22 Q42 8 60 8 Q78 8 78 22 L78 30 Q72 36 60 36 Q48 36 42 30 Z" fill="#1a1208"/>
+        <rect x="42" y="22" width="36" height="10" rx="2" fill="#1a1208"/>
+        <!-- cuerpo negro -->
+        <rect x="46" y="46" width="28" height="55" rx="4" fill="#0f0d08"/>
+        <!-- piernas -->
+        <rect x="48" y="98" width="10" height="50" rx="3" fill="#0f0d08"/>
+        <rect x="62" y="98" width="10" height="50" rx="3" fill="#0f0d08"/>
+        <!-- zapatos -->
+        <ellipse cx="53" cy="150" rx="9" ry="5" fill="#0a0a0a"/>
+        <ellipse cx="67" cy="150" rx="9" ry="5" fill="#0a0a0a"/>
+        <!-- brazo con cigarrillo -->
+        <line x1="74" y1="58" x2="90" y2="50" stroke="#f0ead8" stroke-width="5" stroke-linecap="round"/>
+        <line x1="90" y1="50" x2="94" y2="42" stroke="#f0ead8" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="95" cy="41" r="2" fill="#f5d000"/>
+        <!-- collar blanco -->
+        <path d="M48 46 L60 52 L72 46" stroke="#f0ead8" stroke-width="2" fill="none"/>
+        <!-- ojos -->
+        <ellipse cx="55" cy="28" rx="3" ry="3.5" fill="#0a0a0a"/>
+        <ellipse cx="65" cy="28" rx="3" ry="3.5" fill="#0a0a0a"/>
+        <ellipse cx="54.5" cy="27.5" rx="1" ry="1.5" fill="#fff" opacity=".6"/>
+        <ellipse cx="64.5" cy="27.5" rx="1" ry="1.5" fill="#fff" opacity=".6"/>
+        <!-- boca rojo oscuro -->
+        <path d="M55 34 Q60 37 65 34" stroke="#c8622a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <!-- Travolta mini -->
+    <div class="cf">
+      <svg viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="28" rx="17" ry="19" fill="#e8d5b0"/>
+        <!-- pelo hacia atrás Travolta -->
+        <path d="M43 24 Q43 8 60 7 Q77 8 77 24 L77 20 Q70 14 60 13 Q50 14 43 20 Z" fill="#2a1f10"/>
+        <path d="M43 24 L43 18 Q50 10 60 9 Q70 10 77 18 L77 24" fill="none" stroke="#2a1f10" stroke-width="2"/>
+        <!-- patillas -->
+        <rect x="43" y="24" width="5" height="12" rx="2" fill="#2a1f10"/>
+        <rect x="72" y="24" width="5" height="12" rx="2" fill="#2a1f10"/>
+        <!-- cuerpo traje negro -->
+        <path d="M45 50 L45 105 L75 105 L75 50 Z" fill="#111111"/>
+        <!-- solapa blanca camisa -->
+        <path d="M55 50 L60 60 L65 50 L60 48 Z" fill="#f0ead8"/>
+        <!-- corbata negra -->
+        <path d="M58 52 L60 58 L62 52 L61 50 L59 50 Z" fill="#0a0a0a"/>
+        <!-- piernas -->
+        <rect x="46" y="103" width="12" height="52" rx="3" fill="#111111"/>
+        <rect x="62" y="103" width="12" height="52" rx="3" fill="#111111"/>
+        <ellipse cx="52" cy="157" rx="10" ry="5" fill="#0a0a0a"/>
+        <ellipse cx="68" cy="157" rx="10" ry="5" fill="#0a0a0a"/>
+        <!-- brazo derecho levantado (pose baile) -->
+        <line x1="75" y1="58" x2="92" y2="38" stroke="#111111" stroke-width="8" stroke-linecap="round"/>
+        <line x1="92" y1="38" x2="98" y2="28" stroke="#e8d5b0" stroke-width="5" stroke-linecap="round"/>
+        <!-- dedo índice señalando -->
+        <line x1="98" y1="28" x2="100" y2="18" stroke="#e8d5b0" stroke-width="4" stroke-linecap="round"/>
+        <!-- brazo izq abajo -->
+        <line x1="45" y1="58" x2="30" y2="80" stroke="#111111" stroke-width="8" stroke-linecap="round"/>
+        <!-- ojos -->
+        <ellipse cx="54" cy="28" rx="3" ry="3.5" fill="#1a1208"/>
+        <ellipse cx="66" cy="28" rx="3" ry="3.5" fill="#1a1208"/>
+        <ellipse cx="53.5" cy="27.5" rx="1" ry="1.5" fill="#fff" opacity=".5"/>
+        <ellipse cx="65.5" cy="27.5" rx="1" ry="1.5" fill="#fff" opacity=".5"/>
+        <path d="M54 35 Q60 38 66 35" stroke="#c8622a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <!-- Samuel L. Jackson mini -->
+    <div class="cf">
+      <svg viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="29" rx="17" ry="18" fill="#3d2b1a"/>
+        <!-- jheri curl / afro SLJ -->
+        <ellipse cx="60" cy="18" rx="22" ry="16" fill="#0f0a05"/>
+        <ellipse cx="40" cy="22" rx="8" ry="10" fill="#0f0a05"/>
+        <ellipse cx="80" cy="22" rx="8" ry="10" fill="#0f0a05"/>
+        <ellipse cx="60" cy="10" rx="16" ry="10" fill="#0f0a05"/>
+        <!-- cuerpo traje oscuro -->
+        <path d="M43 50 L43 108 L77 108 L77 50 Z" fill="#0f0f14"/>
+        <!-- camisa blanca centro -->
+        <path d="M54 50 L60 62 L66 50 L62 47 L58 47 Z" fill="#f0ead8"/>
+        <!-- piernas -->
+        <rect x="44" y="106" width="13" height="54" rx="3" fill="#0f0f14"/>
+        <rect x="63" y="106" width="13" height="54" rx="3" fill="#0f0f14"/>
+        <ellipse cx="50.5" cy="162" rx="11" ry="5" fill="#0a0a0a"/>
+        <ellipse cx="69.5" cy="162" rx="11" ry="5" fill="#0a0a0a"/>
+        <!-- brazo apuntando (pose Jules) -->
+        <line x1="43" y1="62" x2="22" y2="72" stroke="#0f0f14" stroke-width="9" stroke-linecap="round"/>
+        <line x1="22" y1="72" x2="10" y2="68" stroke="#3d2b1a" stroke-width="5" stroke-linecap="round"/>
+        <!-- dedo apuntando -->
+        <line x1="10" y1="68" x2="4" y2="60" stroke="#3d2b1a" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- brazo derecho -->
+        <line x1="77" y1="62" x2="92" y2="80" stroke="#0f0f14" stroke-width="9" stroke-linecap="round"/>
+        <!-- ojos intensos -->
+        <ellipse cx="53" cy="29" rx="3.5" ry="3.5" fill="#0a0a0a"/>
+        <ellipse cx="67" cy="29" rx="3.5" ry="3.5" fill="#0a0a0a"/>
+        <ellipse cx="52.5" cy="28.5" rx="1.2" ry="1.5" fill="#fff" opacity=".5"/>
+        <ellipse cx="66.5" cy="28.5" rx="1.2" ry="1.5" fill="#fff" opacity=".5"/>
+        <!-- ceja derecha levantada -->
+        <path d="M50 23 Q53 21 56 23" stroke="#0f0a05" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M64 22 Q67 20 70 22" stroke="#0f0a05" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M54 36 Q60 38 66 36" stroke="#8b3a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- PERSONAJE IZQUIERDO: UMA THURMAN -->
+  <aside class="char-col char-col--l" aria-label="Uma Thurman – Mia Wallace" aria-hidden="true">
+    <div class="char-fig">
+      <svg viewBox="0 0 220 400" xmlns="http://www.w3.org/2000/svg">
+        <!-- ===== UMA THURMAN / MIA WALLACE ===== -->
+        <!-- Cuerpo completo estilo pop-art / flat illustration -->
+
+        <!-- Piernas pantalón negro -->
+        <rect x="82" y="240" width="24" height="110" rx="6" fill="#111111"/>
+        <rect x="114" y="240" width="24" height="110" rx="6" fill="#111111"/>
+
+        <!-- Zapatos negros con tacón -->
+        <path d="M78 348 L106 348 L106 356 L82 356 Q76 356 76 350 Z" fill="#0a0a0a"/>
+        <rect x="100" y="348" width="6" height="14" rx="2" fill="#0a0a0a"/>
+        <path d="M110 348 L138 348 L138 356 L114 356 Q108 356 108 350 Z" fill="#0a0a0a"/>
+        <rect x="132" y="348" width="6" height="14" rx="2" fill="#0a0a0a"/>
+
+        <!-- Cuerpo – top blanco sin mangas -->
+        <rect x="76" y="140" width="68" height="104" rx="5" fill="#f0ead8"/>
+
+        <!-- Cintura pantalón -->
+        <rect x="74" y="230" width="72" height="18" rx="4" fill="#111111"/>
+        <rect x="74" y="228" width="72" height="6" rx="2" fill="#333"/>
+
+        <!-- Escote + cuello -->
+        <path d="M94 140 L110 158 L126 140" stroke="#d4c8a8" stroke-width="2" fill="none"/>
+
+        <!-- Brazo derecho – relajado -->
+        <path d="M76 150 Q55 170 50 200 Q48 220 55 240" stroke="#f0ead8" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <!-- mano -->
+        <ellipse cx="55" cy="242" rx="10" ry="8" fill="#f0ead8" transform="rotate(-10,55,242)"/>
+        <!-- cigarrillo -->
+        <line x1="45" y1="238" x2="28" y2="220" stroke="#f5f5dc" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="27" cy="219" r="4" fill="#f5d000" opacity=".8"/>
+        <circle cx="27" cy="219" r="2.5" fill="#f5a000"/>
+        <!-- humo -->
+        <path d="M25 215 Q20 205 25 195 Q30 185 22 175" stroke="rgba(240,234,216,.15)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+        <!-- Brazo izquierdo -->
+        <path d="M144 150 Q158 168 162 195 Q165 218 160 235" stroke="#f0ead8" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <ellipse cx="160" cy="237" rx="10" ry="8" fill="#f0ead8" transform="rotate(10,160,237)"/>
+
+        <!-- Cuello -->
+        <rect x="100" y="112" width="20" height="32" rx="6" fill="#f0ead8"/>
+
+        <!-- Cabeza -->
+        <ellipse cx="110" cy="90" rx="42" ry="46" fill="#f0ead8"/>
+
+        <!-- Bob haircut – el más icónico de Uma -->
+        <!-- Pelo superior -->
+        <path d="M68 88 Q68 48 110 44 Q152 48 152 88 L152 82 Q148 58 110 54 Q72 58 68 82 Z" fill="#1a1208"/>
+        <!-- Fleco recto -->
+        <rect x="68" y="82" width="84" height="12" rx="0" fill="#1a1208"/>
+        <!-- Pelo lateral izquierdo – hasta la barbilla -->
+        <path d="M68 86 L68 116 Q70 124 78 126 L78 90 Z" fill="#1a1208"/>
+        <!-- Pelo lateral derecho -->
+        <path d="M152 86 L152 116 Q150 124 142 126 L142 90 Z" fill="#1a1208"/>
+        <!-- Pelo trasero debajo -->
+        <path d="M78 120 Q78 132 84 136 L136 136 Q142 132 142 120 L142 116 Q136 128 110 128 Q84 128 78 116 Z" fill="#1a1208"/>
+
+        <!-- Ojos almendrados -->
+        <ellipse cx="95" cy="90" rx="9" ry="7" fill="#fff"/>
+        <ellipse cx="95" cy="91" rx="6" ry="5.5" fill="#1a1208"/>
+        <ellipse cx="93.5" cy="89.5" rx="2" ry="2.5" fill="#fff" opacity=".7"/>
+
+        <ellipse cx="125" cy="90" rx="9" ry="7" fill="#fff"/>
+        <ellipse cx="125" cy="91" rx="6" ry="5.5" fill="#1a1208"/>
+        <ellipse cx="123.5" cy="89.5" rx="2" ry="2.5" fill="#fff" opacity=".7"/>
+
+        <!-- Cejas arco fino -->
+        <path d="M87 80 Q95 76 103 80" stroke="#1a1208" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M117 80 Q125 76 133 80" stroke="#1a1208" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+        <!-- Nariz -->
+        <path d="M107 95 Q110 105 113 95" stroke="rgba(180,150,120,.6)" stroke-width="1.5" fill="none"/>
+
+        <!-- Boca rojo oscuro – iconico Mia -->
+        <path d="M96 108 Q110 116 124 108" stroke="#8b1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M100 108 Q110 112 120 108" fill="#c8622a" opacity=".7"/>
+
+        <!-- Lunarcito -->
+        <circle cx="120" cy="114" r="2.5" fill="#1a1208"/>
+
+        <!-- Sombra bajo figura -->
+        <ellipse cx="110" cy="368" rx="55" ry="12" fill="rgba(0,0,0,.5)"/>
+      </svg>
+      <span class="char-name">Mia Wallace</span>
+    </div>
+  </aside>
+
+  <!-- CALCULADORA CENTRAL -->
+  <main class="stage__main">
+    <article class="calc-card" role="main">
+
+      <header class="card-head">
+        <span class="c-label">RestaurantApp · 1994</span>
+        <h2>Calculadora de<br><em>Propinas</em></h2>
+      </header>
+
+      <section class="card-body">
+        <form id="tipForm" novalidate>
+
+          <div class="input-group">
+            <label class="input-group__label" for="inputMonto">Monto de la cuenta</label>
+            <div class="input-wrap">
+              <span class="input-prefix" aria-hidden="true">$</span>
+              <input type="number" id="inputMonto" class="input-field"
+                placeholder="25.000" min="1" step="100"
+                autocomplete="off" aria-label="Monto de la cuenta en pesos" required/>
+            </div>
+          </div>
+
+          <div class="tip-presets">
+            <span class="tip-presets__label">Propina rápida</span>
+            <div class="tip-presets__grid" role="group" aria-label="Porcentajes de propina sugeridos">
+              <button type="button" class="tip-btn" data-value="5">5%</button>
+              <button type="button" class="tip-btn" data-value="10">10%</button>
+              <button type="button" class="tip-btn" data-value="15">15%</button>
+              <button type="button" class="tip-btn" data-value="20">20%</button>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label class="input-group__label" for="inputPct">Porcentaje personalizado</label>
+            <div class="input-wrap">
+              <span class="input-prefix" aria-hidden="true">%</span>
+              <input type="number" id="inputPct" class="input-field"
+                placeholder="10" min="0" max="100" step="1"
+                autocomplete="off" aria-label="Porcentaje de propina"/>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+          <button type="submit" class="btn-primary">Calcular propina</button>
+        </form>
+      </section>
+
+      <section class="card-results" id="resultsPanel" aria-live="polite">
+        <p class="results-label">── Resumen</p>
+        <div class="result-row">
+          <span class="r-label">Monto base</span>
+          <span class="r-value" id="resBase">–</span>
+        </div>
+        <div class="result-row">
+          <span class="r-label">Propina (<span id="resPct">–</span>)</span>
+          <span class="r-value" id="resPropina">–</span>
+        </div>
+        <div class="result-total">
+          <span class="r-label-total">Total a pagar</span>
+          <span class="r-value-total" id="resTotal">–</span>
+        </div>
+      </section>
+
+      <section class="card-console" id="consoleSection">
+        <p class="console-tag">console.log output</p>
+        <div class="console-out" id="consoleOut" role="log" aria-live="polite"></div>
+      </section>
+
+      <footer class="card-foot">
+        <span class="foot-note">"Be cool, Honey Bunny."</span>
+        <button type="button" id="btnReset" class="btn-ghost">↺ Reset</button>
+      </footer>
+
+    </article>
+  </main>
+
+  <!-- PERSONAJE DERECHO: VINCENT + JULES (Travolta & SLJ) -->
+  <aside class="char-col char-col--r" aria-label="Vincent Vega y Jules Winnfield" aria-hidden="true">
+    <div class="char-fig">
+      <svg viewBox="0 0 240 440" xmlns="http://www.w3.org/2000/svg">
+        <!-- ===== VINCENT VEGA (TRAVOLTA) – izquierda del par ===== -->
+
+        <!-- Piernas -->
+        <rect x="30" y="270" width="22" height="110" rx="5" fill="#0f0d08"/>
+        <rect x="58" y="270" width="22" height="110" rx="5" fill="#0f0d08"/>
+        <!-- Zapatos -->
+        <path d="M24 378 L52 378 L52 386 L28 386 Q22 386 22 380 Z" fill="#0a0a0a"/>
+        <rect x="46" y="378" width="6" height="12" rx="2" fill="#0a0a0a"/>
+        <path d="M56 378 L80 378 L80 386 L60 386 Q54 386 54 380 Z" fill="#0a0a0a"/>
+        <rect x="74" y="378" width="6" height="12" rx="2" fill="#0a0a0a"/>
+
+        <!-- Cuerpo traje negro -->
+        <path d="M26 168 L26 272 L80 272 L80 168 Z" fill="#111827"/>
+        <!-- Camisa blanca interior -->
+        <path d="M45 168 L53 182 L61 168 L58 164 L48 164 Z" fill="#f0ead8"/>
+        <!-- Corbata fina negra -->
+        <path d="M51 170 L53 180 L55 170 L54 168 L52 168 Z" fill="#0a0a0a"/>
+        <!-- Solapa izquierda -->
+        <path d="M26 168 L26 200 L45 182 L45 168 Z" fill="#1a2235"/>
+        <!-- Solapa derecha -->
+        <path d="M80 168 L80 200 L61 182 L61 168 Z" fill="#1a2235"/>
+
+        <!-- Brazo DERECHO levantado – pose baile Una noche salvaje -->
+        <path d="M80 180 Q96 162 104 142 Q110 128 115 115" stroke="#111827" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <!-- Mano/muñeca -->
+        <ellipse cx="116" cy="112" rx="10" ry="8" fill="#e8d5b0" transform="rotate(-20,116,112)"/>
+        <!-- Dedo índice apuntando arriba -->
+        <line x1="114" y1="105" x2="112" y2="88" stroke="#e8d5b0" stroke-width="5" stroke-linecap="round"/>
+        <!-- otros dedos -->
+        <line x1="118" y1="106" x2="120" y2="90" stroke="#e8d5b0" stroke-width="3.5" stroke-linecap="round" opacity=".4"/>
+        <line x1="122" y1="109" x2="126" y2="95" stroke="#e8d5b0" stroke-width="3.5" stroke-linecap="round" opacity=".3"/>
+
+        <!-- Brazo izquierdo abajo -->
+        <path d="M26 180 Q14 205 12 230 Q10 250 16 265" stroke="#111827" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <ellipse cx="17" cy="266" rx="9" ry="7" fill="#e8d5b0"/>
+
+        <!-- Cuello -->
+        <rect x="46" y="142" width="18" height="28" rx="5" fill="#e8d5b0"/>
+
+        <!-- Cabeza Vincent -->
+        <ellipse cx="55" cy="118" rx="36" ry="40" fill="#e8d5b0"/>
+
+        <!-- Pelo Travolta – oscuro peinado hacia atrás -->
+        <path d="M19 108 Q19 74 55 68 Q91 74 91 108 L91 100 Q87 78 55 72 Q23 78 19 100 Z" fill="#2a1f10"/>
+        <!-- Patillas -->
+        <rect x="19" y="104" width="7" height="16" rx="3" fill="#2a1f10"/>
+        <rect x="84" y="104" width="7" height="16" rx="3" fill="#2a1f10"/>
+
+        <!-- Ojos -->
+        <ellipse cx="43" cy="118" rx="8" ry="7" fill="#fff"/>
+        <ellipse cx="43" cy="119" rx="5" ry="5" fill="#1a1208"/>
+        <ellipse cx="41.5" cy="117.5" rx="1.8" ry="2" fill="#fff" opacity=".65"/>
+
+        <ellipse cx="67" cy="118" rx="8" ry="7" fill="#fff"/>
+        <ellipse cx="67" cy="119" rx="5" ry="5" fill="#1a1208"/>
+        <ellipse cx="65.5" cy="117.5" rx="1.8" ry="2" fill="#fff" opacity=".65"/>
+
+        <!-- Cejas -->
+        <path d="M36 108 Q43 104 50 108" stroke="#2a1f10" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M60 108 Q67 104 74 108" stroke="#2a1f10" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+        <!-- Nariz -->
+        <path d="M52 122 Q55 132 58 122" stroke="rgba(180,150,100,.5)" stroke-width="1.5" fill="none"/>
+
+        <!-- Boca semiabierta / sonrisa cómplice -->
+        <path d="M44 132 Q55 139 66 132" stroke="#b5724a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M48 132 Q55 135 62 132" fill="#c8622a" opacity=".5"/>
+
+        <!-- Sombra Vincent -->
+        <ellipse cx="53" cy="398" rx="40" ry="9" fill="rgba(0,0,0,.45)"/>
+
+        <!-- ===== JULES WINNFIELD (SLJ) – derecha del par ===== -->
+
+        <!-- Piernas -->
+        <rect x="152" y="270" width="23" height="110" rx="5" fill="#0a0a10"/>
+        <rect x="182" y="270" width="23" height="110" rx="5" fill="#0a0a10"/>
+        <!-- Zapatos Jules -->
+        <path d="M146 378 L175 378 L175 386 L150 386 Q144 386 144 380 Z" fill="#0a0a0a"/>
+        <rect x="169" y="378" width="6" height="12" rx="2" fill="#0a0a0a"/>
+        <path d="M180 378 L205 378 L205 386 L184 386 Q178 386 178 380 Z" fill="#0a0a0a"/>
+        <rect x="199" y="378" width="6" height="12" rx="2" fill="#0a0a0a"/>
+
+        <!-- Cuerpo Jules traje oscuro azul -->
+        <path d="M146 165 L146 272 L206 272 L206 165 Z" fill="#0e0e1a"/>
+        <!-- Camisa blanca Jules -->
+        <path d="M165 165 L176 180 L187 165 L183 161 L169 161 Z" fill="#f0ead8"/>
+        <!-- Corbata negra Jules -->
+        <path d="M173 167 L176 178 L179 167 L177 165 L175 165 Z" fill="#0a0a0a"/>
+        <!-- Solapas Jules -->
+        <path d="M146 165 L146 200 L165 180 L165 165 Z" fill="#161624"/>
+        <path d="M206 165 L206 200 L187 180 L187 165 Z" fill="#161624"/>
+
+        <!-- Brazo derecho apuntando – pose icónica Jules -->
+        <path d="M146 178 Q126 190 116 210 Q108 226 104 242" stroke="#0e0e1a" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <!-- Mano Jules apuntando -->
+        <ellipse cx="102" cy="244" rx="10" ry="8" fill="#3d2b1a" transform="rotate(15,102,244)"/>
+        <!-- Dedo apuntando Jules -->
+        <line x1="96" y1="240" x2="84" y2="228" stroke="#3d2b1a" stroke-width="4.5" stroke-linecap="round"/>
+
+        <!-- Brazo derecho Jules -->
+        <path d="M206 178 Q218 200 220 228 Q222 250 218 268" stroke="#0e0e1a" stroke-width="20" stroke-linecap="round" fill="none"/>
+        <ellipse cx="218" cy="270" rx="9" ry="7" fill="#3d2b1a"/>
+
+        <!-- Cuello Jules -->
+        <rect x="167" y="138" width="22" height="30" rx="6" fill="#3d2b1a"/>
+
+        <!-- Cabeza Jules -->
+        <ellipse cx="178" cy="112" rx="38" ry="42" fill="#3d2b1a"/>
+
+        <!-- Jheri curl / afro Jules – pelo muy característico SLJ Pulp Fiction -->
+        <ellipse cx="178" cy="96" rx="44" ry="30" fill="#080605"/>
+        <ellipse cx="178" cy="78" rx="36" ry="22" fill="#080605"/>
+        <ellipse cx="148" cy="96" rx="16" ry="20" fill="#080605"/>
+        <ellipse cx="208" cy="96" rx="16" ry="20" fill="#080605"/>
+        <ellipse cx="158" cy="78" rx="14" ry="16" fill="#080605"/>
+        <ellipse cx="198" cy="78" rx="14" ry="16" fill="#080605"/>
+        <ellipse cx="178" cy="68" rx="24" ry="14" fill="#080605"/>
+
+        <!-- Ojos Jules – intensos, entrecerrados -->
+        <ellipse cx="165" cy="114" rx="9" ry="6" fill="#fff"/>
+        <ellipse cx="165" cy="115" rx="6" ry="5" fill="#0a0a0a"/>
+        <ellipse cx="163" cy="113" rx="2" ry="2.5" fill="#fff" opacity=".55"/>
+        <!-- Párpado superior -->
+        <path d="M156 110 Q165 106 174 110" stroke="#1a1208" stroke-width="2" fill="none"/>
+
+        <ellipse cx="191" cy="114" rx="9" ry="6" fill="#fff"/>
+        <ellipse cx="191" cy="115" rx="6" ry="5" fill="#0a0a0a"/>
+        <ellipse cx="189" cy="113" rx="2" ry="2.5" fill="#fff" opacity=".55"/>
+        <path d="M182 110 Q191 106 200 110" stroke="#1a1208" stroke-width="2" fill="none"/>
+
+        <!-- Cejas Jules – muy expresivas -->
+        <path d="M157 104 Q165 99 173 104" stroke="#080605" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M183 104 Q191 99 199 104" stroke="#080605" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+        <!-- Nariz Jules -->
+        <path d="M174 120 Q178 130 182 120" stroke="rgba(80,50,30,.6)" stroke-width="2" fill="none"/>
+
+        <!-- Boca Jules seria/intensa -->
+        <path d="M165 134 Q178 138 191 134" stroke="#5a2a1a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M168 134 Q178 136 188 134" fill="#8b3a1a" opacity=".4"/>
+
+        <!-- Sombra Jules -->
+        <ellipse cx="178" cy="398" rx="42" ry="9" fill="rgba(0,0,0,.45)"/>
+
+        <!-- Nombre compartido -->
+      </svg>
+      <span class="char-name">Vincent · Jules</span>
+    </div>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    Ejercicio Frontend · Funciones JS · <em>SASS 7-1</em> · Pulp Fiction © 1994 Miramax
+  </footer>
+
+</div><!-- /stage -->
+</div><!-- /app -->
+
+<script>
+'use strict';
+
+function calcularPropina(montoCuenta, porcentajePropina) {
+  let propina = montoCuenta * (porcentajePropina / 100);
+  return propina;
+}
+function calcularTotal(montoCuenta, propina) {
+  return montoCuenta + propina;
+}
+function formatearMoneda(valor) {
+  return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', minimumFractionDigits: 0 }).format(Math.round(valor));
+}
+function generarOutputConsola(cuenta, porcentaje) {
+  const propina = calcularPropina(cuenta, porcentaje);
+  const total   = calcularTotal(cuenta, propina);
+  return [
+    { key: 'Monto de la cuenta', value: formatearMoneda(cuenta) },
+    { key: `Propina (${porcentaje}%)`, value: formatearMoneda(propina) },
+    { key: 'Total a pagar', value: formatearMoneda(total) },
+  ];
+}
+
+const TipCalcUI = (() => {
+  const $form    = document.getElementById('tipForm');
+  const $monto   = document.getElementById('inputMonto');
+  const $pct     = document.getElementById('inputPct');
+  const $tipBtns = document.querySelectorAll('.tip-btn');
+  const $results = document.getElementById('resultsPanel');
+  const $console = document.getElementById('consoleSection');
+  const $reset   = document.getElementById('btnReset');
+  const $submitBtn = $form.querySelector('.btn-primary');
+
+  const QUOTES = ['Say "propina" again!','Royale with tip.','Does he look like a 10%?','Check it, baby.','Zed\'s tip is dead.'];
+  let qi = 0, quoteTimer;
+
+  function init() {
+    $form.addEventListener('submit', onSubmit);
+    $reset.addEventListener('click', onReset);
+    $tipBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        $pct.value = btn.dataset.value;
+        $tipBtns.forEach(b => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+      });
+    });
+    $pct.addEventListener('input', () => $tipBtns.forEach(b => b.classList.remove('is-active')));
+    startQuotes();
+  }
+
+  function startQuotes() {
+    quoteTimer = setInterval(() => {
+      if ($results.classList.contains('is-visible')) return;
+      $submitBtn.textContent = QUOTES[qi++ % QUOTES.length];
+      setTimeout(() => { $submitBtn.textContent = 'Calcular propina'; }, 2200);
+    }, 5000);
+  }
+
+  function validar() {
+    const cuenta = parseFloat($monto.value);
+    const pct    = parseFloat($pct.value);
+    let ok = true;
+    if (isNaN(cuenta) || cuenta <= 0)    { sacudir($monto.closest('.input-wrap')); ok = false; }
+    if (isNaN(pct) || pct < 0 || pct > 100) { sacudir($pct.closest('.input-wrap'));  ok = false; }
+    return ok ? { cuenta, pct } : null;
+  }
+
+  function sacudir(el) {
+    if (!el) return;
+    el.classList.add('is-error');
+    el.addEventListener('animationend', () => el.classList.remove('is-error'), { once: true });
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    const datos = validar();
+    if (!datos) return;
+    const { cuenta, pct } = datos;
+    const propina = calcularPropina(cuenta, pct);
+    const total   = calcularTotal(cuenta, propina);
+    const lineas  = generarOutputConsola(cuenta, pct);
+    lineas.forEach(l => console.log(`%c${l.key}%c: %c${l.value}`, 'color:#c8622a', 'color:#444', 'color:#f5d000;font-weight:bold'));
+    renderResultados(cuenta, pct, propina, total, lineas);
+  }
+
+  function renderResultados(cuenta, pct, propina, total, lineas) {
+    document.getElementById('resBase').textContent    = formatearMoneda(cuenta);
+    document.getElementById('resPct').textContent     = pct + '%';
+    document.getElementById('resPropina').textContent = formatearMoneda(propina);
+    document.getElementById('resTotal').textContent   = formatearMoneda(total);
+    $results.classList.add('is-visible');
+    const $out = document.getElementById('consoleOut');
+    $out.innerHTML = '';
+    lineas.forEach(({ key, value }, i) => {
+      const d = document.createElement('div');
+      d.className = 'console-line';
+      d.style.animationDelay = `${i * 0.12}s`;
+      d.innerHTML = `<span class="ck">${key}</span><span class="cs">: </span><span class="cv">${value}</span>`;
+      $out.appendChild(d);
+    });
+    $console.classList.add('is-visible');
+    $results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function onReset() {
+    $form.reset();
+    $tipBtns.forEach(b => b.classList.remove('is-active'));
+    $results.classList.remove('is-visible');
+    $console.classList.remove('is-visible');
+    $monto.focus();
+  }
+
+  return { init };
+})();
+
+document.addEventListener('DOMContentLoaded', TipCalcUI.init);
+</script>
+</body>
+</html>
