@@ -249,14 +249,22 @@ export function toggleCart(nextState) {
   document.body.classList.toggle("body--cart-open", cartOpen);
 }
 
-export function checkout() {
-  const total = Object.values(cart).reduce((sum, item) => sum + item.price * item.qty, 0);
-  if (total === 0) {
+export function checkout(options = {}) {
+  const productsTotal = Object.values(cart).reduce((sum, item) => sum + item.price * item.qty, 0);
+  if (productsTotal === 0) {
     hooks.showToast("⚠️ Tu carrito está vacío!");
     return;
   }
 
-  hooks.showToast(`✅ Pedido de ${formatMoney(total)} procesado! ¡Gracias!`);
+  const shipping = options.shipping ?? {};
+  const shippingPrice = Number.isFinite(shipping.price) ? shipping.price : 0;
+  const shippingName = shipping.name ?? "Envío no seleccionado";
+  const totalWithShipping = productsTotal + shippingPrice;
+  const shippingLabel = shippingPrice === 0
+    ? `${shippingName} GRATIS`
+    : `${shippingName} ${formatMoney(shippingPrice)}`;
+
+  hooks.showToast(`✅ Pedido ${formatMoney(totalWithShipping)} (${shippingLabel}) procesado!`);
   cart = {};
   updateCartUI();
   toggleCart(false);

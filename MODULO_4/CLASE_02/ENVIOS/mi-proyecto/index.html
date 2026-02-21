@@ -93,38 +93,129 @@
         <div class="shipping-grid">
           <div class="shipping-info">
             <h3>ZONAS DE ENVÍO</h3>
-            <div class="shipping-zone selected" data-price="3990" onclick="selectZone(this, 3990, 'Envío Nacional')">
-              <span class="shipping-zone__flag">🇨🇱</span>
-              <div class="shipping-zone__info">
-                <div class="shipping-zone__name">Chile (Nacional)</div>
-                <div class="shipping-zone__detail">3-5 días hábiles</div>
+            <article class="shipping-zone selected is-expanded" data-zone="nacional" data-price="5490" data-name="Envío Nacional">
+              <button class="shipping-zone__summary" type="button" aria-expanded="true">
+                <span class="shipping-zone__flag">🇨🇱</span>
+                <span class="shipping-zone__info">
+                  <span class="shipping-zone__name">Chile (Nacional)</span>
+                  <span class="shipping-zone__detail">3-5 días hábiles</span>
+                </span>
+                <span class="shipping-zone__price">$5.490</span>
+              </button>
+              <div class="shipping-zone__details">
+                <div class="shipping-breakdown">
+                  <div class="shipping-breakdown__row">
+                    <span>Base logística</span>
+                    <span>$3.990</span>
+                  </div>
+                  <div class="shipping-breakdown__row">
+                    <span>IVA (19%)</span>
+                    <span>$758</span>
+                  </div>
+                  <div class="shipping-breakdown__row">
+                    <span>Seguro de transporte</span>
+                    <span>$742</span>
+                  </div>
+                  <div class="shipping-breakdown__row shipping-breakdown__row--total">
+                    <span>Total envío</span>
+                    <span>$5.490</span>
+                  </div>
+                </div>
+                <button class="shipping-zone__select" type="button">SELECCIONAR ESTE ENVÍO</button>
               </div>
-              <div class="shipping-zone__price">$3.990</div>
-            </div>
-            <div class="shipping-zone" data-price="6990" onclick="selectZone(this, 6990, 'Latinoamérica')">
-              <span class="shipping-zone__flag">🌎</span>
-              <div class="shipping-zone__info">
-                <div class="shipping-zone__name">Latinoamérica</div>
-                <div class="shipping-zone__detail">7-14 días hábiles</div>
+            </article>
+
+            <article class="shipping-zone" data-zone="latam" data-price="8990" data-name="Latinoamérica">
+              <button class="shipping-zone__summary" type="button" aria-expanded="false">
+                <span class="shipping-zone__flag">🌎</span>
+                <span class="shipping-zone__info">
+                  <span class="shipping-zone__name">Latinoamérica</span>
+                  <span class="shipping-zone__detail">7-14 días hábiles</span>
+                </span>
+                <span class="shipping-zone__price">$8.990</span>
+              </button>
+              <div class="shipping-zone__details">
+                <div class="shipping-breakdown">
+                  <div class="shipping-breakdown__row">
+                    <span>Base logística</span>
+                    <span>$6.290</span>
+                  </div>
+                  <div class="shipping-breakdown__row">
+                    <span>IVA (19%)</span>
+                    <span>$1.195</span>
+                  </div>
+                  <div class="shipping-breakdown__row">
+                    <span>Impuesto aduanero</span>
+                    <span>$1.505</span>
+                  </div>
+                  <div class="shipping-breakdown__row shipping-breakdown__row--total">
+                    <span>Total envío</span>
+                    <span>$8.990</span>
+                  </div>
+                </div>
+                <button class="shipping-zone__select" type="button">SELECCIONAR ESTE ENVÍO</button>
               </div>
-              <div class="shipping-zone__price">$6.990</div>
-            </div>
-            <div class="shipping-zone" data-price="12990" onclick="selectZone(this, 12990, 'Internacional')">
-              <span class="shipping-zone__flag">🌍</span>
-              <div class="shipping-zone__info">
-                <div class="shipping-zone__name">Internacional</div>
-                <div class="shipping-zone__detail">14-21 días hábiles</div>
+            </article>
+
+            <article class="shipping-zone" data-zone="internacional" data-price="16990" data-name="Internacional">
+              <button class="shipping-zone__summary" type="button" aria-expanded="false">
+                <span class="shipping-zone__flag">🌍</span>
+                <span class="shipping-zone__info">
+                  <span class="shipping-zone__name">Internacional</span>
+                  <span class="shipping-zone__detail">14-21 días hábiles</span>
+                </span>
+                <span class="shipping-zone__price">$16.990</span>
+              </button>
+              <div class="shipping-zone__details">
+                <div class="shipping-breakdown">
+                  <div class="shipping-breakdown__row">
+                    <span>Base logística</span>
+                    <span>$10.990</span>
+                  </div>
+                  <div class="shipping-breakdown__row">
+                    <span>IVA (19%)</span>
+                    <span>$2.088</span>
+                  </div>
+                  <div class="shipping-breakdown__row">
+                    <span>Impuesto aduanero</span>
+                    <span>$3.912</span>
+                  </div>
+                  <div class="shipping-breakdown__row shipping-breakdown__row--total">
+                    <span>Total envío</span>
+                    <span>$16.990</span>
+                  </div>
+                </div>
+                <button class="shipping-zone__select" type="button">SELECCIONAR ESTE ENVÍO</button>
               </div>
-              <div class="shipping-zone__price">$12.990</div>
-            </div>
-            <div class="shipping-zone" data-price="0" onclick="selectZone(this, 0, 'Retiro en tienda')">
-              <span class="shipping-zone__flag">🏪</span>
-              <div class="shipping-zone__info">
-                <div class="shipping-zone__name">Retiro en Tienda</div>
-                <div class="shipping-zone__detail">Santiago Centro</div>
+            </article>
+
+            <article class="shipping-zone" data-zone="retiro" data-price="0" data-name="Retiro en tienda">
+              <button class="shipping-zone__summary" type="button" aria-expanded="false">
+                <span class="shipping-zone__flag">🏪</span>
+                <span class="shipping-zone__info">
+                  <span class="shipping-zone__name">Retiro en Tienda</span>
+                  <span class="shipping-zone__detail">Valparaiso, Eusebio Lillo 362</span>
+                </span>
+                <span class="shipping-zone__price shipping-zone__price--free">GRATIS</span>
+              </button>
+              <div class="shipping-zone__details">
+                <div class="shipping-breakdown">
+                  <div class="shipping-breakdown__row">
+                    <span>Preparación del pedido</span>
+                    <span>$0</span>
+                  </div>
+                  <div class="shipping-breakdown__row">
+                    <span>IVA/Impuestos</span>
+                    <span>$0</span>
+                  </div>
+                  <div class="shipping-breakdown__row shipping-breakdown__row--total">
+                    <span>Total retiro</span>
+                    <span>GRATIS</span>
+                  </div>
+                </div>
+                <button class="shipping-zone__select" type="button">SELECCIONAR RETIRO</button>
               </div>
-              <div class="shipping-zone__price shipping-zone__price--free">GRATIS</div>
-            </div>
+            </article>
           </div>
 
           <div class="shipping-calc">
@@ -154,7 +245,7 @@
             </div>
             <div class="shipping-total" id="shippingTotalBox">
               <span class="shipping-total__label">COSTO DE ENVÍO</span>
-              <span class="shipping-total__price" id="shippingPrice">$3.990</span>
+              <span class="shipping-total__price" id="shippingPrice">$5.490</span>
             </div>
           </div>
         </div>

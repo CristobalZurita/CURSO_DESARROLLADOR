@@ -2,7 +2,8 @@ import { initPixelCharacters } from "./pixel-art.js";
 import { attachParallaxOnScroll, buildDecoStars, buildHeroScene } from "./parallax.js";
 import { addToCart, changeQty, checkout, initCart, removeFromCart, toggleCart } from "./cart.js";
 
-let selectedShipping = 3990;
+let selectedShipping = 5490;
+let selectedShippingName = "Envío Nacional";
 let toastTimer;
 const QUESTION_BLOCK_CYCLE = 7;
 const ANCHOR_EXTRA_GAP = 0;
@@ -86,38 +87,124 @@ function showCoinPopByProduct(id) {
   spawnCoinPop(card, "+1 🪙", "coin-pop--product");
 }
 
-function selectZone(el, price, name) {
+function formatMoney(value) {
+  if (value === 0) return "GRATIS";
+  return `$${value.toLocaleString("es-CL")}`;
+}
+
+function readZoneData(el) {
+  if (!el) return { price: 0, name: "Sin selección" };
+
+  const price = Number(el.dataset.price ?? 0);
+  const safePrice = Number.isFinite(price) ? price : 0;
+  const name = el.dataset.name ?? "Sin selección";
+
+  return { price: safePrice, name };
+}
+
+function setZoneExpanded(el, expanded) {
+  if (!el) return;
+
+  el.classList.toggle("is-expanded", expanded);
+
+  const summaryButton = el.querySelector(".shipping-zone__summary");
+  if (summaryButton) {
+    summaryButton.setAttribute("aria-expanded", expanded ? "true" : "false");
+  }
+}
+
+function expandZone(el) {
+  const zones = document.querySelectorAll(".shipping-zone");
+  zones.forEach((zone) => setZoneExpanded(zone, zone === el));
+}
+
+function toggleZoneDetails(el) {
+  if (!el) return;
+
+  const nextExpanded = !el.classList.contains("is-expanded");
+  if (!nextExpanded) {
+    setZoneExpanded(el, false);
+    return;
+  }
+
+  expandZone(el);
+}
+
+function updateShippingPriceDisplay(price) {
+  const shippingPrice = document.getElementById("shippingPrice");
+  if (shippingPrice) shippingPrice.textContent = formatMoney(price);
+}
+
+function selectZone(el, options = {}) {
+  const { notify = true } = options;
+  if (!el) return;
+
   document.querySelectorAll(".shipping-zone").forEach((zone) => zone.classList.remove("selected"));
   el.classList.add("selected");
+  expandZone(el);
 
+  const { price, name } = readZoneData(el);
   selectedShipping = price;
-  const label = price === 0 ? "GRATIS" : `$${price.toLocaleString("es-CL")}`;
+  selectedShippingName = name;
+  updateShippingPriceDisplay(price);
 
-  const shippingPrice = document.getElementById("shippingPrice");
-  if (shippingPrice) shippingPrice.textContent = label;
+  if (notify) {
+    showToast(`📦 Zona "${name}" seleccionada`);
+  }
+}
 
-  showToast(`📦 Zona \"${name}\" seleccionada`);
+function selectZoneByKey(zoneKey, options = {}) {
+  const zone = document.querySelector(`.shipping-zone[data-zone="${zoneKey}"]`);
+  if (!zone) return;
+
+  selectZone(zone, options);
 }
 
 function updateShippingCalc() {
   const countrySelect = document.getElementById("countrySelect");
   if (!countrySelect) return;
 
-  const prices = {
-    CL: 3990,
-    AR: 6990,
-    MX: 6990,
-    ES: 12990,
-    US: 12990,
-    OTHER: 12990,
+  const zoneByCountry = {
+    CL: "nacional",
+    AR: "latam",
+    MX: "latam",
+    ES: "internacional",
+    US: "internacional",
+    OTHER: "internacional",
   };
 
-  selectedShipping = prices[countrySelect.value] ?? 12990;
+  const zoneKey = zoneByCountry[countrySelect.value] ?? "internacional";
+  selectZoneByKey(zoneKey, { notify: false });
+}
 
-  const shippingPrice = document.getElementById("shippingPrice");
-  if (shippingPrice) {
-    shippingPrice.textContent = `$${selectedShipping.toLocaleString("es-CL")}`;
-  }
+function initShippingZones() {
+  const zones = document.querySelectorAll(".shipping-zone");
+  if (zones.length === 0) return;
+
+  zones.forEach((zone) => {
+    const summaryButton = zone.querySelector(".shipping-zone__summary");
+    const selectButton = zone.querySelector(".shipping-zone__select");
+
+    if (summaryButton) {
+      summaryButton.addEventListener("click", () => toggleZoneDetails(zone));
+    }
+
+    if (selectButton) {
+      selectButton.addEventListener("click", () => selectZone(zone));
+    }
+  });
+
+  const initiallySelected = document.querySelector(".shipping-zone.selected") ?? zones[0];
+  selectZone(initiallySelected, { notify: false });
+}
+
+function handleCheckout() {
+  checkout({
+    shipping: {
+      price: selectedShipping,
+      name: selectedShippingName,
+    },
+  });
 }
 
 function syncAnchorOffset() {
@@ -171,7 +258,7 @@ Object.assign(window, {
   removeFromCart,
   changeQty,
   toggleCart,
-  checkout,
+  checkout: handleCheckout,
   selectZone,
   updateShippingCalc,
 });
@@ -188,6 +275,7 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("DOMContentLoaded", () => {
   syncAnchorOffset();
   initBackToTop();
+  initShippingZones();
 
   window.addEventListener("resize", syncAnchorOffset);
   window.addEventListener("load", syncAnchorOffset, { once: true });
