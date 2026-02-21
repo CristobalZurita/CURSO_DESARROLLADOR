@@ -1,13 +1,16 @@
+@use "sass:color";
+@use "variables";
+
 // ============================================
 // ABSTRACTS / _mixins.scss
 // ============================================
 
 // Responsive
 @mixin respond-to($bp) {
-  @if $bp == sm    { @media (min-width: #{$bp-sm})  { @content; } }
-  @else if $bp == md { @media (min-width: #{$bp-md}) { @content; } }
-  @else if $bp == lg { @media (min-width: #{$bp-lg}) { @content; } }
-  @else if $bp == xl { @media (min-width: #{$bp-xl}) { @content; } }
+  @if $bp == sm    { @media (min-width: #{variables.$bp-sm})  { @content; } }
+  @else if $bp == md { @media (min-width: #{variables.$bp-md}) { @content; } }
+  @else if $bp == lg { @media (min-width: #{variables.$bp-lg}) { @content; } }
+  @else if $bp == xl { @media (min-width: #{variables.$bp-xl}) { @content; } }
 }
 
 // Flex helpers
@@ -27,26 +30,26 @@
 
 // Card base orgánico
 @mixin organic-card {
-  background: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-md;
+  background: variables.$color-surface;
+  border: 1px solid variables.$color-border;
+  border-radius: variables.$radius-lg;
+  box-shadow: variables.$shadow-md;
   backdrop-filter: blur(8px);
 }
 
 // Nodo de árbol
 @mixin tree-node-base($color) {
-  background: linear-gradient(135deg, lighten($color, 8%), $color);
-  border: 2px solid darken($color, 10%);
-  border-radius: $radius-md;
-  box-shadow: $shadow-node;
+  background: linear-gradient(135deg, color.adjust($color, $lightness: 8%), $color);
+  border: 2px solid color.adjust($color, $lightness: -10%);
+  border-radius: variables.$radius-md;
+  box-shadow: variables.$shadow-node;
   color: #fff;
   position: relative;
-  transition: transform $transition-base, box-shadow $transition-base;
+  transition: transform variables.$transition-base, box-shadow variables.$transition-base;
 
   &:hover {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 12px 32px rgba(darken($color, 20%), 0.35);
+    box-shadow: 0 12px 32px rgba(color.adjust($color, $lightness: -20%), 0.35);
   }
 }
 
@@ -74,6 +77,6 @@
 @mixin connector-line {
   content: '';
   position: absolute;
-  background: $color-earth;
+  background: variables.$color-earth;
   opacity: 0.4;
 }

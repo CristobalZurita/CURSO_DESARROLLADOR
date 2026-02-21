@@ -1,3 +1,5 @@
+@use "../abstracts/variables";
+
 // ============================================
 // BASE / _animations.scss
 // Animaciones globales orgánicas
@@ -42,8 +44,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba($color-moss, 0); }
-  50%       { box-shadow: 0 0 0 10px rgba($color-moss, 0.15); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(variables.$color-moss, 0); }
+  50%       { box-shadow: 0 0 0 10px rgba(variables.$color-moss, 0.15); }
 }
 
 @keyframes float {
@@ -74,7 +76,7 @@
 }
 
 // Clases de utilidad
-.animate-sprout        { animation: sprout $transition-slow both; }
+.animate-sprout        { animation: sprout variables.$transition-slow both; }
 .animate-fade-in       { animation: fadeIn 0.5s ease both; }
 .animate-fade-in-up    { animation: fadeInUp 0.6s ease both; }
 .animate-float         { animation: float 4s ease-in-out infinite; }

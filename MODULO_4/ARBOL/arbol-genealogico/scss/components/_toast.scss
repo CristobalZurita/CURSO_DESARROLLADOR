@@ -1,19 +1,21 @@
+@use "../abstracts/variables";
+
 // ============================================
 // COMPONENTS / _toast.scss
 // ============================================
 
 .toast {
   position: fixed;
-  bottom: $space-6;
+  bottom: variables.$space-6;
   left: 50%;
   transform: translateX(-50%);
-  background: $color-bark;
-  color: $color-cream;
-  padding: $space-3 $space-6;
-  border-radius: $radius-full;
-  font-size: $font-size-sm;
-  font-family: $font-body;
-  box-shadow: $shadow-lg;
+  background: variables.$color-bark;
+  color: variables.$color-cream;
+  padding: variables.$space-3 variables.$space-6;
+  border-radius: variables.$radius-full;
+  font-size: variables.$font-size-sm;
+  font-family: variables.$font-body;
+  box-shadow: variables.$shadow-lg;
   z-index: 200;
   pointer-events: none;
   opacity: 0;
@@ -28,7 +30,7 @@
     animation: toastOut 0.3s ease forwards;
   }
 
-  &.toast--success { background: $color-moss; }
+  &.toast--success { background: variables.$color-moss; }
   &.toast--error   { background: #C0392B; }
-  &.toast--info    { background: $color-bark-light; }
+  &.toast--info    { background: variables.$color-bark-light; }
 }

@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "sass-migrator": "^2.5.7"
+  }
+}

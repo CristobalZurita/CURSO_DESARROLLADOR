@@ -3,32 +3,32 @@
 // ============================================
 
 // 1. ABSTRACTS — Variables, mixins, funciones
-@import 'abstracts/variables';
-@import 'abstracts/functions';
-@import 'abstracts/mixins';
+@use 'abstracts/variables';
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
 
 // 2. VENDORS — Librerías externas (normalize, etc.)
-@import 'vendors/normalize';
+@use 'vendors/normalize';
 
 // 3. BASE — Reset, tipografía, animaciones globales
-@import 'base/reset';
-@import 'base/typography';
-@import 'base/animations';
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/animations';
 
 // 4. LAYOUT — Estructura general, pantallas, header
-@import 'layout/screens';
-@import 'layout/header';
+@use 'layout/screens';
+@use 'layout/header';
 
 // 5. COMPONENTS — Botones, formularios, nodos, modal, toast
-@import 'components/buttons';
-@import 'components/forms';
-@import 'components/tree-nodes';
-@import 'components/modal';
-@import 'components/toast';
+@use 'components/buttons';
+@use 'components/forms';
+@use 'components/tree-nodes';
+@use 'components/modal';
+@use 'components/toast';
 
 // 6. PAGES — Estilos específicos por pantalla
-@import 'pages/welcome';
-@import 'pages/tree';
+@use 'pages/welcome';
+@use 'pages/tree';
 
 // 7. THEMES — Tema orgánico / naturaleza
-@import 'themes/organic';
+@use 'themes/organic';

@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 // ============================================
 // COMPONENTS / _modal.scss
 // ============================================
@@ -5,100 +9,100 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba($color-bark, 0.55);
+  background: rgba(variables.$color-bark, 0.55);
   backdrop-filter: blur(4px);
   z-index: 100;
-  @include flex-center;
+  @include mixins.flex-center;
   animation: fadeIn 0.25s ease;
 
   &[hidden] { display: none; }
 }
 
 .modal {
-  @include organic-card;
-  width: min(480px, calc(100vw - #{$space-8}));
+  @include mixins.organic-card;
+  width: min(480px, calc(100vw - #{variables.$space-8}));
   max-height: 90vh;
   overflow-y: auto;
-  padding: $space-8;
+  padding: variables.$space-8;
   position: relative;
   animation: sprout 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 
   &__close {
     position: absolute;
-    top: $space-4;
-    right: $space-4;
+    top: variables.$space-4;
+    right: variables.$space-4;
     width: 32px;
     height: 32px;
-    border-radius: $radius-full;
-    background: rgba($color-bark, 0.08);
-    color: $color-text-muted;
-    font-size: $font-size-md;
-    @include flex-center;
-    transition: all $transition-fast;
+    border-radius: variables.$radius-full;
+    background: rgba(variables.$color-bark, 0.08);
+    color: variables.$color-text-muted;
+    font-size: variables.$font-size-md;
+    @include mixins.flex-center;
+    transition: all variables.$transition-fast;
     cursor: pointer;
     border: none;
 
     &:hover {
-      background: rgba($color-bark, 0.15);
-      color: $color-text;
+      background: rgba(variables.$color-bark, 0.15);
+      color: variables.$color-text;
       transform: rotate(90deg);
     }
   }
 
   &__header {
     text-align: center;
-    margin-bottom: $space-6;
+    margin-bottom: variables.$space-6;
 
     h3 {
-      font-size: $font-size-xl;
-      margin-bottom: $space-2;
+      font-size: variables.$font-size-xl;
+      margin-bottom: variables.$space-2;
     }
   }
 
   &__icon {
     font-size: 2.5rem;
     display: block;
-    margin-bottom: $space-3;
+    margin-bottom: variables.$space-3;
     animation: float 3s ease-in-out infinite;
   }
 
   &__desc {
-    color: $color-text-muted;
-    font-size: $font-size-sm;
+    color: variables.$color-text-muted;
+    font-size: variables.$font-size-sm;
     font-style: italic;
   }
 
   &__body {
     display: flex;
     flex-direction: column;
-    gap: $space-4;
+    gap: variables.$space-4;
   }
 }
 
 // Validación calculador dentro del modal
 .calc-validation {
-  border-radius: $radius-sm;
-  padding: $space-3 $space-4;
-  font-size: $font-size-sm;
+  border-radius: variables.$radius-sm;
+  padding: variables.$space-3 variables.$space-4;
+  font-size: variables.$font-size-sm;
   font-style: italic;
   animation: fadeInUp 0.3s ease;
 
   &.valid {
-    background: rgba($color-moss, 0.1);
-    border-left: 3px solid $color-moss;
-    color: darken($color-moss, 15%);
+    background: rgba(variables.$color-moss, 0.1);
+    border-left: 3px solid variables.$color-moss;
+    color: color.adjust(variables.$color-moss, $lightness: -15%);
   }
 
   &.invalid {
     background: rgba(#C0392B, 0.08);
     border-left: 3px solid #C0392B;
-    color: darken(#C0392B, 10%);
+    color: color.adjust(#C0392B, $lightness: -10%);
   }
 
   &.warning {
-    background: rgba($color-accent, 0.1);
-    border-left: 3px solid $color-accent;
-    color: darken($color-accent, 20%);
+    background: rgba(variables.$color-accent, 0.1);
+    border-left: 3px solid variables.$color-accent;
+    color: color.adjust(variables.$color-accent, $lightness: -20%);
   }
 
   &:empty { display: none; }

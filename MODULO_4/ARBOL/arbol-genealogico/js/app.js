@@ -16,6 +16,7 @@
   const resMayor        = document.getElementById('res-mayor');
   const resJoven        = document.getElementById('res-joven');
   const resMensaje      = document.getElementById('res-mensaje');
+  const resDisclaimer   = document.getElementById('res-disclaimer');
   const headerNombre    = document.getElementById('header-nombre');
   const headerInfo      = document.getElementById('header-info');
   const btnReset        = document.getElementById('btn-reset');
@@ -35,6 +36,22 @@
 
   let modalState = { parentId: null, parentNodo: null, relacion: null };
   let toastTimer = null;
+  const NAME_REGEX = /^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?:[ '-][A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)*$/;
+
+  function normalizarNombre(valor) {
+    return valor.replace(/\s+/g, ' ').trim();
+  }
+
+  function validarNombre(valor) {
+    return NAME_REGEX.test(valor);
+  }
+
+  function limpiarNombreInput(input) {
+    if (!input) return;
+    input.value = input.value
+      .replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ\s'-]/g, '')
+      .replace(/\s{2,}/g, ' ');
+  }
 
   // ---- Navegación entre pantallas ----
   function showScreen(id) {
@@ -50,9 +67,10 @@
 
   // ---- Pantalla de bienvenida / calculador ----
   btnCalcular.addEventListener('click', () => {
-    const nombre = inputNombre.value.trim();
-    const edad   = parseInt(inputEdad.value);
-    const anio   = parseInt(inputAnio.value);
+    const nombre = normalizarNombre(inputNombre.value);
+    const edad   = Number(inputEdad.value);
+    const anio   = Number(inputAnio.value);
+    inputNombre.value = nombre;
 
     // Validaciones
     if (!nombre) {
@@ -60,12 +78,32 @@
       inputNombre.focus();
       return;
     }
-    if (!edad || edad < 1 || edad > 120) {
-      showToast('Ingresa una edad válida (1-120)', 'error');
+    if (!validarNombre(nombre)) {
+      showToast('El nombre solo puede contener letras, espacios, guion o apóstrofe.', 'error');
+      inputNombre.focus();
+      return;
+    }
+    if (Number.isNaN(edad)) {
+      showToast('Ingresa tu edad para continuar.', 'error');
       inputEdad.focus();
       return;
     }
-    if (!anio || anio < 2000 || anio > 2100) {
+    if (edad < 0) {
+      showToast('La edad no puede ser negativa.', 'error');
+      inputEdad.focus();
+      return;
+    }
+    if (edad < 6) {
+      showToast('La edad mínima para crear el árbol es 6 años.', 'error');
+      inputEdad.focus();
+      return;
+    }
+    if (edad > 120) {
+      showToast('Ingresa una edad válida (máximo 120).', 'error');
+      inputEdad.focus();
+      return;
+    }
+    if (Number.isNaN(anio) || anio < 2000 || anio > 2100) {
       showToast('Ingresa un año válido', 'error');
       inputAnio.focus();
       return;
@@ -86,6 +124,17 @@
 
     resMensaje.textContent = resultado.mensaje;
 
+    if (resDisclaimer) {
+      if (edad < 14) {
+        resDisclaimer.hidden = false;
+        resDisclaimer.textContent =
+          '⚠️ Menor de 14 años: este árbol debe crearse con asistencia de un adulto responsable.';
+      } else {
+        resDisclaimer.hidden = true;
+        resDisclaimer.textContent = '';
+      }
+    }
+
     // Breve pausa y luego ir al árbol
     btnCalcular.disabled = true;
     btnCalcular.innerHTML = '<span>Creando tu árbol...</span> 🌱';
@@ -104,7 +153,11 @@
     window.FamilyTree.init(nombre, edad, anioNacimiento);
 
     showScreen('screen-tree');
-    showToast(`¡Bienvenido/a, ${nombre}! Tu árbol está listo 🌳`, 'success');
+    if (edad < 14) {
+      showToast(`⚠️ ${nombre}: usa este árbol con asistencia de un adulto responsable.`, 'info');
+    } else {
+      showToast(`¡Bienvenido/a, ${nombre}! Tu árbol está listo 🌳`, 'success');
+    }
 
     // Resetear botón
     btnCalcular.disabled = false;
@@ -113,9 +166,19 @@
 
   // ---- Botón salir ----
   btnReset.addEventListener('click', () => {
-    if (confirm('¿Salir? Tu árbol se guardará automáticamente.')) {
+    if (confirm('¿Salir y cerrar sesión del árbol? Se eliminarán los datos guardados en este navegador.')) {
+      window.FamilyTree.resetTree();
       showScreen('screen-welcome');
       calcResult.hidden = true;
+      inputNombre.value = '';
+      inputEdad.value = '';
+      headerNombre.textContent = '';
+      headerInfo.textContent = '';
+      if (resDisclaimer) {
+        resDisclaimer.hidden = true;
+        resDisclaimer.textContent = '';
+      }
+      showToast('Sesión cerrada. Árbol reiniciado.', 'info');
     }
   });
 
@@ -161,12 +224,25 @@
 
   // ---- MODAL: Confirmar ----
   btnConfirmar.addEventListener('click', () => {
-    const nombre   = mNombre.value.trim();
+    const nombre   = normalizarNombre(mNombre.value);
     const edad     = parseInt(mEdad.value);
     const relacion = modalState.relacion;
+    mNombre.value  = nombre;
+    const state   = window.FamilyTree.getState();
+    const edadYo  = state.usuario.edad;
+
+    if (edadYo < 14 && (relacion === 'Hijo' || relacion === 'Hija')) {
+      showToast('Si eres menor de 14 años no puedes añadir hijos en el árbol.', 'error');
+      return;
+    }
 
     if (!nombre) {
       showToast('Escribe el nombre del pariente', 'error');
+      mNombre.focus();
+      return;
+    }
+    if (!validarNombre(nombre)) {
+      showToast('El nombre del pariente no puede llevar números.', 'error');
       mNombre.focus();
       return;
     }
@@ -177,8 +253,6 @@
     }
 
     // Validar edad vs parentesco
-    const state   = window.FamilyTree.getState();
-    const edadYo  = state.usuario.edad;
     const validacion = window.Calculator.validarEdadParentesco(edad, edadYo, relacion);
 
     if (!validacion.valido) {
@@ -247,6 +321,10 @@
     el.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') btnCalcular.click();
     });
+  });
+
+  [inputNombre, mNombre].forEach(input => {
+    input?.addEventListener('input', () => limpiarNombreInput(input));
   });
 
 })();

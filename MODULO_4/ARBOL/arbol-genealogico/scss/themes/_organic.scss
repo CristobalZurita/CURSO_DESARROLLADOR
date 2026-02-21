@@ -1,3 +1,5 @@
+@use "../abstracts/variables";
+
 // ============================================
 // THEMES / _organic.scss
 // Tema orgánico / naturaleza — detalles extra
@@ -8,24 +10,24 @@
   width: 8px;
   height: 8px;
 }
-::-webkit-scrollbar-track { background: rgba($color-cream-dark, 0.4); }
+::-webkit-scrollbar-track { background: rgba(variables.$color-cream-dark, 0.4); }
 ::-webkit-scrollbar-thumb {
-  background: rgba($color-earth, 0.5);
-  border-radius: $radius-full;
-  &:hover { background: rgba($color-bark-light, 0.6); }
+  background: rgba(variables.$color-earth, 0.5);
+  border-radius: variables.$radius-full;
+  &:hover { background: rgba(variables.$color-bark-light, 0.6); }
 }
 
 // Selección de texto
 ::selection {
-  background: rgba($color-moss, 0.25);
-  color: $color-bark;
+  background: rgba(variables.$color-moss, 0.25);
+  color: variables.$color-bark;
 }
 
 // Focus visible accesible
 :focus-visible {
-  outline: 2px solid $color-moss;
+  outline: 2px solid variables.$color-moss;
   outline-offset: 2px;
-  border-radius: $radius-sm;
+  border-radius: variables.$radius-sm;
 }
 
 // Cursor personalizado en el canvas del árbol

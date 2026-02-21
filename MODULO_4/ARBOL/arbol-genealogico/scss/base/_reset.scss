@@ -1,3 +1,5 @@
+@use "../abstracts/variables";
+
 // ============================================
 // BASE / _reset.scss
 // ============================================
@@ -11,32 +13,32 @@
 }
 
 html {
-  font-size: $font-size-base;
+  font-size: variables.$font-size-base;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  font-family: $font-body;
-  font-size: $font-size-md;
-  color: $color-text;
-  background-color: $color-bg;
+  font-family: variables.$font-body;
+  font-size: variables.$font-size-md;
+  color: variables.$color-text;
+  background-color: variables.$color-bg;
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-display;
+  font-family: variables.$font-display;
   line-height: 1.2;
-  color: $color-primary-dark;
+  color: variables.$color-primary-dark;
 }
 
 a {
-  color: $color-primary;
+  color: variables.$color-primary;
   text-decoration: none;
-  transition: color $transition-fast;
-  &:hover { color: $color-accent; }
+  transition: color variables.$transition-fast;
+  &:hover { color: variables.$color-accent; }
 }
 
 button {
@@ -47,8 +49,8 @@ button {
 }
 
 input, textarea, select {
-  font-family: $font-body;
-  font-size: $font-size-md;
+  font-family: variables.$font-body;
+  font-size: variables.$font-size-md;
 }
 
 ul { list-style: none; }

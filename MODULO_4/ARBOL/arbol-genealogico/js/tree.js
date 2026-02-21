@@ -49,6 +49,17 @@ window.FamilyTree = (() => {
     'Bisnieta':  [],
   };
 
+  function getRelacionesDisponibles(nodo) {
+    const base = RELACIONES_DISPONIBLES[nodo.tipo] || [];
+
+    // Regla de negocio: menores de 14 años no pueden añadir hijos propios
+    if (nodo.id === 'yo' && state.usuario.edad < 14) {
+      return base.filter((rel) => rel !== 'Hijo' && rel !== 'Hija');
+    }
+
+    return base;
+  }
+
   // ---- Inicializar árbol con usuario raíz ----
   function init(nombre, edad, anioNacimiento) {
     state.usuario = { nombre, edad, anioNacimiento };
@@ -166,7 +177,7 @@ window.FamilyTree = (() => {
     }
 
     // Botones de añadir parientes (solo si hay relaciones disponibles)
-    const relDisp = RELACIONES_DISPONIBLES[nodo.tipo] || [];
+    const relDisp = getRelacionesDisponibles(nodo);
     if (relDisp.length > 0) {
       const addRow = document.createElement('div');
       addRow.className = 'node-add-row';
@@ -226,7 +237,7 @@ window.FamilyTree = (() => {
     wrapper.appendChild(card);
 
     // Botones añadir
-    const relDisp = RELACIONES_DISPONIBLES[nodo.tipo] || [];
+    const relDisp = getRelacionesDisponibles(nodo);
     if (relDisp.length > 0) {
       const addRow = document.createElement('div');
       addRow.style.cssText = 'display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin-top:6px;';
@@ -276,7 +287,7 @@ window.FamilyTree = (() => {
     }
 
     // Botones añadir
-    const relDisp = RELACIONES_DISPONIBLES[nodo.tipo] || [];
+    const relDisp = getRelacionesDisponibles(nodo);
     if (relDisp.length > 0) {
       const addRow = document.createElement('div');
       addRow.style.cssText = 'display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin-top:6px;';

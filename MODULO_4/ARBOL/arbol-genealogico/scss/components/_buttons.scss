@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "../abstracts/variables";
+
 // ============================================
 // COMPONENTS / _buttons.scss
 // ============================================
@@ -6,14 +9,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: $space-2;
-  padding: $space-3 $space-6;
-  border-radius: $radius-md;
-  font-family: $font-body;
-  font-size: $font-size-md;
+  gap: variables.$space-2;
+  padding: variables.$space-3 variables.$space-6;
+  border-radius: variables.$radius-md;
+  font-family: variables.$font-body;
+  font-size: variables.$font-size-md;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transition: all $transition-base;
+  transition: all variables.$transition-base;
   cursor: pointer;
   border: none;
   text-decoration: none;
@@ -26,7 +29,7 @@
     inset: 0;
     background: rgba(255,255,255,0.15);
     opacity: 0;
-    transition: opacity $transition-fast;
+    transition: opacity variables.$transition-fast;
   }
 
   &:hover::after { opacity: 1; }
@@ -40,67 +43,67 @@
 
   // Variantes
   &--primary {
-    background: linear-gradient(135deg, $color-moss-light, $color-moss);
+    background: linear-gradient(135deg, variables.$color-moss-light, variables.$color-moss);
     color: #fff;
-    box-shadow: 0 4px 16px rgba($color-moss, 0.35);
+    box-shadow: 0 4px 16px rgba(variables.$color-moss, 0.35);
 
     &:hover {
-      background: linear-gradient(135deg, lighten($color-moss-light, 5%), lighten($color-moss, 5%));
-      box-shadow: 0 6px 24px rgba($color-moss, 0.45);
+      background: linear-gradient(135deg, color.adjust(variables.$color-moss-light, $lightness: 5%), color.adjust(variables.$color-moss, $lightness: 5%));
+      box-shadow: 0 6px 24px rgba(variables.$color-moss, 0.45);
       transform: translateY(-2px);
     }
   }
 
   &--secondary {
-    background: $color-cream-dark;
-    color: $color-bark;
-    border: 1px solid $color-border;
+    background: variables.$color-cream-dark;
+    color: variables.$color-bark;
+    border: 1px solid variables.$color-border;
 
     &:hover {
-      background: darken($color-cream-dark, 5%);
+      background: color.adjust(variables.$color-cream-dark, $lightness: -5%);
       transform: translateY(-2px);
     }
   }
 
   &--ghost {
     background: transparent;
-    color: $color-bark-light;
-    border: 1px solid $color-border;
+    color: variables.$color-bark-light;
+    border: 1px solid variables.$color-border;
 
     &:hover {
-      background: rgba($color-bark, 0.08);
-      color: $color-bark;
+      background: rgba(variables.$color-bark, 0.08);
+      color: variables.$color-bark;
     }
   }
 
   &--accent {
-    background: linear-gradient(135deg, lighten($color-accent, 10%), $color-accent);
-    color: #fff;
-    box-shadow: 0 4px 16px rgba($color-accent, 0.3);
+    background: linear-gradient(135deg, color.adjust(variables.$color-accent, $lightness: 10%), variables.$color-accent);
+    color: variables.$color-bark;
+    box-shadow: 0 4px 16px rgba(variables.$color-accent, 0.3);
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba($color-accent, 0.4);
+      box-shadow: 0 6px 24px rgba(variables.$color-accent, 0.4);
     }
   }
 
   &--add {
-    background: linear-gradient(135deg, $color-leaf-bright, $color-leaf);
-    color: $color-bark;
-    font-size: $font-size-sm;
-    padding: $space-2 $space-3;
-    border-radius: $radius-sm;
-    box-shadow: $shadow-sm;
+    background: linear-gradient(135deg, variables.$color-leaf-bright, variables.$color-leaf);
+    color: variables.$color-bark;
+    font-size: variables.$font-size-sm;
+    padding: variables.$space-2 variables.$space-3;
+    border-radius: variables.$radius-sm;
+    box-shadow: variables.$shadow-sm;
     font-weight: 600;
 
     &:hover {
       transform: scale(1.08);
-      box-shadow: $shadow-md;
+      box-shadow: variables.$shadow-md;
     }
   }
 
   // Tamaños
-  &--sm  { padding: $space-2 $space-4; font-size: $font-size-sm; }
-  &--lg  { padding: $space-4 $space-8; font-size: $font-size-lg; }
+  &--sm  { padding: variables.$space-2 variables.$space-4; font-size: variables.$font-size-sm; }
+  &--lg  { padding: variables.$space-4 variables.$space-8; font-size: variables.$font-size-lg; }
   &--full { width: 100%; }
 }

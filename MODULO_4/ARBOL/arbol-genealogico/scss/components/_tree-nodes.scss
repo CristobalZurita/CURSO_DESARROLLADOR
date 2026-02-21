@@ -1,3 +1,6 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 // ============================================
 // COMPONENTS / _tree-nodes.scss
 // Nodos del árbol genealógico
@@ -12,7 +15,7 @@
 
   // Línea vertical que conecta hacia arriba
   &::before {
-    @include connector-line;
+    @include mixins.connector-line;
     width: 2px;
     height: 30px;
     top: -30px;
@@ -29,22 +32,22 @@
 .node-card {
   min-width: 120px;
   max-width: 150px;
-  padding: $space-3 $space-4;
-  border-radius: $radius-md;
+  padding: variables.$space-3 variables.$space-4;
+  border-radius: variables.$radius-md;
   text-align: center;
   cursor: default;
   position: relative;
-  animation: sprout $transition-slow both;
+  animation: sprout variables.$transition-slow both;
   user-select: none;
 
   &__name {
-    font-family: $font-display;
+    font-family: variables.$font-display;
     font-size: 0.82rem;
     font-weight: 700;
-    color: #fff;
-    @include truncate(2);
+    color: #18c108d7;
+    @include mixins.truncate(2);
     line-height: 1.2;
-    margin-bottom: $space-1;
+    margin-bottom: variables.$space-1;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   }
 
@@ -53,7 +56,7 @@
     color: rgba(255,255,255,0.85);
     font-style: italic;
     display: block;
-    margin-bottom: $space-2;
+    margin-bottom: variables.$space-2;
   }
 
   &__relation {
@@ -62,7 +65,7 @@
     letter-spacing: 0.08em;
     color: rgba(255,255,255,0.7);
     display: block;
-    margin-bottom: $space-2;
+    margin-bottom: variables.$space-2;
   }
 
   &__actions {
@@ -70,61 +73,88 @@
     flex-wrap: wrap;
     gap: 4px;
     justify-content: center;
-    margin-top: $space-2;
+    margin-top: variables.$space-2;
   }
 
   &__add-btn {
     font-size: 0.6rem;
     padding: 2px 6px;
     border-radius: 4px;
-    background: rgba(255,255,255,0.25);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(variables.$color-bark, 0.12);
+    color: variables.$color-bark;
+    border: 1px solid rgba(variables.$color-bark, 0.28);
     cursor: pointer;
-    transition: all $transition-fast;
-    font-family: $font-body;
+    transition: all variables.$transition-fast;
+    font-family: variables.$font-body;
 
     &:hover {
-      background: rgba(255,255,255,0.4);
+      background: rgba(variables.$color-bark, 0.2);
       transform: scale(1.05);
     }
   }
 
   // Por generación
-  &--bisabuelo  { @include tree-node-base($gen-bisabuelos); }
-  &--abuelo     { @include tree-node-base($gen-abuelos); }
-  &--padre      { @include tree-node-base($gen-padres); }
+  &--bisabuelo  { @include mixins.tree-node-base(variables.$gen-bisabuelos); }
+  &--abuelo     { @include mixins.tree-node-base(variables.$gen-abuelos); }
+  &--padre      { @include mixins.tree-node-base(variables.$gen-padres); }
   &--yo         {
-    @include tree-node-base($gen-yo);
-    animation: sprout $transition-slow both, pulse-glow 3s ease-in-out 1s infinite;
+    @include mixins.tree-node-base(variables.$gen-yo);
+    animation: sprout variables.$transition-slow both, pulse-glow 3s ease-in-out 1s infinite;
     min-width: 140px;
-    padding: $space-4 $space-5;
+    padding: variables.$space-4 variables.$space-5;
 
     .node-card__name { font-size: 0.95rem; }
   }
-  &--hijo       { @include tree-node-base($gen-hijos);      .node-card__name { color: $color-bark; text-shadow: none; } .node-card__age { color: rgba($color-bark, 0.7); } .node-card__relation { color: rgba($color-bark, 0.5); } }
-  &--nieto      { @include tree-node-base($gen-nietos);     .node-card__name { color: $color-bark; text-shadow: none; } .node-card__age { color: rgba($color-bark, 0.7); } .node-card__relation { color: rgba($color-bark, 0.5); } }
-  &--bisnieto   { @include tree-node-base($gen-bisnietos);  .node-card__name { color: $color-bark; text-shadow: none; } .node-card__age { color: rgba($color-bark, 0.7); } .node-card__relation { color: rgba($color-bark, 0.5); } }
+  &--hijo,
+  &--nieto,
+  &--bisnieto {
+    .node-card__name {
+      color: variables.$color-bark;
+      text-shadow: none;
+    }
+
+    .node-card__age {
+      color: rgba(variables.$color-bark, 0.78);
+    }
+
+    .node-card__relation {
+      color: rgba(variables.$color-bark, 0.7);
+    }
+
+    .node-card__add-btn {
+      color: variables.$color-bark;
+      background: rgba(variables.$color-bark, 0.12);
+      border-color: rgba(variables.$color-bark, 0.28);
+
+      &:hover {
+        background: rgba(variables.$color-bark, 0.2);
+      }
+    }
+  }
+
+  &--hijo       { @include mixins.tree-node-base(variables.$gen-hijos); }
+  &--nieto      { @include mixins.tree-node-base(variables.$gen-nietos); }
+  &--bisnieto   { @include mixins.tree-node-base(variables.$gen-bisnietos); }
 
   // Placeholder (botón añadir vacío)
   &--placeholder {
     min-width: 100px;
     max-width: 120px;
-    padding: $space-3;
-    border: 2px dashed rgba($color-earth, 0.4);
-    border-radius: $radius-md;
-    background: rgba($color-cream, 0.5);
+    padding: variables.$space-3;
+    border: 2px dashed rgba(variables.$color-earth, 0.4);
+    border-radius: variables.$radius-md;
+    background: rgba(variables.$color-cream, 0.5);
     cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $space-1;
-    transition: all $transition-base;
+    gap: variables.$space-1;
+    transition: all variables.$transition-base;
     animation: fadeIn 0.4s ease both;
 
     &:hover {
-      border-color: $color-moss;
-      background: rgba($color-moss, 0.08);
+      border-color: variables.$color-moss;
+      background: rgba(variables.$color-moss, 0.08);
       transform: scale(1.05);
 
       .placeholder__icon { transform: scale(1.2); }
@@ -132,16 +162,16 @@
 
     .placeholder__icon {
       font-size: 1.5rem;
-      transition: transform $transition-base;
+      transition: transform variables.$transition-base;
       display: block;
     }
 
     .placeholder__label {
       font-size: 0.65rem;
-      color: $color-text-muted;
+      color: variables.$color-text-muted;
       text-align: center;
       line-height: 1.3;
-      font-family: $font-body;
+      font-family: variables.$font-body;
     }
   }
 }
@@ -150,7 +180,7 @@
 .siblings-connector {
   width: 100%;
   height: 2px;
-  background: rgba($color-earth, 0.35);
+  background: rgba(variables.$color-earth, 0.35);
   position: absolute;
   top: -30px;
   left: 0;
@@ -179,8 +209,8 @@
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba($color-text-muted, 0.6);
-    margin-bottom: $space-2;
-    font-family: $font-body;
+    color: rgba(variables.$color-text-muted, 0.6);
+    margin-bottom: variables.$space-2;
+    font-family: variables.$font-body;
   }
 }

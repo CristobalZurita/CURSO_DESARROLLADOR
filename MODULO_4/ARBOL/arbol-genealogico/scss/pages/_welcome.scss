@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
 // ============================================
 // PAGES / _welcome.scss
 // Pantalla de bienvenida + calculador
@@ -5,13 +9,13 @@
 
 #screen-welcome {
   position: relative;
-  @include flex-center;
+  @include mixins.flex-center;
   min-height: 100vh;
   background: linear-gradient(
     160deg,
-    $color-parchment 0%,
-    lighten($color-cream-dark, 8%) 40%,
-    lighten($color-leaf-bright, 18%) 100%
+    variables.$color-parchment 0%,
+    color.adjust(variables.$color-cream-dark, $lightness: 8%) 40%,
+    color.adjust(variables.$color-leaf-bright, $lightness: 18%) 100%
   );
   overflow: hidden;
 }
@@ -64,34 +68,34 @@
 .welcome__content {
   position: relative;
   z-index: 1;
-  width: min(560px, calc(100vw - #{$space-8}));
-  @include flex(column, flex-start, stretch, $space-8);
-  padding: $space-8 0;
+  width: min(560px, calc(100vw - #{variables.$space-8}));
+  @include mixins.flex(column, flex-start, stretch, variables.$space-8);
+  padding: variables.$space-8 0;
 }
 
 .welcome__brand {
   text-align: center;
-  @include fade-in-up(0.1s);
+  @include mixins.fade-in-up(0.1s);
 
   .welcome__icon {
     font-size: 4rem;
     display: block;
-    margin-bottom: $space-4;
+    margin-bottom: variables.$space-4;
     animation: float 4s ease-in-out infinite;
   }
 
   .welcome__title {
-    font-size: $font-size-4xl;
+    font-size: variables.$font-size-4xl;
     font-style: italic;
-    color: $color-primary-dark;
+    color: variables.$color-primary-dark;
     line-height: 1;
-    margin-bottom: $space-2;
-    text-shadow: 0 2px 8px rgba($color-bark, 0.1);
+    margin-bottom: variables.$space-2;
+    text-shadow: 0 2px 8px rgba(variables.$color-bark, 0.1);
   }
 
   .welcome__subtitle {
-    color: $color-text-muted;
-    font-size: $font-size-lg;
+    color: variables.$color-text-muted;
+    font-size: variables.$font-size-lg;
     font-style: italic;
     margin-bottom: 0;
   }
@@ -99,24 +103,24 @@
 
 // Card del calculador
 .calculator-card {
-  @include organic-card;
+  @include mixins.organic-card;
   overflow: hidden;
-  @include fade-in-up(0.3s);
+  @include mixins.fade-in-up(0.3s);
 
   &__header {
-    background: linear-gradient(135deg, $color-bark, $color-bark-light);
-    padding: $space-6 $space-8;
-    color: $color-cream;
+    background: linear-gradient(135deg, variables.$color-bark, variables.$color-bark-light);
+    padding: variables.$space-6 variables.$space-8;
+    color: variables.$color-cream;
     text-align: center;
 
     h2 {
-      color: $color-cream;
-      font-size: $font-size-2xl;
-      margin-bottom: $space-2;
+      color: variables.$color-cream;
+      font-size: variables.$font-size-2xl;
+      margin-bottom: variables.$space-2;
     }
 
     p {
-      color: rgba($color-cream, 0.75);
+      color: rgba(variables.$color-cream, 0.75);
       font-style: italic;
       margin-bottom: 0;
     }
@@ -124,29 +128,29 @@
 
   &__badge {
     display: inline-block;
-    background: rgba($color-accent, 0.3);
-    color: $color-accent;
-    border: 1px solid rgba($color-accent, 0.4);
-    border-radius: $radius-full;
-    padding: $space-1 $space-3;
+    background: rgba(variables.$color-accent, 0.3);
+    color: variables.$color-accent;
+    border: 1px solid rgba(variables.$color-accent, 0.4);
+    border-radius: variables.$radius-full;
+    padding: variables.$space-1 variables.$space-3;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 600;
-    margin-bottom: $space-3;
+    margin-bottom: variables.$space-3;
   }
 
   &__body {
-    padding: $space-8;
-    @include flex(column, flex-start, stretch, $space-5);
+    padding: variables.$space-8;
+    @include mixins.flex(column, flex-start, stretch, variables.$space-5);
   }
 }
 
 // Resultado del calculador
 .calculator-result {
-  border-top: 1px solid $color-border;
-  padding: $space-6 $space-8;
-  background: rgba($color-cream, 0.5);
+  border-top: 1px solid variables.$color-border;
+  padding: variables.$space-6 variables.$space-8;
+  background: rgba(variables.$color-cream, 0.5);
   animation: fadeInUp 0.5s ease;
 
   &[hidden] { display: none; }
@@ -155,20 +159,20 @@
 .result-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: $space-4;
-  margin-bottom: $space-4;
+  gap: variables.$space-4;
+  margin-bottom: variables.$space-4;
 
-  @media (max-width: #{$bp-sm}) {
+  @media (max-width: #{variables.$bp-sm}) {
     grid-template-columns: 1fr;
   }
 }
 
 .result-item {
   text-align: center;
-  padding: $space-3;
-  background: rgba($color-parchment, 0.8);
-  border-radius: $radius-sm;
-  border: 1px solid $color-border;
+  padding: variables.$space-3;
+  background: rgba(variables.$color-parchment, 0.8);
+  border-radius: variables.$radius-sm;
+  border: 1px solid variables.$color-border;
 }
 
 .result-label {
@@ -176,23 +180,39 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: $color-text-muted;
-  margin-bottom: $space-1;
+  color: variables.$color-text-muted;
+  margin-bottom: variables.$space-1;
 }
 
 .result-value {
   display: block;
-  font-family: $font-display;
-  font-size: $font-size-lg;
+  font-family: variables.$font-display;
+  font-size: variables.$font-size-lg;
   font-weight: 700;
-  color: $color-moss;
+  color: variables.$color-moss;
 }
 
 .result-message {
-  font-size: $font-size-sm;
+  font-size: variables.$font-size-sm;
   font-style: italic;
-  color: $color-text-muted;
+  color: variables.$color-text-muted;
   text-align: center;
   margin-bottom: 0;
   line-height: 1.5;
+}
+
+.result-disclaimer {
+  margin-top: variables.$space-3;
+  padding: variables.$space-3 variables.$space-4;
+  border-radius: variables.$radius-sm;
+  border: 1px solid rgba(variables.$color-accent-dark, 0.35);
+  background: rgba(variables.$color-accent, 0.12);
+  color: color.adjust(variables.$color-bark, $lightness: -4%);
+  font-size: variables.$font-size-sm;
+  text-align: center;
+  line-height: 1.45;
+
+  &[hidden] {
+    display: none;
+  }
 }
