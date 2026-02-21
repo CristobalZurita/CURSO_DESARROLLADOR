@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../abstracts/mixins";
 @use "../abstracts/variables";
 
@@ -57,6 +58,32 @@
     font-style: italic;
     display: block;
     margin-bottom: variables.$space-2;
+  }
+
+  &__life {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 6px;
+    border-radius: variables.$radius-full;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    margin-top: 2px;
+
+    &--alive {
+      background: rgba(119, 221, 119, 0.22);
+      color: #ecffec;
+      border-color: rgba(119, 221, 119, 0.45);
+    }
+
+    &--dead {
+      background: rgba(34, 34, 34, 0.24);
+      color: rgba(245, 245, 245, 0.95);
+      border-color: rgba(245, 245, 245, 0.35);
+    }
   }
 
   &__relation {
@@ -119,6 +146,20 @@
 
     .node-card__relation {
       color: rgba(variables.$color-bark, 0.7);
+    }
+
+    .node-card__life {
+      border-color: rgba(variables.$color-bark, 0.25);
+
+      &--alive {
+        color: color.adjust(variables.$color-moss, $lightness: -10%);
+        background: rgba(variables.$color-moss-light, 0.2);
+      }
+
+      &--dead {
+        color: variables.$color-bark;
+        background: rgba(variables.$color-bark, 0.1);
+      }
     }
 
     .node-card__add-btn {
@@ -212,5 +253,18 @@
     color: rgba(variables.$color-text-muted, 0.6);
     margin-bottom: variables.$space-2;
     font-family: variables.$font-body;
+  }
+}
+
+.node-add-row {
+  display: flex;
+  gap: variables.$space-2;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: variables.$space-2;
+
+  &--compact {
+    gap: variables.$space-1;
+    margin-top: 6px;
   }
 }

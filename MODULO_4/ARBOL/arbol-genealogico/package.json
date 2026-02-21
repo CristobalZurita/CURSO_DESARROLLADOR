@@ -1,5 +1,10 @@
 {
+  "scripts": {
+    "build": "sass --no-source-map scss/main.scss css/main.css",
+    "dev": "sass --watch scss/main.scss css/main.css"
+  },
   "devDependencies": {
+    "sass": "^1.93.2",
     "sass-migrator": "^2.5.7"
   }
 }

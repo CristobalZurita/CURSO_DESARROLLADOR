@@ -21,15 +21,60 @@ function calcularDatosPersona(edad, anioActual) {
 
   // --- Template literal (mensaje principal) ---
   const mensaje = `Tienes ${edad} años. Naciste en ${anioNacimiento}. ¿Mayor de edad? ${mayorEdad ? 'Sí ✓' : 'No ✗'}`;
+  const estadoVidaMeta = estimarEstadoVida({
+    edad,
+    relacion: 'yo',
+    anioNacimiento,
+    anioActual
+  });
 
   // Log en consola (requisito del reto)
   console.log('=== Calculador Personal ===');
   console.log('Año de nacimiento:', anioNacimiento);
   console.log('¿Mayor de edad?', mayorEdad);
   console.log('¿Joven adulto?', jovenAdulto);
+  console.log('Estado de vida estimado:', estadoVidaMeta.etiqueta);
   console.log(mensaje);
 
-  return { anioNacimiento, mayorEdad, jovenAdulto, adultoMedio, adultoMayor, mensaje };
+  return {
+    anioNacimiento,
+    mayorEdad,
+    jovenAdulto,
+    adultoMedio,
+    adultoMayor,
+    estadoVida: estadoVidaMeta.codigo,
+    estadoVidaEtiqueta: estadoVidaMeta.etiqueta,
+    mensaje
+  };
+}
+
+/**
+ * Estima estado de vida para mostrar en nodos
+ * Es una aproximación heurística, no un dato real.
+ */
+function estimarEstadoVida({ edad, relacion, anioNacimiento, anioActual }) {
+  const relacionesAncestro = ['Padre', 'Madre', 'Abuelo', 'Abuela', 'Bisabuelo', 'Bisabuela'];
+  const esAncestro = relacionesAncestro.includes(relacion);
+
+  if (edad >= 105) {
+    return { codigo: 'fallecido', etiqueta: 'Fallecido' };
+  }
+
+  if (esAncestro && edad >= 95) {
+    return { codigo: 'fallecido', etiqueta: 'Fallecido' };
+  }
+
+  if (relacion === 'Bisabuelo' || relacion === 'Bisabuela') {
+    if (edad >= 85) {
+      return { codigo: 'fallecido', etiqueta: 'Fallecido' };
+    }
+  }
+
+  if (anioActual - anioNacimiento >= 95) {
+    return { codigo: 'fallecido', etiqueta: 'Fallecido' };
+  }
+
+  return { codigo: 'vivo', etiqueta: 'Vivo' };
 }
 
 /**
@@ -45,7 +90,7 @@ function calcularDatosPersona(edad, anioActual) {
  *  - Bisnieto/a:     Razonablemente <18 (advertencia si mayor)
  *  - Hermano/a:      Rango libre, advertencia si diferencia > 25 años
  */
-function validarEdadParentesco(edadPariente, edadYo, relacion) {
+function validarEdadParentesco(edadPariente, edadYo, relacion, anioActual = new Date().getFullYear()) {
   const dif = edadPariente - edadYo; // positivo = pariente mayor que yo
 
   const reglas = {
@@ -101,26 +146,55 @@ function validarEdadParentesco(edadPariente, edadYo, relacion) {
 
   // Bisnieto mayor de 18: advertencia, no error
   if ((relacion === 'Bisnieto' || relacion === 'Bisnieta') && edadPariente >= 18) {
+    const anioNacBis = anioActual - edadPariente;
+    const vidaBis = estimarEstadoVida({
+      edad: edadPariente,
+      relacion,
+      anioNacimiento: anioNacBis,
+      anioActual
+    });
+
     return {
       valido: true,
       tipo: 'warning',
       mensaje: `ℹ️ Bisnieto/a de ${edadPariente} años: poco común, pero posible. 
-        Año nacimiento: ${2025 - edadPariente}.`
+        Año nacimiento: ${anioNacBis}. Estado estimado: ${vidaBis.etiqueta}.`,
+      anioNacimiento: anioNacBis,
+      estadoVida: vidaBis.codigo,
+      estadoVidaEtiqueta: vidaBis.etiqueta
     };
   }
 
   if (esFrontera) {
+    const anioNacLimite = anioActual - edadPariente;
+    const vidaLimite = estimarEstadoVida({
+      edad: edadPariente,
+      relacion,
+      anioNacimiento: anioNacLimite,
+      anioActual
+    });
+
     return {
       valido: true,
       tipo: 'warning',
-      mensaje: `ℹ️ Edad en el límite lógico para un/a ${relacion.toLowerCase()}, pero válida.`
+      mensaje: `ℹ️ Edad en el límite lógico para un/a ${relacion.toLowerCase()}, pero válida. 
+        Estado estimado: ${vidaLimite.etiqueta}.`,
+      anioNacimiento: anioNacLimite,
+      estadoVida: vidaLimite.codigo,
+      estadoVidaEtiqueta: vidaLimite.etiqueta
     };
   }
 
   // Calcular datos del pariente
-  const anioNacPariente = 2025 - edadPariente;
+  const anioNacPariente = anioActual - edadPariente;
   const mayorEdad       = edadPariente >= 18;
   const jovenAdulto     = edadPariente >= 18 && edadPariente < 30;
+  const estadoVidaMeta  = estimarEstadoVida({
+    edad: edadPariente,
+    relacion,
+    anioNacimiento: anioNacPariente,
+    anioActual
+  });
 
   console.log(`[Calculador] ${relacion} — Año nac.: ${anioNacPariente} | Mayor edad: ${mayorEdad} | Joven adulto: ${jovenAdulto}`);
 
@@ -129,9 +203,17 @@ function validarEdadParentesco(edadPariente, edadYo, relacion) {
     tipo: 'valid',
     mensaje: `✓ Válido. Año de nacimiento: ${anioNacPariente}. 
       ¿Mayor de edad? ${mayorEdad ? 'Sí' : 'No'}. 
-      ¿Joven adulto? ${jovenAdulto ? 'Sí' : 'No'}.`
+      ¿Joven adulto? ${jovenAdulto ? 'Sí' : 'No'}. 
+      Estado estimado: ${estadoVidaMeta.etiqueta}.`,
+    anioNacimiento: anioNacPariente,
+    estadoVida: estadoVidaMeta.codigo,
+    estadoVidaEtiqueta: estadoVidaMeta.etiqueta
   };
 }
 
 // Exportar para uso en otros módulos
-window.Calculator = { calcularDatosPersona, validarEdadParentesco };
+window.Calculator = {
+  calcularDatosPersona,
+  validarEdadParentesco,
+  estimarEstadoVida
+};

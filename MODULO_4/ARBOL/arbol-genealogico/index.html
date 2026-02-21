@@ -11,6 +11,45 @@
 </head>
 <body>
 
+  <header class="main-navbar">
+    <div class="main-navbar__inner">
+      <div class="main-navbar__brand">
+        <span class="main-navbar__icon">🌳</span>
+        <div class="main-navbar__brand-text">
+          <span class="main-navbar__brand-title">Raíces</span>
+          <span class="main-navbar__brand-subtitle">Acceso y sesión</span>
+        </div>
+      </div>
+
+      <div class="main-navbar__auth">
+        <div class="main-navbar__fields">
+          <div class="form-group main-navbar__field">
+            <label for="auth-username" class="main-navbar__label">Usuario</label>
+            <input type="text" id="auth-username" class="form-control main-navbar__input" placeholder="ej: camila.r" autocomplete="username" />
+          </div>
+          <div class="form-group main-navbar__field">
+            <label for="auth-password" class="main-navbar__label">Contraseña</label>
+            <input type="password" id="auth-password" class="form-control main-navbar__input" placeholder="mínimo 4 caracteres" autocomplete="current-password" />
+          </div>
+        </div>
+
+        <div class="main-navbar__actions">
+          <button class="btn btn--secondary btn--sm main-navbar__button" id="btn-auth-login" type="button">Entrar / Crear cuenta</button>
+          <button class="btn btn--ghost btn--sm main-navbar__button" id="btn-auth-logout" type="button" hidden>Cerrar sesión</button>
+        </div>
+
+        <div class="main-navbar__meta">
+          <p class="main-navbar__status" id="auth-status">No hay sesión activa.</p>
+          <p class="main-navbar__micro">
+            Admin demo:
+            <span class="main-navbar__credential">admin</span> /
+            <span class="main-navbar__credential">admin123</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <!-- PANTALLA 1: BIENVENIDA / CALCULADOR -->
   <section id="screen-welcome" class="screen screen--active">
     <div class="welcome__bg">
@@ -28,24 +67,24 @@
       <div class="calculator-card" id="calculator-section">
         <div class="calculator-card__header">
           <span class="calculator-card__badge">Reto: El Calculador Personal</span>
-          <h2>Cuéntame sobre ti</h2>
-          <p>Necesito conocerte antes de construir tu árbol</p>
+          <h2 class="calculator-card__title">Cuéntame sobre ti</h2>
+          <p class="calculator-card__lead">Necesito conocerte antes de construir tu árbol</p>
         </div>
 
         <div class="calculator-card__body">
           <div class="form-group">
-            <label for="input-nombre">¿Cómo te llamas?</label>
-            <input type="text" id="input-nombre" placeholder="Tu nombre completo" autocomplete="off" />
+            <label for="input-nombre" class="form-label">¿Cómo te llamas?</label>
+            <input type="text" id="input-nombre" class="form-control" placeholder="Tu nombre completo" autocomplete="off" />
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="input-edad">Tu edad</label>
-              <input type="number" id="input-edad" placeholder="ej: 28" min="6" max="120" />
+              <label for="input-edad" class="form-label">Tu edad</label>
+              <input type="number" id="input-edad" class="form-control" placeholder="ej: 28" min="6" max="120" />
             </div>
             <div class="form-group">
-              <label for="input-anio">Año actual</label>
-              <input type="number" id="input-anio" value="2025" min="2000" max="2100" />
+              <label for="input-anio" class="form-label">Año actual</label>
+              <input type="number" id="input-anio" class="form-control" value="2025" min="2000" max="2100" />
             </div>
           </div>
 
@@ -72,11 +111,41 @@
             </div>
           </div>
           <p class="result-message" id="res-mensaje"></p>
-          <p class="result-disclaimer" id="res-disclaimer" hidden></p>
         </div>
       </div>
     </div>
   </section>
+
+  <section class="admin-panel" id="admin-panel" hidden>
+    <div class="admin-panel__card">
+      <h3 class="admin-panel__title">Panel de Administración</h3>
+      <p class="admin-panel__lead">Usuarios registrados en el fake-backend local.</p>
+      <div class="admin-panel__list" id="admin-users-list"></div>
+    </div>
+  </section>
+
+  <div class="minor-warning-overlay" id="minor-warning-overlay" hidden>
+    <div
+      class="minor-warning-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="minor-warning-title"
+      aria-describedby="minor-warning-text"
+    >
+      <p class="minor-warning-modal__eyebrow">⚠️ Aviso de seguridad</p>
+      <h3 id="minor-warning-title" class="minor-warning-modal__title">Menor de 14 años</h3>
+      <p id="minor-warning-text" class="minor-warning-modal__text">
+        Para continuar con la creación del árbol, debes estar acompañado por un adulto responsable.
+      </p>
+      <p class="minor-warning-modal__note">
+        Esta medida protege tu información familiar y asegura un uso supervisado de la plataforma.
+      </p>
+      <div class="minor-warning-modal__actions">
+        <button class="btn btn--ghost minor-warning-modal__button" id="btn-minor-cancel" type="button">Volver y revisar</button>
+        <button class="btn btn--primary minor-warning-modal__button" id="btn-minor-continue" type="button">Continuar con adulto</button>
+      </div>
+    </div>
+  </div>
 
   <!-- PANTALLA 2: ÁRBOL GENEALÓGICO -->
   <section id="screen-tree" class="screen">
@@ -85,7 +154,7 @@
         <span class="tree-header__icon">🌳</span>
         <div>
           <h1 class="tree-header__title">Raíces</h1>
-          <p class="tree-header__user">Árbol de <strong id="header-nombre"></strong></p>
+          <p class="tree-header__user">Árbol de <span id="header-nombre" class="tree-header__user-name"></span></p>
         </div>
       </div>
       <div class="tree-header__right">
@@ -97,18 +166,18 @@
     <div class="tree-workspace">
       <!-- Leyenda de generaciones -->
       <aside class="tree-legend">
-        <h3>Generaciones</h3>
-        <ul>
-          <li><span class="gen-dot gen--bisabuelos"></span> Bisabuelos</li>
-          <li><span class="gen-dot gen--abuelos"></span> Abuelos</li>
-          <li><span class="gen-dot gen--padres"></span> Padres</li>
-          <li><span class="gen-dot gen--yo"></span> Tú</li>
-          <li><span class="gen-dot gen--hijos"></span> Hijos</li>
-          <li><span class="gen-dot gen--nietos"></span> Nietos</li>
-          <li><span class="gen-dot gen--bisnietos"></span> Bisnietos</li>
+        <h3 class="tree-legend__title">Generaciones</h3>
+        <ul class="tree-legend__list">
+          <li class="tree-legend__item"><span class="gen-dot gen--bisabuelos"></span> Bisabuelos</li>
+          <li class="tree-legend__item"><span class="gen-dot gen--abuelos"></span> Abuelos</li>
+          <li class="tree-legend__item"><span class="gen-dot gen--padres"></span> Padres</li>
+          <li class="tree-legend__item"><span class="gen-dot gen--yo"></span> Tú</li>
+          <li class="tree-legend__item"><span class="gen-dot gen--hijos"></span> Hijos</li>
+          <li class="tree-legend__item"><span class="gen-dot gen--nietos"></span> Nietos</li>
+          <li class="tree-legend__item"><span class="gen-dot gen--bisnietos"></span> Bisnietos</li>
         </ul>
         <div class="tree-stats">
-          <p>Total parientes: <strong id="stat-total">0</strong></p>
+          <p>Total parientes: <span id="stat-total" class="tree-stats__value">0</span></p>
         </div>
       </aside>
 
@@ -126,22 +195,22 @@
         <button class="modal__close" id="modal-close">✕</button>
         <div class="modal__header">
           <span class="modal__icon" id="modal-icon">👤</span>
-          <h3 id="modal-title">Añadir pariente</h3>
+          <h3 id="modal-title" class="modal__title">Añadir pariente</h3>
           <p id="modal-desc" class="modal__desc"></p>
         </div>
         <div class="modal__body">
           <div class="form-group">
-            <label for="m-nombre">Nombre</label>
-            <input type="text" id="m-nombre" placeholder="Nombre completo" />
+            <label for="m-nombre" class="form-label">Nombre</label>
+            <input type="text" id="m-nombre" class="form-control" placeholder="Nombre completo" />
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="m-edad">Edad</label>
-              <input type="number" id="m-edad" placeholder="años" min="0" max="120" />
+              <label for="m-edad" class="form-label">Edad</label>
+              <input type="number" id="m-edad" class="form-control" placeholder="años" min="0" max="120" />
             </div>
             <div class="form-group">
-              <label>Relación</label>
-              <input type="text" id="m-relacion" readonly class="input--readonly" />
+              <label class="form-label">Relación</label>
+              <input type="text" id="m-relacion" readonly class="form-control input--readonly" />
             </div>
           </div>
 
@@ -159,6 +228,7 @@
     <div class="toast" id="toast"></div>
   </section>
 
+  <script src="js/auth.js" defer></script>
   <script src="js/calculator.js" defer></script>
   <script src="js/tree.js" defer></script>
   <script src="js/app.js" defer></script>

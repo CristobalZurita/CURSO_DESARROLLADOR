@@ -9,53 +9,54 @@
   flex-direction: column;
   gap: variables.$space-2;
   flex: 1;
+}
 
-  label {
-    font-size: variables.$font-size-sm;
-    font-weight: 600;
+.form-label {
+  font-size: variables.$font-size-sm;
+  font-weight: 600;
+  color: variables.$color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: variables.$font-body;
+}
+
+.form-control {
+  padding: variables.$space-3 variables.$space-4;
+  border: 1.5px solid variables.$color-border;
+  border-radius: variables.$radius-sm;
+  background: rgba(variables.$color-cream, 0.8);
+  color: variables.$color-text;
+  font-size: variables.$font-size-md;
+  font-family: variables.$font-body;
+  transition: border-color variables.$transition-fast, box-shadow variables.$transition-fast, background variables.$transition-fast;
+  outline: none;
+
+  &::placeholder { color: rgba(variables.$color-text-muted, 0.5); }
+
+  &:focus {
+    border-color: variables.$color-moss;
+    background: rgba(variables.$color-parchment, 0.95);
+    box-shadow: 0 0 0 3px rgba(variables.$color-moss, 0.12);
+  }
+
+  &.input--error {
+    border-color: #C0392B;
+    background: rgba(#C0392B, 0.04);
+  }
+
+  &.input--readonly {
+    background: rgba(variables.$color-cream-dark, 0.5);
     color: variables.$color-text-muted;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-family: variables.$font-body;
+    cursor: default;
   }
+}
 
-  input, select, textarea {
-    padding: variables.$space-3 variables.$space-4;
-    border: 1.5px solid variables.$color-border;
-    border-radius: variables.$radius-sm;
-    background: rgba(variables.$color-cream, 0.8);
-    color: variables.$color-text;
-    font-size: variables.$font-size-md;
-    font-family: variables.$font-body;
-    transition: border-color variables.$transition-fast, box-shadow variables.$transition-fast, background variables.$transition-fast;
-    outline: none;
+.field-error {
+  font-size: variables.$font-size-sm;
+  color: #C0392B;
+  display: none;
 
-    &::placeholder { color: rgba(variables.$color-text-muted, 0.5); }
-
-    &:focus {
-      border-color: variables.$color-moss;
-      background: rgba(variables.$color-parchment, 0.95);
-      box-shadow: 0 0 0 3px rgba(variables.$color-moss, 0.12);
-    }
-
-    &.input--error {
-      border-color: #C0392B;
-      background: rgba(#C0392B, 0.04);
-    }
-
-    &.input--readonly {
-      background: rgba(variables.$color-cream-dark, 0.5);
-      color: variables.$color-text-muted;
-      cursor: default;
-    }
-  }
-
-  .field-error {
-    font-size: variables.$font-size-sm;
-    color: #C0392B;
-    display: none;
-    &.visible { display: block; }
-  }
+  &.visible { display: block; }
 }
 
 .form-row {

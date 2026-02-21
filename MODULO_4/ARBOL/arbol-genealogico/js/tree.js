@@ -6,10 +6,11 @@ window.FamilyTree = (() => {
 
   // ---- Estado del árbol ----
   let state = {
-    usuario: { nombre: '', edad: 0, anioNacimiento: 0 },
+    usuario: { nombre: '', edad: 0, anioNacimiento: 0, anioActual: new Date().getFullYear() },
     nodos: {},        // { id: { id, nombre, edad, relacion, tipo, hijos:[], padres:[] } }
     totalParientes: 0,
   };
+  let storageKey = 'raices_tree';
 
   // Tipos de relación con metadata
   const TIPOS = {
@@ -62,7 +63,17 @@ window.FamilyTree = (() => {
 
   // ---- Inicializar árbol con usuario raíz ----
   function init(nombre, edad, anioNacimiento) {
-    state.usuario = { nombre, edad, anioNacimiento };
+    const anioActual = anioNacimiento + edad;
+    const estadoRaiz = window.Calculator?.estimarEstadoVida
+      ? window.Calculator.estimarEstadoVida({
+        edad,
+        relacion: 'yo',
+        anioNacimiento,
+        anioActual
+      })
+      : { codigo: 'vivo', etiqueta: 'Vivo' };
+
+    state.usuario = { nombre, edad, anioNacimiento, anioActual };
     state.nodos = {};
     state.totalParientes = 0;
 
@@ -70,8 +81,11 @@ window.FamilyTree = (() => {
       id: 'yo',
       nombre,
       edad,
+      anioNacimiento,
       relacion: 'yo',
       tipo: 'yo',
+      estadoVida: estadoRaiz.codigo,
+      estadoVidaEtiqueta: estadoRaiz.etiqueta,
       hijos: [],  // referencias a IDs hijos directos
     };
 
@@ -83,8 +97,29 @@ window.FamilyTree = (() => {
 
   // ---- Añadir nodo al árbol ----
   function addNodo(parentId, nombre, edad, relacion) {
+    const anioActual = state.usuario.anioActual || new Date().getFullYear();
+    const anioNacimiento = anioActual - edad;
+    const estadoVidaMeta = window.Calculator?.estimarEstadoVida
+      ? window.Calculator.estimarEstadoVida({
+        edad,
+        relacion,
+        anioNacimiento,
+        anioActual
+      })
+      : { codigo: 'vivo', etiqueta: 'Vivo' };
+
     const id = `node_${Date.now()}_${Math.random().toString(36).slice(2,6)}`;
-    const nodo = { id, nombre, edad, relacion, tipo: relacion, hijos: [] };
+    const nodo = {
+      id,
+      nombre,
+      edad,
+      anioNacimiento,
+      relacion,
+      tipo: relacion,
+      estadoVida: estadoVidaMeta.codigo,
+      estadoVidaEtiqueta: estadoVidaMeta.etiqueta,
+      hijos: []
+    };
 
     state.nodos[id] = nodo;
 
@@ -181,7 +216,6 @@ window.FamilyTree = (() => {
     if (relDisp.length > 0) {
       const addRow = document.createElement('div');
       addRow.className = 'node-add-row';
-      addRow.style.cssText = 'display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px;';
 
       relDisp.forEach(rel => {
         // Evitar duplicados (ej: solo 1 padre, 1 madre para "yo")
@@ -240,7 +274,7 @@ window.FamilyTree = (() => {
     const relDisp = getRelacionesDisponibles(nodo);
     if (relDisp.length > 0) {
       const addRow = document.createElement('div');
-      addRow.style.cssText = 'display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin-top:6px;';
+      addRow.className = 'node-add-row node-add-row--compact';
       relDisp.forEach(rel => {
         const yaExiste = nodo.hijos.some(id => state.nodos[id] && state.nodos[id].tipo === rel);
         if (yaExiste) return;
@@ -290,7 +324,7 @@ window.FamilyTree = (() => {
     const relDisp = getRelacionesDisponibles(nodo);
     if (relDisp.length > 0) {
       const addRow = document.createElement('div');
-      addRow.style.cssText = 'display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin-top:6px;';
+      addRow.className = 'node-add-row node-add-row--compact';
       relDisp.forEach(rel => {
         const btn = document.createElement('button');
         btn.className = 'node-card__add-btn';
@@ -310,7 +344,15 @@ window.FamilyTree = (() => {
   // ---- Crear card de nodo ----
   function createNodeCard(nodo, claseTipo) {
     const tipoMeta = TIPOS[nodo.tipo] || TIPOS['yo'];
-    const anioNac  = 2025 - nodo.edad;
+    const anioActual = state.usuario.anioActual || new Date().getFullYear();
+    const anioNac = Number.isFinite(nodo.anioNacimiento)
+      ? nodo.anioNacimiento
+      : anioActual - nodo.edad;
+    const estadoVidaCodigo = nodo.estadoVida || 'vivo';
+    const estadoVidaEtiqueta = nodo.estadoVidaEtiqueta || (estadoVidaCodigo === 'fallecido' ? 'Fallecido' : 'Vivo');
+    const estadoVidaClase = estadoVidaCodigo === 'fallecido'
+      ? 'node-card__life node-card__life--dead'
+      : 'node-card__life node-card__life--alive';
 
     const card = document.createElement('div');
     card.className = `node-card node-card--${claseTipo}`;
@@ -320,6 +362,7 @@ window.FamilyTree = (() => {
       <span class="node-card__relation">${nodo.relacion === 'yo' ? '★ Yo' : nodo.relacion}</span>
       <div class="node-card__name">${tipoMeta.icon} ${nodo.nombre}</div>
       <span class="node-card__age">${nodo.edad} años · ${anioNac}</span>
+      <span class="${estadoVidaClase}">${estadoVidaEtiqueta}</span>
     `;
 
     return card;
@@ -334,13 +377,13 @@ window.FamilyTree = (() => {
   // ---- Persistencia localStorage ----
   function guardarEnStorage() {
     try {
-      localStorage.setItem('raices_tree', JSON.stringify(state));
+      localStorage.setItem(storageKey, JSON.stringify(state));
     } catch(e) { /* silent */ }
   }
 
   function cargarDeStorage() {
     try {
-      const saved = localStorage.getItem('raices_tree');
+      const saved = localStorage.getItem(storageKey);
       if (saved) {
         state = JSON.parse(saved);
         return true;
@@ -349,13 +392,38 @@ window.FamilyTree = (() => {
     return false;
   }
 
-  function resetTree() {
-    state = { usuario: { nombre: '', edad: 0, anioNacimiento: 0 }, nodos: {}, totalParientes: 0 };
-    localStorage.removeItem('raices_tree');
+  function resetTree(options = {}) {
+    const { removeStorage = true } = options;
+    state = {
+      usuario: { nombre: '', edad: 0, anioNacimiento: 0, anioActual: new Date().getFullYear() },
+      nodos: {},
+      totalParientes: 0
+    };
+    if (removeStorage) {
+      localStorage.removeItem(storageKey);
+    }
+  }
+
+  function setStorageKeyForUser(username) {
+    if (!username) {
+      storageKey = 'raices_tree';
+      return;
+    }
+    storageKey = `raices_tree_${String(username).toLowerCase().trim()}`;
   }
 
   function getState() { return state; }
 
-  return { init, addNodo, renderTree, cargarDeStorage, resetTree, getState, TIPOS, RELACIONES_DISPONIBLES };
+  return {
+    init,
+    addNodo,
+    renderTree,
+    cargarDeStorage,
+    resetTree,
+    setStorageKeyForUser,
+    getState,
+    TIPOS,
+    RELACIONES_DISPONIBLES,
+  };
 
 })();

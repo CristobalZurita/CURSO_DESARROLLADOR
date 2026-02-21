@@ -52,11 +52,11 @@
   &__header {
     text-align: center;
     margin-bottom: variables.$space-6;
+  }
 
-    h3 {
-      font-size: variables.$font-size-xl;
-      margin-bottom: variables.$space-2;
-    }
+  &__title {
+    font-size: variables.$font-size-xl;
+    margin-bottom: variables.$space-2;
   }
 
   &__icon {

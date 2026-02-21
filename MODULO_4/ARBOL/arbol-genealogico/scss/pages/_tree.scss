@@ -36,28 +36,28 @@
   top: 73px;
   overflow-y: auto;
 
-  h3 {
-    font-size: variables.$font-size-sm;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: variables.$color-text-muted;
-    margin-bottom: variables.$space-4;
-  }
-
-  ul {
-    @include mixins.flex(column, flex-start, flex-start, variables.$space-3);
-    margin-bottom: variables.$space-6;
-  }
-
-  li {
-    @include mixins.flex(row, flex-start, center, variables.$space-2);
-    font-size: variables.$font-size-sm;
-    color: variables.$color-text;
-  }
-
   @media (max-width: #{variables.$bp-md}) {
     display: none;
   }
+}
+
+.tree-legend__title {
+  font-size: variables.$font-size-sm;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: variables.$color-text-muted;
+  margin-bottom: variables.$space-4;
+}
+
+.tree-legend__list {
+  @include mixins.flex(column, flex-start, flex-start, variables.$space-3);
+  margin-bottom: variables.$space-6;
+}
+
+.tree-legend__item {
+  @include mixins.flex(row, flex-start, center, variables.$space-2);
+  font-size: variables.$font-size-sm;
+  color: variables.$color-text;
 }
 
 .gen-dot {
@@ -80,7 +80,11 @@
   border-top: 1px solid variables.$color-border;
   font-size: variables.$font-size-sm;
   color: variables.$color-text-muted;
-  strong { color: variables.$color-moss; }
+}
+
+.tree-stats__value {
+  color: variables.$color-moss;
+  font-weight: 600;
 }
 
 // Canvas del árbol

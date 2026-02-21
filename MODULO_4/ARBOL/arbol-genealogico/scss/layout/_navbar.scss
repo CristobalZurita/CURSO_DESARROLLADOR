@@ -1,0 +1,187 @@
+@use "../abstracts/mixins";
+@use "../abstracts/variables";
+
+// ============================================
+// LAYOUT / _navbar.scss
+// Navbar global con acceso
+// ============================================
+
+:root {
+  --main-nav-height: 140px;
+}
+
+body {
+  padding-top: var(--main-nav-height);
+}
+
+.main-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(variables.$color-bark, 0.16);
+  box-shadow: 0 8px 24px rgba(variables.$color-bark, 0.16);
+  backdrop-filter: blur(8px);
+  background: rgba(variables.$color-parchment, 0.95);
+
+  &__inner {
+    width: min(1320px, calc(100vw - #{variables.$space-8}));
+    margin: 0 auto;
+    padding: variables.$space-3 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: variables.$space-4;
+  }
+
+  &__brand {
+    @include mixins.flex(row, flex-start, center, variables.$space-3);
+    color: variables.$color-primary-dark;
+    min-width: max-content;
+  }
+
+  &__icon {
+    font-size: variables.$font-size-2xl;
+    animation: leafSway 4s ease-in-out infinite;
+  }
+
+  &__brand-text {
+    @include mixins.flex(column, center, flex-start, 2px);
+  }
+
+  &__brand-title {
+    font-family: variables.$font-display;
+    font-size: variables.$font-size-xl;
+    font-style: italic;
+    line-height: 1;
+    color: variables.$color-primary-dark;
+  }
+
+  &__brand-subtitle {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: variables.$color-text-muted;
+    line-height: 1;
+  }
+
+  &__auth {
+    @include mixins.flex(column, center, stretch, variables.$space-2);
+  }
+
+  &__fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(170px, 220px));
+    justify-content: end;
+    gap: variables.$space-2;
+  }
+
+  &__field {
+    gap: 3px;
+  }
+
+  &__label {
+    font-size: 0.58rem;
+    color: rgba(variables.$color-text-muted, 0.95);
+    letter-spacing: 0.06em;
+  }
+
+  &__input {
+    min-height: 34px;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.83rem;
+    border-color: rgba(variables.$color-bark, 0.2);
+    background: rgba(variables.$color-cream, 0.95);
+  }
+
+  &__actions {
+    @include mixins.flex(row, flex-end, center, variables.$space-2);
+    flex-wrap: wrap;
+  }
+
+  &__button {
+    min-height: 34px;
+  }
+
+  &__meta {
+    text-align: right;
+  }
+
+  &__status {
+    margin: 0;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: variables.$color-text-muted;
+  }
+
+  &__status-highlight {
+    color: variables.$color-moss;
+    font-weight: 600;
+  }
+
+  &__micro {
+    margin: 0;
+    font-size: 0.68rem;
+    color: rgba(variables.$color-text-muted, 0.9);
+    line-height: 1.25;
+  }
+
+  &__credential {
+    color: variables.$color-moss;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: #{variables.$bp-lg}) {
+  :root {
+    --main-nav-height: 168px;
+  }
+
+  .main-navbar {
+    &__inner {
+      width: min(1320px, calc(100vw - #{variables.$space-6}));
+      grid-template-columns: 1fr;
+      align-items: flex-start;
+      gap: variables.$space-3;
+    }
+
+    &__auth {
+      width: 100%;
+    }
+
+    &__fields {
+      justify-content: start;
+    }
+
+    &__actions {
+      justify-content: flex-start;
+    }
+
+    &__meta {
+      text-align: left;
+    }
+  }
+}
+
+@media (max-width: #{variables.$bp-md}) {
+  :root {
+    --main-nav-height: 236px;
+  }
+
+  .main-navbar {
+    &__fields {
+      width: 100%;
+      grid-template-columns: 1fr;
+    }
+
+    &__actions {
+      @include mixins.flex(column, flex-start, stretch, variables.$space-2);
+    }
+
+    &__button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
