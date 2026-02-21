@@ -1,0 +1,102 @@
+// ============================================
+// LAYOUT / NAVBAR
+// ============================================
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: $spacing-sm $spacing-lg;
+  @include flex-between;
+  background: rgba(255, 248, 245, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid transparent;
+  transition: all $transition-normal;
+
+  &.scrolled {
+    border-bottom-color: rgba($color-rosa, 0.2);
+    box-shadow: $shadow-sm;
+  }
+
+  &__logo {
+    font-family: $font-display;
+    font-size: 1.8rem;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+
+    span {
+      color: $color-secondary;
+    }
+  }
+
+  &__links {
+    display: none;
+    gap: $spacing-lg;
+
+    @include respond-to(md) {
+      display: flex;
+    }
+
+    a {
+      font-weight: 600;
+      color: $color-text;
+      transition: color $transition-fast;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: $color-primary;
+        transform: scaleX(0);
+        transition: transform $transition-fast;
+      }
+
+      &:hover {
+        color: $color-primary;
+        &::after { transform: scaleX(1); }
+      }
+    }
+  }
+
+  &__cta {
+    @include btn-base;
+    background: $color-primary;
+    color: white;
+    font-size: $font-size-sm;
+    padding: 0.6rem 1.4rem;
+
+    &:hover {
+      background: shade($color-rosa, 15%);
+      transform: translateY(-2px);
+      box-shadow: $shadow-glow;
+    }
+  }
+
+  &__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+
+    @include respond-to(md) {
+      display: none;
+    }
+
+    span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: $color-text;
+      border-radius: 3px;
+      transition: all $transition-fast;
+    }
+  }
+}

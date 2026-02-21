@@ -1,0 +1,66 @@
+// ============================================
+// COMPONENTS / BUTTONS
+// ============================================
+
+.btn {
+  @include btn-base;
+
+  &--primary {
+    background: $color-primary;
+    color: white;
+
+    &:hover {
+      background: shade($color-rosa, 15%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba($color-rosa, 0.4);
+    }
+  }
+
+  &--secondary {
+    background: $color-secondary;
+    color: white;
+
+    &:hover {
+      background: shade($color-teal, 15%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba($color-teal, 0.4);
+    }
+  }
+
+  &--accent {
+    background: $color-accent;
+    color: $color-dark;
+
+    &:hover {
+      background: shade($color-amarillo, 10%);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba($color-amarillo, 0.5);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+
+    &:hover {
+      background: $color-primary;
+      color: white;
+      transform: translateY(-3px);
+    }
+  }
+
+  &--lg {
+    padding: 1rem 2.5rem;
+    font-size: $font-size-lg;
+  }
+
+  &--sm {
+    padding: 0.4rem 1rem;
+    font-size: $font-size-sm;
+  }
+
+  &--block {
+    width: 100%;
+  }
+}

@@ -1,0 +1,32 @@
+// ============================================
+// MAIN.SCSS — Arquitectura SASS 7-1
+// ============================================
+
+// 1. ABSTRACTS (sin output CSS, solo herramientas)
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. VENDORS (librerías de terceros)
+@import 'vendors/vendors';
+
+// 3. BASE (estilos fundamentales)
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/animations';
+
+// 4. LAYOUT (estructura macro)
+@import 'layout/navbar';
+@import 'layout/grid';
+@import 'layout/footer';
+
+// 5. COMPONENTS (UI reutilizable)
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/modal';
+
+// 6. PAGES (estilos específicos de página)
+@import 'pages/home';
+
+// 7. THEMES (customización visual)
+@import 'themes/default';

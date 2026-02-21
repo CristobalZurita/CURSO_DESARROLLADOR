@@ -1,0 +1,329 @@
+// ============================================
+// PAGES / HOME
+// ============================================
+
+// ---- HERO ----
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  padding-top: 80px;
+  position: relative;
+  overflow: hidden;
+
+  @include respond-to(lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  // Fondo decorativo
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, tint($color-rosa, 80%) 0%, transparent 60%),
+                radial-gradient(ellipse at 10% 80%, tint($color-menta, 70%) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  &__content {
+    padding: $spacing-xxl $spacing-md;
+    position: relative;
+    z-index: 1;
+
+    @include respond-to(lg) {
+      padding: $spacing-xxl $spacing-xl;
+    }
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: 2px solid tint($color-rosa, 60%);
+    color: $color-primary;
+    font-weight: 700;
+    font-size: $font-size-sm;
+    padding: 0.4rem 1rem;
+    border-radius: $border-radius-full;
+    margin-bottom: $spacing-md;
+    animation: fadeInUp 0.5s ease forwards;
+    box-shadow: $shadow-sm;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: $font-size-hero;
+    color: $color-dark;
+    line-height: 1.1;
+    margin-bottom: $spacing-md;
+    animation: fadeInUp 0.6s ease 0.1s both;
+
+    span {
+      @include gradient-text($color-primary, $color-amarillo);
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $color-text-light;
+    max-width: 500px;
+    margin-bottom: $spacing-xl;
+    animation: fadeInUp 0.6s ease 0.2s both;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease 0.3s both;
+  }
+
+  &__stats {
+    display: flex;
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+    animation: fadeInUp 0.6s ease 0.4s both;
+  }
+
+  &__stat {
+    &-number {
+      font-family: $font-display;
+      font-size: 2rem;
+      color: $color-primary;
+      line-height: 1;
+    }
+    &-label {
+      font-size: $font-size-sm;
+      color: $color-text-light;
+    }
+  }
+
+  &__visual {
+    position: relative;
+    z-index: 1;
+    padding: $spacing-xl;
+    display: none;
+
+    @include respond-to(lg) {
+      display: block;
+    }
+  }
+
+  &__plates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+    transform: rotate(3deg);
+  }
+
+  &__plate {
+    background: white;
+    border-radius: $border-radius-md;
+    padding: $spacing-md;
+    box-shadow: $shadow-lg;
+    text-align: center;
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+
+    &:nth-child(2) { animation-delay: 0.5s; margin-top: $spacing-lg; }
+    &:nth-child(3) { animation-delay: 1s; }
+    &:nth-child(4) { animation-delay: 1.5s; margin-top: $spacing-lg; }
+
+    p {
+      font-size: $font-size-sm;
+      font-weight: 600;
+      color: $color-text;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+// ---- MENU ----
+.menu-section {
+  background: white;
+
+  &__filter {
+    display: flex;
+    gap: $spacing-sm;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__filter-btn {
+    padding: 0.5rem 1.4rem;
+    border: 2px solid $color-gris;
+    border-radius: $border-radius-full;
+    background: transparent;
+    color: $color-text-light;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all $transition-fast;
+    font-family: $font-body;
+
+    &.active,
+    &:hover {
+      border-color: $color-primary;
+      background: $color-primary;
+      color: white;
+    }
+  }
+}
+
+// ---- PRICING ----
+.pricing-section {
+  background: linear-gradient(180deg, $color-bg 0%, tint($color-menta, 80%) 100%);
+}
+
+// ---- CALCULATOR ----
+.calculator-section {
+  background: white;
+
+  &__wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, tint($color-amarillo, 80%), tint($color-rosa, 80%));
+    border-radius: $border-radius-lg;
+    padding: $spacing-xl;
+    box-shadow: $shadow-lg;
+    text-align: center;
+  }
+
+  &__emoji {
+    font-size: 4rem;
+    margin-bottom: $spacing-md;
+    animation: bounce 2s infinite;
+    display: block;
+  }
+
+  &__input-group {
+    display: flex;
+    gap: $spacing-sm;
+    margin: $spacing-lg 0;
+
+    input {
+      flex: 1;
+      padding: 1rem;
+      border: 2px solid rgba($color-rosa, 0.3);
+      border-radius: $border-radius-md;
+      font-size: $font-size-lg;
+      text-align: center;
+      font-family: $font-display;
+      color: $color-dark;
+      background: white;
+      outline: none;
+
+      &:focus { border-color: $color-primary; }
+    }
+  }
+}
+
+// ---- TESTIMONIALS ----
+.testimonials-section {
+  background: $color-bg;
+}
+
+// ---- CTA FINAL ----
+.cta-section {
+  background: linear-gradient(135deg, $color-primary, shade($color-rosa, 10%), $color-accent);
+  padding: $spacing-xxl $spacing-md;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '🍕🥗🍣🍜🥩🍰';
+    font-size: 6rem;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    opacity: 0.08;
+    letter-spacing: -10px;
+    user-select: none;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: white;
+    margin-bottom: $spacing-md;
+  }
+
+  &__subtitle {
+    color: rgba(white, 0.8);
+    font-size: $font-size-lg;
+    max-width: 500px;
+    margin: 0 auto $spacing-xl;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn--light {
+    background: white;
+    color: $color-primary;
+
+    &:hover {
+      background: rgba(white, 0.9);
+      transform: translateY(-3px);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  .btn--outline-light {
+    @include btn-base;
+    border: 2px solid rgba(white, 0.6);
+    color: white;
+
+    &:hover {
+      background: rgba(white, 0.2);
+      transform: translateY(-3px);
+    }
+  }
+}
+
+// ---- HOW IT WORKS ----
+.how-section {
+  background: $color-bg;
+
+  &__step {
+    text-align: center;
+    padding: $spacing-lg;
+    position: relative;
+
+    &-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: $color-primary;
+      color: white;
+      font-family: $font-display;
+      font-size: 1.5rem;
+      @include flex-center;
+      margin: 0 auto $spacing-md;
+      box-shadow: 0 4px 15px rgba($color-rosa, 0.4);
+    }
+
+    &:nth-child(2) .how-section__step-number { background: $color-secondary; box-shadow: 0 4px 15px rgba($color-teal, 0.4); }
+    &:nth-child(3) .how-section__step-number { background: $color-accent; color: $color-dark; box-shadow: 0 4px 15px rgba($color-amarillo, 0.5); }
+
+    &-emoji { font-size: 2.5rem; margin-bottom: $spacing-sm; }
+    &-title {
+      font-family: $font-display;
+      font-size: 1.3rem;
+      color: $color-dark;
+      margin-bottom: $spacing-xs;
+    }
+  }
+}

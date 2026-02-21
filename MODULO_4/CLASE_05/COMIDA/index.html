@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tenedor Libre 🍴 — Come sin límites</title>
+  <meta name="description" content="El mejor restaurante tenedor libre de la ciudad. Amplia variedad de platos, precios especiales para niños y ambiente familiar." />
+
+  <!-- Google Fonts (SASS 7-1: vendors) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS compilado desde SASS 7-1 -->
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+  <!-- =============================================
+       NAVBAR
+  ============================================= -->
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <a href="#inicio" class="navbar__logo" aria-label="Tenedor Libre - Inicio">
+      🍴 Tenedor<span>Libre</span>
+    </a>
+
+    <ul class="navbar__links" role="list">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#como-funciona">¿Cómo funciona?</a></li>
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#calculadora">Niños</a></li>
+      <li><a href="#testimonios">Opiniones</a></li>
+    </ul>
+
+    <button class="navbar__cta" data-open-auth aria-label="Iniciar sesión">
+      Iniciar Sesión
+    </button>
+
+    <div class="navbar__hamburger" role="button" aria-label="Abrir menú" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+
+  <!-- =============================================
+       HERO
+  ============================================= -->
+  <section id="inicio" class="hero">
+    <div class="hero__content">
+      <div class="hero__tag">🌟 Abierto todos los días</div>
+      <h1 class="hero__title">
+        Come cuanto<br/>
+        <span>quieras</span>, paga<br/>
+        una sola vez
+      </h1>
+      <p class="hero__subtitle">
+        El restaurante tenedor libre con más variedad de la ciudad. Más de 80 platos, postres ilimitados y un precio especial para los más chicos.
+      </p>
+      <div class="hero__actions">
+        <a href="#menu" class="btn btn--primary btn--lg">Ver el Menú 🍽️</a>
+        <button class="btn btn--outline btn--lg" data-open-auth>Reservar Mesa</button>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <div class="hero__stat-number">80+</div>
+          <div class="hero__stat-label">Platos disponibles</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">4.9⭐</div>
+          <div class="hero__stat-label">Calificación</div>
+        </div>
+        <div class="hero__stat">
+          <div class="hero__stat-number">12k+</div>
+          <div class="hero__stat-label">Comensales felices</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__plates">
+        <div class="hero__plate">🍕<p>Pizza</p></div>
+        <div class="hero__plate">🥗<p>Ensaladas</p></div>
+        <div class="hero__plate">🍣<p>Sushi</p></div>
+        <div class="hero__plate">🍰<p>Postres</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       CÓMO FUNCIONA
+  ============================================= -->
+  <section id="como-funciona" class="how-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header__tag">El proceso</div>
+        <h2>Así de simple funciona</h2>
+        <p>En tres pasos ya estás disfrutando tu comida favorita sin preocuparte por nada.</p>
+      </div>
+
+      <div class="grid grid--3">
+        <div class="how-section__step reveal">
+          <div class="how-section__step-number">1</div>
+          <div class="how-section__step-emoji">📝</div>
+          <div class="how-section__step-title">Reservá tu mesa</div>
+          <p>Creá tu cuenta o iniciá sesión para reservar tu lugar con anticipación y evitar filas.</p>
+        </div>
+        <div class="how-section__step reveal">
+          <div class="how-section__step-number">2</div>
+          <div class="how-section__step-emoji">🎯</div>
+          <div class="how-section__step-title">Elegí tu plan</div>
+          <p>Seleccioná el plan que mejor se adapte a tu grupo. ¡Los menores de 5 años comen gratis!</p>
+        </div>
+        <div class="how-section__step reveal">
+          <div class="how-section__step-number">3</div>
+          <div class="how-section__step-emoji">🍴</div>
+          <div class="how-section__step-title">¡Comé sin límites!</div>
+          <p>Recorrés el buffet las veces que quieras. Más de 80 opciones de entrada, principal y postre.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       MENÚ
+  ============================================= -->
+  <section id="menu" class="menu-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header__tag">Nuestro Menú</div>
+        <h2>Explora todo el buffet</h2>
+        <p>Desde ensaladas frescas hasta postres irresistibles. Todo incluido en tu entrada.</p>
+      </div>
+
+      <!-- Filtros de menú -->
+      <div class="menu-section__filter" role="group" aria-label="Filtrar platos por categoría">
+        <button class="menu-section__filter-btn active" data-filter="all">Todos 🍽️</button>
+        <button class="menu-section__filter-btn" data-filter="entrada">Entradas 🥗</button>
+        <button class="menu-section__filter-btn" data-filter="principal">Principales 🥩</button>
+        <button class="menu-section__filter-btn" data-filter="pasta">Pastas 🍝</button>
+        <button class="menu-section__filter-btn" data-filter="postre">Postres 🍰</button>
+      </div>
+
+      <!-- Cards de menú -->
+      <div class="grid grid--3">
+
+        <article class="menu-card reveal" data-category="entrada">
+          <div class="menu-card__badge">🌱 Vegano</div>
+          <div style="height:220px;background:linear-gradient(135deg,#7DDFC3,#2DA58E);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🥗</div>
+          <div class="menu-card__body">
+            <div class="menu-card__category">Entrada</div>
+            <h3 class="menu-card__title">Ensalada Mediterránea</h3>
+            <p class="menu-card__description">Mix de hojas verdes con aceitunas, tomates cherry, queso feta y aderezo de limón.</p>
+            <div class="menu-card__tags">
+              <span class="menu-card__tag">Sin gluten</span>
+              <span class="menu-card__tag">Vegano</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="principal">
+          <div style="height:220px;background:linear-gradient(135deg,#F5B942,#D63A6A);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🥩</div>
+          <div class="menu-card__body">
+            <div class="menu-card__category">Principal</div>
+            <h3 class="menu-card__title">Asado a la parrilla</h3>
+            <p class="menu-card__description">Cortes seleccionados a la parrilla con chimichurri casero y ensalada de la huerta.</p>
+            <div class="menu-card__tags">
+              <span class="menu-card__tag">Sin gluten</span>
+              <span class="menu-card__tag">Alta proteína</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="pasta">
+          <div style="height:220px;background:linear-gradient(135deg,#F4C2D0,#F5B942);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🍝</div>
+          <div class="menu-card__body">
+            <div class="menu-card__category">Pasta</div>
+            <h3 class="menu-card__title">Fettuccine Alfredo</h3>
+            <p class="menu-card__description">Pasta artesanal con salsa de queso parmesano, manteca y nuez moscada recién rallada.</p>
+            <div class="menu-card__tags">
+              <span class="menu-card__tag">Vegetariano</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="entrada">
+          <div style="height:220px;background:linear-gradient(135deg,#D63A6A,#7DDFC3);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🍣</div>
+          <div class="menu-card__body">
+            <div class="menu-card__category">Entrada</div>
+            <h3 class="menu-card__title">Sushi variado</h3>
+            <p class="menu-card__description">Selección de rolls, nigiri y sashimi preparados al momento por nuestro chef.</p>
+            <div class="menu-card__tags">
+              <span class="menu-card__tag">Sin gluten</span>
+              <span class="menu-card__tag">Fresco</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="principal">
+          <div style="height:220px;background:linear-gradient(135deg,#2DA58E,#1A1A2E);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🍗</div>
+          <div class="menu-card__body">
+            <div class="menu-card__category">Principal</div>
+            <h3 class="menu-card__title">Pollo al limón</h3>
+            <p class="menu-card__description">Pechuga jugosa marinada con hierbas frescas, servida con puré y vegetales salteados.</p>
+            <div class="menu-card__tags">
+              <span class="menu-card__tag">Bajo en grasa</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="postre">
+          <div class="menu-card__badge">🔥 Favorito</div>
+          <div style="height:220px;background:linear-gradient(135deg,#F5B942,#F4C2D0);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🍰</div>
+          <div class="menu-card__body">
+            <div class="menu-card__category">Postre</div>
+            <h3 class="menu-card__title">Tiramisú de la casa</h3>
+            <p class="menu-card__description">El postre estrella. Bizcochuelo de café, mascarpone artesanal y cacao amargo.</p>
+            <div class="menu-card__tags">
+              <span class="menu-card__tag">Vegetariano</span>
+              <span class="menu-card__tag">Clásico</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       PRECIOS
+  ============================================= -->
+  <section id="precios" class="pricing-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header__tag">Planes</div>
+        <h2>Un precio, todo incluido</h2>
+        <p>Sin sorpresas. Elegí el plan de tu grupo y disfruta al máximo.</p>
+      </div>
+
+      <div class="grid grid--3">
+
+        <div class="price-card reveal">
+          <div class="price-card__icon">👶</div>
+          <div class="price-card__name">Niños (5-12)</div>
+          <div class="price-card__price">
+            <sup>$</sup>6.250<small>/persona</small>
+          </div>
+          <p class="price-card__note">50% descuento ¡Solo para ellos!</p>
+          <ul class="price-card__features">
+            <li>Menú buffet completo</li>
+            <li>Bebidas sin alcohol</li>
+            <li>Postres incluidos</li>
+            <li>Sillas especiales</li>
+          </ul>
+          <a href="#calculadora" class="btn btn--secondary btn--block">Calcular precio</a>
+        </div>
+
+        <div class="price-card price-card--featured reveal">
+          <div class="price-card__icon">🍴</div>
+          <div class="price-card__name">Adulto</div>
+          <div class="price-card__price">
+            <sup>$</sup>12.500<small>/persona</small>
+          </div>
+          <p class="price-card__note">El precio completo del buffet</p>
+          <ul class="price-card__features">
+            <li>Menú buffet completo</li>
+            <li>Bebida con refill</li>
+            <li>Postres ilimitados</li>
+            <li>Café o té incluido</li>
+            <li>Prioridad de ingreso</li>
+          </ul>
+          <button class="btn btn--primary btn--block" data-open-auth>Reservar ahora</button>
+        </div>
+
+        <div class="price-card reveal">
+          <div class="price-card__icon">👨‍👩‍👧‍👦</div>
+          <div class="price-card__name">Familia (4+)</div>
+          <div class="price-card__price">
+            <sup>$</sup>9.500<small>/persona</small>
+          </div>
+          <p class="price-card__note">Mínimo 4 personas del mismo grupo</p>
+          <ul class="price-card__features">
+            <li>Todo lo del plan Adulto</li>
+            <li>Vino o cerveza (1 c/u)</li>
+            <li>Mesa reservada</li>
+            <li>Torta de cumpleaños</li>
+          </ul>
+          <button class="btn btn--outline btn--block" data-open-auth>Consultar</button>
+        </div>
+
+      </div>
+
+      <p style="text-align:center;margin-top:2rem;font-size:0.875rem;">
+        💡 <strong>¡Menores de 5 años comen completamente gratis!</strong> Verificalo en nuestra calculadora 👇
+      </p>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       CALCULADORA DE PRECIO POR EDAD (DESAFÍO EXTRA)
+  ============================================= -->
+  <section id="calculadora" class="calculator-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header__tag">Calculadora</div>
+        <h2>¿Cuánto paga tu grupo?</h2>
+        <p>Ingresá la edad de cada integrante y sabrás si paga el precio completo, tiene descuento o come gratis.</p>
+      </div>
+
+      <div class="calculator-section__wrapper reveal">
+        <span class="calculator-section__emoji">🧮</span>
+
+        <h3 style="font-family:'Fredoka One',cursive;color:#1A1A2E;margin-bottom:0.5rem;">
+          Calculadora de Precio por Edad
+        </h3>
+        <p style="color:#6B6B80;margin-bottom:0.5rem;">
+          Sistema de decisión con <strong>if-else</strong>:<br/>
+          &lt;5 años = Gratis &nbsp;|&nbsp; 5-12 = 50% desc. &nbsp;|&nbsp; +12 = Precio completo
+        </p>
+
+        <div class="calculator-section__input-group">
+          <input
+            type="number"
+            id="inputEdad"
+            placeholder="Edad (años)"
+            min="0"
+            max="120"
+            aria-label="Edad de la persona"
+          />
+          <input
+            type="number"
+            id="inputPrecio"
+            placeholder="Precio base ($)"
+            value="12500"
+            min="0"
+            aria-label="Precio base del menú"
+          />
+        </div>
+
+        <button class="btn btn--primary btn--lg" id="btnCalcPrice">
+          Calcular precio 🧾
+        </button>
+
+        <div id="calcResult" class="calc-result" role="alert" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       TESTIMONIOS
+  ============================================= -->
+  <section id="testimonios" class="testimonials-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header__tag">Opiniones</div>
+        <h2>Lo que dicen nuestros comensales</h2>
+      </div>
+
+      <div class="grid grid--3">
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">
+            "Increíble variedad y calidad. Fuimos con los chicos y les encantó que los menores de 5 años comieran gratis. ¡Volvemos la semana que viene!"
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">👩</div>
+            <div>
+              <div class="testimonial-card__name">María González</div>
+              <div class="testimonial-card__meta">Mamá de 3 hijos · Cliente frecuente</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">
+            "El mejor tenedor libre de la zona, sin dudas. El sushi y el asado son de otro nivel. El sistema de reserva online es muy cómodo."
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">👨</div>
+            <div>
+              <div class="testimonial-card__name">Carlos Méndez</div>
+              <div class="testimonial-card__meta">Gastrónomo amateur · 34 años</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">
+            "Vinimos para el cumpleaños de mi hija. La torta fue un detalle hermoso. El plan familia es un golazo, muy bien de precio para todo lo que ofrecen."
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">👩‍🦰</div>
+            <div>
+              <div class="testimonial-card__name">Sofía Ramírez</div>
+              <div class="testimonial-card__meta">Celebración familiar · Plan Familia</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       CTA FINAL
+  ============================================= -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-section__title">¿Listo para comer sin límites?</h2>
+      <p class="cta-section__subtitle">
+        Reservá tu mesa hoy y viví la experiencia de un verdadero tenedor libre.
+      </p>
+      <div class="cta-section__actions">
+        <button class="btn btn--light btn--lg" data-open-auth>Crear mi cuenta 🍴</button>
+        <a href="#precios" class="btn--outline-light btn--lg">Ver precios</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer class="footer">
+    <div class="footer__logo">🍴 Tenedor<span>Libre</span></div>
+    <p class="footer__tagline">Come cuanto quieras. Paga una sola vez. Volvé siempre.</p>
+    <nav class="footer__links" aria-label="Links del pie de página">
+      <a href="#inicio">Inicio</a>
+      <a href="#menu">Menú</a>
+      <a href="#precios">Precios</a>
+      <a href="#calculadora">Calculadora</a>
+      <a href="#testimonios">Opiniones</a>
+    </nav>
+    <hr class="footer__divider" />
+    <p class="footer__copy">
+      © 2025 Tenedor Libre · Todos los derechos reservados ·
+      Desarrollado con 💖 y SASS 7-1
+    </p>
+  </footer>
+
+
+  <!-- =============================================
+       MODAL AUTH (Login + Registro)
+       DESAFÍO JS: Sistema de autenticación con if-else
+  ============================================= -->
+  <div
+    id="authModal"
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+    <div class="modal">
+      <button class="modal__close" aria-label="Cerrar modal">✕</button>
+
+      <div class="modal__icon">🍽️</div>
+      <h2 class="modal__title" id="modalTitle">¡Bienvenido!</h2>
+      <p class="modal__subtitle">Iniciá sesión o creá tu cuenta gratis</p>
+
+      <!-- Tabs: Login / Registro -->
+      <div class="modal__tabs" role="tablist">
+        <button
+          id="tabLogin"
+          class="modal__tab active"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panelLogin"
+        >Iniciar Sesión</button>
+        <button
+          id="tabRegister"
+          class="modal__tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panelRegister"
+        >Registrarse</button>
+      </div>
+
+      <!-- Panel: Iniciar Sesión -->
+      <div id="panelLogin" class="modal__form-panel active" role="tabpanel">
+        <div class="form-group">
+          <label for="loginEmail">📧 Correo electrónico</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="tu@correo.com"
+            autocomplete="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="loginPass">🔐 Contraseña</label>
+          <input
+            type="password"
+            id="loginPass"
+            placeholder="Tu contraseña"
+            autocomplete="current-password"
+          />
+        </div>
+        <button id="btnLogin" class="btn btn--primary btn--block">
+          Iniciar Sesión →
+        </button>
+
+        <div id="loginResult" class="modal__result" role="alert" aria-live="polite">
+          <div class="modal__result__emoji"></div>
+          <div class="modal__result__title"></div>
+          <div class="modal__result__message"></div>
+        </div>
+
+        <p style="text-align:center;margin-top:1rem;font-size:0.8rem;color:#6B6B80;">
+          Cuenta de prueba: <strong>admin@tenedorlibre.com</strong> / <strong>1234</strong>
+        </p>
+      </div>
+
+      <!-- Panel: Registro -->
+      <div id="panelRegister" class="modal__form-panel" role="tabpanel">
+        <div class="form-group">
+          <label for="regNombre">👤 Nombre completo</label>
+          <input
+            type="text"
+            id="regNombre"
+            placeholder="Tu nombre"
+            autocomplete="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="regEmail">📧 Correo electrónico</label>
+          <input
+            type="email"
+            id="regEmail"
+            placeholder="tu@correo.com"
+            autocomplete="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="regPass">🔐 Contraseña</label>
+          <input
+            type="password"
+            id="regPass"
+            placeholder="Elegí una contraseña"
+            autocomplete="new-password"
+          />
+        </div>
+        <div class="form-group">
+          <label for="regConfirm">🔐 Confirmar contraseña</label>
+          <input
+            type="password"
+            id="regConfirm"
+            placeholder="Repetí tu contraseña"
+            autocomplete="new-password"
+          />
+        </div>
+        <button id="btnRegister" class="btn btn--secondary btn--block">
+          Crear cuenta 🎉
+        </button>
+
+        <div id="registerResult" class="modal__result" role="alert" aria-live="polite">
+          <div class="modal__result__emoji"></div>
+          <div class="modal__result__title"></div>
+          <div class="modal__result__message"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS principal -->
+  <script src="js/main.js"></script>
+</body>
+</html>

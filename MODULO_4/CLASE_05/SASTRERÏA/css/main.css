@@ -5,7 +5,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 15px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
@@ -422,6 +422,7 @@ strong {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
+  transform: translateY(-80px);
 }
 
 .hero__eyebrow-row {
@@ -2013,8 +2014,8 @@ strong {
     width: 100%;
   }
 }
-[id] {
-  scroll-margin-top: 110px;
+.sec-head[id] {
+  scroll-margin-top: 96px;
 }
 
 .wrap {

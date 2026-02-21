@@ -1,0 +1,50 @@
+// ============================================
+// LAYOUT / FOOTER
+// ============================================
+
+.footer {
+  background: $color-dark;
+  color: rgba(white, 0.7);
+  padding: $spacing-xxl $spacing-md $spacing-lg;
+  text-align: center;
+
+  &__logo {
+    font-family: $font-display;
+    font-size: 2rem;
+    color: $color-primary;
+    margin-bottom: $spacing-sm;
+
+    span { color: $color-menta; }
+  }
+
+  &__tagline {
+    color: rgba(white, 0.5);
+    margin-bottom: $spacing-xl;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+    flex-wrap: wrap;
+
+    a {
+      color: rgba(white, 0.6);
+      transition: color $transition-fast;
+
+      &:hover { color: $color-menta; }
+    }
+  }
+
+  &__divider {
+    border: none;
+    border-top: 1px solid rgba(white, 0.1);
+    margin-bottom: $spacing-md;
+  }
+
+  &__copy {
+    font-size: $font-size-sm;
+    color: rgba(white, 0.3);
+  }
+}

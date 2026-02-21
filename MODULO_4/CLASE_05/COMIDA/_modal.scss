@@ -1,0 +1,202 @@
+// ============================================
+// COMPONENTS / MODAL
+// ============================================
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba($color-dark, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  @include flex-center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all $transition-normal;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+
+    .modal { animation: modalOpen 0.4s ease forwards; }
+  }
+}
+
+.modal {
+  background: white;
+  border-radius: $border-radius-lg;
+  padding: $spacing-xl;
+  width: min(90vw, 480px);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: $shadow-lg;
+
+  &__close {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: tint($color-gris, 30%);
+    @include flex-center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all $transition-fast;
+    border: none;
+
+    &:hover {
+      background: $color-primary;
+      color: white;
+      transform: rotate(90deg);
+    }
+  }
+
+  &__icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.8rem;
+    text-align: center;
+    color: $color-dark;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__subtitle {
+    text-align: center;
+    color: $color-text-light;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 0;
+    background: tint($color-gris, 50%);
+    border-radius: $border-radius-full;
+    padding: 4px;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__tab {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: $border-radius-full;
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    color: $color-text-light;
+    cursor: pointer;
+    transition: all $transition-fast;
+    font-family: $font-body;
+
+    &.active {
+      background: white;
+      color: $color-primary;
+      box-shadow: $shadow-sm;
+    }
+  }
+
+  &__form-panel {
+    display: none;
+    &.active { display: block; }
+  }
+
+  &__result {
+    background: tint($color-menta, 60%);
+    border: 2px solid $color-secondary;
+    border-radius: $border-radius-md;
+    padding: $spacing-md;
+    text-align: center;
+    margin-top: $spacing-md;
+    display: none;
+
+    &.show { display: block; animation: fadeInUp 0.4s ease; }
+    &.error {
+      background: tint($color-rosa, 80%);
+      border-color: $color-primary;
+    }
+
+    &__emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    &__title {
+      font-family: $font-display;
+      font-size: 1.3rem;
+      color: $color-dark;
+      margin-bottom: 0.25rem;
+    }
+    &__message { color: $color-text-light; font-size: $font-size-sm; }
+  }
+}
+
+// Form styles inside modal
+.form-group {
+  margin-bottom: $spacing-md;
+
+  label {
+    display: block;
+    font-weight: 600;
+    color: $color-text;
+    margin-bottom: 0.4rem;
+    font-size: $font-size-sm;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid $color-gris;
+    border-radius: $border-radius-sm;
+    font-family: $font-body;
+    font-size: $font-size-base;
+    transition: border-color $transition-fast;
+    outline: none;
+
+    &:focus {
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-rosa, 0.15);
+    }
+  }
+}
+
+// Calculator modal (descuento por edad)
+.calc-result {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
+  text-align: center;
+  animation: fadeInUp 0.4s ease;
+
+  &--free {
+    background: linear-gradient(135deg, tint($color-menta, 50%), tint($color-amarillo, 50%));
+    border: 2px solid $color-secondary;
+  }
+
+  &--discount {
+    background: linear-gradient(135deg, tint($color-amarillo, 50%), tint($color-rosa, 70%));
+    border: 2px solid $color-accent;
+  }
+
+  &--full {
+    background: tint($color-gris, 40%);
+    border: 2px solid $color-gris;
+  }
+
+  &__emoji { font-size: 2.5rem; }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.4rem;
+    color: $color-dark;
+    margin: 0.5rem 0;
+  }
+
+  &__text { color: $color-text-light; }
+  &__price {
+    font-family: $font-display;
+    font-size: 2rem;
+    color: $color-primary;
+    margin-top: 0.5rem;
+  }
+}

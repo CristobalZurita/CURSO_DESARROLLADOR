@@ -35,6 +35,7 @@
   grid-template-columns: 1fr 1fr;
   gap: v.$sp-12;
   align-items: center;
+   transform: translateY(-80px); // sube 24px
 }
 
 .hero__eyebrow-row {

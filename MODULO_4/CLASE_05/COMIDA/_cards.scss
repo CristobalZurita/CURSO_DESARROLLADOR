@@ -1,0 +1,214 @@
+// ============================================
+// COMPONENTS / CARDS
+// ============================================
+
+// Carta de plato del menú
+.menu-card {
+  @include card-base;
+  position: relative;
+
+  &__badge {
+    position: absolute;
+    top: $spacing-sm;
+    right: $spacing-sm;
+    background: $color-primary;
+    color: white;
+    font-size: $font-size-sm;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: $border-radius-full;
+    z-index: 2;
+  }
+
+  &__image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform $transition-slow;
+  }
+
+  &:hover &__image {
+    transform: scale(1.05);
+  }
+
+  &__body {
+    padding: $spacing-md;
+  }
+
+  &__category {
+    font-size: $font-size-sm;
+    font-weight: 700;
+    color: $color-secondary;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: 1.3rem;
+    color: $color-dark;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__tag {
+    background: tint($color-menta, 60%);
+    color: shade($color-teal, 20%);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: $border-radius-full;
+  }
+}
+
+// Carta de precio / plan
+.price-card {
+  @include card-base;
+  padding: $spacing-xl;
+  text-align: center;
+  position: relative;
+  border: 3px solid transparent;
+
+  &--featured {
+    border-color: $color-primary;
+
+    &::before {
+      content: '⭐ Más Popular';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $color-primary;
+      color: white;
+      font-size: $font-size-sm;
+      font-weight: 700;
+      padding: 0.25rem 1rem;
+      border-radius: $border-radius-full;
+      white-space: nowrap;
+    }
+  }
+
+  &__icon {
+    font-size: 3rem;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__name {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    color: $color-dark;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__price {
+    font-family: $font-display;
+    font-size: 3rem;
+    color: $color-primary;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+
+    sup { font-size: 1.2rem; }
+    small { font-size: 1rem; color: $color-text-light; }
+  }
+
+  &__note {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    margin-bottom: $spacing-lg;
+    font-style: italic;
+  }
+
+  &__features {
+    text-align: left;
+    margin-bottom: $spacing-lg;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid $color-gris;
+      font-size: $font-size-sm;
+
+      &:last-child { border-bottom: none; }
+
+      &::before {
+        content: '✓';
+        color: $color-secondary;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+// Carta de testimonio
+.testimonial-card {
+  background: white;
+  border-radius: $border-radius-md;
+  padding: $spacing-lg;
+  box-shadow: $shadow-md;
+  position: relative;
+
+  &::before {
+    content: '"';
+    font-family: $font-display;
+    font-size: 5rem;
+    color: tint($color-rosa, 70%);
+    position: absolute;
+    top: -10px;
+    left: $spacing-md;
+    line-height: 1;
+  }
+
+  &__text {
+    font-style: italic;
+    color: $color-text;
+    margin-bottom: $spacing-md;
+    padding-top: $spacing-md;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $color-rosa, $color-amarillo);
+    @include flex-center;
+    font-size: 1.5rem;
+  }
+
+  &__name {
+    font-family: $font-display;
+    color: $color-dark;
+    font-size: 1.1rem;
+  }
+
+  &__meta {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+  }
+
+  &__stars {
+    color: $color-accent;
+    margin-bottom: $spacing-xs;
+    font-size: 0.9rem;
+  }
+}

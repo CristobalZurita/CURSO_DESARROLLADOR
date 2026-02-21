@@ -4,8 +4,8 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/mixins' as m;
 
-[id] {
-  scroll-margin-top: 110px;
+.sec-head[id] {
+  scroll-margin-top: 96px;
 }
 
 .wrap {
