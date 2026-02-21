@@ -1,0 +1,471 @@
+// ================================================================
+// components/_cards.scss
+// ================================================================
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+/* How it works cards */
+.how-card {
+  padding: v.$sp-10 v.$sp-6;
+  text-align: center;
+  border: 1px solid v.$c-linen;
+  border-radius: v.$r-xl;
+  background: v.$c-white;
+  box-shadow: v.$shadow-xs;
+  transition: transform v.$ease-base, box-shadow v.$ease-base;
+}
+
+.how-card:hover {
+  transform: translateY(-4px);
+  box-shadow: v.$shadow-md;
+}
+
+.how-num {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto v.$sp-4;
+  border-radius: 50%;
+  background: v.$c-indigo;
+  color: #fff;
+  font-family: v.$font-serif;
+  font-size: v.$fs-24;
+  line-height: 1;
+  box-shadow: 0 8px 24px rgba(v.$c-indigo, 0.28);
+  @include m.flex-center;
+}
+
+.how-icon {
+  margin-bottom: v.$sp-3;
+  font-size: 1.8rem;
+}
+
+.how-card h3 {
+  margin-bottom: v.$sp-2;
+  font-family: v.$font-serif;
+  font-size: v.$fs-20;
+  color: v.$c-indigo;
+}
+
+.how-card p {
+  max-width: 220px;
+  margin: 0 auto;
+  font-size: v.$fs-14;
+  line-height: 1.65;
+  color: v.$c-umber-soft;
+}
+
+/* Skin guide cards */
+.skin-card {
+  overflow: hidden;
+  border: 1px solid v.$c-linen;
+  border-radius: v.$r-xl;
+  background: v.$c-white;
+  box-shadow: v.$shadow-sm;
+  transition: transform v.$ease-base, box-shadow v.$ease-base, opacity v.$ease-base;
+}
+
+.skin-card:hover {
+  transform: translateY(-4px);
+  box-shadow: v.$shadow-lg;
+}
+
+.skin-card__hero {
+  position: relative;
+  height: 90px;
+  overflow: hidden;
+}
+
+.skin-dot {
+  position: absolute;
+  bottom: -18px;
+  left: v.$sp-6;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border: 3px solid v.$c-white;
+  border-radius: 50%;
+  box-shadow: v.$shadow-sm;
+}
+
+.skin-body {
+  padding: v.$sp-8 v.$sp-6 v.$sp-6;
+}
+
+.skin-title {
+  margin-bottom: v.$sp-1;
+  font-family: v.$font-serif;
+  font-size: v.$fs-24;
+  color: v.$c-indigo;
+}
+
+.skin-desc {
+  margin-bottom: v.$sp-5;
+  font-size: v.$fs-14;
+  line-height: 1.6;
+  color: v.$c-umber-soft;
+}
+
+.skin-label {
+  display: block;
+  margin-bottom: v.$sp-3;
+  font-family: v.$font-mono;
+  font-size: v.$fs-11;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: v.$c-umber-soft;
+}
+
+.skin-label--avoid {
+  margin-top: v.$sp-5;
+  color: rgba(v.$c-terra, 0.82);
+}
+
+.skin-palette {
+  @include m.flex(row, flex-start, flex-start, v.$sp-2);
+  flex-wrap: wrap;
+}
+
+.skin-color {
+  @include m.flex(column, center, center, v.$sp-1);
+}
+
+.skin-color__dot {
+  width: 32px;
+  height: 32px;
+  border-radius: v.$r-sm;
+  box-shadow: v.$shadow-xs;
+  transition: transform v.$ease-base;
+}
+
+.skin-color__dot:hover {
+  transform: scale(1.15) translateY(-2px);
+}
+
+.skin-color__name {
+  max-width: 40px;
+  font-size: 8px;
+  line-height: 1.2;
+  text-align: center;
+  color: v.$c-umber-soft;
+}
+
+.skin-card--muted {
+  opacity: 0.55;
+  transform: scale(0.97);
+}
+
+.skin-dot--light {
+  background: #f2dfc8;
+}
+
+.skin-dot--olive {
+  background: #c8964e;
+}
+
+.skin-dot--dark {
+  background: #6a3a1d;
+}
+
+/* Fabric catalog cards */
+.fabric-card {
+  overflow: hidden;
+  border: 1px solid v.$c-linen;
+  border-radius: v.$r-lg;
+  background: v.$c-white;
+  box-shadow: v.$shadow-xs;
+  transition: transform v.$ease-base, box-shadow v.$ease-base, opacity v.$ease-base;
+}
+
+.fabric-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: v.$shadow-lg;
+}
+
+.fabric-card:hover .fc-img {
+  transform: scale(1.08);
+}
+
+.fc-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.fc-img {
+  width: 100%;
+  height: 100%;
+  transition: transform v.$ease-slow;
+}
+
+.fc-dot {
+  position: absolute;
+  left: v.$sp-3;
+  bottom: v.$sp-3;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: v.$shadow-xs;
+}
+
+.fc-stock {
+  position: absolute;
+  top: v.$sp-3;
+  right: v.$sp-3;
+  padding: v.$sp-1 v.$sp-3;
+  border-radius: v.$r-full;
+  background: rgba(v.$c-sage, 0.92);
+  color: #fff;
+  font-size: v.$fs-10;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fc-body {
+  padding: v.$sp-3 v.$sp-4 v.$sp-4;
+}
+
+.fc-name {
+  font-family: v.$font-serif;
+  font-size: v.$fs-20;
+  color: v.$c-indigo;
+}
+
+.fc-type {
+  font-size: v.$fs-11;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: v.$c-umber-soft;
+}
+
+.fc-price {
+  margin-top: v.$sp-3;
+  @include m.flex(row, center, space-between);
+}
+
+.fc-price strong {
+  font-size: v.$fs-20;
+  color: v.$c-terra;
+}
+
+.fc-price span {
+  font-size: v.$fs-12;
+  color: v.$c-umber-soft;
+}
+
+.fabric-card--dimmed {
+  opacity: 0.25;
+  transform: scale(0.96);
+  pointer-events: none;
+}
+
+.fc-dot--lino {
+  background: #d4b896;
+}
+
+.fc-dot--indigo {
+  background: #2d3a6b;
+}
+
+.fc-dot--terracota {
+  background: #c45c3a;
+}
+
+.fc-dot--navy {
+  background: #1e2a45;
+}
+
+/* Tailor cards */
+.sastre-card {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid v.$c-linen;
+  border-radius: v.$r-xl;
+  background: v.$c-white;
+  box-shadow: v.$shadow-sm;
+  transition: transform v.$ease-base, box-shadow v.$ease-base;
+  display: flex;
+  flex-direction: column;
+}
+
+.sastre-card:hover {
+  transform: translateY(-6px);
+  box-shadow: v.$shadow-xl;
+}
+
+.sastre-card:hover .sc-img {
+  transform: scale(1.05);
+}
+
+.sc-cover {
+  position: relative;
+  height: 190px;
+  overflow: hidden;
+}
+
+.sc-img {
+  width: 100%;
+  height: 100%;
+  transition: transform v.$ease-slow;
+}
+
+.sc-badge {
+  position: absolute;
+  top: v.$sp-3;
+  right: v.$sp-3;
+  padding: v.$sp-1 v.$sp-3;
+  border-radius: v.$r-full;
+  background: v.$c-mustard;
+  color: v.$c-indigo;
+  font-size: v.$fs-10;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sc-verified {
+  position: absolute;
+  top: v.$sp-3;
+  left: v.$sp-3;
+  padding: v.$sp-1 v.$sp-3;
+  border-radius: v.$r-full;
+  background: rgba(v.$c-sage, 0.92);
+  color: #fff;
+  font-size: v.$fs-10;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sc-avatar {
+  position: relative;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  margin-left: v.$sp-5;
+  border: 3px solid v.$c-white;
+  border-radius: 50%;
+  background: linear-gradient(135deg, v.$c-terra-soft, v.$c-mustard-soft);
+  color: v.$c-indigo;
+  font-family: v.$font-serif;
+  font-size: v.$fs-24;
+  @include m.flex-center;
+}
+
+.sc-body {
+  padding: v.$sp-3 v.$sp-5 v.$sp-5;
+  flex: 1;
+}
+
+.sc-name {
+  margin-bottom: v.$sp-1;
+  font-family: v.$font-serif;
+  font-size: v.$fs-24;
+  color: v.$c-indigo;
+}
+
+.sc-role {
+  margin-bottom: v.$sp-4;
+  font-size: v.$fs-11;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: v.$c-terra;
+}
+
+.sc-tags {
+  @include m.flex(row, center, flex-start, v.$sp-2);
+  flex-wrap: wrap;
+  margin-bottom: v.$sp-4;
+}
+
+.sc-tag {
+  padding: v.$sp-1 v.$sp-3;
+  border-radius: v.$r-full;
+  background: rgba(v.$c-indigo, 0.06);
+  color: v.$c-indigo-mid;
+  font-size: v.$fs-10;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sc-rating {
+  @include m.flex(row, center, flex-start, v.$sp-2);
+  margin-bottom: v.$sp-4;
+}
+
+.sc-stars {
+  color: v.$c-mustard;
+  letter-spacing: 1px;
+  font-size: v.$fs-14;
+}
+
+.sc-score {
+  font-size: v.$fs-13;
+  font-weight: 700;
+  color: v.$c-umber;
+}
+
+.sc-count {
+  font-size: v.$fs-12;
+  color: v.$c-umber-soft;
+}
+
+.sc-meta {
+  padding-top: v.$sp-4;
+  border-top: 1px solid v.$c-sand-dark;
+  @include m.flex(row, center, space-between);
+}
+
+.sc-meta-item {
+  text-align: center;
+}
+
+.sc-meta-item strong {
+  display: block;
+  font-family: v.$font-serif;
+  font-size: v.$fs-24;
+  line-height: 1;
+  color: v.$c-indigo;
+}
+
+.sc-meta-item span {
+  font-size: v.$fs-10;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: v.$c-umber-soft;
+}
+
+.sc-sep {
+  width: 1px;
+  height: 28px;
+  background: v.$c-linen;
+}
+
+/* Skin color utility dots */
+.skin-color__dot--indigo { background: #2d3a6b; }
+.skin-color__dot--azul-mar { background: #2f5f8f; }
+.skin-color__dot--lino { background: #d4b896; }
+.skin-color__dot--salvia { background: #7f9d7d; }
+.skin-color__dot--rosa-palo { background: #d9a4a1; }
+.skin-color__dot--taupe { background: #8f7b6d; }
+.skin-color__dot--blanco-hueso { background: #f6f0e4; }
+.skin-color__dot--beige-palido { background: #e9d9bf; }
+.skin-color__dot--mostaza { background: #d4922a; }
+.skin-color__dot--terracota { background: #c45c3a; }
+.skin-color__dot--navy { background: #1e2a45; }
+.skin-color__dot--tomate { background: #cc4a31; }
+.skin-color__dot--oliva { background: #5d6f3e; }
+.skin-color__dot--mandarina { background: #e67a2c; }
+.skin-color__dot--cafe-apagado { background: #7a644f; }
+.skin-color__dot--arena-gris { background: #b5ab9b; }
+.skin-color__dot--rosa-hot { background: #ff4f9a; }
+.skin-color__dot--blanco { background: #ffffff; }
+.skin-color__dot--dorado { background: #d9ae3c; }
+.skin-color__dot--turquesa { background: #31a4a8; }
+.skin-color__dot--naranja { background: #f88b2d; }
+.skin-color__dot--purpura { background: #7a4ea3; }
+.skin-color__dot--gris-neutro { background: #8c8c8c; }

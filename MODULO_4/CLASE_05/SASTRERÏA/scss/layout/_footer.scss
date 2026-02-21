@@ -1,0 +1,116 @@
+// ================================================================
+// layout/_footer.scss
+// ================================================================
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.footer {
+  padding: v.$sp-20 0 v.$sp-8;
+  background: v.$c-indigo;
+  color: rgba(255, 255, 255, 0.66);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr;
+  gap: v.$sp-12;
+  padding-bottom: v.$sp-12;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-name {
+  display: block;
+  margin-bottom: v.$sp-3;
+  font-family: v.$font-serif;
+  font-size: v.$fs-28;
+  font-weight: 600;
+  color: #fff;
+}
+
+.footer-brand p {
+  max-width: 280px;
+  margin-bottom: v.$sp-5;
+  font-size: v.$fs-14;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.f-badge {
+  display: inline-block;
+  margin-right: v.$sp-1;
+  margin-bottom: v.$sp-1;
+  padding: v.$sp-1 v.$sp-3;
+  border-radius: v.$r-full;
+  background: rgba(v.$c-mustard, 0.18);
+  color: v.$c-mustard-soft;
+  font-size: v.$fs-11;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-col h5 {
+  margin-bottom: v.$sp-5;
+  font-family: v.$font-mono;
+  font-size: v.$fs-11;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.footer-col ul {
+  @include m.flex(column, flex-start, flex-start, v.$sp-3);
+}
+
+.footer-col a {
+  font-size: v.$fs-14;
+  color: rgba(255, 255, 255, 0.62);
+  transition: color v.$ease-base;
+}
+
+.footer-col a:hover {
+  color: v.$c-mustard-soft;
+}
+
+.footer-bottom {
+  padding-top: v.$sp-8;
+  @include m.flex(row, center, space-between, v.$sp-4);
+  flex-wrap: wrap;
+  font-size: v.$fs-13;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.f-socials {
+  @include m.flex(row, center, flex-end, v.$sp-3);
+}
+
+.f-socials a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: v.$fs-14;
+  @include m.flex-center;
+  transition: all v.$ease-base;
+}
+
+.f-socials a:hover {
+  color: #fff;
+  background: v.$c-terra;
+  transform: translateY(-2px);
+}
+
+@media (max-width: v.$bp-md) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: v.$sp-8;
+  }
+}
+
+@media (max-width: v.$bp-sm) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

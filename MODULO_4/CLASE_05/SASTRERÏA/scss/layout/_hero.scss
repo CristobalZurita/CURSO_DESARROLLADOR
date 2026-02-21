@@ -1,0 +1,269 @@
+// ================================================================
+// layout/_hero.scss
+// ================================================================
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  padding-top: 102px;
+  @include m.flex(column, center, center);
+  @include m.woven-bg(v.$c-sand, v.$c-umber, 5px);
+}
+
+.hero__split {
+  position: absolute;
+  top: 0;
+  right: -5%;
+  bottom: 0;
+  width: 48%;
+  background: v.$c-indigo;
+  clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: 0;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: v.$sp-20 v.$sp-8;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: v.$sp-12;
+  align-items: center;
+}
+
+.hero__eyebrow-row {
+  @include m.flex(row, center, flex-start, v.$sp-3);
+  margin-bottom: v.$sp-6;
+}
+
+.hero__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: v.$c-terra;
+  animation: hero-blink 2.4s ease-in-out infinite;
+}
+
+@keyframes hero-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.hero__title {
+  font-family: v.$font-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-bottom: v.$sp-6;
+  color: v.$c-indigo;
+}
+
+.hero__title em {
+  font-style: italic;
+  color: v.$c-terra;
+}
+
+.hero__desc {
+  max-width: 500px;
+  margin-bottom: v.$sp-8;
+  font-size: v.$fs-18;
+  color: v.$c-umber-soft;
+}
+
+.hero__ctas {
+  @include m.flex(row, center, flex-start, v.$sp-4);
+  flex-wrap: wrap;
+}
+
+.hero__kpis {
+  margin-top: v.$sp-12;
+  padding-top: v.$sp-8;
+  border-top: 1px solid v.$c-linen;
+  @include m.flex(row, center, flex-start, v.$sp-8);
+}
+
+.hero__kpi strong {
+  display: block;
+  font-family: v.$font-serif;
+  font-size: v.$fs-40;
+  line-height: 1;
+  color: v.$c-indigo;
+}
+
+.hero__kpi span {
+  display: block;
+  margin-top: v.$sp-1;
+  font-size: v.$fs-11;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: v.$c-umber-soft;
+}
+
+.hero__kpi-sep {
+  width: 1px;
+  height: 44px;
+  background: v.$c-linen;
+}
+
+.hero__visual {
+  position: relative;
+  height: 560px;
+  @include m.flex-center;
+}
+
+.hero__swatch {
+  position: absolute;
+  overflow: hidden;
+  border-radius: v.$r-xl;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.34);
+}
+
+.hero__swatch--a {
+  z-index: 3;
+  width: 255px;
+  height: 335px;
+  animation: hero-float-a 7s ease-in-out infinite;
+}
+
+.hero__swatch--b {
+  z-index: 2;
+  top: 30px;
+  left: 5px;
+  width: 182px;
+  height: 245px;
+  transform: rotate(-9deg);
+  animation: hero-float-b 8.5s ease-in-out infinite 0.8s;
+}
+
+.hero__swatch--c {
+  z-index: 2;
+  right: 15px;
+  bottom: 30px;
+  width: 158px;
+  height: 208px;
+  transform: rotate(7deg);
+  animation: hero-float-c 9s ease-in-out infinite 1.5s;
+}
+
+.hero-swatch-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.swatch-label {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: v.$sp-8 v.$sp-4 v.$sp-4;
+  background: linear-gradient(transparent, rgba(v.$c-indigo, 0.74));
+}
+
+.swatch-label strong {
+  display: block;
+  font-family: v.$font-serif;
+  font-size: v.$fs-16;
+  color: #fff;
+}
+
+.swatch-label span {
+  font-size: v.$fs-11;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+@keyframes hero-float-a {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes hero-float-b {
+  0%,
+  100% {
+    transform: rotate(-9deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(-9deg) translateY(-9px);
+  }
+}
+
+@keyframes hero-float-c {
+  0%,
+  100% {
+    transform: rotate(7deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(7deg) translateY(-11px);
+  }
+}
+
+@media (max-width: v.$bp-lg) {
+  .hero {
+    padding-top: 92px;
+  }
+
+  .hero__split {
+    display: none;
+  }
+
+  .hero__container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: v.$sp-16 v.$sp-6;
+    gap: v.$sp-8;
+  }
+
+  .hero__eyebrow-row,
+  .hero__ctas,
+  .hero__kpis {
+    justify-content: center;
+  }
+
+  .hero__desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__visual {
+    height: 300px;
+    margin-top: v.$sp-4;
+  }
+
+  .hero__swatch--a {
+    width: 170px;
+    height: 220px;
+  }
+
+  .hero__swatch--b {
+    width: 120px;
+    height: 160px;
+    left: 20px;
+  }
+
+  .hero__swatch--c {
+    width: 105px;
+    height: 138px;
+    right: 20px;
+  }
+}

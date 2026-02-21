@@ -1,0 +1,149 @@
+// ================================================================
+// components/_buttons.scss
+// ================================================================
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.btn {
+  @include m.btn-reset;
+  @include m.focus-ring;
+  @include m.flex(row, center, center, v.$sp-2);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: v.$fs-14;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: v.$sp-3 v.$sp-6;
+  border-radius: v.$r-full;
+  transition: all v.$ease-base;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.12);
+  transition: opacity v.$ease-base;
+}
+
+.btn:active::after {
+  opacity: 1;
+}
+
+.btn--terra {
+  color: #fff;
+  background: v.$c-terra;
+  box-shadow: 0 4px 16px rgba(v.$c-terra, 0.32);
+}
+
+.btn--terra:hover {
+  color: #fff;
+  background: v.$c-terra-dark;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(v.$c-terra, 0.42);
+}
+
+.btn--indigo {
+  color: #fff;
+  background: v.$c-indigo;
+  box-shadow: 0 4px 16px rgba(v.$c-indigo, 0.28);
+}
+
+.btn--indigo:hover {
+  color: #fff;
+  background: v.$c-indigo-mid;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(v.$c-indigo, 0.38);
+}
+
+.btn--mustard {
+  color: v.$c-indigo;
+  background: v.$c-mustard;
+  box-shadow: 0 4px 16px rgba(v.$c-mustard, 0.35);
+}
+
+.btn--mustard:hover {
+  color: #fff;
+  background: v.$c-mustard-dark;
+  transform: translateY(-2px);
+}
+
+.btn--outline {
+  color: v.$c-indigo;
+  border: 1.5px solid v.$c-linen;
+  background: transparent;
+}
+
+.btn--outline:hover {
+  color: v.$c-indigo;
+  border-color: v.$c-indigo;
+  background: rgba(v.$c-indigo, 0.04);
+  transform: translateY(-1px);
+}
+
+.btn--outline-lt,
+.btn--outline-light {
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+}
+
+.btn--outline-lt:hover,
+.btn--outline-light:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn--ghost {
+  color: v.$c-terra;
+  background: rgba(v.$c-terra, 0.08);
+}
+
+.btn--ghost:hover {
+  background: rgba(v.$c-terra, 0.15);
+}
+
+.btn--sm {
+  padding: v.$sp-2 v.$sp-4;
+  font-size: v.$fs-12;
+}
+
+.btn--lg {
+  padding: v.$sp-4 v.$sp-8;
+  font-size: v.$fs-16;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+.btn:disabled,
+.btn--disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.btn--loading {
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn--loading::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btn-spin 0.65s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

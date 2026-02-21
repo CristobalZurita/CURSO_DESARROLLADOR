@@ -1,0 +1,226 @@
+// ================================================================
+// layout/_navbar.scss
+// ================================================================
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: v.$z-fixed;
+  padding: v.$sp-4 0;
+  background: rgba(v.$c-sand-light, 0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 2px solid rgba(v.$c-indigo, 0.14);
+  box-shadow: v.$shadow-sm;
+  transition: padding v.$ease-base, background v.$ease-base, box-shadow v.$ease-base;
+}
+
+.nav--scrolled {
+  padding: v.$sp-3 0;
+  background: rgba(v.$c-sand-light, 0.98);
+  box-shadow: 0 1px 0 rgba(v.$c-indigo, 0.1), v.$shadow-md;
+}
+
+.nav__wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 v.$sp-8;
+  @include m.flex(row, center, space-between, v.$sp-8);
+}
+
+.nav__logo {
+  @include m.flex(row, center, flex-start, v.$sp-3);
+}
+
+.nav__logo-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: v.$r-md;
+  background: v.$c-indigo;
+  color: v.$c-mustard;
+  font-size: 1.05rem;
+  @include m.flex-center;
+}
+
+.nav__logo-text strong {
+  display: block;
+  font-family: v.$font-serif;
+  font-size: v.$fs-24;
+  font-weight: 600;
+  color: v.$c-indigo;
+  line-height: 1;
+}
+
+.nav__logo-text small {
+  display: block;
+  margin-top: 2px;
+  font-family: v.$font-mono;
+  font-size: v.$fs-10;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: v.$c-umber-soft;
+}
+
+.nav__links {
+  flex: 1;
+  @include m.flex(row, center, center, v.$sp-8);
+}
+
+.nav__link {
+  position: relative;
+  color: v.$c-umber-soft;
+  font-size: v.$fs-14;
+  font-weight: 500;
+  transition: color v.$ease-base;
+  white-space: nowrap;
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: v.$c-terra;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform v.$ease-base;
+}
+
+.nav__link:hover {
+  color: v.$c-indigo;
+}
+
+.nav__link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav__actions {
+  @include m.flex(row, center, flex-end, v.$sp-3);
+}
+
+.nav__btn {
+  @include m.btn-reset;
+  @include m.focus-ring;
+  font-size: v.$fs-14;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: v.$sp-2 v.$sp-5;
+  border-radius: v.$r-full;
+  transition: all v.$ease-base;
+}
+
+.nav__btn--ghost {
+  color: v.$c-indigo;
+}
+
+.nav__btn--ghost:hover {
+  background: rgba(v.$c-indigo, 0.07);
+}
+
+.nav__btn--fill {
+  color: #fff;
+  background: v.$c-terra;
+  box-shadow: 0 4px 14px rgba(v.$c-terra, 0.3);
+}
+
+.nav__btn--fill:hover {
+  color: #fff;
+  background: v.$c-terra-dark;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(v.$c-terra, 0.42);
+}
+
+.nav__burger {
+  display: none;
+  width: 38px;
+  height: 38px;
+  @include m.btn-reset;
+  @include m.flex(column, center, center, 5px);
+}
+
+.nav__burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: v.$r-full;
+  background: v.$c-indigo;
+  transition: all v.$ease-base;
+}
+
+.nav__burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav__burger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-overlay;
+  opacity: 0;
+  pointer-events: none;
+  background: v.$c-sand-light;
+  @include m.flex(column, center, center, v.$sp-8);
+  transition: opacity v.$ease-base;
+}
+
+.nav__drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav__drawer a {
+  font-family: v.$font-serif;
+  font-size: clamp(2rem, 8vw, 2.8rem);
+  font-weight: 600;
+  color: v.$c-indigo;
+  transition: color v.$ease-base;
+}
+
+.nav__drawer a:hover {
+  color: v.$c-terra;
+}
+
+.nav__drawer-close {
+  position: absolute;
+  top: v.$sp-6;
+  right: v.$sp-8;
+  @include m.btn-reset;
+  color: v.$c-umber-soft;
+  font-size: v.$fs-24;
+}
+
+.nav__drawer-link--accent {
+  color: v.$c-terra;
+}
+
+@media (max-width: v.$bp-lg) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav__actions {
+    display: none;
+  }
+
+  .nav__burger {
+    display: flex;
+  }
+
+  .nav__wrap {
+    padding: 0 v.$sp-5;
+    gap: v.$sp-4;
+  }
+}

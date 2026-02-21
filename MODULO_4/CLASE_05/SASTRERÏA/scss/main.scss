@@ -1,0 +1,25 @@
+// ================================================================
+// main.scss — Entry point SASS 7-1
+// ================================================================
+
+// 1. ABSTRACTS
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+@use 'abstracts/functions';
+
+// 2. BASE
+@use 'base/reset';
+@use 'base/typography';
+
+// 3. LAYOUT
+@use 'layout/navbar';
+@use 'layout/hero';
+@use 'layout/footer';
+
+// 4. COMPONENTS
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/stepper';
+
+// 5. PAGES
+@use 'pages/home';

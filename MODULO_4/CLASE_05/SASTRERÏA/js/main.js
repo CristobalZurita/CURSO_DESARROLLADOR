@@ -30,13 +30,13 @@
   burger?.addEventListener('click', () => {
     burger.classList.toggle('open');
     drawer?.classList.toggle('open');
-    document.body.style.overflow = drawer?.classList.contains('open') ? 'hidden' : '';
+    document.body.classList.toggle('body--lock', drawer?.classList.contains('open'));
   });
 
   function closeDrawer() {
     burger?.classList.remove('open');
     drawer?.classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.classList.remove('body--lock');
   }
 
   drawerClose?.addEventListener('click', closeDrawer);
@@ -70,10 +70,7 @@
     const f = btn.dataset.filter;
     cards.forEach(c => {
       const match = f === 'all' || c.dataset.type === f;
-      c.style.opacity   = match ? '1'    : '0.25';
-      c.style.transform = match ? ''     : 'scale(0.96)';
-      c.style.pointerEvents = match ? '' : 'none';
-      c.style.transition = 'opacity .3s, transform .3s';
+      c.classList.toggle('fabric-card--dimmed', !match);
     });
   }));
 })();
@@ -85,10 +82,10 @@
   const cards = document.querySelectorAll('.skin-card');
   cards.forEach(card => {
     card.addEventListener('mouseenter', () =>
-      cards.forEach(c => { if (c !== card) { c.style.opacity = '.55'; c.style.transform = 'scale(.97)'; c.style.transition = 'all .25s'; } })
+      cards.forEach(c => { if (c !== card) c.classList.add('skin-card--muted'); })
     );
     card.addEventListener('mouseleave', () =>
-      cards.forEach(c => { c.style.opacity = ''; c.style.transform = ''; })
+      cards.forEach(c => c.classList.remove('skin-card--muted'))
     );
   });
 })();
@@ -411,8 +408,14 @@ window.showToast = showToast;
 // ============================================================
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const tgt = document.querySelector(a.getAttribute('href'));
-    if (tgt) { e.preventDefault(); tgt.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    const href = a.getAttribute('href');
+    if (!href || href === '#') return;
+
+    const tgt = document.querySelector(href);
+    if (tgt) {
+      e.preventDefault();
+      tgt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 });
 
