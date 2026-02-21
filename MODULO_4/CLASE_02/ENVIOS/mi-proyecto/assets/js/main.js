@@ -1,6 +1,7 @@
 import { initPixelCharacters } from "./pixel-art.js";
 import { attachParallaxOnScroll, buildDecoStars, buildHeroScene } from "./parallax.js";
-import { addToCart, changeQty, checkout, initCart, removeFromCart, toggleCart } from "./cart.js";
+import { initHeroSecret } from "./hero-secret.js";
+import { addToCart, changeQty, checkout, initCart, removeFromCart, setShippingContext, toggleCart } from "./cart.js";
 
 let selectedShipping = 5490;
 let selectedShippingName = "Envío Nacional";
@@ -35,15 +36,6 @@ function showCoinPop(anchor) {
   spawnCoinPop(anchor, "+🪙 COIN!", "coin-pop--block");
 }
 
-function getQuestionBlockIndex(block) {
-  if (!block) return 1;
-
-  const blockClass = Array.from(block.classList).find((name) => name.startsWith("q-block--"));
-  const index = Number(blockClass?.split("--")[1]);
-
-  return Number.isInteger(index) && index >= 1 && index <= 4 ? index : 1;
-}
-
 function getMushroomDirection(block, hero) {
   if (!block || !hero) return "mushroom-runner--right";
 
@@ -56,17 +48,40 @@ function getMushroomDirection(block, hero) {
   return distanceToLeft <= distanceToRight ? "mushroom-runner--left" : "mushroom-runner--right";
 }
 
+function getBlockCenterWithinHero(block, hero) {
+  if (!block || !hero) {
+    return {
+      left: "0%",
+      top: "0%",
+    };
+  }
+
+  const heroRect = hero.getBoundingClientRect();
+  const blockRect = block.getBoundingClientRect();
+  const blockCenterX = (blockRect.left - heroRect.left) + (blockRect.width / 2);
+  const blockCenterY = (blockRect.top - heroRect.top) + (blockRect.height / 2);
+  const leftPercent = (blockCenterX / heroRect.width) * 100;
+  const topPercent = (blockCenterY / heroRect.height) * 100;
+
+  return {
+    left: `${leftPercent}%`,
+    top: `${topPercent}%`,
+  };
+}
+
 function spawnMushroom(block) {
   const hero = document.getElementById("hero");
   if (!hero) return;
 
-  const blockIndex = getQuestionBlockIndex(block);
   const directionClass = getMushroomDirection(block, hero);
+  const startCenter = getBlockCenterWithinHero(block, hero);
 
   const mushroom = document.createElement("span");
-  mushroom.className = `mushroom-runner mushroom-runner--from-${blockIndex} ${directionClass}`;
+  mushroom.className = `mushroom-runner ${directionClass}`;
   mushroom.textContent = "🍄";
   mushroom.setAttribute("aria-hidden", "true");
+  mushroom.style.setProperty("--mushroom-start-left", startCenter.left);
+  mushroom.style.setProperty("--mushroom-start-top", startCenter.top);
 
   hero.appendChild(mushroom);
 
@@ -76,10 +91,11 @@ function spawnMushroom(block) {
 function handleQuestionBlockHit(block) {
   showCoinPop(block);
 
-  questionBlockClickCycle = (questionBlockClickCycle + 1) % QUESTION_BLOCK_CYCLE;
-  if (questionBlockClickCycle !== 0) return;
+  questionBlockClickCycle += 1;
+  if (questionBlockClickCycle < QUESTION_BLOCK_CYCLE) return;
 
   spawnMushroom(block);
+  questionBlockClickCycle = 0;
 }
 
 function showCoinPopByProduct(id) {
@@ -147,6 +163,7 @@ function selectZone(el, options = {}) {
   selectedShipping = price;
   selectedShippingName = name;
   updateShippingPriceDisplay(price);
+  setShippingContext({ price, name });
 
   if (notify) {
     showToast(`📦 Zona "${name}" seleccionada`);
@@ -205,6 +222,13 @@ function handleCheckout() {
       name: selectedShippingName,
     },
   });
+}
+
+function bindCheckoutButton() {
+  const checkoutButton = document.getElementById("cartCheckoutBtn");
+  if (!checkoutButton) return;
+
+  checkoutButton.addEventListener("click", handleCheckout);
 }
 
 function syncAnchorOffset() {
@@ -276,6 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
   syncAnchorOffset();
   initBackToTop();
   initShippingZones();
+  bindCheckoutButton();
 
   window.addEventListener("resize", syncAnchorOffset);
   window.addEventListener("load", syncAnchorOffset, { once: true });
@@ -284,6 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initPixelCharacters();
   buildHeroScene({ onQuestionBlockHit: handleQuestionBlockHit });
   attachParallaxOnScroll();
+  initHeroSecret();
 
   initCart({
     showToast,

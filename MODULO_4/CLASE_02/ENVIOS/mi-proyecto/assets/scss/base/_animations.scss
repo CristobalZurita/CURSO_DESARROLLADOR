@@ -86,6 +86,24 @@
   }
 }
 
+@keyframes wiggler-run {
+  0% {
+    transform: translateX(-220px) scaleX(-1);
+  }
+  49% {
+    transform: translateX(calc(100vw + 200px)) scaleX(-1);
+  }
+  50% {
+    transform: translateX(calc(100vw + 200px)) scaleX(1);
+  }
+  99% {
+    transform: translateX(-220px) scaleX(1);
+  }
+  100% {
+    transform: translateX(-220px) scaleX(-1);
+  }
+}
+
 @keyframes pipe-emerge {
   from {
     transform: translateY(100%);

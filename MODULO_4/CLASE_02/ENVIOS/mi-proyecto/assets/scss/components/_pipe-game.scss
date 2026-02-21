@@ -1,0 +1,86 @@
+/* components/_pipe-game.scss */
+.pipe-game {
+  position: fixed;
+  inset: 0;
+  z-index: 360;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(8, 10, 28, 0.84);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.pipe-game.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pipe-game__panel {
+  width: min(920px, 94vw);
+  background: #0f1230;
+  border: 4px solid var(--c-yellow);
+  box-shadow: 10px 10px 0 var(--c-dark);
+  padding: 12px;
+}
+
+.pipe-game__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pipe-game__title {
+  font-family: var(--font-px);
+  font-size: clamp(10px, 1.8vw, 16px);
+  color: var(--c-yellow);
+  text-shadow: 2px 2px 0 var(--c-dark);
+}
+
+.pipe-game__close {
+  background: var(--c-red);
+  border: 3px solid var(--c-dark);
+  color: var(--c-white);
+  width: 42px;
+  height: 34px;
+  font-family: var(--font-px);
+  font-size: 10px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--c-dark);
+}
+
+.pipe-game__canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 3px solid var(--c-dark);
+  background: #a9d8ff;
+  image-rendering: pixelated;
+}
+
+.pipe-game__hint {
+  margin-top: 10px;
+  font-family: var(--font-px);
+  font-size: 8px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .pipe-game {
+    padding: 10px;
+  }
+
+  .pipe-game__panel {
+    padding: 8px;
+  }
+
+  .pipe-game__hint {
+    font-size: 6px;
+  }
+}

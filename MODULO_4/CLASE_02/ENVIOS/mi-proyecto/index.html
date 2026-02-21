@@ -46,6 +46,10 @@
     <!-- Layer 3: Hills (SVG drawn via JS) -->
     <div class="hero__hills" id="heroHills"></div>
 
+    <button class="hero-secret" id="heroSecret" type="button" aria-label="Sorpresa secreta de Mario">
+      <img src="./public/images.jpeg" alt="Cabeza de Mario" />
+    </button>
+
     <!-- Floating Coins -->
     <div class="hero__coins" id="heroCoins"></div>
 
@@ -54,6 +58,11 @@
 
     <!-- Layer 5: Ground -->
     <div class="hero__ground"></div>
+
+    <!-- Ground walkers -->
+    <div class="hero__wigglers">
+      <div class="pixel-wiggler" id="pixelWiggler" aria-hidden="true"></div>
+    </div>
 
     <!-- Layer 6: Characters (CSS pixel art) -->
     <div class="hero__chars">
@@ -379,11 +388,22 @@
       </div>
     </div>
     <div class="cart-drawer__footer">
-      <div class="cart-subtotal">
-        <span class="cart-subtotal__label">SUBTOTAL</span>
-        <span class="cart-subtotal__value" id="cartTotal">$0</span>
+      <div class="cart-summary">
+        <div class="cart-summary__row">
+          <span class="cart-summary__label">PRODUCTOS</span>
+          <span class="cart-summary__value" id="cartSubtotal">$0</span>
+        </div>
+        <div class="cart-summary__row">
+          <span class="cart-summary__label">ENVÍO</span>
+          <span class="cart-summary__value" id="cartShipping">$0</span>
+        </div>
+        <div class="cart-summary__shipping" id="cartShippingName">Sin envío seleccionado</div>
+        <div class="cart-summary__row cart-summary__row--total">
+          <span class="cart-summary__label">TOTAL</span>
+          <span class="cart-summary__value" id="cartTotal">$0</span>
+        </div>
       </div>
-      <button class="btn-checkout" onclick="checkout()">
+      <button class="btn-checkout" id="cartCheckoutBtn" type="button">
         ▶ PROCEDER AL PAGO
       </button>
     </div>
@@ -392,6 +412,17 @@
   <!-- Toast notification -->
   <div class="toast" id="toast"></div>
   <button class="back-to-top" id="backToTop" type="button" aria-label="Volver arriba">↑</button>
+
+  <div class="pipe-game" id="pipeGame" aria-hidden="true">
+    <div class="pipe-game__panel" role="dialog" aria-modal="true" aria-labelledby="pipeGameTitle">
+      <div class="pipe-game__header">
+        <h3 class="pipe-game__title" id="pipeGameTitle">PIPE RUNNER</h3>
+        <button class="pipe-game__close" id="pipeGameClose" type="button" aria-label="Cerrar juego">✕</button>
+      </div>
+      <canvas class="pipe-game__canvas" id="pipeGameCanvas" width="840" height="220"></canvas>
+      <p class="pipe-game__hint">ESPACIO / ↑ / CLICK PARA SALTAR · ESC PARA CERRAR</p>
+    </div>
+  </div>
 
   <!-- ============================================================
     JAVASCRIPT
