@@ -143,7 +143,9 @@
     font-size: $font-size-sm;
   }
 
-  input {
+  input,
+  textarea,
+  select {
     width: 100%;
     padding: 0.75rem 1rem;
     border: 2px solid $color-gris;
@@ -157,6 +159,45 @@
       border-color: $color-primary;
       box-shadow: 0 0 0 3px rgba($color-rosa, 0.15);
     }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+}
+
+.modal__demo {
+  text-align: center;
+  margin-top: $spacing-sm;
+  font-size: 0.8rem;
+  color: $color-text-light;
+}
+
+.app-result {
+  margin-top: $spacing-sm;
+  border-radius: $border-radius-sm;
+  padding: 0.8rem 1rem;
+  border: 2px solid transparent;
+  font-size: $font-size-sm;
+  font-weight: 600;
+  display: none;
+
+  &.show {
+    display: block;
+    animation: fadeInUp 0.3s ease;
+  }
+
+  &--ok {
+    background: tint($color-menta, 62%);
+    border-color: $color-secondary;
+    color: shade($color-teal, 30%);
+  }
+
+  &--error {
+    background: tint($color-rosa, 84%);
+    border-color: $color-primary;
+    color: shade($color-rosa, 38%);
   }
 }
 

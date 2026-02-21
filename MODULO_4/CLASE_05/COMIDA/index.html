@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tenedor Libre 🍴 — Come sin límites</title>
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' font-size='48'%3E🥩%3C/text%3E%3C/svg%3E"
+  />
   <meta name="description" content="El mejor restaurante tenedor libre de la ciudad. Amplia variedad de platos, precios especiales para niños y ambiente familiar." />
 
   <!-- Google Fonts (SASS 7-1: vendors) -->
@@ -30,6 +35,8 @@
       <li><a href="#menu">Menú</a></li>
       <li><a href="#precios">Precios</a></li>
       <li><a href="#calculadora">Niños</a></li>
+      <li><a href="#reserva">Reserva</a></li>
+      <li><a href="#contacto">Contacto</a></li>
       <li><a href="#testimonios">Opiniones</a></li>
     </ul>
 
@@ -57,7 +64,7 @@
         una sola vez
       </h1>
       <p class="hero__subtitle">
-        El restaurante tenedor libre con más variedad de la ciudad. Más de 80 platos, postres ilimitados y un precio especial para los más chicos.
+        El restaurante tenedor libre con más variedad de la ciudad. Más de 80 platos, postres ilimitados y un precio especial para los niños.
       </p>
       <div class="hero__actions">
         <a href="#menu" class="btn btn--primary btn--lg">Ver el Menú 🍽️</a>
@@ -105,20 +112,20 @@
         <div class="how-section__step reveal">
           <div class="how-section__step-number">1</div>
           <div class="how-section__step-emoji">📝</div>
-          <div class="how-section__step-title">Reservá tu mesa</div>
-          <p>Creá tu cuenta o iniciá sesión para reservar tu lugar con anticipación y evitar filas.</p>
+          <div class="how-section__step-title">Reserva tu mesa</div>
+          <p>Crea tu cuenta o inicia sesión para reservar tu lugar con anticipación y evitar filas.</p>
         </div>
         <div class="how-section__step reveal">
           <div class="how-section__step-number">2</div>
           <div class="how-section__step-emoji">🎯</div>
-          <div class="how-section__step-title">Elegí tu plan</div>
-          <p>Seleccioná el plan que mejor se adapte a tu grupo. ¡Los menores de 5 años comen gratis!</p>
+          <div class="how-section__step-title">Elige tu plan</div>
+          <p>Selecciona el plan que mejor se adapte a tu grupo. ¡Los menores de 5 años comen gratis!</p>
         </div>
         <div class="how-section__step reveal">
           <div class="how-section__step-number">3</div>
           <div class="how-section__step-emoji">🍴</div>
-          <div class="how-section__step-title">¡Comé sin límites!</div>
-          <p>Recorrés el buffet las veces que quieras. Más de 80 opciones de entrada, principal y postre.</p>
+          <div class="how-section__step-title">¡Come sin límites!</div>
+          <p>Recorre el buffet las veces que quieras. Más de 80 opciones de entrada, principal y postre.</p>
         </div>
       </div>
     </div>
@@ -150,7 +157,7 @@
 
         <article class="menu-card reveal" data-category="entrada">
           <div class="menu-card__badge">🌱 Vegano</div>
-          <div style="height:220px;background:linear-gradient(135deg,#7DDFC3,#2DA58E);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🥗</div>
+          <div class="menu-card__media menu-card__media--ensalada">🥗</div>
           <div class="menu-card__body">
             <div class="menu-card__category">Entrada</div>
             <h3 class="menu-card__title">Ensalada Mediterránea</h3>
@@ -163,7 +170,7 @@
         </article>
 
         <article class="menu-card reveal" data-category="principal">
-          <div style="height:220px;background:linear-gradient(135deg,#F5B942,#D63A6A);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🥩</div>
+          <div class="menu-card__media menu-card__media--asado">🥩</div>
           <div class="menu-card__body">
             <div class="menu-card__category">Principal</div>
             <h3 class="menu-card__title">Asado a la parrilla</h3>
@@ -176,7 +183,7 @@
         </article>
 
         <article class="menu-card reveal" data-category="pasta">
-          <div style="height:220px;background:linear-gradient(135deg,#F4C2D0,#F5B942);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🍝</div>
+          <div class="menu-card__media menu-card__media--pasta">🍝</div>
           <div class="menu-card__body">
             <div class="menu-card__category">Pasta</div>
             <h3 class="menu-card__title">Fettuccine Alfredo</h3>
@@ -188,7 +195,7 @@
         </article>
 
         <article class="menu-card reveal" data-category="entrada">
-          <div style="height:220px;background:linear-gradient(135deg,#D63A6A,#7DDFC3);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🍣</div>
+          <div class="menu-card__media menu-card__media--sushi">🍣</div>
           <div class="menu-card__body">
             <div class="menu-card__category">Entrada</div>
             <h3 class="menu-card__title">Sushi variado</h3>
@@ -201,7 +208,7 @@
         </article>
 
         <article class="menu-card reveal" data-category="principal">
-          <div style="height:220px;background:linear-gradient(135deg,#2DA58E,#1A1A2E);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🍗</div>
+          <div class="menu-card__media menu-card__media--pollo">🍗</div>
           <div class="menu-card__body">
             <div class="menu-card__category">Principal</div>
             <h3 class="menu-card__title">Pollo al limón</h3>
@@ -214,7 +221,7 @@
 
         <article class="menu-card reveal" data-category="postre">
           <div class="menu-card__badge">🔥 Favorito</div>
-          <div style="height:220px;background:linear-gradient(135deg,#F5B942,#F4C2D0);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;">🍰</div>
+          <div class="menu-card__media menu-card__media--postre">🍰</div>
           <div class="menu-card__body">
             <div class="menu-card__category">Postre</div>
             <h3 class="menu-card__title">Tiramisú de la casa</h3>
@@ -239,12 +246,12 @@
       <div class="section-header reveal">
         <div class="section-header__tag">Planes</div>
         <h2>Un precio, todo incluido</h2>
-        <p>Sin sorpresas. Elegí el plan de tu grupo y disfruta al máximo.</p>
+        <p>Sin sorpresas. Elige el plan de tu grupo y disfruta al máximo.</p>
       </div>
 
       <div class="grid grid--3">
 
-        <div class="price-card reveal">
+        <div class="price-card reveal" data-plan-id="kids" data-plan-name="Niños (5-12)" data-plan-price="6250">
           <div class="price-card__icon">👶</div>
           <div class="price-card__name">Niños (5-12)</div>
           <div class="price-card__price">
@@ -257,10 +264,12 @@
             <li>Postres incluidos</li>
             <li>Sillas especiales</li>
           </ul>
-          <a href="#calculadora" class="btn btn--secondary btn--block">Calcular precio</a>
+          <button class="btn btn--secondary btn--block js-plan-select" data-plan-id="kids" data-plan-name="Niños (5-12)" data-plan-price="6250">
+            Seleccionar plan
+          </button>
         </div>
 
-        <div class="price-card price-card--featured reveal">
+        <div class="price-card price-card--featured reveal" data-plan-id="adulto" data-plan-name="Adulto" data-plan-price="12500">
           <div class="price-card__icon">🍴</div>
           <div class="price-card__name">Adulto</div>
           <div class="price-card__price">
@@ -274,10 +283,12 @@
             <li>Café o té incluido</li>
             <li>Prioridad de ingreso</li>
           </ul>
-          <button class="btn btn--primary btn--block" data-open-auth>Reservar ahora</button>
+          <button class="btn btn--primary btn--block js-plan-select" data-plan-id="adulto" data-plan-name="Adulto" data-plan-price="12500">
+            Seleccionar plan
+          </button>
         </div>
 
-        <div class="price-card reveal">
+        <div class="price-card reveal" data-plan-id="familia" data-plan-name="Familia (4+)" data-plan-price="9500">
           <div class="price-card__icon">👨‍👩‍👧‍👦</div>
           <div class="price-card__name">Familia (4+)</div>
           <div class="price-card__price">
@@ -290,13 +301,15 @@
             <li>Mesa reservada</li>
             <li>Torta de cumpleaños</li>
           </ul>
-          <button class="btn btn--outline btn--block" data-open-auth>Consultar</button>
+          <button class="btn btn--outline btn--block js-plan-select" data-plan-id="familia" data-plan-name="Familia (4+)" data-plan-price="9500">
+            Seleccionar plan
+          </button>
         </div>
 
       </div>
 
-      <p style="text-align:center;margin-top:2rem;font-size:0.875rem;">
-        💡 <strong>¡Menores de 5 años comen completamente gratis!</strong> Verificalo en nuestra calculadora 👇
+      <p class="pricing-section__note">
+        💡 <strong>¡Menores de 5 años comen completamente gratis!</strong> Verifícalo en nuestra calculadora 👇
       </p>
     </div>
   </section>
@@ -310,19 +323,34 @@
       <div class="section-header reveal">
         <div class="section-header__tag">Calculadora</div>
         <h2>¿Cuánto paga tu grupo?</h2>
-        <p>Ingresá la edad de cada integrante y sabrás si paga el precio completo, tiene descuento o come gratis.</p>
+        <p>Ingresa la edad de cada integrante y sabrás si paga el precio completo, tiene descuento o come gratis.</p>
       </div>
 
       <div class="calculator-section__wrapper reveal">
         <span class="calculator-section__emoji">🧮</span>
 
-        <h3 style="font-family:'Fredoka One',cursive;color:#1A1A2E;margin-bottom:0.5rem;">
+        <h3 class="calculator-section__title">
           Calculadora de Precio por Edad
         </h3>
-        <p style="color:#6B6B80;margin-bottom:0.5rem;">
-          Sistema de decisión con <strong>if-else</strong>:<br/>
+        <p class="calculator-section__legend">
           &lt;5 años = Gratis &nbsp;|&nbsp; 5-12 = 50% desc. &nbsp;|&nbsp; +12 = Precio completo
         </p>
+
+
+        <div class="calculator-section__cases" role="group" aria-label="Casos de prueba rápidos">
+          <button type="button" class="calculator-section__case" data-age-example="4">
+            4 años → Gratis
+          </button>
+          <button type="button" class="calculator-section__case" data-age-example="5">
+            5 años → 50% desc.
+          </button>
+          <button type="button" class="calculator-section__case" data-age-example="12">
+            12 años → 50% desc.
+          </button>
+          <button type="button" class="calculator-section__case" data-age-example="13">
+            13 años → Precio completo
+          </button>
+        </div>
 
         <div class="calculator-section__input-group">
           <input
@@ -336,10 +364,10 @@
           <input
             type="number"
             id="inputPrecio"
-            placeholder="Precio base ($)"
-            value="12500"
+            placeholder="Precio según edad ($)"
             min="0"
-            aria-label="Precio base del menú"
+            aria-label="Precio calculado según edad"
+            readonly
           />
         </div>
 
@@ -348,6 +376,95 @@
         </button>
 
         <div id="calcResult" class="calc-result" role="alert" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       RESERVA (Carrito + Formulario)
+  ============================================= -->
+  <section id="reserva" class="booking-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header__tag">Reserva</div>
+        <h2>Arma tu reserva en 2 pasos</h2>
+        <p>Selecciona un plan, completa tus datos y confirma. Todo se guarda en un backend simulado local.</p>
+      </div>
+
+      <div class="booking-section__layout">
+        <form id="bookingForm" class="booking-form reveal" novalidate>
+          <h3 class="booking-form__title">Datos de la reserva</h3>
+
+          <div class="booking-form__grid">
+            <div class="form-group">
+              <label for="bookingName">👤 Nombre completo</label>
+              <input type="text" id="bookingName" placeholder="Tu nombre completo" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="bookingEmail">📧 Correo</label>
+              <input type="email" id="bookingEmail" placeholder="tu@correo.com" autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="bookingDate">📅 Fecha</label>
+              <input type="date" id="bookingDate" />
+            </div>
+            <div class="form-group">
+              <label for="bookingTime">⏰ Hora</label>
+              <input type="time" id="bookingTime" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bookingPeople">👨‍👩‍👧‍👦 Personas</label>
+            <input type="number" id="bookingPeople" min="1" max="20" value="2" />
+          </div>
+
+          <div class="form-group">
+            <label for="bookingNotes">📝 Notas para cocina/salón</label>
+            <textarea id="bookingNotes" rows="4" placeholder="Ej: celebrar cumpleaños, alergias, silla para niño..."></textarea>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit">Guardar datos</button>
+          <div id="bookingFormResult" class="app-result" role="alert" aria-live="polite"></div>
+        </form>
+
+        <aside class="booking-cart reveal" aria-live="polite">
+          <h3 class="booking-cart__title">Tu carrito de reserva</h3>
+          <p class="booking-cart__subtitle">Selecciona un plan en la sección Precios para comenzar.</p>
+
+          <div class="booking-cart__line">
+            <span>Plan</span>
+            <strong id="bookingPlanName">Sin plan seleccionado</strong>
+          </div>
+          <div class="booking-cart__line">
+            <span>Precio por persona</span>
+            <strong id="bookingPlanPrice">$0</strong>
+          </div>
+
+          <div class="booking-cart__line booking-cart__line--counter">
+            <span>Personas</span>
+            <div class="booking-cart__counter">
+              <button type="button" id="bookingPeopleMinus" aria-label="Disminuir personas">−</button>
+              <span id="bookingPeopleDisplay">2</span>
+              <button type="button" id="bookingPeoplePlus" aria-label="Aumentar personas">+</button>
+            </div>
+          </div>
+
+          <div class="booking-cart__line booking-cart__line--total">
+            <span>Total estimado</span>
+            <strong id="bookingEstimatedTotal">$0</strong>
+          </div>
+
+          <button class="btn btn--secondary btn--block" id="btnConfirmBooking" type="button">
+            Confirmar reserva ✅
+          </button>
+          <button class="btn btn--outline btn--block booking-cart__clear" id="btnClearBooking" type="button">
+            Limpiar selección
+          </button>
+
+          <div id="bookingResult" class="app-result" role="alert" aria-live="polite"></div>
+        </aside>
       </div>
     </div>
   </section>
@@ -368,7 +485,7 @@
         <div class="testimonial-card reveal">
           <div class="testimonial-card__stars">★★★★★</div>
           <p class="testimonial-card__text">
-            "Increíble variedad y calidad. Fuimos con los chicos y les encantó que los menores de 5 años comieran gratis. ¡Volvemos la semana que viene!"
+            "Increíble variedad y calidad. Fuimos con los niños y les encantó que los menores de 5 años comieran gratis. ¡Volveremos la próxima semana!"
           </p>
           <div class="testimonial-card__author">
             <div class="testimonial-card__avatar">👩</div>
@@ -396,7 +513,7 @@
         <div class="testimonial-card reveal">
           <div class="testimonial-card__stars">★★★★★</div>
           <p class="testimonial-card__text">
-            "Vinimos para el cumpleaños de mi hija. La torta fue un detalle hermoso. El plan familia es un golazo, muy bien de precio para todo lo que ofrecen."
+            "Vinimos para el cumpleaños de mi hija. La torta fue un detalle hermoso. El plan familia es una excelente opción, muy bien de precio para todo lo que ofrecen."
           </p>
           <div class="testimonial-card__author">
             <div class="testimonial-card__avatar">👩‍🦰</div>
@@ -413,17 +530,68 @@
 
 
   <!-- =============================================
+       CONTACTO
+  ============================================= -->
+  <section id="contacto" class="contact-section section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-header__tag">Contacto</div>
+        <h2>Escríbenos</h2>
+        <p>Este formulario funciona con backend simulado local: crea ticket y guarda historial.</p>
+      </div>
+
+      <div class="contact-section__layout">
+        <form id="contactForm" class="contact-form reveal" novalidate>
+          <div class="form-group">
+            <label for="contactName">👤 Nombre</label>
+            <input type="text" id="contactName" placeholder="Tu nombre" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">📧 Correo</label>
+            <input type="email" id="contactEmail" placeholder="tu@correo.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="contactTopic">📌 Motivo</label>
+            <select id="contactTopic">
+              <option value="reserva">Reserva</option>
+              <option value="evento">Evento privado</option>
+              <option value="facturacion">Facturación</option>
+              <option value="sugerencia">Sugerencia</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">💬 Mensaje</label>
+            <textarea id="contactMessage" rows="5" placeholder="Cuéntanos cómo podemos ayudarte"></textarea>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit">Enviar mensaje</button>
+          <div id="contactResult" class="app-result" role="alert" aria-live="polite"></div>
+        </form>
+
+        <aside class="contact-history reveal">
+          <h3 class="contact-history__title">Últimos tickets</h3>
+          <p class="contact-history__subtitle">
+            Historial local de envíos simulados.
+          </p>
+          <ul id="contactHistoryList" class="contact-history__list"></ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =============================================
        CTA FINAL
   ============================================= -->
   <section class="cta-section">
     <div class="container">
       <h2 class="cta-section__title">¿Listo para comer sin límites?</h2>
       <p class="cta-section__subtitle">
-        Reservá tu mesa hoy y viví la experiencia de un verdadero tenedor libre.
+        Reserva tu mesa hoy y vive la experiencia de un verdadero tenedor libre.
       </p>
       <div class="cta-section__actions">
         <button class="btn btn--light btn--lg" data-open-auth>Crear mi cuenta 🍴</button>
-        <a href="#precios" class="btn--outline-light btn--lg">Ver precios</a>
+        <a href="#reserva" class="btn--outline-light btn--lg">Ir a reservar</a>
       </div>
     </div>
   </section>
@@ -434,18 +602,20 @@
   ============================================= -->
   <footer class="footer">
     <div class="footer__logo">🍴 Tenedor<span>Libre</span></div>
-    <p class="footer__tagline">Come cuanto quieras. Paga una sola vez. Volvé siempre.</p>
-    <nav class="footer__links" aria-label="Links del pie de página">
+    <p class="footer__tagline">Come cuanto quieras. Paga una sola vez. Vuelve siempre.</p>
+    <nav class="footer__links" aria-label="Enlaces del pie de página">
       <a href="#inicio">Inicio</a>
       <a href="#menu">Menú</a>
       <a href="#precios">Precios</a>
       <a href="#calculadora">Calculadora</a>
+      <a href="#reserva">Reserva</a>
+      <a href="#contacto">Contacto</a>
       <a href="#testimonios">Opiniones</a>
     </nav>
     <hr class="footer__divider" />
     <p class="footer__copy">
-      © 2025 Tenedor Libre · Todos los derechos reservados ·
-      Desarrollado con 💖 y SASS 7-1
+      © 2026 Tenedor Libre · Todos los derechos reservados ·
+      Cristóbal Zurita 
     </p>
   </footer>
 
@@ -466,7 +636,7 @@
 
       <div class="modal__icon">🍽️</div>
       <h2 class="modal__title" id="modalTitle">¡Bienvenido!</h2>
-      <p class="modal__subtitle">Iniciá sesión o creá tu cuenta gratis</p>
+      <p class="modal__subtitle">Inicia sesión o crea tu cuenta gratis</p>
 
       <!-- Tabs: Login / Registro -->
       <div class="modal__tabs" role="tablist">
@@ -516,7 +686,7 @@
           <div class="modal__result__message"></div>
         </div>
 
-        <p style="text-align:center;margin-top:1rem;font-size:0.8rem;color:#6B6B80;">
+        <p class="modal__demo">
           Cuenta de prueba: <strong>admin@tenedorlibre.com</strong> / <strong>1234</strong>
         </p>
       </div>
@@ -546,7 +716,7 @@
           <input
             type="password"
             id="regPass"
-            placeholder="Elegí una contraseña"
+            placeholder="Elige una contraseña"
             autocomplete="new-password"
           />
         </div>
@@ -555,7 +725,7 @@
           <input
             type="password"
             id="regConfirm"
-            placeholder="Repetí tu contraseña"
+            placeholder="Repite tu contraseña"
             autocomplete="new-password"
           />
         </div>

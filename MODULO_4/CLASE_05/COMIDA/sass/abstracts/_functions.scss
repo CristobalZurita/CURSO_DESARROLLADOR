@@ -1,0 +1,20 @@
+// ============================================
+// ABSTRACTS / FUNCTIONS
+// ============================================
+@use 'sass:math';
+@use 'sass:color';
+
+@function rem($px) {
+  @if unit($px) == 'px' {
+    @return math.div($px, 16px) * 1rem;
+  }
+  @return $px;
+}
+
+@function shade($color, $percentage) {
+  @return color.mix(#000, $color, $percentage);
+}
+
+@function tint($color, $percentage) {
+  @return color.mix(#fff, $color, $percentage);
+}

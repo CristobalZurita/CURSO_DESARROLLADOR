@@ -23,6 +23,14 @@ body {
   overflow-x: hidden;
 }
 
+body.body--lock {
+  overflow: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 92px;
+}
+
 img,
 video {
   max-width: 100%;

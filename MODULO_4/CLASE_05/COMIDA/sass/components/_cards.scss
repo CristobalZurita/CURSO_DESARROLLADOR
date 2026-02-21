@@ -27,6 +27,21 @@
     transition: transform $transition-slow;
   }
 
+  &__media {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    font-size: 5rem;
+    @include flex-center;
+
+    &--ensalada { background: linear-gradient(135deg, #7DDFC3, #2DA58E); }
+    &--asado    { background: linear-gradient(135deg, #F5B942, #D63A6A); }
+    &--pasta    { background: linear-gradient(135deg, #F4C2D0, #F5B942); }
+    &--sushi    { background: linear-gradient(135deg, #D63A6A, #7DDFC3); }
+    &--pollo    { background: linear-gradient(135deg, #2DA58E, #1A1A2E); }
+    &--postre   { background: linear-gradient(135deg, #F5B942, #F4C2D0); }
+  }
+
   &:hover &__image {
     transform: scale(1.05);
   }
@@ -74,6 +89,14 @@
   }
 }
 
+.menu-card--hidden {
+  display: none;
+}
+
+.menu-card--filtered-in {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
 // Carta de precio / plan
 .price-card {
   @include card-base;
@@ -81,6 +104,11 @@
   text-align: center;
   position: relative;
   border: 3px solid transparent;
+
+  &--selected {
+    border-color: $color-secondary;
+    box-shadow: 0 0 0 4px rgba($color-teal, 0.18), $shadow-lg;
+  }
 
   &--featured {
     border-color: $color-primary;

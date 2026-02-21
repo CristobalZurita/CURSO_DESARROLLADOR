@@ -35,7 +35,7 @@
 
   &__links {
     display: none;
-    gap: $spacing-lg;
+    gap: $spacing-md;
 
     @include respond-to(md) {
       display: flex;
@@ -43,6 +43,7 @@
 
     a {
       font-weight: 600;
+      font-size: 0.95rem;
       color: $color-text;
       transition: color $transition-fast;
       position: relative;
@@ -66,6 +67,18 @@
     }
   }
 
+  &__links--mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    padding: 1rem 2rem 2rem;
+    background: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
   &__cta {
     @include btn-base;
     background: $color-primary;
@@ -77,6 +90,15 @@
       background: shade($color-rosa, 15%);
       transform: translateY(-2px);
       box-shadow: $shadow-glow;
+    }
+  }
+
+  &__cta--logged {
+    background: $color-secondary;
+
+    &:hover {
+      background: shade($color-teal, 15%);
+      box-shadow: 0 8px 25px rgba($color-teal, 0.4);
     }
   }
 
@@ -98,5 +120,16 @@
       border-radius: 3px;
       transition: all $transition-fast;
     }
+  }
+}
+
+@include respond-to(md) {
+  .navbar__links--mobile-open {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
   }
 }
